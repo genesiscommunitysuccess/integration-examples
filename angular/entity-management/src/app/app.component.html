@@ -1,10 +1,14 @@
-<alpha-card>
+<zero-design-system-provider>
   <h2>{{title}}</h2>
   <entity-management
-    resourceName="ALL_COUNTERPARTYS"
+    *ngIf="isSubscribed ; else noConnection"
     title="Counterparty Management"
+    resourceName="ALL_COUNTERPARTYS"
     updateEvent="EVENT_COUNTERPARTY_MODIFY"
     deleteEvent="EVENT_COUNTERPARTY_DELETE"
     createEvent="EVENT_COUNTERPARTY_INSERT"
   ></entity-management>
-</alpha-card>
+  <ng-template #noConnection>
+    <zero-progress-ring></zero-progress-ring>
+  </ng-template>
+</zero-design-system-provider>

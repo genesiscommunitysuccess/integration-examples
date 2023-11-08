@@ -6,6 +6,9 @@ import {
   provideDesignSystem, 
   baseComponents,
 } from '@genesislcap/foundation-zero';
+import { 
+  zeroGridComponents,
+} from '@genesislcap/foundation-zero-grid-pro';
 
 import { EntityManagement } from '@genesislcap/foundation-entity-management';
 
@@ -13,6 +16,7 @@ EntityManagement;
 provideDesignSystem()
     .register(
         baseComponents,
+        zeroGridComponents,
     );
 
 platformBrowserDynamic().bootstrapModule(AppModule)

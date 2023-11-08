@@ -1,18 +1,18 @@
-alpha-card {
-    padding: 16px;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  alpha-text-field {
-    margin-bottom: 12px;
-  }
-  
-  h2 {
-    font-size: var(--type-ramp-plus-5-font-size);
-    line-height: var(--type-ramp-plus-5-line-height);
-  }
-  
-  alpha-card > alpha-button {
-    align-self: flex-end;
-  }
+zero-design-system-provider {
+  flex-wrap: wrap;
+  min-height: calc(100vh - 20px);
+  align-content: start;
+  padding: 10px;
+  justify-content: center;
+}
+
+h2 {
+  width: 100%;
+  align-self: start;   
+}
+
+entity-management {
+  flex: 1;
+  width: 100%;
+  min-height: 500px;
+}
