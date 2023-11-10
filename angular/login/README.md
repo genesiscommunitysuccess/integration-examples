@@ -1,5 +1,6 @@
 # Foundation Login
 
+WIP - replace with [foundation-auth](https://github.com/genesislcap/foundation-ui/pull/1185) when will be ready
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.9.
 
 ## Development server

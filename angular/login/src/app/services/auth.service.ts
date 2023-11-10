@@ -8,14 +8,12 @@ export class AuthService {
   private isAuthenticated = false;
 
   login(username: string, password: string): Observable<boolean> {
-    // Here you would make an HTTP request to your authentication server
-    // For simplicity, we are just simulating an authentication
     if (username === 'user' && password === 'pass') {
       this.isAuthenticated = true;
-      return of(true); // Simulate HTTP request with an observable
+      return of(true);
     } else {
       this.isAuthenticated = false;
-      return of(false); // Simulate failed login
+      return of(false);
     }
   }
 
@@ -23,7 +21,10 @@ export class AuthService {
     this.isAuthenticated = false;
   }
 
-  isUserAuthenticated(): boolean {
-    return this.isAuthenticated;
+  isUserAuthenticated(): Promise<boolean> {
+    // mock async behavior
+    return new Promise((resolve) => {
+      setTimeout(() => resolve(this.isAuthenticated), 3000);
+    })
   }
 }

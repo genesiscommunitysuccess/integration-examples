@@ -4,11 +4,14 @@ import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-
+import { AuthComponent } from './pages/auth/auth.component';
+import { ProtectedComponent } from './pages/protected/protected.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    AuthComponent,
+    ProtectedComponent,
   ],
   imports: [
     BrowserModule,
