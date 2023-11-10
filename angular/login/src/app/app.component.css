@@ -1,0 +1,18 @@
+zero-design-system-provider {
+  flex-wrap: wrap;
+  min-height: calc(100vh - 20px);
+  align-content: start;
+  padding: 10px;
+  justify-content: center;
+}
+
+h2 {
+  width: 100%;
+  align-self: start;   
+}
+
+entity-management {
+  flex: 1;
+  width: 100%;
+  min-height: 500px;
+}
