@@ -1,14 +1,4 @@
-<zero-design-system-provider>
-  <h2>{{title}}</h2>
-  <entity-management
-    *ngIf="isSubscribed ; else noConnection"
-    title="Counterparty Management"
-    resourceName="ALL_COUNTERPARTYS"
-    updateEvent="EVENT_COUNTERPARTY_MODIFY"
-    deleteEvent="EVENT_COUNTERPARTY_DELETE"
-    createEvent="EVENT_COUNTERPARTY_INSERT"
-  ></entity-management>
-  <ng-template #noConnection>
-    <zero-progress-ring></zero-progress-ring>
-  </ng-template>
-</zero-design-system-provider>
+<ng-container *ngComponentOutlet="layoutComponent">
+  <router-outlet></router-outlet>
+  <app-messages></app-messages>
+</ng-container>

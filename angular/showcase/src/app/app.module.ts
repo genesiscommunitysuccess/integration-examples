@@ -4,15 +4,23 @@ import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { DefaultLayout } from './layouts/default/default.layout';
+import { BlankLayout } from './layouts/blank/blank.layout';
+import { AuthComponent } from './pages/auth/auth.component';
+import { ProtectedComponent } from './pages/protected/protected.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    AuthComponent,
+    ProtectedComponent,
+    DefaultLayout,
+    BlankLayout,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

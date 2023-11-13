@@ -1,17 +1,15 @@
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { AppModule } from './app/app.module';
+import { Navigation } from '@genesislcap/foundation-header';
 import { 
   provideDesignSystem, 
   baseComponents,
 } from '@genesislcap/foundation-zero';
-import { zeroGridComponents } from '@genesislcap/foundation-zero-grid-pro';
-import { EntityManagement } from '@genesislcap/foundation-entity-management';
 import { fastButton, provideFASTDesignSystem } from '@microsoft/fast-components'
 
-EntityManagement;
+Navigation;
 provideDesignSystem().register(
   baseComponents,
-  zeroGridComponents,
 );
 provideFASTDesignSystem().register(fastButton());
 

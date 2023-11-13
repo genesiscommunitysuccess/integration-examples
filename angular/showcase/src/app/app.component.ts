@@ -1,29 +1,27 @@
-import { Component, OnInit } from '@angular/core';
-import getApiHelper from './utils/getApiHelper';
+import { Component } from '@angular/core';
+import { Router, NavigationEnd } from '@angular/router';
+import { layoutDefault, layoutComponentInstanceByName } from './config';
+import type { LayoutComponentName } from './types/layout';
+import getLayoutNameByRoute from './utils/getLayoutNameByRoute';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit  {
+export class AppComponent  {
+  layout: LayoutComponentName = layoutDefault;
+  layoutComponent = layoutComponentInstanceByName[layoutDefault];
+  showFooter = false;
   title = 'Genesis Foundation Entity Managment Angular';
   isSubscribed  = false;
 
-  ngOnInit() {
-    const { run, login, subscribe } = getApiHelper();
-
-    subscribe(async (isSubscribed: any) => {
-      if (isSubscribed ) {
-        try {
-          await login();
-          this.isSubscribed = true
-        } catch {
-          this.isSubscribed = false
-        }
+  constructor(private router: Router) {
+    router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        this.layout = getLayoutNameByRoute(event.url);
+        this.layoutComponent = layoutComponentInstanceByName[this.layout];
       }
     });
-
-    run();
   }
 }

@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
+import mockLogin from '../utils/mockLogin'
+
+const STORAGE_KEY = 'isAuthenticated';
 
 @Injectable({
   providedIn: 'root',
@@ -7,24 +10,24 @@ import { Observable, of } from 'rxjs';
 export class AuthService {
   private isAuthenticated = false;
 
-  login(username: string, password: string): Observable<boolean> {
-    if (username === 'user' && password === 'pass') {
+  async login(): Promise<Observable<boolean>> {
+    try {
+      await mockLogin();
+      localStorage.setItem(STORAGE_KEY, '1');
       this.isAuthenticated = true;
       return of(true);
-    } else {
+    } catch {
       this.isAuthenticated = false;
       return of(false);
     }
   }
 
   logout(): void {
+    localStorage.setItem(STORAGE_KEY, '0');
     this.isAuthenticated = false;
   }
 
-  isUserAuthenticated(): Promise<boolean> {
-    // mock async behavior
-    return new Promise((resolve) => {
-      setTimeout(() => resolve(this.isAuthenticated), 3000);
-    })
+  isUserAuthenticated(): boolean {
+    return localStorage.getItem(STORAGE_KEY) === '1';
   }
 }

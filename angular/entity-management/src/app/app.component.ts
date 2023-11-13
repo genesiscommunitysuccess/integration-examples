@@ -7,7 +7,7 @@ import getApiHelper from './utils/getApiHelper';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit  {
-  title = 'Genesis Foundation Entity Managment Angular';
+  title = 'Genesis Foundation Entity Managment  Angular';
   isSubscribed  = false;
 
   ngOnInit() {
