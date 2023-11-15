@@ -19,7 +19,7 @@ export class AppComponent  {
   constructor(private router: Router) {
     router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
-        this.layout = getLayoutNameByRoute(event.url);
+        this.layout = getLayoutNameByRoute(event.urlAfterRedirects);
         this.layoutComponent = layoutComponentInstanceByName[this.layout];
       }
     });
