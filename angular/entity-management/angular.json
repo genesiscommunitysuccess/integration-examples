@@ -31,7 +31,16 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [],
+            "allowedCommonJsDependencies": [
+              "consola",
+              "ajv",
+              "ajv-formats",
+              "lodash",
+              "lodash.debounce",
+              "dayjs",
+              "dlv"
+            ]
           },
           "configurations": {
             "production": {
@@ -64,10 +73,10 @@
           "builder": "@angular-builders/custom-webpack:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "basic:build:production"
+              "buildTarget": "basic:build:production"
             },
             "development": {
-              "browserTarget": "basic:build:development"
+              "buildTarget": "basic:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -75,7 +84,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "basic:build"
+            "buildTarget": "basic:build"
           }
         },
         "test": {
