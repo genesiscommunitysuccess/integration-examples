@@ -4,22 +4,22 @@ import getApiHelper from './utils/getApiHelper';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
 })
-export class AppComponent implements OnInit  {
-  title = 'Genesis Foundation Entity Managment  Angular';
-  isSubscribed  = false;
+export class AppComponent implements OnInit {
+  title = 'Genesis Foundation Entity Managment Angular';
+  isSubscribed = false;
 
   ngOnInit() {
     const { run, login, subscribe } = getApiHelper();
 
     subscribe(async (isSubscribed: any) => {
-      if (isSubscribed ) {
+      if (isSubscribed) {
         try {
           await login();
-          this.isSubscribed = true
+          this.isSubscribed = true;
         } catch {
-          this.isSubscribed = false
+          this.isSubscribed = false;
         }
       }
     });

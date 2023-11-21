@@ -25,6 +25,6 @@ export class AuthService {
     // mock async behavior
     return new Promise((resolve) => {
       setTimeout(() => resolve(this.isAuthenticated), 3000);
-    })
+    });
   }
 }

@@ -5,16 +5,19 @@ import { AuthService } from '../../services/auth.service';
 @Component({
   selector: 'app-auth',
   templateUrl: './auth.component.html',
-  styleUrls: ['./auth.component.css']
+  styleUrls: ['./auth.component.css'],
 })
 export class AuthComponent {
   username: string = '';
   password: string = '';
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+  ) {}
 
   onLogin(): void {
-    this.authService.login(this.username, this.password).subscribe(isAuthenticated => {
+    this.authService.login(this.username, this.password).subscribe((isAuthenticated) => {
       if (isAuthenticated) {
         // Navigate to some route on success
         this.router.navigate(['/protected']);
