@@ -6,6 +6,19 @@
     [routeButtons]="allRoutes"
     (notification-icon-clicked)="onNotificationIconClicked()"
   >
+    <section
+    class="routes-wrapper"
+    slot="routes">
+      <zero-button
+        *ngFor="let menuLink of allRoutes"
+        (click)="navigate(menuLink.path)" 
+      >
+        <zero-icon name="{{menuLink.icon }}"></zero-icon>
+        {{ menuLink.title }}
+      </zero-button>
+
+    </section>
+
     <div slot="menu-contents">
       <p>GROUP SLOT</p>
       <zero-tree-view slot="nav-items-1">

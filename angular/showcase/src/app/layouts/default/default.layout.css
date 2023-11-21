@@ -12,3 +12,7 @@ foundation-header {
 foundation-header:not(:defined) {
   visibility: visible;
 }
+
+.routes-wrapper {
+  display: flex;
+}
