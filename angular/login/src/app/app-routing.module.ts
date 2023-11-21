@@ -8,11 +8,11 @@ const routes: Routes = [
   {
     path: 'protected',
     canActivate: [AuthGuard],
-    component: ProtectedComponent
+    component: ProtectedComponent,
   },
   {
     path: 'auth',
-    component: AuthComponent
+    component: AuthComponent,
   },
   // Redirect to auth if no other route is matched
   { path: '**', redirectTo: '/auth' },
@@ -20,6 +20,6 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

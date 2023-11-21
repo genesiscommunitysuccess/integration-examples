@@ -6,7 +6,8 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "prettier": "npx prettier --write ."
   },
   "private": true,
   "dependencies": {
@@ -27,11 +28,13 @@
     "tslib": "^2.3.0",
     "zone.js": "~0.14.2"
   },
+  "prettier": "@genesislcap/prettier-config",
   "devDependencies": {
     "@angular-builders/custom-webpack": "^17.0.0",
     "@angular-devkit/build-angular": "^17.0.0",
     "@angular/cli": "^17.0.0",
     "@angular/compiler-cli": "^17.0.2",
+    "@genesislcap/prettier-config": "^14.109.0",
     "@types/jasmine": "~4.3.0",
     "file-loader": "^6.2.0",
     "jasmine-core": "~4.6.0",
@@ -40,6 +43,7 @@
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
+    "prettier": "^3.1.0",
     "style-loader": "^3.3.3",
     "svg-url-loader": "^8.0.0",
     "typescript": "~5.2.2"

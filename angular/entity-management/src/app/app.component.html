@@ -1,7 +1,7 @@
 <zero-design-system-provider>
-  <h2>{{title}}</h2>
+  <h2>{{ title }}</h2>
   <entity-management
-    *ngIf="isSubscribed ; else noConnection"
+    *ngIf="isSubscribed; else noConnection"
     title="Counterparty Management"
     resourceName="ALL_COUNTERPARTYS"
     updateEvent="EVENT_COUNTERPARTY_MODIFY"
