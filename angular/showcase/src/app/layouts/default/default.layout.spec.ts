@@ -8,7 +8,7 @@ describe('DefaultComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [DefaultLayout]
+      declarations: [DefaultLayout],
     });
     fixture = TestBed.createComponent(DefaultLayout);
     component = fixture.componentInstance;

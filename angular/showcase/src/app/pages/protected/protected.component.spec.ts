@@ -8,7 +8,7 @@ describe('ProtectedComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [ProtectedComponent]
+      declarations: [ProtectedComponent],
     });
     fixture = TestBed.createComponent(ProtectedComponent);
     component = fixture.componentInstance;

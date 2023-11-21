@@ -8,7 +8,7 @@ describe('BlankComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [BlankLayout]
+      declarations: [BlankLayout],
     });
     fixture = TestBed.createComponent(BlankLayout);
     component = fixture.componentInstance;

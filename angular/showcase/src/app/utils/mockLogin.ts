@@ -1,9 +1,5 @@
 import { DI } from '@microsoft/fast-foundation';
-import {
-  Connect,
-  Auth,
-  BasicAuthInfo,
-} from '@genesislcap/foundation-comms';
+import { Connect, Auth, BasicAuthInfo } from '@genesislcap/foundation-comms';
 
 import { API_DATA } from '../config';
 
@@ -17,8 +13,8 @@ const mockLogin = () => {
       type: 'BASIC',
       username: API_DATA.AUTH.username,
       password: API_DATA.AUTH.password,
-      } as BasicAuthInfo)
-  })
-}
+    } as BasicAuthInfo);
+  });
+};
 
 export default mockLogin;

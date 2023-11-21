@@ -10,20 +10,10 @@ import { AuthComponent } from './pages/auth/auth.component';
 import { ProtectedComponent } from './pages/protected/protected.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    AuthComponent,
-    ProtectedComponent,
-    DefaultLayout,
-    BlankLayout,
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-  ],
+  declarations: [AppComponent, AuthComponent, ProtectedComponent, DefaultLayout, BlankLayout],
+  imports: [BrowserModule, AppRoutingModule, FormsModule],
   providers: [],
   bootstrap: [AppComponent],
-  schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export class AppModule { }
+export class AppModule {}

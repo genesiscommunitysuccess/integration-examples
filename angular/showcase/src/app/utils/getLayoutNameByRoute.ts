@@ -1,5 +1,4 @@
-
-import { layoutComponentName } from '../config'
+import { layoutComponentName } from '../config';
 import { LayoutComponentName } from '../types/layout';
 
 const LayoutNameByRouteMap: Map<string, LayoutComponentName> = new Map([
@@ -14,6 +13,6 @@ const getLayoutNameByRoute = (route: string): LayoutComponentName => {
   }
 
   return layoutComponentName.default;
-}
+};
 
 export default getLayoutNameByRoute;

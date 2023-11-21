@@ -26,16 +26,18 @@ module.exports = {
         use: [
           {
             loader: 'svg-url-loader',
-            options: {
-            },
+            options: {},
           },
         ],
-      }
+      },
     ],
   },
   resolve: {
     alias: {
-      'foundationZero/ZeroDesignSystem': path.resolve(__dirname, 'node_modules/@genesislcap/foundation-zero')
-    }
-  }
+      'foundationZero/ZeroDesignSystem': path.resolve(
+        __dirname,
+        'node_modules/@genesislcap/foundation-zero',
+      ),
+    },
+  },
 };

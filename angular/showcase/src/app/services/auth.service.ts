@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import mockLogin from '../utils/mockLogin'
+import mockLogin from '../utils/mockLogin';
 
 const STORAGE_KEY = 'isAuthenticated';
 

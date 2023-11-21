@@ -7,17 +7,17 @@ import getLayoutNameByRoute from './utils/getLayoutNameByRoute';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
 })
-export class AppComponent  {
+export class AppComponent {
   layout: LayoutComponentName = layoutDefault;
   layoutComponent = layoutComponentInstanceByName[layoutDefault];
   showFooter = false;
   title = 'Genesis Foundation Entity Managment Angular';
-  isSubscribed  = false;
+  isSubscribed = false;
 
   constructor(private router: Router) {
-    router.events.subscribe(event => {
+    router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         this.layout = getLayoutNameByRoute(event.urlAfterRedirects);
         this.layoutComponent = layoutComponentInstanceByName[this.layout];

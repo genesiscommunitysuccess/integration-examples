@@ -9,15 +9,15 @@ const routes: Routes = [
   {
     path: 'protected',
     canActivate: [AuthGuard],
-    component: ProtectedComponent
+    component: ProtectedComponent,
   },
   {
     path: 'auth',
-    component: AuthComponent
+    component: AuthComponent,
   },
   {
     path: 'reporting',
-    component: ReportingComponent
+    component: ReportingComponent,
   },
   // Redirect to auth if no other route is matched
   { path: '**', redirectTo: '/auth' },
@@ -27,4 +27,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
