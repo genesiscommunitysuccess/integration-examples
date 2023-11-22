@@ -16,7 +16,6 @@ export class AppComponent {
   title = 'Genesis Foundation Entity Managment Angular';
   isSubscribed = false;
 
-
   constructor(private router: Router) {
     // Set layout componet based on route
     router.events.subscribe((event) => {
