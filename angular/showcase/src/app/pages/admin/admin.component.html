@@ -1,0 +1,35 @@
+<zero-tabs>
+  <span slot="start">Admin</span>
+  <zero-tab slot="tab">Split</zero-tab>
+  <zero-tab slot="tab">Users</zero-tab>
+  <zero-tab slot="tab">Profiles</zero-tab>
+  <zero-tab slot="tab">Counterparties</zero-tab>
+  <zero-tab-panel slot="tabpanel">
+    <zero-notification-listener>
+      
+    </zero-notification-listener>
+  </zero-tab-panel>
+  <zero-tab-panel slot="tabpanel">
+    <zero-notification-listener>
+      <user-management [columns]="userColumns"></user-management>
+    </zero-notification-listener>
+  </zero-tab-panel>
+  <zero-tab-panel slot="tabpanel">
+    <zero-notification-listener>
+      <profile-management></profile-management>
+    </zero-notification-listener>
+  </zero-tab-panel>
+  <zero-tab-panel slot="tabpanel">
+    <zero-button (click)="readEntity()">
+      Read Entity
+    </zero-button>
+    <entity-management
+      #entityManagement
+      resourceName="ALL_COUNTERPARTYS"
+      title="Counterparty Management"
+      updateEvent="EVENT_COUNTERPARTY_MODIFY"
+      deleteEvent="EVENT_COUNTERPARTY_DELETE"
+      createEvent="EVENT_COUNTERPARTY_INSERT"
+    ></entity-management>
+  </zero-tab-panel>
+</zero-tabs>
