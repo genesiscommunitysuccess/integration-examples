@@ -1,12 +1,16 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA, ViewChild, ElementRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UsersColumnConfig } from '@genesislcap/foundation-entity-management';
-import { EntityManagement } from '@genesislcap/foundation-entity-management';
+import { EntityManagement, Profiles } from '@genesislcap/foundation-entity-management';
+import { provideDesignSystem } from '@genesislcap/foundation-zero';
+import { zeroGridComponents } from '@genesislcap/foundation-zero-grid-pro';
 
 EntityManagement;
+Profiles;
+provideDesignSystem().register(zeroGridComponents);
 
 @Component({
-  selector: 'app-admin',
+  selector: 'page-admin',
   standalone: true,
   imports: [CommonModule],
   templateUrl: './admin.component.html',
@@ -14,7 +18,10 @@ EntityManagement;
   schemas:[ CUSTOM_ELEMENTS_SCHEMA ]
 })
 export class AdminComponent {
-  @ViewChild('entityManagement') entityManagementElement!: any;
+  @ViewChild('entityManagement') entityManagementElement!: ElementRef;
+  @ViewChild('adminLayout') adminLayoutElement!: ElementRef;
+
+  private _layoutPaneCount = 0;
 
   userColumns = [
     ...UsersColumnConfig,
@@ -27,5 +34,14 @@ export class AdminComponent {
   readEntity () {
     const event = new CustomEvent('read-entity');
     this.entityManagementElement.nativeElement.dispatchEvent(event);
+  }
+
+  
+  addItem(registration: string) {
+    this.adminLayoutElement.nativeElement.addItem({
+      registration,
+      title: `${registration} (${(this._layoutPaneCount += 1)})`,
+      closable: true,
+    });
   }
 }

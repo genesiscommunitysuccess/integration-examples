@@ -1,0 +1,132 @@
+<zero-flex-layout>
+  <zero-tabs>
+    <span slot="start">Charts</span>
+    <zero-tab slot="tab">Multiple</zero-tab>
+    <zero-tab slot="tab">Server Data - Pie</zero-tab>
+    <zero-tab slot="tab">Area Model</zero-tab>
+    <zero-tab slot="tab">Bar Model</zero-tab>
+    <zero-tab slot="tab">Column Model</zero-tab>
+    <zero-tab slot="tab">Dual Axes Model</zero-tab>
+    <zero-tab slot="tab">Line Model</zero-tab>
+    <zero-tab slot="tab">Rose Model</zero-tab>
+    <zero-tab slot="tab">Mix Model</zero-tab>
+
+    <zero-tab-panel slot="tabpanel"><div class="container">
+      <div
+        class="container"
+        style="display: grid; grid-template-columns: 1fr; grid-auto-rows: minmax(5vh, auto)"
+      >
+        <div style="display: block; position: relative;">
+          <zero-button (click)="saveLayoutButtonHandler()">
+            <zero-icon variant="solid" name="floppy-disk"></zero-icon>
+          </zero-button>
+          <zero-button (click)="loadLayoutButtonHandler()">
+            <zero-icon variant="solid" name="table-cells-large"></zero-icon>
+          </zero-button>
+          <zero-button
+            appearance="primary-gradient"
+            (click)="loadPredefinedLayout('DEFAULT_EXTENDED_LAYOUT')"
+          >
+            Default Layout
+          </zero-button>
+          <zero-button
+            appearance="primary-gradient"
+            (click)="loadPredefinedLayout('COMPACT_LAYOUT')"
+          >
+            Compact Layout
+          </zero-button>
+          <!-- ${repeat(
+            (x) => x.ribbonButtonsConfig,
+            html<AnalyticChartRegistration>`
+              <zero-button
+                ?disabled=${(x) => (!x.enabled ? 'disabled' : null)}
+                @click=${(x, c: { parent: Analytics }) => c.parent.addChartToLayout(x)}
+              >
+                ${(x) => x.title}
+              </zero-button>
+            `,
+          )} -->
+        </div>
+        <div style="display: block; position: relative; grid-row-start: 2; grid-row-end: 19;">
+          <zero-layout #analyticsLayout auto-save-key="client-app-analytics-layout">
+            <zero-layout-region>
+              <zero-layout-region type="vertical">
+                <zero-layout-item title="Positions Area" registration="area" closable>
+                  <zero-g2plot-chart type="area" [config]="areaConfig">
+                    <chart-datasource
+                      resourceName="ALL_POSITIONS"
+                      server-fields="INSTRUMENT_NAME QUANTITY"
+                      isSnapshot="true"
+                    ></chart-datasource>
+                  </zero-g2plot-chart>
+                </zero-layout-item>
+                <zero-layout-item title="Static Data Bar" registration="bar" closable>
+                  <zero-g2plot-chart
+                    type="bar"
+                    [config]="barConfig"
+                    [data]="barData"
+                  ></zero-g2plot-chart>
+                </zero-layout-item>
+                <zero-layout-item title="Positions Line" registration="line" closable>
+                  <zero-g2plot-chart type="line" [config]="lineConfig">
+                    <chart-datasource
+                      resourceName="ALL_POSITIONS"
+                      server-fields="INSTRUMENT_NAME QUANTITY"
+                      isSnapshot="true"
+                    ></chart-datasource>
+                  </zero-g2plot-chart>
+                </zero-layout-item>
+                <zero-layout-item title="Static Data Rose" registration="rose" closable>
+                  <zero-g2plot-chart
+                    type="rose"
+                    [config]="roseConfig"
+                    [data]="roseData"
+                    [legendParser]="roseLegendParser()"
+                  ></zero-g2plot-chart>
+                </zero-layout-item>
+              </zero-layout-region>
+              <zero-layout-region type="vertical">
+                <zero-layout-item title="Positions Pie" registration="pie" closable>
+                  <filtered-chart></filtered-chart>
+                </zero-layout-item>
+                <zero-layout-item title="Positions Donut" registration="donut" closable>
+                  <zero-g2plot-chart type="donut" [config]="pieConfig">
+                    <chart-datasource
+                      resourceName="ALL_POSITIONS"
+                      server-fields="INSTRUMENT_NAME VALUE"
+                    ></chart-datasource>
+                  </zero-g2plot-chart>
+                </zero-layout-item>
+                <zero-layout-item title="Static Data Stock" registration="stock" closable>
+                  <zero-g2plot-chart
+                    type="stock"
+                    [config]="stockConfig"
+                    [data]="stockData"
+                  ></zero-g2plot-chart>
+                </zero-layout-item>
+                <zero-layout-item title="Positions Column" registration="column" closable>
+                  <zero-g2plot-chart type="column" [config]="columnConfig">
+                    <chart-datasource
+                      resourceName="ALL_POSITIONS"
+                      server-fields="INSTRUMENT_NAME QUANTITY"
+                      isSnapshot="true"
+                    ></chart-datasource>
+                  </zero-g2plot-chart>
+                </zero-layout-item>
+              </zero-layout-region>
+            </zero-layout-region>
+          </zero-layout>
+        </div>
+      </div>
+    </div>
+    </zero-tab-panel>
+    <zero-tab-panel slot="tabpanel">tabPanelZero</zero-tab-panel>
+    <zero-tab-panel slot="tabpanel">tabPanelOne</zero-tab-panel>
+    <zero-tab-panel slot="tabpanel">tabPanelTwo</zero-tab-panel>
+    <zero-tab-panel slot="tabpanel">tabPanelThree</zero-tab-panel>
+    <zero-tab-panel slot="tabpanel">tabPanelFour</zero-tab-panel>
+    <zero-tab-panel slot="tabpanel">tabPanelFive</zero-tab-panel>
+    <zero-tab-panel slot="tabpanel">tabPanelSix</zero-tab-panel>
+    <zero-tab-panel slot="tabpanel">tabPanelSeven</zero-tab-panel>
+  </zero-tabs>
+</zero-flex-layout>

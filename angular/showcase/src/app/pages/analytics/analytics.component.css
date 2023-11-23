@@ -1,0 +1,18 @@
+zero-tabs {
+  padding-top: 8px;
+}
+
+zero-tab-panel {
+  padding: 0 15px;
+}
+
+:host,
+zero-tabs,
+zero-tab-panel {
+  height: 100%;
+  width: 100%;
+}
+
+.container {
+  height: 100%;
+}

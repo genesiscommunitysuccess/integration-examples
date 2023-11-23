@@ -1,0 +1,25 @@
+section {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  line-height: 100%;
+  font-size: 22px;
+  font-weight: 300;
+  opacity: 0.5;
+  transition: opacity 0.2s ease-in-out;
+}
+
+img {
+  height: 30px;
+  margin: 0 10px;
+}
+
+span {
+  opacity: 0.2;
+}
+
+section:hover {
+  opacity: 1;
+}
