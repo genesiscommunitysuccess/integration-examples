@@ -10,9 +10,4 @@ zero-design-system-provider {
 
 foundation-header {
   width: 100%;
-  visibility: visible;
-}
-
-foundation-header:not(:defined) {
-  visibility: visible;
 }

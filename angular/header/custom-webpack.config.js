@@ -12,11 +12,6 @@ module.exports = {
         ],
       },
       {
-        test: /\.css$/,
-        use: ['style-loader', 'css-loader'],
-        include: path.resolve(__dirname, 'node_modules/@genesislcap/foundation-header'),
-      },
-      {
         test: /\.svg$/,
         use: [
           {
