@@ -5,12 +5,3 @@ body {
   padding: 0;
   margin: 0;
 }
-
-*:not(:defined) {
-  visibility: visible !important;
-}
-
-foundation-header *:not(:defined),
-foundation-admin *:not(:defined) {
-  visibility: hidden !important;
-}

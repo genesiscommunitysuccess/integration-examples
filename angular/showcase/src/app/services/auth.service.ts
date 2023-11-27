@@ -30,4 +30,6 @@ export class AuthService {
   isUserAuthenticated(): boolean {
     return localStorage.getItem(STORAGE_KEY) === '1';
   }
+
+  mockLogin = mockLogin;
 }

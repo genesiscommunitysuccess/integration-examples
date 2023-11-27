@@ -1,7 +1,8 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA, ViewChild, ElementRef } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { provideDesignSystem } from '@genesislcap/foundation-zero';
 import { g2plotChartsComponents } from '@genesislcap/g2plot-chart';
+import { CriteriaSegmentedControlOption, Serialisers } from '@genesislcap/foundation-criteria';
 import {
   FoundationLayout,
   FoundationLayoutItem,
@@ -23,6 +24,13 @@ import {
   stockData,
   mixConfiguration,
 } from '../../../sample-data';
+import { FilteredChartComponent } from '../../components/analytics/filtered-chart/filtered-chart.component';
+
+export const toolbarOptions: CriteriaSegmentedControlOption[] = [
+  { label: 'VOD', field: 'INSTRUMENT_ID', value: 'VOD', serialiser: Serialisers.EQ },
+  { label: 'BP', field: 'INSTRUMENT_ID', value: 'BP', serialiser: Serialisers.EQ },
+  { label: 'LSEG', field: 'INSTRUMENT_ID', value: 'LSEG', serialiser: Serialisers.EQ },
+];
 
 provideDesignSystem().register(g2plotChartsComponents);
 
@@ -34,7 +42,7 @@ type SavedLayoutKeys = keyof SavedLayoutsType;
 @Component({
   selector: 'app-analytics',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FilteredChartComponent],
   templateUrl: './analytics.component.html',
   styleUrl: './analytics.component.css',
   schemas:[ CUSTOM_ELEMENTS_SCHEMA ]
@@ -56,10 +64,11 @@ export class AnalyticsComponent {
   dualaxesConfig = dualaxesConfiguration;
   dualaxesData = dualaxesData;
   mixConfig = mixConfiguration;
+  toolbarOptions = toolbarOptions;
 
   private upadateRibbonButtons() {
     const currentlyAddedItem = FoundationLayout.layoutRequiredRegistrations(
-      this.analyticsLayoutElement.getLayout(),
+      this.analyticsLayoutElement.nativeElement.getLayout(),
     );
     // const registeredItems = Array.from(this.shadowRoot.querySelectorAll('zero-layout-item')).map(
     //   (node: FoundationLayoutItem) => ({ registration: node.registration, title: node.title }),
@@ -72,18 +81,18 @@ export class AnalyticsComponent {
   }
 
   saveLayoutButtonHandler() {
-    const layout = this.analyticsLayoutElement.getLayout();
+    const layout = this.analyticsLayoutElement.nativeElement.getLayout();
     localStorage.setItem(layoutSaveKey, JSON.stringify(layout));
   }
 
   loadLayoutButtonHandler() {
     const layout = localStorage.getItem(layoutSaveKey);
     if (!layout) return;
-    this.analyticsLayoutElement.loadLayout(JSON.parse(layout));
+    this.analyticsLayoutElement.nativeElement.loadLayout(JSON.parse(layout));
   }
 
   loadPredefinedLayout(layoutName: SavedLayoutKeys) {
-    this.analyticsLayoutElement.loadLayout(JSON.parse(SavedLayout[layoutName]));
+    this.analyticsLayoutElement.nativeElement.loadLayout(JSON.parse(SavedLayout[layoutName]));
     this.upadateRibbonButtons();
   }
 

@@ -15,6 +15,10 @@ foundation-header {
   border: none;
 }
 
+.routes-wrapper {
+  display: flex;
+}
+
 app-footer, .content {
   width: 100%;
 }

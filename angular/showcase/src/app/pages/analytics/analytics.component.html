@@ -68,7 +68,7 @@
                   ></zero-g2plot-chart>
                 </zero-layout-item>
                 <zero-layout-item title="Positions Line" registration="line" closable>
-                  <zero-g2plot-chart type="line" [config]="lineConfig">
+                  <zero-g2plot-chart type="line" >
                     <chart-datasource
                       resourceName="ALL_POSITIONS"
                       server-fields="INSTRUMENT_NAME QUANTITY"
@@ -87,7 +87,7 @@
               </zero-layout-region>
               <zero-layout-region type="vertical">
                 <zero-layout-item title="Positions Pie" registration="pie" closable>
-                  <filtered-chart></filtered-chart>
+                  <app-filtered-chart [toolbarOptions]="toolbarOptions" />
                 </zero-layout-item>
                 <zero-layout-item title="Positions Donut" registration="donut" closable>
                   <zero-g2plot-chart type="donut" [config]="pieConfig">

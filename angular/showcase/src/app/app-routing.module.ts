@@ -9,24 +9,27 @@ import { AnalyticsComponent } from './pages/analytics/analytics.component';
 
 const routes: Routes = [
   {
+    path: 'auth',
+    component: AuthComponent,
+  },
+  {
     path: 'protected',
     canActivate: [AuthGuard],
     component: ProtectedComponent,
   },
   {
-    path: 'auth',
-    component: AuthComponent,
-  },
-  {
     path: 'admin',
+    canActivate: [AuthGuard],
     component: AdminComponent,
   },
   {
     path: 'reporting',
+    canActivate: [AuthGuard],
     component: ReportingComponent,
   },
   {
     path: 'analytics',
+    canActivate: [AuthGuard],
     component: AnalyticsComponent,
   },
   // Redirect to auth if no other route is matched
