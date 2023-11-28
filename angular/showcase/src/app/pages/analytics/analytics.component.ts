@@ -26,7 +26,6 @@ import {
   stockData,
   mixConfiguration,
 } from '../../../sample-data';
-import { FilteredChartComponent } from '../../components/analytics/filtered-chart/filtered-chart.component';
 import {
   setComponentItemsMap,
   getElementByTagFromComponent,
@@ -67,7 +66,7 @@ const helperCriteriaEvent = (criteriaSegmentedControl: any, chartDataResource: a
 @Component({
   selector: 'app-analytics',
   standalone: true,
-  imports: [CommonModule, FilteredChartComponent],
+  imports: [CommonModule],
   templateUrl: './analytics.component.html',
   styleUrl: './analytics.component.css',
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

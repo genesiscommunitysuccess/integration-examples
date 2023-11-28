@@ -8,10 +8,9 @@ import { DefaultLayout } from './layouts/default/default.layout';
 import { BlankLayout } from './layouts/blank/blank.layout';
 import { FooterComponent } from './components/footer/footer/footer.component';
 import { AuthComponent } from './pages/auth/auth.component';
-import { ProtectedComponent } from './pages/protected/protected.component';
 
 @NgModule({
-  declarations: [AppComponent, AuthComponent, ProtectedComponent, DefaultLayout, BlankLayout],
+  declarations: [AppComponent, AuthComponent, DefaultLayout, BlankLayout],
   imports: [BrowserModule, AppRoutingModule, FormsModule, FooterComponent],
   providers: [],
   bootstrap: [AppComponent],

@@ -1,0 +1,122 @@
+<zero-grid-layout row-count="4" col-count="2" class="content-around spacing-2x">
+  <zero-grid-layout-item col-number="1" row-number="1" width="1" height="1">
+    <zero-card>
+      <p>(stream)</p>
+      <zero-grid-pro
+        persist-column-state-key="grid-pro-simple-column-state"
+        async-add
+        enable-row-flashing
+        enable-cell-flashing
+      >
+        <grid-pro-client-side-datasource
+          resource-name="ALL_COUNTERPARTYS"
+          [criteria]="criteria"
+          [is-snapshot]="false"
+          [max-rows]="maxRows"
+          [max-view]="maxView"
+          [reverse]="false"
+          [restart-on-reconnection]="false"
+        ></grid-pro-client-side-datasource>
+      </zero-grid-pro>
+    </zero-card>
+  </zero-grid-layout-item>
+  <zero-grid-layout-item col-number="1" row-number="2" width="1" height="1">
+    <zero-card>
+      <p>(stream + autoCellRendererByType)</p>
+      <zero-grid-pro
+        auto-cell-renderer-by-type
+        persist-column-state-key="grid-pro-complex-column-state"
+        async-add
+        enable-row-flashing
+        enable-cell-flashing
+      >
+        <slotted-styles [styles]="processGridStyles"></slotted-styles>
+        <grid-pro-client-side-datasource
+          resource-name="ALL_COUNTERPARTYS"
+          [criteria]="criteria"
+          [is-snapshot]="false"
+          [max-rows]="maxRows"
+          [max-view]="maxView"
+          [reverse]="false"
+          [restart-on-reconnection]="false"
+        ></grid-pro-client-side-datasource>
+        <template *ngFor="let colDef of customBooleanColDefs">
+          <grid-pro-column #itemGridProColumn>
+            <grid-pro-cell
+              #itemGridProCell
+              *ngIf="colDef.cellRenderer"
+              [renderer]="colDef.cellRenderer"
+              [rendererParams]="colDef.cellRendererParams"
+            ></grid-pro-cell>
+          </grid-pro-column>
+        </template>
+ 
+        <grid-pro-column #customGridProColumn>
+          <grid-pro-cell #customGridProCell></grid-pro-cell>
+        </grid-pro-column>
+      </zero-grid-pro>
+    </zero-card>
+  </zero-grid-layout-item>
+  <zero-grid-layout-item col-number="1" row-number="3" width="1" height="1">
+    <zero-card>
+      <p>(stream + reverse=true)</p>
+      <zero-grid-pro
+        persist-column-state-key="grid-pro-simple-column-state"
+        async-add
+        enable-row-flashing
+        enable-cell-flashing
+      >
+        <grid-pro-client-side-datasource
+        resource-name="ALL_COUNTERPARTYS"
+        [criteria]="criteria"
+        [is-snapshot]="false"
+        [max-rows]="maxRows"
+        [max-view]="maxView"
+        [reverse]="true"
+        [restart-on-reconnection]="false"
+      ></grid-pro-client-side-datasource>
+      </zero-grid-pro>
+      <layout-grid-simple reverse="true"></layout-grid-simple>
+    </zero-card>
+  </zero-grid-layout-item>
+
+  <zero-grid-layout-item col-number="1" row-number="4" width="1" height="1">
+    <zero-card>
+      <p>(stream + reverse=true + max-rows=5)</p>
+      <layout-grid-simple
+        reverse="true"
+        max-rows="5"
+        max-view="5"
+        moving-view="true"
+      ></layout-grid-simple>
+    </zero-card>
+  </zero-grid-layout-item>
+
+  <zero-grid-layout-item col-number="2" row-number="1" width="1" height="1">
+    <zero-card>
+      <p>(snapshot)</p>
+      <layout-grid-simple is-snapshot="true" restart-on-reconnection></layout-grid-simple>
+    </zero-card>
+  </zero-grid-layout-item>
+
+  <zero-grid-layout-item col-number="2" row-number="2" width="1" height="1">
+    <zero-card>
+      <p>(snapshot + autoCellRendererByType)</p>
+      <layout-grid-complex is-snapshot="true"></layout-grid-complex>
+    </zero-card>
+  </zero-grid-layout-item>
+
+  <zero-grid-layout-item col-number="2" row-number="3" width="1" height="1">
+    <zero-card>
+      <p>(snapshot + reverse=true)</p>
+      <layout-grid-simple is-snapshot="true" reverse="true"></layout-grid-simple>
+    </zero-card>
+  </zero-grid-layout-item>
+
+  <zero-grid-layout-item col-number="2" row-number="4" width="1" height="1">
+    <zero-card>
+      <p>(snapshot + reverse=true + max-rows=5)</p>
+      <layout-grid-simple is-snapshot="true" reverse="true" max-rows="5"></layout-grid-simple>
+    </zero-card>
+  </zero-grid-layout-item>
+</zero-grid-layout>

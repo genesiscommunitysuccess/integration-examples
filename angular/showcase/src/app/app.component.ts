@@ -4,10 +4,6 @@ import { layoutDefault, layoutComponentInstanceByName } from './config';
 import type { LayoutComponentName } from './types/layout';
 import getLayoutNameByRoute from './utils/getLayoutNameByRoute';
 
-import { CriteriaSegmentedControl } from '@genesislcap/foundation-criteria';
-
-CriteriaSegmentedControl;
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',

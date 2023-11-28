@@ -1,0 +1,22 @@
+zero-grid-layout {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+zero-card {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 150px;
+}
+
+p {
+  margin: calc(var(--design-unit) * 2px);
+}
+
+zero-grid-pro {
+  width: 100%;
+  flex: 1 1 0%;
+}
