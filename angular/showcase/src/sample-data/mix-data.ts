@@ -108,8 +108,8 @@ export const mixConfiguration = {
                 value === offSetValues.value1
                   ? offSetValues.value2
                   : value === offSetValues.value3
-                  ? 0
-                  : offSetValues.value4,
+                    ? 0
+                    : offSetValues.value4,
               style: {
                 fill: '#1AAF8B',
                 fontWeight: 700,

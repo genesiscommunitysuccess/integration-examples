@@ -10,7 +10,6 @@ Reporting;
   imports: [CommonModule],
   templateUrl: './reporting.component.html',
   styleUrl: './reporting.component.css',
-  schemas:[ CUSTOM_ELEMENTS_SCHEMA ]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export class ReportingComponent {
-}
+export class ReportingComponent {}

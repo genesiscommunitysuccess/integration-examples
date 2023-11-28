@@ -1,4 +1,4 @@
-import { Component, ViewChild, ElementRef, AfterViewInit  } from '@angular/core';
+import { Component, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
 import BaseLayout from '../base.layout';
 import { mainMenu } from '../../config';
@@ -6,7 +6,7 @@ import { mainMenu } from '../../config';
 @Component({
   selector: 'default-layout',
   templateUrl: './default.layout.html',
-  styleUrls: ['./default.layout.css']
+  styleUrls: ['./default.layout.css'],
 })
 export class DefaultLayout extends BaseLayout implements AfterViewInit {
   @ViewChild('foundationHeader') foundationHeaderElement!: ElementRef;
@@ -19,7 +19,7 @@ export class DefaultLayout extends BaseLayout implements AfterViewInit {
   ngAfterViewInit() {
     this.foundationHeaderElement.nativeElement.navigateTo = (path: string) => {
       this.router.navigate([path]);
-    }
+    };
   }
 
   onNotificationIconClicked() {

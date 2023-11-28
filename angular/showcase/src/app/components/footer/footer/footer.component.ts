@@ -9,7 +9,7 @@ import angularLogo from '../../../../assets/angular-icon.svg';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './footer.component.html',
-  styleUrl: './footer.component.css'
+  styleUrl: './footer.component.css',
 })
 export class FooterComponent {
   genesisImageUrl = genesisLogo;

@@ -2,7 +2,6 @@ zero-design-system-provider {
   height: 100%;
   display: flex;
   flex-direction: column;
-
 }
 
 foundation-header {
@@ -19,7 +18,8 @@ foundation-header {
   display: flex;
 }
 
-app-footer, .content {
+app-footer,
+.content {
   width: 100%;
 }
 

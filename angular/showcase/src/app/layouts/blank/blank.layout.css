@@ -2,7 +2,8 @@ zero-design-system-provider {
   height: 100%;
 }
 
-app-footer, .content {
+app-footer,
+.content {
   position: absolute;
   width: 100%;
 }

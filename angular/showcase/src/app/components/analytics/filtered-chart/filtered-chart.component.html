@@ -1,16 +1,5 @@
 <div>
-  {{ criteriaFilter | json }}
-  <criteria-segmented-control
-    #criteriaSegmentedControl
-    [criteriaOptions]="criteriaFilter"
-  >
-  <label slot="label">Filter by instrument name</label>
+  <criteria-segmented-control #criteriaSegmentedControl [criteriaOptions]="criteriaFilter">
+    <label slot="label">Filter by instrument name</label>
   </criteria-segmented-control>
-  <zero-g2plot-chart class="container" type="pie" [config]="pieConfig">
-    <chart-datasource
-      resourceName="ALL_POSITIONS"
-      server-fields="INSTRUMENT_NAME VALUE"
-      [criteria]="criteriaFilter"
-    ></chart-datasource>
-  </zero-g2plot-chart>
 </div>
