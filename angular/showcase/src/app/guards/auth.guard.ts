@@ -18,7 +18,7 @@ export class AuthGuard implements CanActivate {
       return false;
     }
     //@todo remove mock after implementing the new auth
-    //await this.authService.mockLogin();
+    await this.authService.mockLogin();
     return true;
   }
 }

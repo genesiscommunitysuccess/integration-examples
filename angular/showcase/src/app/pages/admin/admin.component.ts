@@ -15,7 +15,7 @@ provideDesignSystem().register(zeroGridComponents);
   imports: [CommonModule],
   templateUrl: './admin.component.html',
   styleUrl: './admin.component.css',
-  schemas:[ CUSTOM_ELEMENTS_SCHEMA ]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AdminComponent {
   @ViewChild('entityManagement') entityManagementElement!: ElementRef;
@@ -31,12 +31,11 @@ export class AdminComponent {
     },
   ];
 
-  readEntity () {
+  readEntity() {
     const event = new CustomEvent('read-entity');
     this.entityManagementElement.nativeElement.dispatchEvent(event);
   }
 
-  
   addItem(registration: string) {
     this.adminLayoutElement.nativeElement.addItem({
       registration,
