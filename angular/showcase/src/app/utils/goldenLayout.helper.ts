@@ -17,13 +17,30 @@ export const setComponentItemsMap = (
   return () => layoutNativeElement.layout.off('componentCreated', componentSetter);
 };
 
-export const getElementByTagFromComponent = (componentInstance: any, tag: string): any => {
+const getElementRoot = (componentInstance: any): any => {
   if (componentInstance) {
     const { _element } = componentInstance;
-    const element = _element.getElementsByTagName(tag)[0];
-
-    return element;
+    return _element;
   }
 
   throw new Error(`${ERROR_PREFIX} - component instance is not defined`);
+}
+
+export const getElementsBySelectorFromComponent = (componentInstance: any, selectorValue: string): any => {
+  const element = getElementRoot(componentInstance);
+  return element.querySelectorAll(`[data-selector=${selectorValue}]`);
+};
+
+export const getElementBySelectorFromComponent = (componentInstance: any, selector: string): any => {
+  return getElementsBySelectorFromComponent(componentInstance, selector)[0];
+};
+
+
+export const getElementsByTagFromComponent = (componentInstance: any, tag: string): any => {
+  const element = getElementRoot(componentInstance);
+  return element.getElementsByTagName(tag);
+};
+
+export const getElementByTagFromComponent = (componentInstance: any, tag: string): any => {
+  return getElementsByTagFromComponent(componentInstance, tag)[0];
 };

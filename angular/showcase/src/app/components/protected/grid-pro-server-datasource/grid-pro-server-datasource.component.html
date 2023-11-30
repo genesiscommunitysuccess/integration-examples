@@ -1,0 +1,19 @@
+
+    <div class="top-area">
+      <p style="text-align: center; align-self: center;">
+        Infinite Scrolling - VERY EXPERIMENTAL {{ resourceName }}
+      </p>
+    </div>
+    <zero-grid-pro
+      style="display: block; height: 450px;"
+      persist-column-state-key="grid-pro-ssrm-column-state"
+    >
+      <grid-pro-server-side-datasource
+        [attr.criteria]="criteria"
+        [attr.max-rows]="maxRows"
+        [attr.max-view]="maxView"
+        [attr.resource-name]="resourceName"
+        [attr.reverse]="reverse"
+        [attr.pagination]="pagination"
+      ></grid-pro-server-side-datasource>
+    </zero-grid-pro>

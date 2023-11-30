@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { GridProClientDataSourceLayoutsComponent } from './grid-pro-client-data-source-layouts.component';
+import { GridProClientDatasourceLayoutsComponent } from './grid-pro-client-datasource-layouts.component';
 
 describe('GridProClientDataSourceLayoutsComponent', () => {
-  let component: GridProClientDataSourceLayoutsComponent;
-  let fixture: ComponentFixture<GridProClientDataSourceLayoutsComponent>;
+  let component: GridProClientDatasourceLayoutsComponent;
+  let fixture: ComponentFixture<GridProClientDatasourceLayoutsComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [GridProClientDataSourceLayoutsComponent]
+      imports: [GridProClientDatasourceLayoutsComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(GridProClientDataSourceLayoutsComponent);
+    fixture = TestBed.createComponent(GridProClientDatasourceLayoutsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

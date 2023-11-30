@@ -12,11 +12,11 @@ zero-card {
   min-height: 150px;
 }
 
-p {
-  margin: calc(var(--design-unit) * 2px);
-}
-
 zero-grid-pro {
   width: 100%;
   flex: 1 1 0%;
+}
+
+p {
+  margin: calc(var(--design-unit) * 2px);
 }

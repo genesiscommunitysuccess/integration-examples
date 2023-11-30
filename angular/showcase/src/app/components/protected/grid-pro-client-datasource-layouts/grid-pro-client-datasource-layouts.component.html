@@ -1,0 +1,184 @@
+<zero-layout #gridLayout>
+  <zero-layout-region type="vertical">
+    <zero-layout-region>
+      <zero-layout-item title="(stream)" registration="stream" closable>
+        <zero-grid-pro
+          persist-column-state-key="grid-pro-simple-column-state"
+          async-add
+          enable-row-flashing
+          enable-cell-flashing
+        >
+          <grid-pro-client-side-datasource
+            resource-name="ALL_COUNTERPARTYS"
+            [criteria]="criteria"
+            [is-snapshot]="false"
+            [max-rows]="maxRows"
+            [max-view]="maxView"
+            [reverse]="false"
+            [restart-on-reconnection]="false"
+          ></grid-pro-client-side-datasource>
+        </zero-grid-pro>
+      </zero-layout-item>
+
+      <zero-layout-item title="(stream + autoCellRendererByType)" registration="stream-auto-cell-renderer-by-type" closable>
+        <zero-grid-pro
+        auto-cell-renderer-by-type
+        persist-column-state-key="grid-pro-complex-column-state"
+        async-add
+        enable-row-flashing
+        enable-cell-flashing
+      >
+        <slotted-styles data-selector="slottedStyles"></slotted-styles>
+        <grid-pro-client-side-datasource
+          resource-name="ALL_COUNTERPARTYS"
+          [criteria]="criteria"
+          [is-snapshot]="false"
+          [max-rows]="maxRows"
+          [max-view]="maxView"
+          [reverse]="false"
+          [restart-on-reconnection]="false"
+        ></grid-pro-client-side-datasource>
+
+        <grid-pro-column *ngFor="let colDef of customBooleanColDefs" data-selector="itemGridProColumn">
+          <grid-pro-cell
+            #itemGridProCell
+            *ngIf="!!colDef.cellRenderer"
+          ></grid-pro-cell>
+        </grid-pro-column>
+ 
+        <grid-pro-column  data-selector="customGridProColumn">
+          <grid-pro-cell></grid-pro-cell>
+        </grid-pro-column>
+      </zero-grid-pro>
+      </zero-layout-item>
+
+      <zero-layout-item title="(stream + reverse=true)" registration="stream-reverse" closable>
+        <zero-grid-pro
+          persist-column-state-key="grid-pro-simple-column-state"
+          async-add
+          enable-row-flashing
+          enable-cell-flashing
+        >
+          <grid-pro-client-side-datasource
+            resource-name="ALL_COUNTERPARTYS"
+            [criteria]="criteria"
+            [is-snapshot]="false"
+            [max-rows]="maxRows"
+            [max-view]="maxView"
+            [reverse]="true"
+            [restart-on-reconnection]="false"
+          ></grid-pro-client-side-datasource>
+        </zero-grid-pro>
+      </zero-layout-item>
+
+      <zero-layout-item title="(stream + reverse=true + max-rows=5)" registration="stream-reverse-max-rows" closable>
+        <zero-grid-pro
+          persist-column-state-key="grid-pro-simple-column-state"
+          async-add
+          enable-row-flashing
+          enable-cell-flashing
+        >
+          <grid-pro-client-side-datasource
+            resource-name="ALL_COUNTERPARTYS"
+            [criteria]="criteria"
+            [is-snapshot]="false"
+            max-rows="5"
+            [max-view]="maxView"
+            [reverse]="true"
+            [restart-on-reconnection]="false"
+          ></grid-pro-client-side-datasource>
+        </zero-grid-pro>
+      </zero-layout-item>
+    </zero-layout-region>
+
+    <zero-layout-region>
+      <zero-layout-item title="(snapshot)" registration="snapshot" closable>
+        <zero-grid-pro
+          persist-column-state-key="grid-pro-simple-column-state"
+          async-add
+          enable-row-flashing
+          enable-cell-flashing
+        >
+          <grid-pro-client-side-datasource
+            resource-name="ALL_COUNTERPARTYS"
+            [criteria]="criteria"
+            [is-snapshot]="true"
+            [max-rows]="maxRows"
+            [max-view]="maxView"
+            [reverse]="false"
+            [restart-on-reconnection]="true"
+          ></grid-pro-client-side-datasource>
+        </zero-grid-pro>
+      </zero-layout-item>
+
+      <zero-layout-item title="(snapshot + autoCellRendererByType)" registration="snapshot-auto-cell-renderer-by-type" closable>
+        <zero-grid-pro
+          auto-cell-renderer-by-type
+          persist-column-state-key="grid-pro-complex-column-state2"
+          async-add
+          enable-row-flashing
+          enable-cell-flashing
+        >
+          <slotted-styles data-selector="slottedStyles2"></slotted-styles>
+          <grid-pro-client-side-datasource
+            resource-name="ALL_COUNTERPARTYS"
+            [criteria]="criteria"
+            [is-snapshot]="true"
+            [max-rows]="maxRows"
+            [max-view]="maxView"
+            [reverse]="false"
+            [restart-on-reconnection]="true"
+          ></grid-pro-client-side-datasource>
+
+          <grid-pro-column *ngFor="let colDef of customBooleanColDefs" data-selector="itemGridProColumn2">
+            <grid-pro-cell
+              *ngIf="!!colDef.cellRenderer"
+            ></grid-pro-cell>
+          </grid-pro-column>
+  
+          <grid-pro-column data-selector="customGridProColumn2">
+            <grid-pro-cell></grid-pro-cell>
+          </grid-pro-column>
+        </zero-grid-pro>
+      </zero-layout-item>
+
+      <zero-layout-item title="(snapshot + reverse=true)" registration="snapshot-reverse" closable>
+        <zero-grid-pro
+          persist-column-state-key="grid-pro-simple-column-state"
+          async-add
+          enable-row-flashing
+          enable-cell-flashing
+        >
+          <grid-pro-client-side-datasource
+            resource-name="ALL_COUNTERPARTYS"
+            [criteria]="criteria"
+            [is-snapshot]="true"
+            [max-rows]="maxRows"
+            [max-view]="maxView"
+            [reverse]="true"
+            [restart-on-reconnection]="true"
+          ></grid-pro-client-side-datasource>
+        </zero-grid-pro>
+      </zero-layout-item>
+
+      <zero-layout-item title="(snapshot + reverse=true + max-rows=5)"  registration="snapshot-reverse-max-rows"  closable>
+        <zero-grid-pro
+          persist-column-state-key="grid-pro-simple-column-state"
+          async-add
+          enable-row-flashing
+          enable-cell-flashing
+        >
+          <grid-pro-client-side-datasource
+            resource-name="ALL_COUNTERPARTYS"
+            [criteria]="criteria"
+            [is-snapshot]="true"
+            max-rows="5"
+            [max-view]="maxView"
+            [reverse]="true"
+            [restart-on-reconnection]="true"
+          ></grid-pro-client-side-datasource>
+        </zero-grid-pro>
+      </zero-layout-item>
+    </zero-layout-region>
+  </zero-layout-region>
+</zero-layout>
