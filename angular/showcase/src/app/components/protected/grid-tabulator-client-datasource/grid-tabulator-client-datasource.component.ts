@@ -1,8 +1,6 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA, ViewChild,  } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DatasourceDefaults } from '@genesislcap/foundation-comms';
-import { DI } from '@microsoft/fast-foundation';
-import { Connect } from '@genesislcap/foundation-comms';
 
 @Component({
   selector: 'app-grid-tabulator-client-datasource',
@@ -21,11 +19,4 @@ export class GridTabulatorClientDatasourceComponent {
   criteria = 'NAME != null';
   restartOnReconnection = true;
   displayZero = false;
-
-  fixConnect() {
-    
-  const container = DI.getOrCreateDOMContainer();
-  const connect: Connect = container.get(Connect);
-  this.displayZero = true
-  }
 }
