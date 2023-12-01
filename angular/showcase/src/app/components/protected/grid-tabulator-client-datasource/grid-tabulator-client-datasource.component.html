@@ -1,1 +1,13 @@
-<p>grid-tabulator-client-datasource works!</p>
+<button (click)="fixConnect()">show</button>
+<zero-grid-tabulator *ngIf="displayZero" persist-column-state-key="grid-tabulator-simple-column-state">
+  <grid-tabulator-client-side-datasource
+    #dataSource
+    resource-name="ALL_COUNTERPARTYS"
+    [criteria]="criteria"
+    [is-snapshot]="false"
+    [max-rows]="maxRows"
+    [max-view]="maxView"
+    [reverse]="false"
+    [restart-on-reconnection]="false"
+  ></grid-tabulator-client-side-datasource>
+</zero-grid-tabulator>

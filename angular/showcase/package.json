@@ -26,6 +26,7 @@
     "@genesislcap/foundation-reporting": "^14.113.1",
     "@genesislcap/foundation-zero": "^14.113.1",
     "@genesislcap/foundation-zero-grid-pro": "^14.113.1",
+    "@genesislcap/foundation-zero-grid-tabulator": "^14.116.0",
     "@genesislcap/g2plot-chart": "^14.113.1",
     "@microsoft/fast-components": "^2.30.6",
     "@microsoft/fast-foundation": "^2.49.3",
