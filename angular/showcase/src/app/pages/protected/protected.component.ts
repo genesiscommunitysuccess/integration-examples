@@ -9,9 +9,12 @@ import { GridProClientDatasourceLinkedComponent } from '../../components/protect
 import { GridProServerDatasourceComponent } from '../../components/protected/grid-pro-server-datasource/grid-pro-server-datasource.component';
 import { GridTabulatorClientDatasourceComponent } from '../../components/protected/grid-tabulator-client-datasource/grid-tabulator-client-datasource.component';
 import { SlottedStyles } from '@genesislcap/foundation-utils'
+import { ModuleRegistry } from '@ag-grid-community/core';
+import { RowGroupingModule } from '@ag-grid-enterprise/row-grouping';
+import { ServerSideRowModelModule } from '@ag-grid-enterprise/server-side-row-model';
 
 SlottedStyles;
-
+ModuleRegistry.registerModules([RowGroupingModule, ServerSideRowModelModule]);
 provideDesignSystem().register(zeroGridComponents, foundationGridComponents);
 
 @Component({
