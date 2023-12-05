@@ -20,10 +20,8 @@ export class AuthComponent {
     this.authService.login().then((result) =>
       result.subscribe((isAuthenticated) => {
         if (isAuthenticated) {
-          // Navigate to some route on success
           this.router.navigate(['/protected']);
         } else {
-          // Show some error message
           alert('Authentication failed!');
         }
       }),

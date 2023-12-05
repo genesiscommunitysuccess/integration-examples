@@ -1,8 +1,4 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { provideDesignSystem } from '@genesislcap/foundation-zero';
-import { zeroGridComponents } from '@genesislcap/foundation-zero-grid-pro';
-import { foundationGridComponents } from '@genesislcap/grid-pro';
-
 import { GridProClientDatasourceComponent } from '../../components/protected/grid-pro-client-datasource/grid-pro-client-datasource.component';
 import { GridProClientDatasourceLayoutsComponent } from '../../components/protected/grid-pro-client-datasource-layouts/grid-pro-client-datasource-layouts.component';
 import { GridProClientDatasourceLinkedComponent } from '../../components/protected/grid-pro-client-datasource-linked/grid-pro-client-datasource-linked.component';
@@ -15,7 +11,6 @@ import { ServerSideRowModelModule } from '@ag-grid-enterprise/server-side-row-mo
 
 SlottedStyles;
 ModuleRegistry.registerModules([RowGroupingModule, ServerSideRowModelModule]);
-provideDesignSystem().register(zeroGridComponents, foundationGridComponents);
 
 @Component({
   selector: 'app-protected',

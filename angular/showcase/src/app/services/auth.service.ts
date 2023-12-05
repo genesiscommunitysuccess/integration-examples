@@ -1,5 +1,7 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { Observable, of } from 'rxjs';
+import { ConnectService } from '../services/connect.service';
+import { Auth } from '@genesislcap/foundation-comms';
 import mockLogin from '../utils/mockLogin';
 
 const STORAGE_KEY = 'isAuthenticated';
@@ -8,16 +10,20 @@ const STORAGE_KEY = 'isAuthenticated';
   providedIn: 'root',
 })
 export class AuthService {
-  private isAuthenticated = false;
+  isAuthenticated = false;
+
+  constructor(private connectService: ConnectService) {}
 
   async login(): Promise<Observable<boolean>> {
     try {
-      await mockLogin();
+      await this.connectService.init();
+      // @todo fix with foundation-authenticationw
+      await mockLogin(this.connectService.getContainer());
       localStorage.setItem(STORAGE_KEY, '1');
       this.isAuthenticated = true;
       return of(true);
     } catch {
-      this.isAuthenticated = false;
+      this.logout();
       return of(false);
     }
   }
@@ -27,9 +33,15 @@ export class AuthService {
     this.isAuthenticated = false;
   }
 
-  isUserAuthenticated(): boolean {
-    return localStorage.getItem(STORAGE_KEY) === '1';
+  async isUserAuthenticated(): Promise<boolean> {
+    if (localStorage.getItem(STORAGE_KEY) === '1') {
+      const auth: Auth = this.connectService.getContainer().get(Auth);
+      if (auth.isLoggedIn) {
+        return true;
+      }
+    }
+    
+    this.logout();
+    return false;
   }
-
-  mockLogin = mockLogin;
 }
