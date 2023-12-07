@@ -1,10 +1,9 @@
-<zero-layout>
+<zero-layout #gridLayout>
   <zero-layout-region type="vertical">
     <zero-layout-region>
       <zero-layout-item title="(stream)" closable>
-        <zero-grid-tabulator persist-column-state-key="grid-tabulator-simple-column-state">
+        <zero-grid-tabulator registration="stream" persist-column-state-key="grid-tabulator-simple-column-state">
           <grid-tabulator-client-side-datasource
-            #datasource1
             [resourceName]="resourceName"
             [criteria]="criteria"
             [isSnapshot]="false"
@@ -15,17 +14,16 @@
           ></grid-tabulator-client-side-datasource>
         </zero-grid-tabulator>
       </zero-layout-item>
-      <zero-layout-item title="(snapshot)" closable>
+      <zero-layout-item  registration="snapshot" title="(snapshot)" closable>
         <zero-grid-tabulator persist-column-state-key="grid-tabulator-simple-column-state">
           <grid-tabulator-client-side-datasource
-            #datasource2
             [resourceName]="resourceName"
             [criteria]="criteria"
-            isSnapshot="true"
+            [isSnapshot]="true"
             [maxRows]="maxRows"
             [maxView]="maxView"
             [reverse]="false"
-            [restartOnReconnection]="true"
+            [restartOnReconnection]="restartOnReconnection"
           ></grid-tabulator-client-side-datasource>
         </zero-grid-tabulator>
       </zero-layout-item>
