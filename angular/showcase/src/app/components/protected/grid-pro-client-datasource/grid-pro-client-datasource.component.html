@@ -42,12 +42,9 @@
         ></grid-pro-client-side-datasource>
 
         <grid-pro-column *ngFor="let colDef of customBooleanColDefs" #itemGridProColumn>
-          <grid-pro-cell
-            #itemGridProCell
-            *ngIf="!!colDef.cellRenderer"
-          ></grid-pro-cell>
+          <grid-pro-cell #itemGridProCell *ngIf="!!colDef.cellRenderer"></grid-pro-cell>
         </grid-pro-column>
- 
+
         <grid-pro-column #customGridProColumn>
           <grid-pro-cell #customGridProCell></grid-pro-cell>
         </grid-pro-column>
@@ -132,7 +129,7 @@
       >
         <slotted-styles #slottedStyles2></slotted-styles>
         <grid-pro-client-side-datasource
-          resource-name="ALL_COUNTERPARTYS"
+          [resource-name]="resourceName"
           [criteria]="criteria"
           [is-snapshot]="true"
           [max-rows]="maxRows"
@@ -142,12 +139,9 @@
         ></grid-pro-client-side-datasource>
 
         <grid-pro-column *ngFor="let colDef of customBooleanColDefs" #itemGridProColumn2>
-          <grid-pro-cell
-            #itemGridProCell2
-            *ngIf="!!colDef.cellRenderer"
-          ></grid-pro-cell>
+          <grid-pro-cell #itemGridProCell2 *ngIf="!!colDef.cellRenderer"></grid-pro-cell>
         </grid-pro-column>
- 
+
         <grid-pro-column #customGridProColumn2>
           <grid-pro-cell #customGridProCell2></grid-pro-cell>
         </grid-pro-column>

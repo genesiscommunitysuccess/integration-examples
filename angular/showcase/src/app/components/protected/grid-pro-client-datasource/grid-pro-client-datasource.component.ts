@@ -1,6 +1,12 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA, ViewChild, ViewChildren, AfterViewInit } from '@angular/core';
+import {
+  Component,
+  CUSTOM_ELEMENTS_SCHEMA,
+  ViewChild,
+  ViewChildren,
+  AfterViewInit,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { css } from '@microsoft/fast-element'
+import { css } from '@microsoft/fast-element';
 import { DatasourceDefaults } from '@genesislcap/foundation-comms';
 
 @Component({
@@ -25,15 +31,15 @@ export class GridProClientDatasourceComponent implements AfterViewInit {
   @ViewChildren('itemGridProCell2') itemGridProCell2Elements!: any;
 
   maxView = DatasourceDefaults.MAX_VIEW_1000;
-  maxRows = DatasourceDefaults.MAX_ROWS_250
+  maxRows = DatasourceDefaults.MAX_ROWS_250;
   criteria = 'NAME != null';
   processGridStyles = css`
-  .process-status-enabled {
-    color: green;
-  }
-  .process-status-disabled {
-    color: red;
-  }
+    .process-status-enabled {
+      color: green;
+    }
+    .process-status-disabled {
+      color: red;
+    }
   `;
   rowRewfDefinition = {
     headerName: 'Row ref',
@@ -41,7 +47,7 @@ export class GridProClientDatasourceComponent implements AfterViewInit {
     cellRenderer: ({ data }: any) => {
       return `<span style="color:#555">${data.ROW_REF}</span>`;
     },
-  }
+  };
   customBooleanColDefs: any = [
     {
       headerName: 'Process Status', // sets custom header for this field
@@ -80,7 +86,7 @@ export class GridProClientDatasourceComponent implements AfterViewInit {
     this.customGridProColumn2Element.nativeElement.definition = this.rowRewfDefinition;
 
     this.customGridProCell2Element.nativeElement.renderer = (params: any) => {
-      return `<span style="color: ${params.value === 'TRACE' ? 'orange': 'green'}">Custom ${
+      return `<span style="color: ${params.value === 'TRACE' ? 'orange' : 'green'}">Custom ${
         params.value
       }</span>`;
     };

@@ -14,7 +14,7 @@ export class GridProServerDatasourceComponent {
   criteria?: string = 'NAME != null';
   maxRows = 15;
   maxView = DatasourceDefaults.MAX_VIEW_1000;
-  resourceName = 'ALL_COUNTERPARTYS'
+  resourceName = 'ALL_COUNTERPARTYS';
   reverse = false;
   pagination = false;
 }

@@ -1,11 +1,15 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA, ViewChild, ViewChildren, AfterViewInit } from '@angular/core';
+import {
+  Component,
+  CUSTOM_ELEMENTS_SCHEMA,
+  ViewChild,
+  ViewChildren,
+  AfterViewInit,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { css } from '@microsoft/fast-element'
+import { css } from '@microsoft/fast-element';
 import { DatasourceDefaults } from '@genesislcap/foundation-comms';
 import { LayoutEmitEvents } from '@genesislcap/foundation-layout';
-import {
-  LayoutComponentsNames,
-} from './grid-pro-client-datasource-layouts.types';
+import { LayoutComponentsNames } from './grid-pro-client-datasource-layouts.types';
 import {
   setComponentItemsMap,
   getElementBySelectorFromComponent,
@@ -31,7 +35,7 @@ export class GridProClientDatasourceLayoutsComponent implements AfterViewInit {
   layoutComponentsMap: Map<LayoutComponentsNames, any> = new Map();
 
   maxView = DatasourceDefaults.MAX_VIEW_1000;
-  maxRows = DatasourceDefaults.MAX_ROWS_250
+  maxRows = DatasourceDefaults.MAX_ROWS_250;
   criteria = 'NAME != null';
   processGridStyles = css`
     .process-status-enabled {
@@ -55,7 +59,7 @@ export class GridProClientDatasourceLayoutsComponent implements AfterViewInit {
     cellRenderer: ({ data }: any) => {
       return `<span style="color:#555">${data.ROW_REF}</span>`;
     },
-  }
+  };
   customBooleanColDefs: any = [
     {
       headerName: 'Process Status', // sets custom header for this field
@@ -80,15 +84,37 @@ export class GridProClientDatasourceLayoutsComponent implements AfterViewInit {
     setComponentItemsMap(this.gridLayoutElement.nativeElement, this.layoutComponentsMap);
 
     this.gridLayoutElement.nativeElement.addEventListener(LayoutEmitEvents.firstLoaded, () => {
-      const streamAutoCellComponent = this.layoutComponentsMap.get(LayoutComponentsNames.STREAM_AUTO_CELL_RENDERER_BY_TYPE);
-      const slottedStylesElement = getElementBySelectorFromComponent(streamAutoCellComponent, 'slottedStyles');
-      const itemGridProColumnElements = getElementsBySelectorFromComponent(streamAutoCellComponent, 'itemGridProColumn');
-      const customGridProColumnElement = getElementBySelectorFromComponent(streamAutoCellComponent, 'customGridProColumn');
+      const streamAutoCellComponent = this.layoutComponentsMap.get(
+        LayoutComponentsNames.STREAM_AUTO_CELL_RENDERER_BY_TYPE,
+      );
+      const slottedStylesElement = getElementBySelectorFromComponent(
+        streamAutoCellComponent,
+        'slottedStyles',
+      );
+      const itemGridProColumnElements = getElementsBySelectorFromComponent(
+        streamAutoCellComponent,
+        'itemGridProColumn',
+      );
+      const customGridProColumnElement = getElementBySelectorFromComponent(
+        streamAutoCellComponent,
+        'customGridProColumn',
+      );
 
-      const snapshotAutoCellComponent = this.layoutComponentsMap.get(LayoutComponentsNames.SNAPSHOT_AUTO_CELL_RENDERER_BY_TYPE);
-      const slottedStyles2Element = getElementBySelectorFromComponent(snapshotAutoCellComponent, 'slottedStyles2');
-      const customGridProColumn2Element = getElementBySelectorFromComponent(snapshotAutoCellComponent, 'customGridProColumn2');
-      const itemGridProColumn2Elements = getElementsBySelectorFromComponent(snapshotAutoCellComponent, 'itemGridProColumn2');
+      const snapshotAutoCellComponent = this.layoutComponentsMap.get(
+        LayoutComponentsNames.SNAPSHOT_AUTO_CELL_RENDERER_BY_TYPE,
+      );
+      const slottedStyles2Element = getElementBySelectorFromComponent(
+        snapshotAutoCellComponent,
+        'slottedStyles2',
+      );
+      const customGridProColumn2Element = getElementBySelectorFromComponent(
+        snapshotAutoCellComponent,
+        'customGridProColumn2',
+      );
+      const itemGridProColumn2Elements = getElementsBySelectorFromComponent(
+        snapshotAutoCellComponent,
+        'itemGridProColumn2',
+      );
 
       slottedStylesElement.styles = this.processGridStyles;
       itemGridProColumnElements.forEach((itemGridProColumnElement: any, index: number) => {

@@ -8,10 +8,9 @@ describe('GridProClientDatasourceComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [GridProClientDatasourceComponent]
-    })
-    .compileComponents();
-    
+      imports: [GridProClientDatasourceComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(GridProClientDatasourceComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

@@ -40,7 +40,7 @@ export class AuthService {
         return true;
       }
     }
-    
+
     this.logout();
     return false;
   }

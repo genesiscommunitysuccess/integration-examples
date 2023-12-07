@@ -1,7 +1,8 @@
 <div class="resource-filter">
-  <state-changer></state-changer>
+  <app-state-changer></app-state-changer>
 </div>
 <zero-tabs appearance="secondary">
+  <h1>{{ criteria }}</h1>
   <zero-tab appearance="secondary" slot="tab">Grid Pro + Client Datasource</zero-tab>
   <zero-tab appearance="secondary" slot="tab">Grid Pro + Client Datasource + Layouts</zero-tab>
   <zero-tab appearance="secondary" slot="tab">Grid Pro + Client Datasource + Linked</zero-tab>
@@ -10,7 +11,7 @@
 
   <zero-tab-panel slot="tabpanel">
     <zero-notification-listener>
-      <app-grid-pro-client-datasource />
+      <app-grid-pro-client-datasource [resourceName]="resourceName" [criteria]="criteria"/>
     </zero-notification-listener>
   </zero-tab-panel>
 
@@ -34,7 +35,7 @@
 
   <zero-tab-panel slot="tabpanel">
     <zero-notification-listener>
-      <app-grid-tabulator-client-datasource/>
+      <app-grid-tabulator-client-datasource />
     </zero-notification-listener>
   </zero-tab-panel>
 </zero-tabs>

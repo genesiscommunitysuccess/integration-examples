@@ -24,17 +24,22 @@ const getElementRoot = (componentInstance: any): any => {
   }
 
   throw new Error(`${ERROR_PREFIX} - component instance is not defined`);
-}
+};
 
-export const getElementsBySelectorFromComponent = (componentInstance: any, selectorValue: string): any => {
+export const getElementsBySelectorFromComponent = (
+  componentInstance: any,
+  selectorValue: string,
+): any => {
   const element = getElementRoot(componentInstance);
   return element.querySelectorAll(`[data-selector=${selectorValue}]`);
 };
 
-export const getElementBySelectorFromComponent = (componentInstance: any, selector: string): any => {
+export const getElementBySelectorFromComponent = (
+  componentInstance: any,
+  selector: string,
+): any => {
   return getElementsBySelectorFromComponent(componentInstance, selector)[0];
 };
-
 
 export const getElementsByTagFromComponent = (componentInstance: any, tag: string): any => {
   const element = getElementRoot(componentInstance);

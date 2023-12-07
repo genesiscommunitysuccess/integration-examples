@@ -8,10 +8,9 @@ describe('GridTabulatorClientDatasourceComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [GridTabulatorClientDatasourceComponent]
-    })
-    .compileComponents();
-    
+      imports: [GridTabulatorClientDatasourceComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(GridTabulatorClientDatasourceComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

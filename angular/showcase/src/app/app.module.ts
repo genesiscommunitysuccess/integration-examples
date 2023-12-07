@@ -8,7 +8,11 @@ import {
 
 import { zeroGridComponents } from '@genesislcap/foundation-zero-grid-pro';
 import { foundationGridComponents } from '@genesislcap/grid-pro';
-import { zeroGridTabulatorComponents, foundationGridTabulatorComponents, ZeroGridTabulator } from '@genesislcap/foundation-zero-grid-tabulator';
+import {
+  zeroGridTabulatorComponents,
+  foundationGridTabulatorComponents,
+  ZeroGridTabulator,
+} from '@genesislcap/foundation-zero-grid-tabulator';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -29,5 +33,4 @@ provideZeroDesignSystem().register(
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export class AppModule {
-}
+export class AppModule {}
