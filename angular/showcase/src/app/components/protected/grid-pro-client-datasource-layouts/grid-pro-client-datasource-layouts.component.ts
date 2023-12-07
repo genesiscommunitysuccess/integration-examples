@@ -1,9 +1,12 @@
 import {
   Component,
   CUSTOM_ELEMENTS_SCHEMA,
+  Input,
   ViewChild,
   ViewChildren,
   AfterViewInit,
+  OnChanges,
+  SimpleChanges,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { css } from '@microsoft/fast-element';
@@ -12,9 +15,11 @@ import { LayoutEmitEvents } from '@genesislcap/foundation-layout';
 import { LayoutComponentsNames } from './grid-pro-client-datasource-layouts.types';
 import {
   setComponentItemsMap,
+  getElementByTagFromComponent,
   getElementBySelectorFromComponent,
   getElementsBySelectorFromComponent,
 } from '../../../utils/goldenLayout.helper';
+import { DEFAULT_CRITERIA, DEFAULT_RESOURCE_NAME } from '../../../services/store.service';
 
 @Component({
   selector: 'app-grid-pro-client-datasource-layouts',
@@ -24,19 +29,20 @@ import {
   styleUrl: './grid-pro-client-datasource-layouts.component.css',
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export class GridProClientDatasourceLayoutsComponent implements AfterViewInit {
+export class GridProClientDatasourceLayoutsComponent implements AfterViewInit, OnChanges {
   @ViewChild('gridLayout') gridLayoutElement!: any;
   @ViewChild('customGridProColumn') customGridProColumnElement!: any;
   @ViewChildren('itemGridProCell') itemGridProCellElements!: any;
-
   @ViewChild('customGridProColumn2') customGridProColumn2Element!: any;
   @ViewChild('slottedStyles2') slottedStyles2Element!: any;
+
+  @Input() resourceName: string = DEFAULT_RESOURCE_NAME;
+  @Input() criteria: string = DEFAULT_CRITERIA;
 
   layoutComponentsMap: Map<LayoutComponentsNames, any> = new Map();
 
   maxView = DatasourceDefaults.MAX_VIEW_1000;
   maxRows = DatasourceDefaults.MAX_ROWS_250;
-  criteria = 'NAME != null';
   processGridStyles = css`
     .process-status-enabled {
       color: green;
@@ -79,6 +85,24 @@ export class GridProClientDatasourceLayoutsComponent implements AfterViewInit {
       cellRenderer: 'boolean',
     },
   ];
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (!changes['resourceName'] && !changes['criteria']) {
+      return;
+    }
+
+    if (this.layoutComponentsMap.size > 0) {
+      this.layoutComponentsMap.forEach((component: any) => {
+        const datasource = getElementByTagFromComponent(component, 'grid-pro-client-side-datasource');
+        if (changes['resourceName']) {
+          datasource.resourceName = changes['resourceName'].currentValue;
+        }
+        if (changes['criteria']) {
+          datasource.criteria = changes['criteria'].currentValue;
+        }
+      });
+    }
+  }
 
   ngAfterViewInit() {
     setComponentItemsMap(this.gridLayoutElement.nativeElement, this.layoutComponentsMap);

@@ -1,6 +1,7 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DatasourceDefaults } from '@genesislcap/foundation-comms';
+import { DEFAULT_CRITERIA, DEFAULT_RESOURCE_NAME } from '../../../services/store.service';
 
 @Component({
   selector: 'app-grid-pro-server-datasource',
@@ -11,10 +12,11 @@ import { DatasourceDefaults } from '@genesislcap/foundation-comms';
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class GridProServerDatasourceComponent {
-  criteria?: string = 'NAME != null';
+  @Input() resourceName: string = DEFAULT_RESOURCE_NAME;
+  @Input() criteria: string = DEFAULT_CRITERIA;
+
   maxRows = 15;
   maxView = DatasourceDefaults.MAX_VIEW_1000;
-  resourceName = 'ALL_COUNTERPARTYS';
   reverse = false;
   pagination = false;
 }

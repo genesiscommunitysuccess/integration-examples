@@ -2,34 +2,30 @@
   <zero-layout-region type="vertical">
     <zero-layout-region>
       <zero-layout-item title="(stream)" closable>
-        <zero-grid-tabulator
-          #dataSource1test
-          persist-column-state-key="grid-tabulator-simple-column-state"
-        >
+        <zero-grid-tabulator persist-column-state-key="grid-tabulator-simple-column-state">
           <grid-tabulator-client-side-datasource
-            #dataSource1
-            resource-name="ALL_COUNTERPARTYS"
-            [attr.criteria]="criteria"
-            [attr.is-snapshot]="false"
-            [attr.max-rows]="maxRows"
-            [attr.max-view]="maxView"
-            [attr.reverse]="false"
-            [attr.restart-on-reconnection]="true"
+            #datasource1
+            [resourceName]="resourceName"
+            [criteria]="criteria"
+            [isSnapshot]="false"
+            [maxRows]="maxRows"
+            [maxView]="maxView"
+            [reverse]="false"
+            [restart-OnReconnection]="true"
           ></grid-tabulator-client-side-datasource>
         </zero-grid-tabulator>
       </zero-layout-item>
-
       <zero-layout-item title="(snapshot)" closable>
         <zero-grid-tabulator persist-column-state-key="grid-tabulator-simple-column-state">
           <grid-tabulator-client-side-datasource
-            #dataSource2
-            resource-name="ALL_COUNTERPARTYS"
-            [attr.criteria]="criteria"
-            is-snapshot="true"
-            [attr.max-rows]="maxRows"
-            [attr.max-view]="maxView"
-            [attr.reverse]="false"
-            [attr.restart-on-reconnection]="true"
+            #datasource2
+            [resourceName]="resourceName"
+            [criteria]="criteria"
+            isSnapshot="true"
+            [maxRows]="maxRows"
+            [maxView]="maxView"
+            [reverse]="false"
+            [restartOnReconnection]="true"
           ></grid-tabulator-client-side-datasource>
         </zero-grid-tabulator>
       </zero-layout-item>

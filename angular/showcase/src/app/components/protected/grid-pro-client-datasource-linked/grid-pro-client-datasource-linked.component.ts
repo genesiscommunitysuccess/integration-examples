@@ -31,7 +31,6 @@ export class GridProClientDatasourceLinkedComponent implements AfterViewInit, On
   deferredGridOptions: GridOptions = {
     rowSelection: 'single',
     onRowClicked: (e: RowSelectedEvent) => {
-      console.log({ instrumentName: e.node.isSelected() ? e.data?.INSTRUMENT_NAME : undefined });
       this.instrumentName = e.node.isSelected() ? e.data?.INSTRUMENT_NAME : undefined;
     },
   };

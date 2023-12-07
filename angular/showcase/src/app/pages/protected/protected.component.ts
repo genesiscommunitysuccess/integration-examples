@@ -1,4 +1,5 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, ViewChild, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { Subscription } from 'rxjs';
 import { SlottedStyles } from '@genesislcap/foundation-utils';
 import { ModuleRegistry } from '@ag-grid-community/core';
@@ -19,6 +20,7 @@ ModuleRegistry.registerModules([RowGroupingModule, ServerSideRowModelModule]);
   selector: 'app-protected',
   standalone: true,
   imports: [
+    CommonModule,
     StateChangerComponent,
     GridProClientDatasourceComponent,
     GridProClientDatasourceLayoutsComponent,
@@ -31,9 +33,12 @@ ModuleRegistry.registerModules([RowGroupingModule, ServerSideRowModelModule]);
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class ProtectedComponent implements OnInit {
+  @ViewChild('zeroTabs') zeroTabsElement!: any;
+
   criteria: string = DEFAULT_CRITERIA;
   resourceName: string = DEFAULT_RESOURCE_NAME;
   private subscriptions: Subscription[] = [];
+  displayStateChanger = true;
 
   constructor(private store: StoreService) {}
 
@@ -52,5 +57,9 @@ export class ProtectedComponent implements OnInit {
     this.subscriptions.forEach((subscription) => {
       subscription.unsubscribe()
     });
+  }
+
+  onTabChanged({ detail }: any) {
+    this.displayStateChanger = !detail.attributes.hasOwnProperty('hide-state-changer')
   }
 }

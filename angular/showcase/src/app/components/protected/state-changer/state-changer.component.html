@@ -1,5 +1,7 @@
-<zero-text-field [(ngModel)]="criteria" ngDefaultControl></zero-text-field>
-<zero-button appearance="outline" (click)="updateCriteria()">Apply Criteria</zero-button>
-<zero-divider orientation="vertical"></zero-divider>
-<zero-text-field [(ngModel)]="resourceName" ngDefaultControl></zero-text-field>
-<zero-button appearance="outline" (click)="updateResourceName()">Apply Resource</zero-button>
+<section class="state-changer">
+  <zero-text-field [(ngModel)]="criteria" ngDefaultControl></zero-text-field>
+  <zero-button appearance="outline" (click)="updateCriteria()">Apply Criteria</zero-button>
+  <zero-divider orientation="vertical"></zero-divider>
+  <zero-text-field [(ngModel)]="resourceName" ngDefaultControl></zero-text-field>
+  <zero-button appearance="outline" (click)="updateResourceName()">Apply Resource</zero-button>
+</section>

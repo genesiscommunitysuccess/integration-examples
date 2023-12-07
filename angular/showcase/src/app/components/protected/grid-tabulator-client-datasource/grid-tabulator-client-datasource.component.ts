@@ -1,8 +1,8 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, ViewChild, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DatasourceDefaults } from '@genesislcap/foundation-comms';
-import { DI } from '@microsoft/fast-foundation';
-import { Connect, Auth } from '@genesislcap/foundation-comms';
+import { DEFAULT_CRITERIA, DEFAULT_RESOURCE_NAME } from '../../../services/store.service';
+
 @Component({
   selector: 'app-grid-tabulator-client-datasource',
   standalone: true,
@@ -11,27 +11,33 @@ import { Connect, Auth } from '@genesislcap/foundation-comms';
   styleUrl: './grid-tabulator-client-datasource.component.css',
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export class GridTabulatorClientDatasourceComponent implements AfterViewInit {
-  @ViewChild('dataSource1') dataSource1Element!: any;
-  @ViewChild('dataSource1test') dataSource1testElement!: any;
+export class GridTabulatorClientDatasourceComponent implements OnChanges {
+  @ViewChild('datasource1') datasource1Element!: any;
+  @ViewChild('datasource2') datasource2Element!: any;
 
-  resourceName = 'ALL_COUNTERPARTYS';
+  @Input() resourceName: string = DEFAULT_RESOURCE_NAME;
+  @Input() criteria: string = DEFAULT_CRITERIA;
+
   maxView = DatasourceDefaults.MAX_VIEW_1000;
   maxRows = DatasourceDefaults.MAX_ROWS_250;
-  criteria = 'NAME != null';
   restartOnReconnection = true;
   displayZero = false;
 
-  ngAfterViewInit(): void {
-    const container = DI.getOrCreateDOMContainer();
-    const connect: Connect = container.get(Connect);
-    console.log({
-      element: this.dataSource1Element.nativeElement,
-      connect,
-      that: this,
-      element2: this.dataSource1testElement.nativeElement,
-    });
-    this.dataSource1testElement.nativeElement.connect = connect;
-    this.dataSource1Element.nativeElement.resourceName = this.resourceName;
+  
+  ngOnChanges(changes: SimpleChanges) {
+    if (!changes['resourceName'] && !changes['criteria']) {
+      return;
+    }
+
+    console.log({ changes })
+
+    if (changes['resourceName']) {
+      this.datasource1Element.nativeElement.resourceName = changes['resourceName'].currentValue;
+      this.datasource2Element.nativeElement.resourceName = changes['resourceName'].currentValue;
+    }
+    if (changes['criteria']) {
+      this.datasource1Element.nativeElement.resourceName = changes['resourceName'].currentValue;
+      this.datasource2Element.nativeElement.resourceName = changes['resourceName'].currentValue;
+    }
   }
 }

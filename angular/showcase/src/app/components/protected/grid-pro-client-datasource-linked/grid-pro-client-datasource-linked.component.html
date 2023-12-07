@@ -3,16 +3,15 @@
     <zero-layout-region>
       <zero-layout-item title="(ALL_POSITIONS)" registration="all-positions">
         <zero-grid-pro>
-          <grid-pro-genesis-datasource resource-name="ALL_POSITIONS"></grid-pro-genesis-datasource>
+          <grid-pro-genesis-datasource resource-name="ALL_POSITIONS" [criteria]="criteria"></grid-pro-genesis-datasource>
         </zero-grid-pro>
       </zero-layout-item>
     </zero-layout-region>
     <zero-layout-region>
       <zero-layout-item title="(ALL_TRADES)" registration="all-trades">
         <zero-grid-pro>
-          <grid-pro-genesis-datasource resource-name="ALL_TRADES"></grid-pro-genesis-datasource>
+          <grid-pro-genesis-datasource resource-name="ALL_TRADES" [criteria]="criteria"></grid-pro-genesis-datasource>
         </zero-grid-pro>
-        <layout-grid-listener resource-name=""></layout-grid-listener>
       </zero-layout-item>
     </zero-layout-region>
   </zero-layout-region>

@@ -9,13 +9,13 @@
         enable-cell-flashing
       >
         <grid-pro-client-side-datasource
-          resource-name="ALL_COUNTERPARTYS"
+          [resourceName]="resourceName"
           [criteria]="criteria"
-          [is-snapshot]="false"
-          [max-rows]="maxRows"
-          [max-view]="maxView"
+          [isSnapshot]="false"
+          [maxRows]="maxRows"
+          [maxView]="maxView"
           [reverse]="false"
-          [restart-on-reconnection]="false"
+          [restartOnReconnection]="false"
         ></grid-pro-client-side-datasource>
       </zero-grid-pro>
     </zero-card>
@@ -32,13 +32,13 @@
       >
         <slotted-styles #slottedStyles></slotted-styles>
         <grid-pro-client-side-datasource
-          resource-name="ALL_COUNTERPARTYS"
+          [resourceName]="resourceName"
           [criteria]="criteria"
-          [is-snapshot]="false"
-          [max-rows]="maxRows"
-          [max-view]="maxView"
+          [isSnapshot]="false"
+          [maxRows]="maxRows"
+          [maxView]="maxView"
           [reverse]="false"
-          [restart-on-reconnection]="false"
+          [restartOnReconnection]="false"
         ></grid-pro-client-side-datasource>
 
         <grid-pro-column *ngFor="let colDef of customBooleanColDefs" #itemGridProColumn>
@@ -61,13 +61,13 @@
         enable-cell-flashing
       >
         <grid-pro-client-side-datasource
-          resource-name="ALL_COUNTERPARTYS"
+          [resourceName]="resourceName"
           [criteria]="criteria"
-          [is-snapshot]="false"
-          [max-rows]="maxRows"
-          [max-view]="maxView"
+          [isSnapshot]="false"
+          [maxRows]="maxRows"
+          [maxView]="maxView"
           [reverse]="true"
-          [restart-on-reconnection]="false"
+          [restartOnReconnection]="false"
         ></grid-pro-client-side-datasource>
       </zero-grid-pro>
     </zero-card>
@@ -83,13 +83,13 @@
         enable-cell-flashing
       >
         <grid-pro-client-side-datasource
-          resource-name="ALL_COUNTERPARTYS"
+          [resourceName]="resourceName"
           [criteria]="criteria"
-          [is-snapshot]="false"
+          [isSnapshot]="false"
           max-rows="5"
-          [max-view]="maxView"
+          [maxView]="maxView"
           [reverse]="true"
-          [restart-on-reconnection]="false"
+          [restartOnReconnection]="false"
         ></grid-pro-client-side-datasource>
       </zero-grid-pro>
     </zero-card>
@@ -105,13 +105,13 @@
         enable-cell-flashing
       >
         <grid-pro-client-side-datasource
-          resource-name="ALL_COUNTERPARTYS"
+          [resourceName]="resourceName"
           [criteria]="criteria"
-          [is-snapshot]="true"
-          [max-rows]="maxRows"
-          [max-view]="maxView"
+          [isSnapshot]="true"
+          [maxRows]="maxRows"
+          [maxView]="maxView"
           [reverse]="false"
-          [restart-on-reconnection]="true"
+          [restartOnReconnection]="true"
         ></grid-pro-client-side-datasource>
       </zero-grid-pro>
     </zero-card>
@@ -129,13 +129,13 @@
       >
         <slotted-styles #slottedStyles2></slotted-styles>
         <grid-pro-client-side-datasource
-          resource-name="ALL_COUNTERPARTYS"
+          [resourceName]="resourceName"
           [criteria]="criteria"
-          [is-snapshot]="true"
-          [max-rows]="maxRows"
-          [max-view]="maxView"
+          [isSnapshot]="true"
+          [maxRows]="maxRows"
+          [maxView]="maxView"
           [reverse]="false"
-          [restart-on-reconnection]="true"
+          [restartOnReconnection]="true"
         ></grid-pro-client-side-datasource>
 
         <grid-pro-column *ngFor="let colDef of customBooleanColDefs" #itemGridProColumn2>
@@ -159,13 +159,13 @@
         enable-cell-flashing
       >
         <grid-pro-client-side-datasource
-          resource-name="ALL_COUNTERPARTYS"
+          [resourceName]="resourceName"
           [criteria]="criteria"
-          [is-snapshot]="true"
-          [max-rows]="maxRows"
-          [max-view]="maxView"
+          [isSnapshot]="true"
+          [maxRows]="maxRows"
+          [maxView]="maxView"
           [reverse]="true"
-          [restart-on-reconnection]="true"
+          [restartOnReconnection]="true"
         ></grid-pro-client-side-datasource>
       </zero-grid-pro>
     </zero-card>
@@ -181,13 +181,13 @@
         enable-cell-flashing
       >
         <grid-pro-client-side-datasource
-          resource-name="ALL_COUNTERPARTYS"
+          [resourceName]="resourceName"
           [criteria]="criteria"
-          [is-snapshot]="true"
-          max-rows="5"
-          [max-view]="maxView"
+          [isSnapshot]="true"
+          maxRows="5"
+          [maxView]="maxView"
           [reverse]="true"
-          [restart-on-reconnection]="true"
+          [restartOnReconnection]="true"
         ></grid-pro-client-side-datasource>
       </zero-grid-pro>
     </zero-card>
