@@ -1,11 +1,10 @@
-<zero-design-system-provider>
+<zero-design-system-provider [class.has-layer]="isAnyLayerVisible">
   <foundation-header
     #foundationHeader
     show-luminance-toggle-button
     show-misc-toggle-button
     show-notification-button
     [routeButtons]="allRoutes"
-    (notification-icon-clicked)="onNotificationIconClicked()"
     (notification-icon-clicked)="onNotificationIconClicked()"
   >
     <section class="routes-wrapper" slot="routes">
@@ -72,6 +71,24 @@
     </div>
     <foundation-inbox-counter slot="notifications-icon-end"></foundation-inbox-counter>
   </foundation-header>
+  <zero-flyout
+    position="right"
+    (closed)="closeLayer(layerNames.alertInbox)"
+    [closed]="!(layerStateAlertInbox$ | async)"
+    [displayHeader]="false"
+  >
+    <foundation-inbox
+      (close)="closeLayer(layerNames.alertInbox)"
+    ></foundation-inbox>
+  </zero-flyout>
+  <zero-flyout
+    position="right"
+    (closed)="closeLayer(layerNames.alertRules)"
+    [closed]="!layerStateAlertRules"
+    [displayHeader]="false"
+  >
+    <foundation-alerts></foundation-alerts>
+  </zero-flyout>
   <section class="content">
     <router-outlet></router-outlet>
     <app-messages></app-messages>

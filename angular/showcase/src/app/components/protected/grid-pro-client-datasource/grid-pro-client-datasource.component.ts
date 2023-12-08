@@ -9,7 +9,7 @@ import {
 import { CommonModule } from '@angular/common';
 import { css } from '@microsoft/fast-element';
 import { DatasourceDefaults } from '@genesislcap/foundation-comms';
-import { DEFAULT_CRITERIA, DEFAULT_RESOURCE_NAME } from '../../../services/store.service';
+import { STATE_CHANGER_CONFIG } from '../../../config';
 
 @Component({
   selector: 'app-grid-pro-client-datasource',
@@ -32,8 +32,8 @@ export class GridProClientDatasourceComponent implements AfterViewInit {
   @ViewChildren('itemGridProColumn2') itemGridProColumn2Elements!: any;
   @ViewChildren('itemGridProCell2') itemGridProCell2Elements!: any;
 
-  @Input() resourceName: string = DEFAULT_RESOURCE_NAME;
-  @Input() criteria: string = DEFAULT_CRITERIA;
+  @Input() resourceName: string = STATE_CHANGER_CONFIG.DEFAULT_RESOURCE_NAME;
+  @Input() criteria: string = STATE_CHANGER_CONFIG.DEFAULT_CRITERIA;
 
   maxView = DatasourceDefaults.MAX_VIEW_1000;
   maxRows = DatasourceDefaults.MAX_ROWS_250;

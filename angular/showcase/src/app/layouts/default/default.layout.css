@@ -32,3 +32,34 @@ app-footer {
   height: 44px;
   bottom: 0;
 }
+
+.has-layer {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+zero-flyout {
+  width: 100%;
+  height: 100%;
+}
+
+zero-flyout::part(flyout) {
+  width: 40%;
+  min-width: 320px;
+  padding: 0;
+}
+
+zero-flyout::part(content) {
+  height: 100%;
+}
+
+foundation-alerts {
+  --design-unit: 2.5;
+  --stroke-width: 1;
+}
+
+foundation-alerts::part(filter-button) {
+  --design-unit: 4;
+}

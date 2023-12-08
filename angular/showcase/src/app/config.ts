@@ -38,3 +38,13 @@ export const mainMenu: MainMenu = [
   },
   { index: 8, path: 'features-lab', title: 'Features Lab', icon: 'flask' },
 ];
+
+export const layerNames = {
+  alertRules: 'alertRules',
+  alertInbox: 'alertInbox',
+};
+
+export const STATE_CHANGER_CONFIG = {
+  DEFAULT_CRITERIA: 'NAME != null',
+  DEFAULT_RESOURCE_NAME: 'ALL_COUNTERPARTYS',
+}

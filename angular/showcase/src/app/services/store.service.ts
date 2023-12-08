@@ -10,7 +10,7 @@ export const DEFAULT_RESOURCE_NAME = 'ALL_COUNTERPARTYS';
 export class StoreService {
   private criteriaSource = new BehaviorSubject<string>(DEFAULT_CRITERIA);
   private resourceNameSource = new BehaviorSubject<string>(DEFAULT_RESOURCE_NAME);
-  private modalsState = new Map<string, boolean>([]);
+  private layersState = new Map<string, BehaviorSubject<boolean>>();
 
   criteria = this.criteriaSource.asObservable();
   resourceName = this.resourceNameSource.asObservable();
@@ -31,12 +31,22 @@ export class StoreService {
     return this.resourceNameSource.asObservable();
   }
 
-  isModalVisible(token: string): boolean {
-    return this.modalsState.get(token) || false;
+  setLayerState(layerName: string, state: boolean) {
+    const currentState = this.layersState.get(layerName) ||  new BehaviorSubject<boolean>(false);
+    currentState.next(state)
+    this.layersState.set(layerName, currentState);
   }
 
-  toggleModal(token: string) {
-    const currentState = this.modalsState.get(token) || false;
-    this.modalsState.set(token, !currentState);
+  getLayerState(layerName: string): Observable<boolean> {
+    const currentState = this.layersState.get(layerName);
+    
+    if (currentState) {
+      return currentState.asObservable();
+    }
+
+    const newObservable = new BehaviorSubject<boolean>(false);
+    this.layersState.set(layerName, newObservable);
+
+    return newObservable.asObservable();
   }
 }

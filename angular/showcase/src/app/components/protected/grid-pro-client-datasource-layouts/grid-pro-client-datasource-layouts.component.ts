@@ -19,7 +19,7 @@ import {
   getElementBySelectorFromComponent,
   getElementsBySelectorFromComponent,
 } from '../../../utils/goldenLayout.helper';
-import { DEFAULT_CRITERIA, DEFAULT_RESOURCE_NAME } from '../../../services/store.service';
+import { STATE_CHANGER_CONFIG } from '../../../config';
 
 @Component({
   selector: 'app-grid-pro-client-datasource-layouts',
@@ -36,8 +36,8 @@ export class GridProClientDatasourceLayoutsComponent implements AfterViewInit, O
   @ViewChild('customGridProColumn2') customGridProColumn2Element!: any;
   @ViewChild('slottedStyles2') slottedStyles2Element!: any;
 
-  @Input() resourceName: string = DEFAULT_RESOURCE_NAME;
-  @Input() criteria: string = DEFAULT_CRITERIA;
+  @Input() resourceName: string = STATE_CHANGER_CONFIG.DEFAULT_RESOURCE_NAME;
+  @Input() criteria: string = STATE_CHANGER_CONFIG.DEFAULT_CRITERIA;
 
   layoutComponentsMap: Map<LayoutComponentsNames, any> = new Map();
 

@@ -1,7 +1,10 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { StoreService, DEFAULT_CRITERIA, DEFAULT_RESOURCE_NAME } from '../../../services/store.service';
 import { FormsModule } from '@angular/forms';
+import { Store, select } from '@ngrx/store';
+import { Observable, Subscription } from 'rxjs';
+import * as StateChangerSelector from '../../../store/state-changer/state-changer.selectors';
+import * as StateChangerActions from '../../../store/state-changer/state-changer.actions';
 
 @Component({
   selector: 'app-state-changer',
@@ -11,28 +14,42 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './state-changer.component.css',
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export class StateChangerComponent implements OnInit {
-  criteria: string = DEFAULT_CRITERIA;
-  resourceName: string = DEFAULT_RESOURCE_NAME;
+export class StateChangerComponent implements OnInit, OnDestroy {
+  criteria$: Observable<string>;
+  resourceName$: Observable<string>;
+  criteria: string = ''
+  resourceName: string = '';
+  
+  private subscription: Subscription = new Subscription();
 
-  constructor(private store: StoreService) {}
+  constructor(private store: Store) {
+    this.criteria$ = this.store.pipe(select(StateChangerSelector.getCriteria));
+    this.resourceName$ = this.store.pipe(select(StateChangerSelector.getResourceName));
+  }
 
   ngOnInit() {
-    this.store.getCriteria().subscribe((newCriteria) => {
-      console.log({ newCriteria });
-      this.criteria = newCriteria;
-    });
+    this.subscription.add(
+      this.criteria$.subscribe(value => {
+        this.criteria = value;
+      })
+    );
 
-    this.store.getResourceName().subscribe((newResourceName) => {
-      this.resourceName = newResourceName;
-    });
+    this.subscription.add(
+      this.resourceName$.subscribe(value => {
+        this.resourceName = value;
+      })
+    );
   }
 
   updateCriteria() {
-    this.store.setCriteria(this.criteria);
+    this.store.dispatch(StateChangerActions.setCriteria({ criteria: this.criteria }));
   }
 
   updateResourceName() {
-    this.store.setResourceName(this.resourceName);
+    this.store.dispatch(StateChangerActions.setResourceName({ resourceName: this.resourceName }));
+  }
+  
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 }

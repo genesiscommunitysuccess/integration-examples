@@ -1,7 +1,7 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA, ViewChild, Input, OnChanges, SimpleChanges, AfterViewInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DatasourceDefaults } from '@genesislcap/foundation-comms';
-import { DEFAULT_CRITERIA, DEFAULT_RESOURCE_NAME } from '../../../services/store.service';
+import { STATE_CHANGER_CONFIG } from '../../../config';
 import {
   setComponentItemsMap,
   getElementByTagFromComponent,
@@ -19,8 +19,8 @@ import { LayoutComponentsNames } from './grid-tabulator-client-datasource.types'
 export class GridTabulatorClientDatasourceComponent implements AfterViewInit, OnChanges, OnDestroy {
   @ViewChild('gridLayout') gridLayoutElement!: any;
 
-  @Input() resourceName: string = DEFAULT_RESOURCE_NAME;
-  @Input() criteria: string = DEFAULT_CRITERIA;
+  @Input() resourceName: string = STATE_CHANGER_CONFIG.DEFAULT_RESOURCE_NAME;
+  @Input() criteria: string = STATE_CHANGER_CONFIG.DEFAULT_CRITERIA;
 
   layoutComponentsMap: Map<LayoutComponentsNames, any> = new Map();
   maxView = DatasourceDefaults.MAX_VIEW_1000;

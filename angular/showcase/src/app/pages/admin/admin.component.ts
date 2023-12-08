@@ -1,13 +1,6 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA, ViewChild, ElementRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UsersColumnConfig } from '@genesislcap/foundation-entity-management';
-import { EntityManagement, Profiles } from '@genesislcap/foundation-entity-management';
-import { provideDesignSystem } from '@genesislcap/foundation-zero';
-import { zeroGridComponents } from '@genesislcap/foundation-zero-grid-pro';
-
-EntityManagement;
-Profiles;
-provideDesignSystem().register(zeroGridComponents);
 
 @Component({
   selector: 'page-admin',

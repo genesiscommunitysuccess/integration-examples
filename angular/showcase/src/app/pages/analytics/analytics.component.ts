@@ -1,9 +1,8 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA, ViewChild, AfterViewInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { provideDesignSystem } from '@genesislcap/foundation-zero';
-import { g2plotChartsComponents } from '@genesislcap/g2plot-chart';
 import { CriteriaSegmentedControlOption, Serialisers } from '@genesislcap/foundation-criteria';
 import { FoundationLayout, LayoutEmitEvents } from '@genesislcap/foundation-layout';
+
 import {
   AnalyticChartRegistration,
   SavedLayoutKeys,
@@ -30,8 +29,6 @@ import {
   setComponentItemsMap,
   getElementByTagFromComponent,
 } from '../../utils/goldenLayout.helper';
-
-provideDesignSystem().register(g2plotChartsComponents);
 
 const chartConfigMap: Map<LayoutComponentsNames, any> = new Map([
   [LayoutComponentsNames.AREA, areaConfiguration as any],
