@@ -10,12 +10,13 @@ import { AuthComponent } from './pages/auth/auth.component';
 import { StoreModule } from '@ngrx/store';
 import { layersReducer } from './store/layers/layers.reducer';
 import { stateChangerReducer } from './store/state-changer/state-changer.reducer';
+import { LayoutLazyLoadDirective } from './directive/app-lazy-load.directive';
 
 // Genesis Components
 import './share/genesis-components';
 
 @NgModule({
-  declarations: [AppComponent, AuthComponent, DefaultLayout, BlankLayout],
+  declarations: [AppComponent, AuthComponent, LayoutLazyLoadDirective, DefaultLayout, BlankLayout],
   imports: [
     BrowserModule,
     AppRoutingModule,

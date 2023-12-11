@@ -7,7 +7,9 @@ import { mainMenu } from '../../config';
 import { layerNames } from '../../config';
 import * as LayersActions from '../../store/layers/layers.actions';
 import * as LayersSelectors from '../../store/layers/layers.selectors';
+import { FoundationInbox } from '@genesislcap/foundation-inbox';
 
+FoundationInbox;
 @Component({
   selector: 'default-layout',
   templateUrl: './default.layout.html',

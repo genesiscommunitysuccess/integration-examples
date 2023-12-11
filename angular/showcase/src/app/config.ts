@@ -1,5 +1,3 @@
-import { DefaultLayout } from './layouts/default/default.layout';
-import { BlankLayout } from './layouts/blank/blank.layout';
 import type { MainMenu } from './types/menu';
 
 export const layoutDefault = 'DefaultLayout';
@@ -9,9 +7,9 @@ export const layoutComponentName = {
   blank: 'BlankLayout',
 };
 
-export const layoutComponentInstanceByName = {
-  [layoutComponentName.default]: DefaultLayout,
-  [layoutComponentName.blank]: BlankLayout,
+export const layoutComponentImportsByName = {
+  [layoutComponentName.default]: () => import('./layouts/default/default.layout').then(m => m.DefaultLayout),
+  [layoutComponentName.blank]: () => import('./layouts/blank/blank.layout').then(m => m.BlankLayout),
 };
 
 export const API_DATA = {

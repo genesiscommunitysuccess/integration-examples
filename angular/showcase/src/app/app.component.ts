@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
-import { layoutDefault, layoutComponentInstanceByName } from './config';
 import type { LayoutComponentName } from './types/layout';
 import getLayoutNameByRoute from './utils/getLayoutNameByRoute';
 
@@ -10,8 +9,7 @@ import getLayoutNameByRoute from './utils/getLayoutNameByRoute';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  layout: LayoutComponentName = layoutDefault;
-  layoutComponent = layoutComponentInstanceByName[layoutDefault];
+  layoutName?: LayoutComponentName;
   showFooter = false;
   title = 'Genesis Foundation Entity Managment Angular';
   isSubscribed = false;
@@ -20,8 +18,7 @@ export class AppComponent {
     // Set layout componet based on route
     router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
-        this.layout = getLayoutNameByRoute(event.urlAfterRedirects);
-        this.layoutComponent = layoutComponentInstanceByName[this.layout];
+        this.layoutName = getLayoutNameByRoute(event.urlAfterRedirects);
       }
     });
   }
