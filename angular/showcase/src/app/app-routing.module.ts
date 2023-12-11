@@ -6,6 +6,8 @@ import { AdminComponent } from './pages/admin/admin.component';
 import { AuthGuard } from './guards/auth.guard';
 import { ReportingComponent } from './pages/reporting/reporting.component';
 import { AnalyticsComponent } from './pages/analytics/analytics.component';
+import { FiltersComponent } from './pages/filters/filters.component';
+import { FormsComponent } from './pages/forms/forms.component';
 
 const routes: Routes = [
   {
@@ -31,6 +33,16 @@ const routes: Routes = [
     path: 'analytics',
     canActivate: [AuthGuard],
     component: AnalyticsComponent,
+  },
+  {
+    path: 'filters',
+    canActivate: [AuthGuard],
+    component: FiltersComponent,
+  },
+  {
+    path: 'forms',
+    canActivate: [AuthGuard],
+    component: FormsComponent,
   },
   // Redirect to auth if no other route is matched
   { path: '**', redirectTo: '/auth' },

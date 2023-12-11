@@ -1,0 +1,20 @@
+.container,
+zero-tabs,
+zero-tab-panel {
+  height: 100%;
+  width: 100%;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  gap: 10px;
+  padding: 5px 10px;
+}
+
+zero-card {
+    max-height: 700px;
+    width: 50%;
+    padding-top: 10px;
+}

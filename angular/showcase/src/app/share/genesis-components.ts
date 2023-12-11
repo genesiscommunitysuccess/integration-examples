@@ -9,6 +9,8 @@ import { g2plotChartsComponents } from '@genesislcap/g2plot-chart';
 import { Reporting } from '@genesislcap/foundation-reporting';
 import { FoundationAlerts } from '@genesislcap/foundation-alerts';
 import { SlottedStyles } from '@genesislcap/foundation-utils';
+import { FoundationInbox } from '@genesislcap/foundation-inbox';
+import { Filters } from '@genesislcap/foundation-forms';
 import { ModuleRegistry } from '@ag-grid-community/core';
 import { RowGroupingModule } from '@ag-grid-enterprise/row-grouping';
 import { ServerSideRowModelModule } from '@ag-grid-enterprise/server-side-row-model';
@@ -18,6 +20,8 @@ Profiles;
 Reporting;
 FoundationAlerts;
 SlottedStyles;
+FoundationInbox;
+Filters;
 
 provideZeroDesignSystem().register(
   zeroBaseComponents,
