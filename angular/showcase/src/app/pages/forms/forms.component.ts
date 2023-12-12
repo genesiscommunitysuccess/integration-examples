@@ -59,28 +59,9 @@ export class FormsComponent {
 
     this.userArrayFormElement.nativeElement.uischema = uiSchemaArray;
     this.userArrayFormElement.nativeElement.jsonSchema = JSON_SCHEMA_ARRAY;
-    this.userArrayFormElement.nativeElement.data = {
-      users: [
-        {
-          firstname: 'John',
-          lastname: 'Doe',
-          email: 'john@doe.com',
-          rights: 'ADMIN',
-        },
-      ],
-    };
 
     this.tradeArrayFormElement.nativeElement.uischema = uiSchemaArrayTrade;
     this.tradeArrayFormElement.nativeElement.jsonSchema = JSON_SCHEMA_ARRAY_TRADE;
-    this.tradeArrayFormElement.nativeElement.data = {
-      users: [
-        {
-          instrumentId: 'VOD',
-          quantity: '500',
-          side: 'BUY',
-        },
-      ],
-    };
 
     this.exampleGroupFormElement.nativeElement.uischema = uiSchemaGroup;
     this.exampleGroupFormElement.nativeElement.jsonSchema = JSON_SCHEMA_GROUP;
@@ -106,7 +87,36 @@ export class FormsComponent {
       USER: 'JohnDoe',
       DATE: 1690848000000,
     };
+  }
 
-    
+  //@todo fix unknown issue where data is set to empty from child component
+  setUserArrayFormElementData(event: any) {
+    if (!event.detail.data.users) {
+      this.userArrayFormElement.nativeElement.data = {
+        users: [
+          {
+            firstname: 'John',
+            lastname: 'Doe',
+            email: 'john@doe.com',
+            rights: 'ADMIN',
+          },
+        ],
+      };
+    }
+  }
+
+  //@todo fix unknown issue where data is set to empty from child component
+  setTradeArrayFormElement(event: any) {
+    if (!event.detail.data.users) {
+      this.tradeArrayFormElement.nativeElement.data = {
+        users: [
+          {
+            instrumentId: 'VOD',
+            quantity: '500',
+            side: 'BUY',
+          },
+        ],
+      };
+    }
   }
 }

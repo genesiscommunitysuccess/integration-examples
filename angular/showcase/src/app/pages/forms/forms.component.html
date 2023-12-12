@@ -34,9 +34,9 @@
     <div class="form-container">
       <h2>Examples</h2>
       <h3>1. User Array Form</h3>
-      <foundation-form #userArrayForm></foundation-form>
+      <foundation-form #userArrayForm (data-change)="setUserArrayFormElementData($event)"></foundation-form>
       <h3>1. Trade Array Form</h3>
-      <foundation-form #tradeArrayForm></foundation-form>
+      <foundation-form #tradeArrayForm (data-change)="setTradeArrayFormElement($event)"></foundation-form>
     </div>
   </zero-tab-panel>
   <zero-tab-panel>
