@@ -32,14 +32,14 @@ export class StoreService {
   }
 
   setLayerState(layerName: string, state: boolean) {
-    const currentState = this.layersState.get(layerName) ||  new BehaviorSubject<boolean>(false);
-    currentState.next(state)
+    const currentState = this.layersState.get(layerName) || new BehaviorSubject<boolean>(false);
+    currentState.next(state);
     this.layersState.set(layerName, currentState);
   }
 
   getLayerState(layerName: string): Observable<boolean> {
     const currentState = this.layersState.get(layerName);
-    
+
     if (currentState) {
       return currentState.asObservable();
     }

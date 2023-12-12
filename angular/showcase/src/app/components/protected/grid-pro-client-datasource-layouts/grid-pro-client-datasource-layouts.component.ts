@@ -93,7 +93,10 @@ export class GridProClientDatasourceLayoutsComponent implements AfterViewInit, O
 
     if (this.layoutComponentsMap.size > 0) {
       this.layoutComponentsMap.forEach((component: any) => {
-        const datasource = getElementByTagFromComponent(component, 'grid-pro-client-side-datasource');
+        const datasource = getElementByTagFromComponent(
+          component,
+          'grid-pro-client-side-datasource',
+        );
         if (changes['resourceName']) {
           datasource.resourceName = changes['resourceName'].currentValue;
         }

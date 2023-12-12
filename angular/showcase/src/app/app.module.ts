@@ -22,7 +22,7 @@ import './share/genesis-components';
     AppRoutingModule,
     FormsModule,
     FooterComponent,
-    StoreModule.forRoot({ layersState: layersReducer, stateChangerState: stateChangerReducer })
+    StoreModule.forRoot({ layersState: layersReducer, stateChangerState: stateChangerReducer }),
   ],
   providers: [],
   bootstrap: [AppComponent],

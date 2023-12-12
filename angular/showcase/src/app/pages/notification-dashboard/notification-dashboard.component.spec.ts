@@ -8,10 +8,9 @@ describe('NotificationDashboardComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [NotificationDashboardComponent]
-    })
-    .compileComponents();
-    
+      imports: [NotificationDashboardComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(NotificationDashboardComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

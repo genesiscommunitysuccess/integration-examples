@@ -77,9 +77,7 @@
     [closed]="!(layerStateAlertInbox$ | async)"
     [displayHeader]="false"
   >
-    <foundation-inbox
-      (close)="closeLayer(layerNames.alertInbox)"
-    ></foundation-inbox>
+    <foundation-inbox (close)="closeLayer(layerNames.alertInbox)"></foundation-inbox>
   </zero-flyout>
   <zero-flyout
     position="right"

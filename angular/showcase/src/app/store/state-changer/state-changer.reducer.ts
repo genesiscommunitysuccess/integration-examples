@@ -10,6 +10,6 @@ export const stateChangerReducer = createReducer(
   })),
   on(StateChangerActions.setResourceName, (state, { resourceName }) => ({
     ...state,
-      resourceName,
-  }))
+    resourceName,
+  })),
 );

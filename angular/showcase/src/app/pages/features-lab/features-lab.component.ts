@@ -1,4 +1,4 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA, ViewChild, AfterViewInit, } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, ViewChild, AfterViewInit } from '@angular/core';
 import { Session } from '@genesislcap/foundation-comms';
 import { Connect } from '@genesislcap/foundation-comms';
 import { getErrorFormat } from '@genesislcap/foundation-entity-management';
@@ -33,7 +33,7 @@ export class FeaturesLabComponent implements AfterViewInit {
   ngAfterViewInit(): void {
     this.environmentAlertModalElement.nativeElement.show();
   }
-  
+
   async insertTenTestRecords() {
     try {
       await this.fetchAllTestRecords();
@@ -80,7 +80,7 @@ export class FeaturesLabComponent implements AfterViewInit {
     NAME: string;
     ENABLED: boolean;
   } {
-    console.log({ test: this.uuid.createId() })
+    console.log({ test: this.uuid.createId() });
     return {
       COUNTERPARTY_ID: this.uuid.createId(),
       COUNTERPARTY_LEI: this.uuid.createId(),
@@ -146,18 +146,20 @@ export class FeaturesLabComponent implements AfterViewInit {
     const notificationCloseTimeout = 5000;
     error.forEach((err) => {
       new CustomEvent(ErrorBoundaryEvent.ERROR_BOUNDARY_EVENT, {
-        detail: { message: getErrorBuilder()
-          .withTitle(err.CODE)
-          .withErrorDetails(getErrorFormat(err))
-          .withNotification(
-            getNotificationBuilder()
-              .withType('warning')
-              .withAutoClose(true)
-              .withCloseTimeout(notificationCloseTimeout)
-              .build(),
-          )
-          .build(),},
-        bubbles: true
+        detail: {
+          message: getErrorBuilder()
+            .withTitle(err.CODE)
+            .withErrorDetails(getErrorFormat(err))
+            .withNotification(
+              getNotificationBuilder()
+                .withType('warning')
+                .withAutoClose(true)
+                .withCloseTimeout(notificationCloseTimeout)
+                .build(),
+            )
+            .build(),
+        },
+        bubbles: true,
       });
     });
   }
@@ -165,17 +167,19 @@ export class FeaturesLabComponent implements AfterViewInit {
   private emitErrorDialog(error: { CODE: string; TEXT: string }[]) {
     error.forEach((err) => {
       new CustomEvent(ErrorBoundaryEvent.ERROR_BOUNDARY_EVENT, {
-        detail: { message:  getErrorBuilder()
-          .withTitle(err.CODE)
-          .withErrorDetails(getErrorFormat(err))
-          .withDialog(
-            getErrorDialogBuilder()
-              .withDismissingAction({ label: 'Dismiss' })
-              .withConfirmingAction({ label: 'Confirm', action: () => console.log('Confirmed') })
-              .build(),
-          )
-          .build(),},
-        bubbles: true
+        detail: {
+          message: getErrorBuilder()
+            .withTitle(err.CODE)
+            .withErrorDetails(getErrorFormat(err))
+            .withDialog(
+              getErrorDialogBuilder()
+                .withDismissingAction({ label: 'Dismiss' })
+                .withConfirmingAction({ label: 'Confirm', action: () => console.log('Confirmed') })
+                .build(),
+            )
+            .build(),
+        },
+        bubbles: true,
       });
     });
   }
@@ -183,17 +187,19 @@ export class FeaturesLabComponent implements AfterViewInit {
   private emitSnackbar(error: { CODE: string; TEXT: string }[]) {
     error.forEach((err) => {
       new CustomEvent(ErrorBoundaryEvent.ERROR_BOUNDARY_EVENT, {
-        detail: { message: getErrorBuilder()
-          .withTitle(err.CODE)
-          .withErrorDetails(getErrorFormat(err))
-          .withSnackbar(
-            getSnackbarBuilder()
-              .withType('error')
-              .withConfirmingAction({ label: 'Confirm', action: () => console.log('Confirmed') })
-              .build(),
-          )
-          .build(),},
-        bubbles: true
+        detail: {
+          message: getErrorBuilder()
+            .withTitle(err.CODE)
+            .withErrorDetails(getErrorFormat(err))
+            .withSnackbar(
+              getSnackbarBuilder()
+                .withType('error')
+                .withConfirmingAction({ label: 'Confirm', action: () => console.log('Confirmed') })
+                .build(),
+            )
+            .build(),
+        },
+        bubbles: true,
       });
     });
   }
@@ -201,16 +207,18 @@ export class FeaturesLabComponent implements AfterViewInit {
   private emitBanner(error: { CODE: string; TEXT: string }[]) {
     error.forEach((err) => {
       new CustomEvent(ErrorBoundaryEvent.ERROR_BOUNDARY_EVENT, {
-        detail: { message: getErrorBuilder()
-          .withTitle(err.CODE)
-          .withErrorDetails(getErrorFormat(err))
-          .withBanner(
-            getErrorBannerBuilder()
-              .withConfirmingAction({ label: 'Confirm', action: () => console.log('Confirmed') })
-              .build(),
-          )
-          .build() },
-        bubbles: true
+        detail: {
+          message: getErrorBuilder()
+            .withTitle(err.CODE)
+            .withErrorDetails(getErrorFormat(err))
+            .withBanner(
+              getErrorBannerBuilder()
+                .withConfirmingAction({ label: 'Confirm', action: () => console.log('Confirmed') })
+                .build(),
+            )
+            .build(),
+        },
+        bubbles: true,
       });
     });
   }

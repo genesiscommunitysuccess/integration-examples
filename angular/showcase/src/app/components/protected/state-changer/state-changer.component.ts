@@ -17,9 +17,9 @@ import * as StateChangerActions from '../../../store/state-changer/state-changer
 export class StateChangerComponent implements OnInit, OnDestroy {
   criteria$: Observable<string>;
   resourceName$: Observable<string>;
-  criteria: string = ''
+  criteria: string = '';
   resourceName: string = '';
-  
+
   private subscription: Subscription = new Subscription();
 
   constructor(private store: Store) {
@@ -29,15 +29,15 @@ export class StateChangerComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.subscription.add(
-      this.criteria$.subscribe(value => {
+      this.criteria$.subscribe((value) => {
         this.criteria = value;
-      })
+      }),
     );
 
     this.subscription.add(
-      this.resourceName$.subscribe(value => {
+      this.resourceName$.subscribe((value) => {
         this.resourceName = value;
-      })
+      }),
     );
   }
 
@@ -48,7 +48,7 @@ export class StateChangerComponent implements OnInit, OnDestroy {
   updateResourceName() {
     this.store.dispatch(StateChangerActions.setResourceName({ resourceName: this.resourceName }));
   }
-  
+
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }

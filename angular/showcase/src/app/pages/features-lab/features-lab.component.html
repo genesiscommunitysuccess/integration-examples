@@ -1,15 +1,9 @@
 <zero-notification-listener>
   <div class="protected-page">
     <zero-toolbar>
-      <zero-button (click)="insertTenTestRecords()">
-        Add 10 Random Test Records
-      </zero-button>
-      <zero-button (click)="updateAllTestRecords()">
-        Update All Test Records
-      </zero-button>
-      <zero-button (click)="deleteAllTestRecords()">
-        Delete All Test Records
-      </zero-button>
+      <zero-button (click)="insertTenTestRecords()">Add 10 Random Test Records</zero-button>
+      <zero-button (click)="updateAllTestRecords()">Update All Test Records</zero-button>
+      <zero-button (click)="deleteAllTestRecords()">Delete All Test Records</zero-button>
     </zero-toolbar>
     <zero-divider></zero-divider>
     <entity-management
@@ -27,14 +21,14 @@
     ></entity-management>
 
     <zero-modal #environmentAlertModal>
-      <h4 style="justify-content: center;" slot="top">⚠️ Changes made here are final.</h4>
+      <h4 style="justify-content: center" slot="top">⚠️ Changes made here are final.</h4>
       <p>
         🖥️ You're connected to
-        <b style="color: var(--accent-fill-rest);">
+        <b style="color: var(--accent-fill-rest)">
           {{ session.getSessionStorageItem('hostUrl') }}
         </b>
         , make sure it's a
-        <b style="color: var(--accent-fill-rest);">development</b>
+        <b style="color: var(--accent-fill-rest)">development</b>
         server.
       </p>
     </zero-modal>

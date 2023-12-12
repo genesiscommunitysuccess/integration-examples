@@ -3,12 +3,9 @@ import { LayersState } from './layers.state';
 
 export const selectLayersFeature = createFeatureSelector<LayersState>('layersState');
 
-export const isLayerVisible = (layerName: string) => createSelector(
-  selectLayersFeature,
-  (state) => state[layerName] || false
-);
+export const isLayerVisible = (layerName: string) =>
+  createSelector(selectLayersFeature, (state) => state[layerName] || false);
 
-export const isAnyLayerVisible = createSelector(
-  selectLayersFeature,
-  (state) => Object.values(state).some(visible => visible)
+export const isAnyLayerVisible = createSelector(selectLayersFeature, (state) =>
+  Object.values(state).some((visible) => visible),
 );

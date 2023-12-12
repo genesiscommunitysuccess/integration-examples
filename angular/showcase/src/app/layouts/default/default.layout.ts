@@ -24,25 +24,32 @@ export class DefaultLayout extends BaseLayout implements OnInit, AfterViewInit {
 
   private subscription: Subscription = new Subscription();
 
-  constructor(router: Router, private store: Store) {
+  constructor(
+    router: Router,
+    private store: Store,
+  ) {
     super(router);
 
-    this.layerStateAlertRules$ = this.store.pipe(select(LayersSelectors.isLayerVisible(layerNames.alertRules)));
-    this.layerStateAlertInbox$ = this.store.pipe(select(LayersSelectors.isLayerVisible(layerNames.alertInbox)));
+    this.layerStateAlertRules$ = this.store.pipe(
+      select(LayersSelectors.isLayerVisible(layerNames.alertRules)),
+    );
+    this.layerStateAlertInbox$ = this.store.pipe(
+      select(LayersSelectors.isLayerVisible(layerNames.alertInbox)),
+    );
     this.isAnyLayerVisible$ = this.store.pipe(select(LayersSelectors.isAnyLayerVisible));
   }
 
   ngOnInit() {
     this.subscription.add(
-      this.layerStateAlertRules$.subscribe(value => {
+      this.layerStateAlertRules$.subscribe((value) => {
         this.layerStateAlertRules = value;
-      })
+      }),
     );
 
     this.subscription.add(
-      this.isAnyLayerVisible$.subscribe(value => {
+      this.isAnyLayerVisible$.subscribe((value) => {
         this.isAnyLayerVisible = value;
-      })
+      }),
     );
   }
 
@@ -59,7 +66,7 @@ export class DefaultLayout extends BaseLayout implements OnInit, AfterViewInit {
   closeLayer(layerName: string) {
     this.store.dispatch(LayersActions.hideLayer({ layerName }));
   }
-  
+
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }

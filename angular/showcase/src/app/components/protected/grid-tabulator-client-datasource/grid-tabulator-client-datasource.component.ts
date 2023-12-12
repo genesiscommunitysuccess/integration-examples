@@ -1,4 +1,13 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA, ViewChild, Input, OnChanges, SimpleChanges, AfterViewInit, OnDestroy } from '@angular/core';
+import {
+  Component,
+  CUSTOM_ELEMENTS_SCHEMA,
+  ViewChild,
+  Input,
+  OnChanges,
+  SimpleChanges,
+  AfterViewInit,
+  OnDestroy,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DatasourceDefaults } from '@genesislcap/foundation-comms';
 import { STATE_CHANGER_CONFIG } from '../../../config';
@@ -26,7 +35,7 @@ export class GridTabulatorClientDatasourceComponent implements AfterViewInit, On
   maxView = DatasourceDefaults.MAX_VIEW_1000;
   maxRows = DatasourceDefaults.MAX_ROWS_250;
   restartOnReconnection = true;
-  ready = false
+  ready = false;
   listeners: Function[] = [];
 
   setReady() {
@@ -35,7 +44,7 @@ export class GridTabulatorClientDatasourceComponent implements AfterViewInit, On
 
   ngAfterViewInit() {
     setComponentItemsMap(this.gridLayoutElement.nativeElement, this.layoutComponentsMap);
-    const listner = this.setReady.bind(this)
+    const listner = this.setReady.bind(this);
     this.listeners.push(listner);
     this.gridLayoutElement.nativeElement.addEventListener(LayoutEmitEvents.firstLoaded, listner);
   }
@@ -47,8 +56,11 @@ export class GridTabulatorClientDatasourceComponent implements AfterViewInit, On
 
     if (this.layoutComponentsMap.size > 0) {
       this.layoutComponentsMap.forEach((component: any) => {
-        const datasource = getElementByTagFromComponent(component, 'grid-tabulator-client-side-datasource');
-        
+        const datasource = getElementByTagFromComponent(
+          component,
+          'grid-tabulator-client-side-datasource',
+        );
+
         if (changes['resourceName']) {
           datasource.resourceName = changes['resourceName'].currentValue;
         }
@@ -62,7 +74,10 @@ export class GridTabulatorClientDatasourceComponent implements AfterViewInit, On
 
   ngOnDestroy() {
     this.listeners.forEach((listener) => {
-      this.gridLayoutElement.nativeElement.removeEventListener(LayoutEmitEvents.firstLoaded, listener);
+      this.gridLayoutElement.nativeElement.removeEventListener(
+        LayoutEmitEvents.firstLoaded,
+        listener,
+      );
     });
   }
 }

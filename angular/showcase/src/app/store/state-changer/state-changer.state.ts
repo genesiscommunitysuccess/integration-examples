@@ -1,8 +1,8 @@
-import { STATE_CHANGER_CONFIG } from '../../config'
+import { STATE_CHANGER_CONFIG } from '../../config';
 
-export interface StateChangerState  {
-  criteria: string,
-  resourceName: string,
+export interface StateChangerState {
+  criteria: string;
+  resourceName: string;
 }
 
 export const initialState: StateChangerState = {

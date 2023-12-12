@@ -8,8 +8,10 @@ export const layoutComponentName = {
 };
 
 export const layoutComponentImportsByName = {
-  [layoutComponentName.default]: () => import('./layouts/default/default.layout').then(m => m.DefaultLayout),
-  [layoutComponentName.blank]: () => import('./layouts/blank/blank.layout').then(m => m.BlankLayout),
+  [layoutComponentName.default]: () =>
+    import('./layouts/default/default.layout').then((m) => m.DefaultLayout),
+  [layoutComponentName.blank]: () =>
+    import('./layouts/blank/blank.layout').then((m) => m.BlankLayout),
 };
 
 export const API_DATA = {
@@ -45,4 +47,4 @@ export const layerNames = {
 export const STATE_CHANGER_CONFIG = {
   DEFAULT_CRITERIA: 'NAME != null',
   DEFAULT_RESOURCE_NAME: 'ALL_COUNTERPARTYS',
-}
+};

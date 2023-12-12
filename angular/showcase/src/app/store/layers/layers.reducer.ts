@@ -6,10 +6,10 @@ export const layersReducer = createReducer(
   initialLayersState,
   on(LayersActions.showLayer, (state, { layerName }) => ({
     ...state,
-    [layerName]: true
+    [layerName]: true,
   })),
   on(LayersActions.hideLayer, (state, { layerName }) => ({
     ...state,
-    [layerName]: false
-  }))
+    [layerName]: false,
+  })),
 );

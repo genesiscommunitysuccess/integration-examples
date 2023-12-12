@@ -1,14 +1,19 @@
-import { Directive, ViewContainerRef, Input, OnInit, OnChanges, SimpleChanges } from '@angular/core';
+import {
+  Directive,
+  ViewContainerRef,
+  Input,
+  OnInit,
+  OnChanges,
+  SimpleChanges,
+} from '@angular/core';
 import { layoutComponentImportsByName } from '../config';
 @Directive({
-  selector: '[layoutLazyLoad]'
+  selector: '[layoutLazyLoad]',
 })
-export class LayoutLazyLoadDirective implements OnInit, OnChanges  {
+export class LayoutLazyLoadDirective implements OnInit, OnChanges {
   @Input('layoutLazyLoad') componentName?: string;
 
-  constructor(
-    private viewContainerRef: ViewContainerRef,
-    ) {}
+  constructor(private viewContainerRef: ViewContainerRef) {}
 
   ngOnInit() {
     this.loadComponent();

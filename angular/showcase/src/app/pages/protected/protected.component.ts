@@ -26,7 +26,7 @@ import { GridTabulatorClientDatasourceComponent } from '../../components/protect
   styleUrls: ['./protected.component.css'],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export class ProtectedComponent implements OnInit, OnDestroy  {
+export class ProtectedComponent implements OnInit, OnDestroy {
   @ViewChild('zeroTabs') zeroTabsElement!: any;
 
   criteria$: Observable<string> = this.store.select(StateChangerSelector.getCriteria);
@@ -40,23 +40,23 @@ export class ProtectedComponent implements OnInit, OnDestroy  {
     this.criteria$ = this.store.pipe(select(StateChangerSelector.getCriteria));
     this.resourceName$ = this.store.pipe(select(StateChangerSelector.getResourceName));
   }
-  
+
   ngOnInit() {
     this.subscription.add(
-      this.criteria$.subscribe(value => {
+      this.criteria$.subscribe((value) => {
         this.criteria = value;
-      })
+      }),
     );
 
     this.subscription.add(
-      this.resourceName$.subscribe(value => {
+      this.resourceName$.subscribe((value) => {
         this.resourceName = value;
-      })
+      }),
     );
   }
 
   onTabChanged({ detail }: any) {
-    this.displayStateChanger = !detail.attributes.hasOwnProperty('hide-state-changer')
+    this.displayStateChanger = !detail.attributes.hasOwnProperty('hide-state-changer');
   }
 
   ngOnDestroy() {

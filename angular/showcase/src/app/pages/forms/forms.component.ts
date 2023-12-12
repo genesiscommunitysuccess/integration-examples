@@ -48,11 +48,14 @@ export class FormsComponent {
     this.connectedComboboxRenderersElement.nativeElement.uischema = uiSchemaConnectedSelect;
     this.connectedComboboxRenderersElement.nativeElement.jsonSchema = JSON_SCHEMA_CONNECTED_SELECT;
 
-    this.connectedComboboxAsyncRenderersElement.nativeElement.uischema = uiSchemaConnectedSelectAsync;
-    this.connectedComboboxAsyncRenderersElement.nativeElement.jsonSchema = JSON_SCHEMA_CONNECTED_SELECT;
+    this.connectedComboboxAsyncRenderersElement.nativeElement.uischema =
+      uiSchemaConnectedSelectAsync;
+    this.connectedComboboxAsyncRenderersElement.nativeElement.jsonSchema =
+      JSON_SCHEMA_CONNECTED_SELECT;
 
     this.connectedComboboxLocalRenderersElement.nativeElement.uischema = uiSchemaConnectedNumber;
-    this.connectedComboboxLocalRenderersElement.nativeElement.jsonSchema = JSON_SCHEMA_CONNECTED_NUMBER;
+    this.connectedComboboxLocalRenderersElement.nativeElement.jsonSchema =
+      JSON_SCHEMA_CONNECTED_NUMBER;
     this.connectedComboboxLocalRenderersElement.nativeElement.data = {
       NUMBER_RATE: 0,
     };
