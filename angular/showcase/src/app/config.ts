@@ -1,17 +1,15 @@
 import type { MainMenu } from './types/menu';
 
-export const layoutDefault = 'DefaultLayout';
-
 export const layoutComponentName = {
-  default: layoutDefault,
-  blank: 'BlankLayout',
+  default: 'DefaultLayoutComponent',
+  blank: 'BlankLayoutComponent',
 };
 
 export const layoutComponentImportsByName = {
   [layoutComponentName.default]: () =>
-    import('./layouts/default/default.layout').then((m) => m.DefaultLayout),
+    import('./layouts/default/default.layout').then((m) => m.DefaultLayoutComponent),
   [layoutComponentName.blank]: () =>
-    import('./layouts/blank/blank.layout').then((m) => m.BlankLayout),
+    import('./layouts/blank/blank.layout').then((m) => m.BlankLayoutComponent),
 };
 
 export const API_DATA = {

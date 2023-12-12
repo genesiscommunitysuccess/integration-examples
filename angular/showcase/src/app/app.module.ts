@@ -3,8 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { DefaultLayout } from './layouts/default/default.layout';
-import { BlankLayout } from './layouts/blank/blank.layout';
+import { DefaultLayoutComponent } from './layouts/default/default.layout';
+import { BlankLayoutComponent } from './layouts/blank/blank.layout';
 import { FooterComponent } from './components/footer/footer/footer.component';
 import { AuthComponent } from './pages/auth/auth.component';
 import { StoreModule } from '@ngrx/store';
@@ -16,7 +16,7 @@ import { LayoutLazyLoadDirective } from './directive/app-lazy-load.directive';
 import './share/genesis-components';
 
 @NgModule({
-  declarations: [AppComponent, AuthComponent, LayoutLazyLoadDirective, DefaultLayout, BlankLayout],
+  declarations: [AppComponent, AuthComponent, LayoutLazyLoadDirective, DefaultLayoutComponent, BlankLayoutComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

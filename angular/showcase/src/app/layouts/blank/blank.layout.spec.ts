@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BlankLayout } from './blank.layout';
+import { BlankLayoutComponent } from './blank.layout';
 
-describe('BlankComponent', () => {
-  let component: BlankLayout;
-  let fixture: ComponentFixture<BlankLayout>;
+describe('BlankLayoutComponent', () => {
+  let component: BlankLayoutComponent;
+  let fixture: ComponentFixture<BlankLayoutComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [BlankLayout],
+      declarations: [BlankLayoutComponent],
     });
-    fixture = TestBed.createComponent(BlankLayout);
+    fixture = TestBed.createComponent(BlankLayoutComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { UsersColumnConfig } from '@genesislcap/foundation-entity-management';
 
 @Component({
-  selector: 'page-admin',
+  selector: 'app-page-admin',
   standalone: true,
   imports: [CommonModule],
   templateUrl: './admin.component.html',

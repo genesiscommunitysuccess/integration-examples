@@ -1,4 +1,4 @@
-import { Injectable, Inject } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { ConnectService } from '../services/connect.service';
 import { Auth } from '@genesislcap/foundation-comms';

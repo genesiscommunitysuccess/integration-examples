@@ -72,8 +72,8 @@ export class GridProClientDatasourceLayoutsComponent implements AfterViewInit, O
       field: 'PROCESS_STATUS',
       width: 200,
       cellRenderer: ({ data }: any) => {
-        return `<span class="process-status-${!!data.ENABLED ? 'enabled' : 'disabled'}">Custom ${
-          !!data.ENABLED ? 'Enabled' : 'Disabled'
+        return `<span class="process-status-${data.ENABLED ? 'enabled' : 'disabled'}">Custom ${
+          data.ENABLED ? 'Enabled' : 'Disabled'
         }</span>`;
       }, // custom renderer for this field
       cellClass: 'process-status',

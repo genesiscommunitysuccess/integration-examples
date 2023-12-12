@@ -36,7 +36,7 @@ export class GridTabulatorClientDatasourceComponent implements AfterViewInit, On
   maxRows = DatasourceDefaults.MAX_ROWS_250;
   restartOnReconnection = true;
   ready = false;
-  listeners: Function[] = [];
+  listeners: (()=>void)[] = [];
 
   setReady() {
     this.ready = true;

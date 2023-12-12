@@ -1,4 +1,4 @@
-import { Component, ViewChild, ElementRef, OnInit, AfterViewInit } from '@angular/core';
+import { Component, ViewChild, ElementRef, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store, select } from '@ngrx/store';
 import { Subscription, Observable } from 'rxjs';
@@ -8,11 +8,11 @@ import { layerNames } from '../../config';
 import * as LayersActions from '../../store/layers/layers.actions';
 import * as LayersSelectors from '../../store/layers/layers.selectors';
 @Component({
-  selector: 'default-layout',
+  selector: 'app-default-layout',
   templateUrl: './default.layout.html',
   styleUrls: ['./default.layout.css'],
 })
-export class DefaultLayout extends BaseLayout implements OnInit, AfterViewInit {
+export class DefaultLayoutComponent extends BaseLayout implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('foundationHeader') foundationHeaderElement!: ElementRef;
   allRoutes = mainMenu;
   layerNames = layerNames;

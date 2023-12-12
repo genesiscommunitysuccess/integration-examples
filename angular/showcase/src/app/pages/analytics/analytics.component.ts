@@ -91,7 +91,7 @@ export class AnalyticsComponent implements AfterViewInit {
   @ViewChild('mixChartInTab') mixChartInTabElement!: any;
 
   layoutComponentsMap: Map<LayoutComponentsNames, any> = new Map();
-  onDestroyActions: Function[] = [];
+  onDestroyActions: (() => void)[] = [];
   ribbonButtonsConfig: AnalyticChartRegistration[] = [];
 
   setDataAndEventsInTabs() {

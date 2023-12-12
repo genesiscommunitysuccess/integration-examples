@@ -23,7 +23,7 @@ export const uiSchema: UiSchema = {
       options: <StandardRendererOptions>{
         validateFn:
           // custom validateFn example
-          (data, path, label) => {
+          (data, path) => {
             const name = data?.[path];
             if (name?.length < CEO_MIN_LENGTH) {
               return [

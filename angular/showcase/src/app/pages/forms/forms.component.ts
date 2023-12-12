@@ -1,4 +1,4 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA, ViewChild } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, ViewChild, AfterViewInit } from '@angular/core';
 import {
   JSON_SCHEMA,
   JSON_SCHEMA_ARRAY,
@@ -28,7 +28,7 @@ import {
   styleUrl: './forms.component.css',
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export class FormsComponent {
+export class FormsComponent implements AfterViewInit{
   @ViewChild('primitiveRenderers') primitiveRenderersElement!: any;
   @ViewChild('connectedComboboxRenderers') connectedComboboxRenderersElement!: any;
   @ViewChild('connectedComboboxAsyncRenderers') connectedComboboxAsyncRenderersElement!: any;

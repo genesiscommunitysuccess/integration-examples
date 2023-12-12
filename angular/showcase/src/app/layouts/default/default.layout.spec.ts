@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DefaultLayout } from './default.layout';
+import { DefaultLayoutComponent } from './default.layout';
 
 describe('DefaultComponent', () => {
-  let component: DefaultLayout;
-  let fixture: ComponentFixture<DefaultLayout>;
+  let component: DefaultLayoutComponent;
+  let fixture: ComponentFixture<DefaultLayoutComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [DefaultLayout],
+      declarations: [DefaultLayoutComponent],
     });
-    fixture = TestBed.createComponent(DefaultLayout);
+    fixture = TestBed.createComponent(DefaultLayoutComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

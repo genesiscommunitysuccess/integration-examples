@@ -8,10 +8,10 @@ import {
 } from '@angular/core';
 import { layoutComponentImportsByName } from '../config';
 @Directive({
-  selector: '[layoutLazyLoad]',
+  selector: '[appLayoutLazyLoad]',
 })
 export class LayoutLazyLoadDirective implements OnInit, OnChanges {
-  @Input('layoutLazyLoad') componentName?: string;
+  @Input('appLayoutLazyLoad') componentName?: string;
 
   constructor(private viewContainerRef: ViewContainerRef) {}
 
