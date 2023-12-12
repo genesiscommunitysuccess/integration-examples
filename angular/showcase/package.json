@@ -30,6 +30,7 @@
     "@genesislcap/foundation-header": "^14.125.1",
     "@genesislcap/foundation-inbox": "^14.125.1",
     "@genesislcap/foundation-layout": "^14.125.1",
+    "@genesislcap/foundation-notification-dashboard": "^14.126.0",
     "@genesislcap/foundation-reporting": "^14.125.1",
     "@genesislcap/foundation-zero": "^14.125.1",
     "@genesislcap/foundation-zero-grid-pro": "^14.125.1",

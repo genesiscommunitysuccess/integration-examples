@@ -8,6 +8,7 @@ import { ReportingComponent } from './pages/reporting/reporting.component';
 import { AnalyticsComponent } from './pages/analytics/analytics.component';
 import { FiltersComponent } from './pages/filters/filters.component';
 import { FormsComponent } from './pages/forms/forms.component';
+import { NotificationDashboardComponent } from './pages/notification-dashboard/notification-dashboard.component';
 
 const routes: Routes = [
   {
@@ -43,6 +44,11 @@ const routes: Routes = [
     path: 'forms',
     canActivate: [AuthGuard],
     component: FormsComponent,
+  },
+  {
+    path: 'notification-dashboard',
+    canActivate: [AuthGuard],
+    component: NotificationDashboardComponent,
   },
   // Redirect to auth if no other route is matched
   { path: '**', redirectTo: '/auth' },

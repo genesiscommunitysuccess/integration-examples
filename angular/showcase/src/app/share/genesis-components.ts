@@ -14,6 +14,7 @@ import { Filters } from '@genesislcap/foundation-forms';
 import { ModuleRegistry } from '@ag-grid-community/core';
 import { RowGroupingModule } from '@ag-grid-enterprise/row-grouping';
 import { ServerSideRowModelModule } from '@ag-grid-enterprise/server-side-row-model';
+import { NotificationDashboard } from '@genesislcap/foundation-notification-dashboard';
 
 EntityManagement;
 Profiles;
@@ -22,6 +23,7 @@ FoundationAlerts;
 SlottedStyles;
 FoundationInbox;
 Filters;
+NotificationDashboard;
 
 provideZeroDesignSystem().register(
   zeroBaseComponents,
