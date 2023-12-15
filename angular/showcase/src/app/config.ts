@@ -4,6 +4,7 @@ import type { LayoutComponentName } from './types/layout';
 export const INTERNAL_URLS = {
   auth: 'auth',
   authMock: 'auth-mock',
+  homepage: 'protected',
 }
 
 export const USE_FOUNDATION_AUTH = GENX_FOUNDATION_AUTH === '1';

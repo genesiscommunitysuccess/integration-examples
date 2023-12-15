@@ -23,7 +23,7 @@ const routes: Routes = [
     component: AuthMockComponent,
   },
   {
-    path: 'protected',
+    path: INTERNAL_URLS.homepage,
     canActivate: [AuthGuard],
     component: ProtectedComponent,
   },
