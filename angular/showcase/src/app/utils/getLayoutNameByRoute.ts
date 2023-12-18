@@ -1,12 +1,10 @@
-import { layoutComponentName } from '../config';
+import { layoutComponentName, layoutNameByRouteMap } from '../config';
 import { LayoutComponentName } from '../types/layout';
 
-const LayoutNameByRouteMap: Map<string, LayoutComponentName> = new Map([
-  ['/auth', layoutComponentName.blank],
-]);
+
 
 const getLayoutNameByRoute = (route: string): LayoutComponentName => {
-  const currentLayoutName = LayoutNameByRouteMap.get(route);
+  const currentLayoutName = layoutNameByRouteMap.get(route);
 
   if (currentLayoutName) {
     return currentLayoutName;

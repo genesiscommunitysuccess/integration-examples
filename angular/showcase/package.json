@@ -25,7 +25,9 @@
     "@angular/platform-browser": "^17.0.2",
     "@angular/platform-browser-dynamic": "^17.0.2",
     "@angular/router": "^17.0.2",
+    "@genesislcap/build-kit": "^14.126.0",
     "@genesislcap/foundation-alerts": "^14.126.0",
+    "@genesislcap/foundation-auth": "^14.126.0",
     "@genesislcap/foundation-comms": "^14.126.0",
     "@genesislcap/foundation-entity-management": "^14.126.0",
     "@genesislcap/foundation-forms": "^14.126.0",
@@ -41,6 +43,7 @@
     "@microsoft/fast-components": "^2.30.6",
     "@microsoft/fast-foundation": "^2.49.3",
     "@ngrx/store": "^17.0.1",
+    "dotenv": "^16.3.1",
     "rxjs": "~7.8.0",
     "save": "^2.9.0",
     "zone.js": "~0.14.2"

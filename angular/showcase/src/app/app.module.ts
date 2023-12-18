@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DefaultLayoutComponent } from './layouts/default/default.layout';
+import { SimpleLayoutComponent } from './layouts/simple/simple.layout';
 import { BlankLayoutComponent } from './layouts/blank/blank.layout';
 import { FooterComponent } from './components/footer/footer/footer.component';
 import { AuthComponent } from './pages/auth/auth.component';
@@ -16,7 +17,7 @@ import { LayoutLazyLoadDirective } from './directive/app-lazy-load.directive';
 import './share/genesis-components';
 
 @NgModule({
-  declarations: [AppComponent, AuthComponent, LayoutLazyLoadDirective, DefaultLayoutComponent, BlankLayoutComponent],
+  declarations: [AppComponent, AuthComponent, LayoutLazyLoadDirective, DefaultLayoutComponent, SimpleLayoutComponent, BlankLayoutComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
