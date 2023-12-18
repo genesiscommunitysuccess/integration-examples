@@ -1,6 +1,14 @@
 const path = require('path');
+const { resolveDefineConfig } = require('@genesislcap/build-kit');
+const { config } = require('dotenv');
+const { DefinePlugin } = require('webpack');
+
+config();
 
 module.exports = {
+  plugins: [
+    new DefinePlugin(resolveDefineConfig(['GENX_*', 'FOUNDATION_AUTH'])),
+  ],
   module: {
     rules: [
       {

@@ -1,16 +1,35 @@
 import type { MainMenu } from './types/menu';
+import type { LayoutComponentName } from './types/layout';
+
+export const INTERNAL_URLS = {
+  auth: 'auth',
+  authMock: 'auth-mock',
+  homepage: 'protected',
+}
+
+export const USE_FOUNDATION_AUTH = GENX_FOUNDATION_AUTH === '1';
+
+export const AUTH_URL = USE_FOUNDATION_AUTH ? INTERNAL_URLS.auth : INTERNAL_URLS.authMock;
 
 export const layoutComponentName = {
   default: 'DefaultLayoutComponent',
+  simple: 'SimpleLayoutComponent',
   blank: 'BlankLayoutComponent',
 };
 
 export const layoutComponentImportsByName = {
   [layoutComponentName.default]: () =>
     import('./layouts/default/default.layout').then((m) => m.DefaultLayoutComponent),
+    [layoutComponentName.simple]: () =>
+      import('./layouts/simple/simple.layout').then((m) => m.SimpleLayoutComponent),
   [layoutComponentName.blank]: () =>
     import('./layouts/blank/blank.layout').then((m) => m.BlankLayoutComponent),
 };
+
+export const layoutNameByRouteMap: Map<string, LayoutComponentName> = new Map([
+  [`/${INTERNAL_URLS.auth}`, layoutComponentName.blank],
+  [`/${INTERNAL_URLS.authMock}`, layoutComponentName.simple],
+]);
 
 export const API_DATA = {
   URL: 'wss://public-foundation.genesislab.global/gwf/',
