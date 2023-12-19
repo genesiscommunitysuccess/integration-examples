@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { getUser } from '@genesislcap/foundation-auth/user';
+import { getAuthRouting } from '@genesislcap/foundation-auth/routing';
 import { ConnectService } from '../services/connect.service';
 import { Auth } from '@genesislcap/foundation-comms';
 import mockLogin from '../utils/mockLogin';
@@ -13,6 +14,7 @@ const STORAGE_KEY = 'isAuthenticated';
 })
 export class AuthService {
   isAuthenticated = false;
+  foundationAuthRouting = getAuthRouting()
 
   constructor(private connectService: ConnectService) {}
 
@@ -31,8 +33,12 @@ export class AuthService {
   }
 
   logout(): void {
-    localStorage.setItem(STORAGE_KEY, '0');
-    this.isAuthenticated = false;
+    if (USE_FOUNDATION_AUTH) {
+      this.foundationAuthRouting.navigateTo('logout')
+    } else {
+      localStorage.setItem(STORAGE_KEY, '0');
+      this.isAuthenticated = false;
+    }
   }
 
   async isUserAuthenticated(): Promise<boolean> {
