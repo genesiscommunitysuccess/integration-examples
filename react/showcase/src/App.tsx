@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-route
 import LayoutWrapper from './layouts/LayoutWrapper';
 import { routeLayouts, USE_FOUNDATION_AUTH } from './config';
 import AuthGuard from './guards/AuthGuard';
+import LayerProvider from './store/LayerProvider';
 // Pages Components
 import AdminPage from './pages/admin/AdminPage';
 import AnalyticsPage from './pages/analytics/AnalyticsPage';
@@ -70,13 +71,14 @@ const LayoutWithLocation = () => {
 };
 
 const App: React.FC = () => {
-  console.log(GENX_FOUNDATION_AUTH); // 
   return (
-    <Router>
-      <Routes>
-        <Route path="*" element={<LayoutWithLocation />} />
-      </Routes>
-    </Router>
+    <LayerProvider>
+      <Router>
+        <Routes>
+          <Route path="*" element={<LayoutWithLocation />} />
+        </Routes>
+      </Router>
+    </LayerProvider>
   );
 };
 

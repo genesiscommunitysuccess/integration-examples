@@ -12,10 +12,7 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = ({ children }) => {
   const isAnyLayerVisible = false;
   const foundationHeader = useRef<HTMLElement>(null);
   const allRoutes = mainMenu;
-  const layerStateAlertInbox = false;
   const layerStateAlertRules = false
-  
-  const { setLayerState } = context;
 
   useEffect(() => {
     if (foundationHeader?.current) {
@@ -27,8 +24,10 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = ({ children }) => {
   }, []);
 
   const onNotificationIconClicked = () => {
-    console.log('foundation-header:menu-item-clicked');
-    //this.store.dispatch(LayersActions.showLayer({ layerName: layerNames.alertInbox }));
+    if (context?.setLayerState && context?.state) {
+      context.setLayerState(layerNames.alertInbox, true);
+      console.log({state: context.state})
+    }
   }
 
   const navigate = (path: string) => {
@@ -51,7 +50,7 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = ({ children }) => {
       >
         <section className="routes-wrapper" slot="routes">
           {allRoutes.map((route, index) => (
-            <zero-button key={index} onClick={navigate(route.path)}>
+            <zero-button key={index} onClick={() => navigate(route.path)}>
               <zero-icon name={route.icon }></zero-icon>
               { route.title }
             </zero-button>
@@ -117,7 +116,7 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = ({ children }) => {
       <zero-flyout
         position="right"
         onClosed={() => closeLayer(layerNames.alertInbox)}
-        closed={layerStateAlertInbox}
+        closed={!(context?.state[layerNames.alertInbox])}
         displayHeader={false}
       >
         <foundation-inbox onClose={() => closeLayer(layerNames.alertInbox)}></foundation-inbox>
