@@ -1,0 +1,12 @@
+zero-design-system-provider {
+  height: 100%;
+}
+
+.content {
+  position: absolute;
+  width: 100%;
+}
+
+.content {
+  height: calc(100% - 60px);
+}

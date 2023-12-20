@@ -15,5 +15,5 @@
     "noEmit": true,
     "jsx": "react-jsx"
   },
-  "include": ["src", "globals.d.ts"]
+  "include": ["src/**/*.ts", "src/**/*.tsx", "globals.d.ts"]
 }

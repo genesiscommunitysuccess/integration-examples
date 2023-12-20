@@ -24,17 +24,11 @@ module.exports = function override(config) {
           },
         ],
       },
-      {
-        test: /\.svg$/,
-        use: [
-          {
-            loader: 'svg-url-loader',
-            options: {},
-          },
-        ],
-      },
     ],
   };
+
+  //@todo: fix genesis packages source maps
+  config.ignoreWarnings = [...(config.ignoreWarnings || []), /Failed to parse source map/];
 
   config.resolve = {
     ...config.resolve,

@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import LayoutWrapper from './layouts/LayoutWrapper';
-import { routeLayouts } from './config';
+import { routeLayouts, USE_FOUNDATION_AUTH } from './config';
 import AuthGuard from './guards/AuthGuard';
 // Pages Components
 import AdminPage from './pages/admin/AdminPage';
@@ -55,7 +55,7 @@ const LayoutWithLocation = () => {
           pageComponent = <ReportingPage />;
       break;
     default:
-      pageComponent = <AuthPage />; 
+      pageComponent = USE_FOUNDATION_AUTH ? <AuthPage /> : <AuthMockPage />; 
   }
 
   if (location.pathname === '/auth' || location.pathname === '/auth-mock') {

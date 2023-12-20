@@ -2,6 +2,7 @@ import {
   provideDesignSystem as provideZeroDesignSystem,
   baseComponents as zeroBaseComponents,
 } from '@genesislcap/foundation-zero';
+import { Navigation } from '@genesislcap/foundation-header';
 import { zeroGridComponents } from '@genesislcap/foundation-zero-grid-pro';
 import { zeroGridTabulatorComponents } from '@genesislcap/foundation-zero-grid-tabulator';
 import { EntityManagement, Profiles } from '@genesislcap/foundation-entity-management';
@@ -15,8 +16,11 @@ import { ModuleRegistry } from '@ag-grid-community/core';
 import { RowGroupingModule } from '@ag-grid-enterprise/row-grouping';
 import { ServerSideRowModelModule } from '@ag-grid-enterprise/server-side-row-model';
 import { NotificationDashboard } from '@genesislcap/foundation-notification-dashboard';
+import { fastButton, provideFASTDesignSystem } from '@microsoft/fast-components';
+import { foundationLayoutComponents } from '@genesislcap/foundation-layout';
 import './foundationAuth';
 
+Navigation;
 EntityManagement;
 Profiles;
 Reporting;
@@ -31,7 +35,11 @@ provideZeroDesignSystem().register(
   zeroGridComponents,
   zeroGridTabulatorComponents,
   g2plotChartsComponents,
+  foundationLayoutComponents,
 );
+
+// @todo workaround - check
+provideFASTDesignSystem().register(fastButton());
 
 // bug with grid-pro-server-datasource
 ModuleRegistry.registerModules([RowGroupingModule, ServerSideRowModelModule]);

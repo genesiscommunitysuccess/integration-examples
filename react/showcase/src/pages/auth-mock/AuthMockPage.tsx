@@ -1,24 +1,25 @@
-import './AuthMockPage.css';
+import styles from './AuthMockPage.module.css';
 import { useNavigate  } from 'react-router-dom';
 import { authService } from '../../services/auth.service';
 
 const AuthMockPage = () => {
     const navigate = useNavigate();
     const mockAuth = (): void => {
-        authService.login().then((result) => {
-            if (result) {
-              navigate('/protected');
-            } else {
-              alert('Authentication failed!');
-            }
+      authService.login().then((result) => {
+          if (result) {
+            navigate('/protected');
+          } else {
+            alert('Authentication failed!');
           }
-        );
-      }
+        }
+      );
+    }
+
     return (
-        <section>
+      <section className={styles.AuthMockPage}>
         <h2>Auth</h2>
-            <zero-button onClick={mockAuth}>Mock auth</zero-button>
-        </section>
+        <zero-button onClick={mockAuth}>Mock auth</zero-button>
+      </section>
     );
 };
 

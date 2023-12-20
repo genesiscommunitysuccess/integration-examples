@@ -1,14 +1,18 @@
 import React, { ReactNode } from 'react';
+import './SimpleLayout.css';
+import AppFooter from '../../components/AppFooter/AppFooter';
 
 interface SimpleLayoutProps {
   children: ReactNode;
 }
 
 const SimpleLayout: React.FC<SimpleLayoutProps> = ({ children }) => (
-  <div>
-    <header>Simple Header</header>
-    {children}
-  </div>
+  <zero-design-system-provider>
+    <section className="content">
+      {children}
+    </section>
+    <AppFooter></AppFooter>
+  </zero-design-system-provider>
 );
 
 export default SimpleLayout;

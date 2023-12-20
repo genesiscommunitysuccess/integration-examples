@@ -1,7 +1,9 @@
 import { RouteLayouts } from './types/RouteLayouts';
 
 export const routeLayouts: RouteLayouts = {
-  '/': 'simple',
+  '/auth-mock': 'simple',
+  '/auth': 'blank',
+  '/': 'blank',
 };
 
 import type { MainMenu } from './types/menu';
