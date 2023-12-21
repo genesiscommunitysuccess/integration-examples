@@ -1,7 +1,5 @@
-import { Observable, of } from 'rxjs';
 import { getUser } from '@genesislcap/foundation-auth/user';
 import { connectService } from './connect.service';
-import { Auth } from '@genesislcap/foundation-comms';
 import mockLogin from '../utils/mockLogin';
 import { USE_FOUNDATION_AUTH } from '../config';
 
@@ -10,17 +8,20 @@ const STORAGE_KEY = 'isAuthenticated';
 class AuthService {
   isAuthenticated = false;
 
-  async login(): Promise<Observable<boolean>> {
+  async login(): Promise<boolean> {
     try {
-      await connectService.init();
-      // @todo fix with foundation-authenticationw
-      await mockLogin(connectService.getContainer());
+
+      if (!connectService.isConnected()) {
+          await connectService.init();
+          // @todo fix with foundation-authentication 
+          await mockLogin(connectService.getContainer());
+      }
       localStorage.setItem(STORAGE_KEY, '1');
       this.isAuthenticated = true;
-      return of(true);
+      return true;
     } catch {
       this.logout();
-      return of(false);
+      return false;
     }
   }
 
@@ -31,14 +32,12 @@ class AuthService {
 
   async isUserAuthenticated(): Promise<boolean> {
     let isAuthenticated = false;
-    
+
     if (USE_FOUNDATION_AUTH) {
       const user = getUser();
       isAuthenticated = user.isAuthenticated;
-
     } else if (localStorage.getItem(STORAGE_KEY) === '1') {
-      const auth: Auth = connectService.getContainer().get(Auth);
-      isAuthenticated = auth.isLoggedIn;
+      isAuthenticated = await this.login();
     }
 
     if (!isAuthenticated) {

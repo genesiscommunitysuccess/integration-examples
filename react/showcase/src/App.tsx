@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-route
 import LayoutWrapper from './layouts/LayoutWrapper';
 import { routeLayouts, USE_FOUNDATION_AUTH } from './config';
 import AuthGuard from './guards/AuthGuard';
+import { AuthProvider } from './store/AuthContext';
 import LayerProvider from './store/LayerProvider';
 // Pages Components
 import AdminPage from './pages/admin/AdminPage';
@@ -72,13 +73,15 @@ const LayoutWithLocation = () => {
 
 const App: React.FC = () => {
   return (
-    <LayerProvider>
-      <Router>
-        <Routes>
-          <Route path="*" element={<LayoutWithLocation />} />
-        </Routes>
-      </Router>
-    </LayerProvider>
+    <AuthProvider>
+      <LayerProvider>
+        <Router>
+          <Routes>
+            <Route path="*" element={<LayoutWithLocation />} />
+          </Routes>
+        </Router>
+      </LayerProvider>
+    </AuthProvider>
   );
 };
 

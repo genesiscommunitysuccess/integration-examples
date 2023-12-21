@@ -1,6 +1,9 @@
 import React, { ReactNode, useRef, useEffect, useContext } from 'react';
 import { layerNames, mainMenu } from '../../config';
 import LayerContext from '../../store/LayerContext';
+import { useAuth } from '../../store/AuthContext';
+import { Flyout } from '@genesislcap/foundation-ui';
+import type { Navigation } from '@genesislcap/foundation-header';
 import './DefaultLayout.css';
 
 interface DefaultLayoutProps {
@@ -8,36 +11,58 @@ interface DefaultLayoutProps {
 }
 
 const DefaultLayout: React.FC<DefaultLayoutProps> = ({ children }) => {
-  const context = useContext(LayerContext);
+  const { logout } = useAuth();
+  const layerContext = useContext(LayerContext);
+
+  if (!layerContext) {
+    throw new Error('LayerContext is not defined');
+  }
+
+  const { state, setLayerState } = layerContext;
   const isAnyLayerVisible = false;
-  const foundationHeader = useRef<HTMLElement>(null);
+  const foundationHeader = useRef<Navigation>(null);
+  const flyoutInbox = useRef<HTMLElement>(null);
+  const foundationInbox = useRef<HTMLElement>(null);
   const allRoutes = mainMenu;
-  const layerStateAlertRules = false
 
   useEffect(() => {
-    if (foundationHeader?.current) {
-      foundationHeader.current.addEventListener('notification-icon-clicked', () => {
-        onNotificationIconClicked();
-      });
+    const displayLayerAlertInbox = () => setLayerState(layerNames.alertInbox, true);
+    const hideLayerAlertInbox = () => setLayerState(layerNames.alertInbox, false);
+    const invokeFlyoutInboxClose = () => (flyoutInbox.current as Flyout).closeFlyout();
 
+    if (foundationHeader?.current) {
+      foundationHeader.current.addEventListener('notification-icon-clicked', displayLayerAlertInbox);
+      foundationHeader.current.logout = () => {
+        return logout();
+      };
+    }
+
+    if (flyoutInbox?.current) {
+      flyoutInbox.current.addEventListener('closed', hideLayerAlertInbox);
+    }
+
+    if (foundationInbox?.current) {
+      foundationInbox.current.addEventListener('close', invokeFlyoutInboxClose);
+    }
+
+    return () => {
+      if (foundationHeader?.current) {
+        foundationHeader.current.removeEventListener('notification-icon-clicked', displayLayerAlertInbox);
+      }
+
+      if (flyoutInbox?.current) {
+        flyoutInbox.current.removeEventListener('closed', hideLayerAlertInbox);
+      }
+
+      if (foundationInbox?.current) {
+        foundationInbox.current.removeEventListener('close', invokeFlyoutInboxClose);
+      }
     }
   }, []);
-
-  const onNotificationIconClicked = () => {
-    if (context?.setLayerState && context?.state) {
-      context.setLayerState(layerNames.alertInbox, true);
-      console.log({state: context.state})
-    }
-  }
 
   const navigate = (path: string) => {
     console.log('navigate', path);
     //this.router.navigate([path]);
-  }
-
-  const closeLayer = (layerName: string) => {
-    console.log('closeLayer', layerName);
-    //this.store.dispatch(LayersActions.hideLayer({ layerName }));
   }
 
   return (
@@ -114,21 +139,21 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = ({ children }) => {
         <foundation-inbox-counter slot="notifications-icon-end"></foundation-inbox-counter>
       </foundation-header>
       <zero-flyout
+        ref={flyoutInbox}
         position="right"
-        onClosed={() => closeLayer(layerNames.alertInbox)}
-        closed={!(context?.state[layerNames.alertInbox])}
+        closed={!state[layerNames.alertInbox] ? 'true' : undefined}
         displayHeader={false}
       >
-        <foundation-inbox onClose={() => closeLayer(layerNames.alertInbox)}></foundation-inbox>
+        <foundation-inbox ref={foundationInbox}></foundation-inbox>
       </zero-flyout>
-      <zero-flyout
+      {/* <zero-flyout
         position="right"
         onClosed={() => closeLayer(layerNames.alertRules)}
-        closed={!layerStateAlertRules}
+        {...(state[layerNames.alertRules] ? { closed: 'true' } : { closed: 'false' })}
         displayHeader={false}
       >
         <foundation-alerts></foundation-alerts>
-      </zero-flyout>
+      </zero-flyout> */}
       <section className="content">
         {children}
       </section>

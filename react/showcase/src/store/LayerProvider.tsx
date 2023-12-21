@@ -1,5 +1,6 @@
 import React, { ReactNode, useState, useMemo, FunctionComponent } from 'react';
 import LayerContext, { LayerContextType, LayerState } from './LayerContext';
+import { layerNames } from '../config';
 
 interface LayerProviderProps {
   children: ReactNode;
@@ -7,9 +8,7 @@ interface LayerProviderProps {
 
 const LayerProvider: FunctionComponent<LayerProviderProps> = ({ children }) => {
   const [state, setState] = useState<LayerState>({
-    alertInboxVisible: false,
-    alertRulesVisible: false
-    // ... initialize other state properties
+    ...Object.keys(layerNames).reduce((acc, layerName) => ({ ...acc, [layerName]: false }), {}),
   });
 
   const updateState = (newState: Partial<LayerState>) => {

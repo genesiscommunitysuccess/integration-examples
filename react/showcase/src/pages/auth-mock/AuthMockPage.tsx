@@ -1,19 +1,31 @@
+import { useEffect } from 'react';
 import styles from './AuthMockPage.module.css';
 import { useNavigate  } from 'react-router-dom';
+import { useAuth } from '../../store/AuthContext';
 import { authService } from '../../services/auth.service';
 
 const AuthMockPage = () => {
+  const { user, setUser } = useAuth();
+
     const navigate = useNavigate();
-    const mockAuth = (): void => {
-      authService.login().then((result) => {
-          if (result) {
-            navigate('/protected');
-          } else {
-            alert('Authentication failed!');
-          }
-        }
-      );
-    }
+    const mockAuth = async () => {
+      const isUserAuthenticated = await authService.login();
+
+      if (isUserAuthenticated) {
+        const user = {
+          authorized: isUserAuthenticated
+        };
+  
+        setUser(user);
+      } else {
+        alert('Login failed')
+      }
+    };
+    useEffect(() => {
+      if (user?.authorized) {
+        navigate('/protected');
+      }
+    }, [user]);
 
     return (
       <section className={styles.AuthMockPage}>

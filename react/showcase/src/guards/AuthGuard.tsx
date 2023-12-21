@@ -1,16 +1,29 @@
-import React, { ReactNode } from 'react';
+import { useEffect, useState, ReactNode } from 'react';
+import { useAuth } from '../store/AuthContext';
 import { Navigate } from 'react-router-dom';
-import { authService } from '../services/auth.service';
-
+import { AUTH_URL } from '../config'
 interface AuthGuardProps {
   children: ReactNode;
 }
+const AuthGuard: React.FC<AuthGuardProps> = ({ children }: AuthGuardProps) => {
+  const { user, checkAuthStatus } = useAuth();
+  const [isLoading, setIsLoading] = useState(true);
 
-const AuthGuard: React.FC<AuthGuardProps> = ({ children }) => {
-  const isAuthorized = authService.isUserAuthenticated(); 
+  useEffect(() => {
+    const verifyAuth = async () => {
+      await checkAuthStatus();
+      setIsLoading(false);
+    };
 
-  if (!isAuthorized) {
-    return <Navigate to="/auth" />;
+    verifyAuth();
+  }, []);
+
+  if (isLoading) {
+    return <div>Loading...</div>; // Or some loading component
+  }
+
+  if (!user) {
+    return <Navigate to={`/${AUTH_URL}`} />;
   }
 
   return <>{children}</>;

@@ -14,6 +14,10 @@ class ConnectService {
     return this.connect;
   }
 
+  isConnected() {
+    return this.connect.isConnected;
+  }
+
   init() {
     return this.connect.connect(API_DATA.URL);
   }
