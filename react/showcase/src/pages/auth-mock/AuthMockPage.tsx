@@ -1,38 +1,54 @@
-import { useEffect } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styles from './AuthMockPage.module.css';
-import { useNavigate  } from 'react-router-dom';
-import { useAuth } from '../../store/AuthContext';
-import { authService } from '../../services/auth.service';
+import stylesForLogin from './AuthMockLoginCss';
+import { configure } from '@genesislcap/foundation-login';
+import { connectService } from '../../services/connect.service'
 
-const AuthMockPage = () => {
-  const { user, setUser } = useAuth();
+const MOCK_SUCCESSFUL_LOGIN_PATH = '/protected';
 
-    const navigate = useNavigate();
-    const mockAuth = async () => {
-      const isUserAuthenticated = await authService.login();
 
-      if (isUserAuthenticated) {
-        const user = {
-          authorized: isUserAuthenticated
-        };
-  
-        setUser(user);
-      } else {
-        alert('Login failed')
+const AuthMockPage: React.FC  = () => {
+  const mainContainer = useRef<HTMLElement>(null);
+  const foundationLogin = useRef<HTMLElement>(null);
+  const [isLoginComponentDefined, setIsLoginComponentDefined] = useState(false);
+  const currentPath = window.location.pathname;
+
+  useEffect(() => {
+    if (mainContainer?.current) {
+      const container = connectService.getContainer();
+      configure(container, {
+        background: stylesForLogin,
+        showConnectionIndicator: true,
+        hostPath: 'auth',
+        defaultRedirectUrl: MOCK_SUCCESSFUL_LOGIN_PATH,
+      });
+
+      setIsLoginComponentDefined(true);
+    }
+  }, []);
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    //@todo workaournd for foundation-login redirect
+    const intervalId = setInterval(() => {
+        const newPath = window.location.pathname;
+        if (newPath !== currentPath) {
+          navigate(newPath);
+        }
+    }, 100);
+
+    return () => clearInterval(intervalId);
+}, [currentPath, navigate]);
+  return (
+    <section ref={mainContainer} className={styles.AuthMockPage}>
+      {
+        isLoginComponentDefined && <foundation-login  ref={foundationLogin} />
       }
-    };
-    useEffect(() => {
-      if (user?.authorized) {
-        navigate('/protected');
-      }
-    }, [user]);
-
-    return (
-      <section className={styles.AuthMockPage}>
-        <h2>Auth</h2>
-        <zero-button onClick={mockAuth}>Mock auth</zero-button>
-      </section>
-    );
+    </section>
+  );
 };
 
 export default AuthMockPage;
+

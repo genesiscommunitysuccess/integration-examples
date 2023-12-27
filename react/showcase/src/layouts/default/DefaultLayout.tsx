@@ -1,10 +1,12 @@
 import React, { ReactNode, useRef, useEffect, useContext } from 'react';
+import styles from './DefaultLayout.module.css';
 import { layerNames, mainMenu } from '../../config';
 import LayerContext from '../../store/LayerContext';
 import { useAuth } from '../../store/AuthContext';
 import { Flyout } from '@genesislcap/foundation-ui';
 import type { Navigation } from '@genesislcap/foundation-header';
-import './DefaultLayout.css';
+import AppFooter from '../../components/AppFooter/AppFooter';
+import { useNavigate } from 'react-router-dom';
 
 interface DefaultLayoutProps {
   children: ReactNode;
@@ -13,6 +15,7 @@ interface DefaultLayoutProps {
 const DefaultLayout: React.FC<DefaultLayoutProps> = ({ children }) => {
   const { logout } = useAuth();
   const layerContext = useContext(LayerContext);
+  const navigate = useNavigate();
 
   if (!layerContext) {
     throw new Error('LayerContext is not defined');
@@ -59,21 +62,18 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = ({ children }) => {
       }
     }
   }, []);
-
-  const navigate = (path: string) => {
-    console.log('navigate', path);
-    //this.router.navigate([path]);
-  }
+  
+  const className = `${styles['default-layout']} ${isAnyLayerVisible ? styles['has-layer'] : ''}`;
 
   return (
-    <zero-design-system-provider className={`${isAnyLayerVisible && 'has-layer'}`}>
+    <zero-design-system-provider class={className} >
       <foundation-header
         ref={foundationHeader}
         show-luminance-toggle-button
         show-misc-toggle-button
         show-notification-button
       >
-        <section className="routes-wrapper" slot="routes">
+        <section className={styles['routes-wrapper']} slot="routes">
           {allRoutes.map((route, index) => (
             <zero-button key={index} onClick={() => navigate(route.path)}>
               <zero-icon name={route.icon }></zero-icon>
@@ -154,10 +154,10 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = ({ children }) => {
       >
         <foundation-alerts></foundation-alerts>
       </zero-flyout> */}
-      <section className="content">
+      <section className={styles['content']}>
         {children}
       </section>
-      <app-footer />
+    <AppFooter></AppFooter>
     </zero-design-system-provider>
 )};
 

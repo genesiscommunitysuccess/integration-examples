@@ -14,6 +14,7 @@
     "@genesislcap/foundation-forms": "^14.126.0",
     "@genesislcap/foundation-header": "^14.126.0",
     "@genesislcap/foundation-inbox": "^14.126.0",
+    "@genesislcap/foundation-login": "^14.127.1",
     "@genesislcap/foundation-notification-dashboard": "^14.126.0",
     "@genesislcap/foundation-reporting": "^14.126.0",
     "@genesislcap/foundation-zero-grid-pro": "^14.126.0",
@@ -65,6 +66,8 @@
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.0.1",
     "react-app-rewired": "^2.2.1",
+    "sass": "^1.69.5",
+    "sass-loader": "^13.3.2",
     "typescript": "^4.9.5"
   }
 }

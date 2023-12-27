@@ -1,5 +1,7 @@
 import { createContext, useState, useContext, ReactNode, FunctionComponent } from 'react';
 import { authService } from '../services/auth.service';
+import { connectService } from '../services/connect.service';
+import { USE_FOUNDATION_AUTH } from '../config';
 
 interface AuthContextType {
   user: User | null;
@@ -33,6 +35,13 @@ export const AuthProvider: FunctionComponent<AuthProviderProps> = ({ children })
     const isUserAuthenticated = await authService.isUserAuthenticated()
 
     if (isUserAuthenticated) {
+
+      if (!USE_FOUNDATION_AUTH) {
+        const connect = connectService.getConnect();
+        if (!connect.isConnected) {
+          return;
+        }
+      }
       const user = {
         authorized: isUserAuthenticated
       };

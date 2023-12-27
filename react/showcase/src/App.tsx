@@ -60,7 +60,7 @@ const LayoutWithLocation = () => {
       pageComponent = USE_FOUNDATION_AUTH ? <AuthPage /> : <AuthMockPage />; 
   }
 
-  if (location.pathname === '/auth' || location.pathname === '/auth-mock') {
+  if (location.pathname === '/auth' || location.pathname === '/auth-mock' || location.pathname === '/') {
     return <LayoutWrapper layout={layout}>{pageComponent}</LayoutWrapper>;
   } else {
     return (

@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import './SimpleLayout.css';
+import styles from './SimpleLayout.module.css';
 import AppFooter from '../../components/AppFooter/AppFooter';
 
 interface SimpleLayoutProps {
@@ -7,8 +7,8 @@ interface SimpleLayoutProps {
 }
 
 const SimpleLayout: React.FC<SimpleLayoutProps> = ({ children }) => (
-  <zero-design-system-provider>
-    <section className="content">
+  <zero-design-system-provider className={styles['simple-layout']}>
+    <section className={styles['content']}>
       {children}
     </section>
     <AppFooter></AppFooter>

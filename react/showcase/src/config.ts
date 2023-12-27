@@ -1,7 +1,7 @@
 import { RouteLayouts } from './types/RouteLayouts';
 
 export const routeLayouts: RouteLayouts = {
-  '/auth-mock': 'simple',
+  '/auth-mock': 'blank',
   '/auth': 'blank',
   '/': 'blank',
 };
