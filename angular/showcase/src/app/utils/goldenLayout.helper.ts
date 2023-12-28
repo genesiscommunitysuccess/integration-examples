@@ -3,7 +3,7 @@ const ERROR_PREFIX = 'Golden layout helper - ';
 export const setComponentItemsMap = (
   layoutNativeElement: any,
   componentMapInstance: Map<string, any>,
-): () => void => {
+): (() => void) => {
   if (!layoutNativeElement.layout) {
     throw new Error(`${ERROR_PREFIX} - layout is not defined`);
   }

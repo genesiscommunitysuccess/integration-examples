@@ -56,7 +56,10 @@ export class ProtectedComponent implements OnInit, OnDestroy {
   }
 
   onTabChanged({ detail }: any) {
-    this.displayStateChanger = !Object.prototype.hasOwnProperty.call(detail.attributes, 'hide-state-changer');
+    this.displayStateChanger = !Object.prototype.hasOwnProperty.call(
+      detail.attributes,
+      'hide-state-changer',
+    );
   }
 
   ngOnDestroy() {
