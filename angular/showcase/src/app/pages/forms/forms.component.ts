@@ -28,7 +28,7 @@ import {
   styleUrl: './forms.component.css',
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export class FormsComponent implements AfterViewInit{
+export class FormsComponent implements AfterViewInit {
   @ViewChild('primitiveRenderers') primitiveRenderersElement!: any;
   @ViewChild('connectedComboboxRenderers') connectedComboboxRenderersElement!: any;
   @ViewChild('connectedComboboxAsyncRenderers') connectedComboboxAsyncRenderersElement!: any;

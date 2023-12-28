@@ -17,7 +17,14 @@ import { LayoutLazyLoadDirective } from './directive/app-lazy-load.directive';
 import './share/genesis-components';
 
 @NgModule({
-  declarations: [AppComponent, AuthComponent, LayoutLazyLoadDirective, DefaultLayoutComponent, SimpleLayoutComponent, BlankLayoutComponent],
+  declarations: [
+    AppComponent,
+    AuthComponent,
+    LayoutLazyLoadDirective,
+    DefaultLayoutComponent,
+    SimpleLayoutComponent,
+    BlankLayoutComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
