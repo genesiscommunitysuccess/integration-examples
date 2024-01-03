@@ -1,0 +1,11 @@
+.AuthMockPage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.AuthMockPage > h2 {
+  margin: 25px 0;
+}
