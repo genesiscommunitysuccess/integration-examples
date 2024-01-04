@@ -1,4 +1,4 @@
-import { css } from '@microsoft/fast-element';
+import { css } from '@microsoft/fast-element'
 
 export default css`
   :host {
@@ -24,4 +24,4 @@ export default css`
       background-position: 0 50%;
     }
   }
-`;
+`

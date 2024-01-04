@@ -1,15 +1,15 @@
-import { Auth, BasicAuthInfo } from '@genesislcap/foundation-comms';
+import { Auth, BasicAuthInfo } from '@genesislcap/foundation-comms'
 
-import { API_DATA } from '../config';
+import { API_DATA } from '../config'
 
 const mockLogin = (diContainer: any) => {
-  const auth: Auth = diContainer.get(Auth);
+  const auth: Auth = diContainer.get(Auth)
 
   return auth.login({
     type: 'BASIC',
     username: API_DATA.AUTH.username,
     password: API_DATA.AUTH.password,
-  } as BasicAuthInfo);
-};
+  } as BasicAuthInfo)
+}
 
-export default mockLogin;
+export default mockLogin

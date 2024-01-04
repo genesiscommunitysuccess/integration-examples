@@ -1,1 +1,1 @@
-declare module '@genesislcap/foundation-reporting';
+declare module '@genesislcap/foundation-reporting'

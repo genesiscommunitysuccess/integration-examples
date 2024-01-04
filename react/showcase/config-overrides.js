@@ -1,17 +1,16 @@
-const path = require('path');
-const { resolveDefineConfig } = require('@genesislcap/build-kit');
-const { config } = require('dotenv');
-const { DefinePlugin } = require('webpack');
+const path = require('path')
+const { resolveDefineConfig } = require('@genesislcap/build-kit')
+const { config } = require('dotenv')
+const { DefinePlugin } = require('webpack')
 
-config();
+config()
 
 module.exports = function override(config) {
   config.plugins = [
     ...config.plugins,
     new DefinePlugin(resolveDefineConfig(['GENX_*', 'FOUNDATION_AUTH'])),
-  ];
+  ]
 
-  
   config.module = {
     ...config.module,
     rules: [
@@ -25,10 +24,13 @@ module.exports = function override(config) {
         ],
       },
     ],
-  };
+  }
 
   //@todo: fix genesis packages source maps
-  config.ignoreWarnings = [...(config.ignoreWarnings || []), /Failed to parse source map/];
+  config.ignoreWarnings = [
+    ...(config.ignoreWarnings || []),
+    /Failed to parse source map/,
+  ]
 
   config.resolve = {
     ...config.resolve,
@@ -39,7 +41,7 @@ module.exports = function override(config) {
         'node_modules/@genesislcap/foundation-zero',
       ),
     },
-  };
+  }
 
-  return config;
-};
+  return config
+}
