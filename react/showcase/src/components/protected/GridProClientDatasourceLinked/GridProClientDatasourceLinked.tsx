@@ -1,7 +1,9 @@
 import { useRef, useEffect } from 'react'
 import { GridOptions, RowSelectedEvent } from '@ag-grid-community/core'
-import { SlottedStyles } from '@genesislcap/foundation-utils'
-import { LayoutEmitEvents } from '@genesislcap/foundation-layout'
+import {
+  LayoutEmitEvents,
+  FoundationLayout,
+} from '@genesislcap/foundation-layout'
 import { LayoutComponentsNames } from './GridProClientDatasourceLinked.types'
 import {
   setComponentItemsMap,
@@ -30,7 +32,7 @@ const GridProClientDatasourceLinked = () => {
       }
     },
   }
-  const gridLayout = useRef<SlottedStyles | null>(null)
+  const gridLayout = useRef<FoundationLayout | null>(null)
 
   useEffect(() => {
     if (gridLayout.current) {

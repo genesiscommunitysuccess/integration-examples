@@ -1,8 +1,10 @@
 import { useRef, useContext, useEffect } from 'react'
 import { css } from '@microsoft/fast-element'
-import { SlottedStyles } from '@genesislcap/foundation-utils'
 import { DatasourceDefaults } from '@genesislcap/foundation-comms'
-import { LayoutEmitEvents } from '@genesislcap/foundation-layout'
+import {
+  LayoutEmitEvents,
+  FoundationLayout,
+} from '@genesislcap/foundation-layout'
 import {
   GridProColumn,
   GridProCell,
@@ -23,7 +25,7 @@ const GridProClientDatasourceLayouts = () => {
   }
   const { state: stateChangerState } = stateChangerContext
   const layoutComponentsMap: Map<LayoutComponentsNames, any> = new Map()
-  const gridLayout = useRef<SlottedStyles | null>(null)
+  const gridLayout = useRef<FoundationLayout | null>(null)
   const itemGridProColumnRefs = useRef<(GridProColumn | null)[]>([])
   const itemGridProColumnRefs2 = useRef<(GridProColumn | null)[]>([])
   const itemGridProCellRefs = useRef<(GridProCell | null)[]>([])

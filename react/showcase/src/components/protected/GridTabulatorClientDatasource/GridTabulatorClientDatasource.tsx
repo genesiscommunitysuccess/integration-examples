@@ -1,6 +1,6 @@
 import { useRef, useEffect, useContext } from 'react'
-import { SlottedStyles } from '@genesislcap/foundation-utils'
 import { DatasourceDefaults } from '@genesislcap/foundation-comms'
+import { FoundationLayout } from '@genesislcap/foundation-layout'
 import { LayoutComponentsNames } from './GridTabulatorClientDatasource.types'
 import StateChangerContext from '../../../store/StateChanger/StateChangerContext'
 import {
@@ -15,7 +15,7 @@ const GridTabulatorClientDatasource = () => {
   }
   const { state: stateChangerState } = stateChangerContext
   const layoutComponentsMap: Map<LayoutComponentsNames, any> = new Map()
-  const gridLayout = useRef<SlottedStyles | null>(null)
+  const gridLayout = useRef<FoundationLayout | null>(null)
   const maxView = DatasourceDefaults.MAX_VIEW_1000
   const maxRows = DatasourceDefaults.MAX_ROWS_250
   const restartOnReconnection = true
