@@ -5,7 +5,7 @@ export const INTERNAL_URLS = {
   auth: 'auth',
   authMock: 'auth-mock',
   homepage: 'protected',
-}
+};
 
 export const USE_FOUNDATION_AUTH = GENX_FOUNDATION_AUTH === '1';
 
@@ -20,8 +20,8 @@ export const layoutComponentName = {
 export const layoutComponentImportsByName = {
   [layoutComponentName.default]: () =>
     import('./layouts/default/default.layout').then((m) => m.DefaultLayoutComponent),
-    [layoutComponentName.simple]: () =>
-      import('./layouts/simple/simple.layout').then((m) => m.SimpleLayoutComponent),
+  [layoutComponentName.simple]: () =>
+    import('./layouts/simple/simple.layout').then((m) => m.SimpleLayoutComponent),
   [layoutComponentName.blank]: () =>
     import('./layouts/blank/blank.layout').then((m) => m.BlankLayoutComponent),
 };

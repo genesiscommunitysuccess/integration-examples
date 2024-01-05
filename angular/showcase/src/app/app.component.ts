@@ -17,11 +17,11 @@ export class AppComponent {
   isSubscribed = false;
 
   constructor(
-    private router: Router, 
-    private connectService: ConnectService
+    private router: Router,
+    private connectService: ConnectService,
   ) {
     // set foundation-auth
-    configureFoundationAuth({ router, connectService });   
+    configureFoundationAuth({ router, connectService });
 
     // Set layout componet based on route
     router.events.subscribe((event) => {
