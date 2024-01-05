@@ -1,0 +1,18 @@
+.analytics-page zero-tabs {
+  padding-top: 8px;
+}
+
+.analytics-page zero-tab-panel {
+  padding: 0 15px;
+}
+
+.analytics-page,
+.analytics-page zero-tabs,
+.analytics-page zero-tab-panel {
+  height: 100%;
+  width: 100%;
+}
+
+.analytics-page .container {
+  height: 100%;
+}
