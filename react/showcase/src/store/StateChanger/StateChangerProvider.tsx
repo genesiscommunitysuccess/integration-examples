@@ -1,7 +1,7 @@
 import React, { ReactNode, useState, useMemo, FunctionComponent } from 'react'
 import StateChangerContext, {
   StateChangerState,
-  StateContextType,
+  StateChangerContextType,
 } from './StateChangerContext'
 import { STATE_CHANGER_CONFIG } from '../../config'
 
@@ -35,7 +35,7 @@ const StateChangerProvider: FunctionComponent<StateChangerProps> = ({
   }
 
   // Memoize the context value
-  const contextValue = useMemo<StateContextType>(
+  const contextValue = useMemo<StateChangerContextType>(
     () => ({
       state,
       updateState,

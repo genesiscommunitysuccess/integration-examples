@@ -1,16 +1,19 @@
 import { useRef, useContext, useEffect } from 'react'
-import { css } from '@microsoft/fast-element';
+import { css } from '@microsoft/fast-element'
 import { SlottedStyles } from '@genesislcap/foundation-utils'
 import { DatasourceDefaults } from '@genesislcap/foundation-comms'
-import { LayoutEmitEvents } from '@genesislcap/foundation-layout';
-import { GridProColumn, GridProCell } from '@genesislcap/foundation-zero-grid-pro'
-import { LayoutComponentsNames } from './GridProClientDatasourceLayouts.types';
+import { LayoutEmitEvents } from '@genesislcap/foundation-layout'
+import {
+  GridProColumn,
+  GridProCell,
+} from '@genesislcap/foundation-zero-grid-pro'
+import { LayoutComponentsNames } from './GridProClientDatasourceLayouts.types'
 import {
   setComponentItemsMap,
   getElementByTagFromComponent,
   getElementBySelectorFromComponent,
   getElementsBySelectorFromComponent,
-} from '../../../utils/goldenLayout.helper';
+} from '../../../utils/goldenLayout.helper'
 import StateChangerContext from '../../../store/StateChanger/StateChangerContext'
 
 const GridProClientDatasourceLayouts = () => {
@@ -19,7 +22,7 @@ const GridProClientDatasourceLayouts = () => {
     throw new Error('StateChangerContext is not defined')
   }
   const { state: stateChangerState } = stateChangerContext
-  const layoutComponentsMap: Map<LayoutComponentsNames, any> = new Map();
+  const layoutComponentsMap: Map<LayoutComponentsNames, any> = new Map()
   const gridLayout = useRef<SlottedStyles | null>(null)
   const itemGridProColumnRefs = useRef<(GridProColumn | null)[]>([])
   const itemGridProColumnRefs2 = useRef<(GridProColumn | null)[]>([])
@@ -51,7 +54,7 @@ const GridProClientDatasourceLayouts = () => {
     .process-status-disabled {
       color: red;
     }
-  `;
+  `
   const processGridStyles2 = css`
     .process-status-enabled {
       color: lightblue;
@@ -59,39 +62,32 @@ const GridProClientDatasourceLayouts = () => {
     .process-status-disabled {
       color: yellow;
     }
-  `;
- const rowRewfDefinition = {
+  `
+  const rowRewfDefinition = {
     headerName: 'Row ref',
     field: 'ROW_REF',
     cellRenderer: ({ data }: any) => {
-      return `<span style="color:#555">${data.ROW_REF}</span>`;
+      return `<span style="color:#555">${data.ROW_REF}</span>`
     },
-  };
+  }
   const maxView = DatasourceDefaults.MAX_VIEW_1000
   const maxRows = DatasourceDefaults.MAX_ROWS_250
-  const getGridProColumns = (key: string, columnsRefs: any, cellRefs: any) => customBooleanColDefs.map(
-    (colDef: any, index: number) => {
+  const getGridProColumns = (key: string, columnsRefs: any, cellRefs: any) =>
+    customBooleanColDefs.map((colDef: any, index: number) => {
       return (
         <grid-pro-column
           data-selector={key}
           key={`${key}-${index}`}
-          ref={(el: HTMLElement | null) =>
-            (columnsRefs.current[index] = el)
-          }
+          ref={(el: HTMLElement | null) => (columnsRefs.current[index] = el)}
         >
           {!!colDef.cellRenderer && (
             <grid-pro-cell
-              ref={(el: HTMLElement | null) =>
-                (cellRefs.current[index] = el)
-              }
+              ref={(el: HTMLElement | null) => (cellRefs.current[index] = el)}
             ></grid-pro-cell>
           )}
         </grid-pro-column>
       )
-    },
-  )
-
-
+    })
 
   useEffect(() => {
     if (layoutComponentsMap.size > 0) {
@@ -99,72 +95,82 @@ const GridProClientDatasourceLayouts = () => {
         const datasource = getElementByTagFromComponent(
           component,
           'grid-pro-client-side-datasource',
-        );
+        )
         if (stateChangerState.resourceName) {
-          datasource.resourceName = stateChangerState.resourceName;
+          datasource.resourceName = stateChangerState.resourceName
         }
         if (stateChangerState.criteria) {
-          datasource.criteria = stateChangerState.criteria;
+          datasource.criteria = stateChangerState.criteria
         }
-      });
+      })
     }
-  }, [stateChangerState.resourceName, stateChangerState.criteria])  
+  }, [stateChangerState.resourceName, stateChangerState.criteria])
 
   useEffect(() => {
     if (gridLayout.current) {
-      setComponentItemsMap(gridLayout.current, layoutComponentsMap);
+      setComponentItemsMap(gridLayout.current, layoutComponentsMap)
 
       const handleGridLayoutFirstLoaded = () => {
         const streamAutoCellComponent = layoutComponentsMap.get(
           LayoutComponentsNames.STREAM_AUTO_CELL_RENDERER_BY_TYPE,
-        );
+        )
         const slottedStylesElement = getElementBySelectorFromComponent(
           streamAutoCellComponent,
           'slottedStyles',
-        );
+        )
         const itemGridProColumnElements = getElementsBySelectorFromComponent(
           streamAutoCellComponent,
           'itemGridProColumn',
-        );
+        )
         const customGridProColumnElement = getElementBySelectorFromComponent(
           streamAutoCellComponent,
           'customGridProColumn',
-        );
+        )
 
         const snapshotAutoCellComponent = layoutComponentsMap.get(
           LayoutComponentsNames.SNAPSHOT_AUTO_CELL_RENDERER_BY_TYPE,
-        );
+        )
         const slottedStyles2Element = getElementBySelectorFromComponent(
           snapshotAutoCellComponent,
           'slottedStyles2',
-        );
+        )
         const customGridProColumn2Element = getElementBySelectorFromComponent(
           snapshotAutoCellComponent,
           'customGridProColumn2',
-        );
+        )
         const itemGridProColumn2Elements = getElementsBySelectorFromComponent(
           snapshotAutoCellComponent,
           'itemGridProColumn2',
-        );
+        )
 
-        slottedStylesElement.styles = processGridStyles;
-        itemGridProColumnElements.forEach((itemGridProColumnElement: any, index: number) => {
-          itemGridProColumnElement.definition = customBooleanColDefs[index];
-        });
-        customGridProColumnElement.definition = rowRewfDefinition;
+        slottedStylesElement.styles = processGridStyles
+        itemGridProColumnElements.forEach(
+          (itemGridProColumnElement: any, index: number) => {
+            itemGridProColumnElement.definition = customBooleanColDefs[index]
+          },
+        )
+        customGridProColumnElement.definition = rowRewfDefinition
 
-        slottedStyles2Element.styles = processGridStyles2;
-        itemGridProColumn2Elements.forEach((itemGridProColumnElement: any, index: number) => {
-          itemGridProColumnElement.definition = customBooleanColDefs[index];
-        });
-        customGridProColumn2Element.definition = rowRewfDefinition;
+        slottedStyles2Element.styles = processGridStyles2
+        itemGridProColumn2Elements.forEach(
+          (itemGridProColumnElement: any, index: number) => {
+            itemGridProColumnElement.definition = customBooleanColDefs[index]
+          },
+        )
+        customGridProColumn2Element.definition = rowRewfDefinition
       }
-      gridLayout.current.addEventListener(LayoutEmitEvents.firstLoaded, handleGridLayoutFirstLoaded);
+      gridLayout.current.addEventListener(
+        LayoutEmitEvents.firstLoaded,
+        handleGridLayoutFirstLoaded,
+      )
 
       return () => {
-        gridLayout.current?.removeEventListener(LayoutEmitEvents.firstLoaded, handleGridLayoutFirstLoaded);
+        gridLayout.current?.removeEventListener(
+          LayoutEmitEvents.firstLoaded,
+          handleGridLayoutFirstLoaded,
+        )
       }
-  }
+    }
   }, [])
 
   return (
@@ -212,14 +218,22 @@ const GridProClientDatasourceLayouts = () => {
                 reverse={false}
                 restart-on-reconnection={false}
               ></grid-pro-client-side-datasource>
-              {getGridProColumns('itemGridProColumn', itemGridProColumnRefs, itemGridProCellRefs)}
+              {getGridProColumns(
+                'itemGridProColumn',
+                itemGridProColumnRefs,
+                itemGridProCellRefs,
+              )}
               <grid-pro-column data-selector="customGridProColumn">
                 <grid-pro-cell></grid-pro-cell>
               </grid-pro-column>
             </zero-grid-pro>
           </zero-layout-item>
 
-          <zero-layout-item title="(stream + reverse=true)" registration="stream-reverse" closable>
+          <zero-layout-item
+            title="(stream + reverse=true)"
+            registration="stream-reverse"
+            closable
+          >
             <zero-grid-pro
               persist-column-state-key="grid-pro-simple-column-state"
               async-add
@@ -304,14 +318,22 @@ const GridProClientDatasourceLayouts = () => {
                 reverse={false}
                 restart-on-reconnection={true}
               ></grid-pro-client-side-datasource>
-              {getGridProColumns('itemGridProColumn2', itemGridProColumnRefs2, itemGridProCellRefs2)}
+              {getGridProColumns(
+                'itemGridProColumn2',
+                itemGridProColumnRefs2,
+                itemGridProCellRefs2,
+              )}
               <grid-pro-column data-selector="customGridProColumn2">
                 <grid-pro-cell></grid-pro-cell>
               </grid-pro-column>
             </zero-grid-pro>
           </zero-layout-item>
 
-          <zero-layout-item title="(snapshot + reverse=true)" registration="snapshot-reverse" closable>
+          <zero-layout-item
+            title="(snapshot + reverse=true)"
+            registration="snapshot-reverse"
+            closable
+          >
             <zero-grid-pro
               persist-column-state-key="grid-pro-simple-column-state"
               async-add
@@ -355,7 +377,6 @@ const GridProClientDatasourceLayouts = () => {
         </zero-layout-region>
       </zero-layout-region>
     </zero-layout>
-
   )
 }
 

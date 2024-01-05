@@ -4,13 +4,13 @@ export interface StateChangerState {
   criteria: string
   resourceName: string
 }
-export interface StateContextType {
+export interface StateChangerContextType {
   state: StateChangerState
   updateState: (newState: Partial<StateChangerState>) => void
 }
 
-const LayerContext = React.createContext<StateContextType | undefined>(
-  undefined,
-)
+const StateChangerContext = React.createContext<
+  StateChangerContextType | undefined
+>(undefined)
 
-export default LayerContext
+export default StateChangerContext
