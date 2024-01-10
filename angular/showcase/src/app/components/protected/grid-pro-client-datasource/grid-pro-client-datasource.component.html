@@ -46,7 +46,7 @@
         </grid-pro-column>
 
         <grid-pro-column #customGridProColumn>
-          <grid-pro-cell #customGridProCell></grid-pro-cell>
+          <grid-pro-cell></grid-pro-cell>
         </grid-pro-column>
       </zero-grid-pro>
     </zero-card>
@@ -139,7 +139,7 @@
         ></grid-pro-client-side-datasource>
 
         <grid-pro-column *ngFor="let colDef of customBooleanColDefs" #itemGridProColumn2>
-          <grid-pro-cell #itemGridProCell2 *ngIf="!!colDef.cellRenderer"></grid-pro-cell>
+          <grid-pro-cell *ngIf="!!colDef.cellRenderer"></grid-pro-cell>
         </grid-pro-column>
 
         <grid-pro-column #customGridProColumn2>

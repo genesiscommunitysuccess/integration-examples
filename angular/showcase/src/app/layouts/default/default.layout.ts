@@ -2,6 +2,7 @@ import { Component, ViewChild, ElementRef, OnInit, AfterViewInit, OnDestroy } fr
 import { Router } from '@angular/router';
 import { Store, select } from '@ngrx/store';
 import { Subscription, Observable } from 'rxjs';
+import { baseLayerLuminance, StandardLuminance } from '@microsoft/fast-components';
 import BaseLayout from '../base.layout';
 import { mainMenu } from '../../config';
 import { layerNames } from '../../config';
@@ -14,6 +15,7 @@ import * as LayersSelectors from '../../store/layers/layers.selectors';
 })
 export class DefaultLayoutComponent extends BaseLayout implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('foundationHeader') foundationHeaderElement!: ElementRef;
+  @ViewChild('designSystemProvider') designSystemProviderElement!: ElementRef;
   allRoutes = mainMenu;
   layerNames = layerNames;
   layerStateAlertInbox$: Observable<boolean>;
@@ -21,8 +23,8 @@ export class DefaultLayoutComponent extends BaseLayout implements OnInit, AfterV
   layerStateAlertRules: boolean = false;
   isAnyLayerVisible$: Observable<boolean>;
   isAnyLayerVisible: boolean = false;
-
   private subscription: Subscription = new Subscription();
+  private eventListenersRemovers: Array<() => void> = [];
 
   constructor(
     router: Router,
@@ -54,6 +56,18 @@ export class DefaultLayoutComponent extends BaseLayout implements OnInit, AfterV
   }
 
   ngAfterViewInit() {
+    const onLuminanceToogle = (): void => {
+      baseLayerLuminance.setValueFor(
+        this.designSystemProviderElement.nativeElement,
+        baseLayerLuminance.getValueFor(this.designSystemProviderElement.nativeElement) === StandardLuminance.DarkMode
+          ? StandardLuminance.LightMode
+          : StandardLuminance.DarkMode,
+      );
+    }
+    this.foundationHeaderElement.nativeElement.addEventListener('luminance-icon-clicked', onLuminanceToogle);
+    this.eventListenersRemovers.push(() => {
+      this.foundationHeaderElement.nativeElement.removeEventListener('luminance-icon-clicked', onLuminanceToogle);
+    });
     this.foundationHeaderElement.nativeElement.navigateTo = (path: string) => {
       this.router.navigate([path]);
     };
@@ -69,5 +83,6 @@ export class DefaultLayoutComponent extends BaseLayout implements OnInit, AfterV
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
+    this.eventListenersRemovers.forEach((remover) => remover());
   }
 }

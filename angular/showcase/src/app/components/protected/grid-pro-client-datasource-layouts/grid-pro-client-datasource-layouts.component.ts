@@ -59,7 +59,7 @@ export class GridProClientDatasourceLayoutsComponent implements AfterViewInit, O
       color: yellow;
     }
   `;
-  rowRewfDefinition = {
+  rowRefDefinition = {
     headerName: 'Row ref',
     field: 'ROW_REF',
     cellRenderer: ({ data }: any) => {
@@ -147,13 +147,13 @@ export class GridProClientDatasourceLayoutsComponent implements AfterViewInit, O
       itemGridProColumnElements.forEach((itemGridProColumnElement: any, index: number) => {
         itemGridProColumnElement.definition = this.customBooleanColDefs[index];
       });
-      customGridProColumnElement.definition = this.rowRewfDefinition;
+      customGridProColumnElement.definition = this.rowRefDefinition;
 
       slottedStyles2Element.styles = this.processGridStyles2;
       itemGridProColumn2Elements.forEach((itemGridProColumnElement: any, index: number) => {
         itemGridProColumnElement.definition = this.customBooleanColDefs[index];
       });
-      customGridProColumn2Element.definition = this.rowRewfDefinition;
+      customGridProColumn2Element.definition = this.rowRefDefinition;
     });
   }
 }

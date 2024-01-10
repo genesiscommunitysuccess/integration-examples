@@ -22,7 +22,6 @@ import { STATE_CHANGER_CONFIG } from '../../../config';
 export class GridProClientDatasourceComponent implements AfterViewInit {
   @ViewChild('customGridProColumn') customGridProColumnElement!: any;
   @ViewChild('slottedStyles') slottedStylesElement!: any;
-  @ViewChild('customGridProCell') customGridProCellElement!: any;
   @ViewChildren('itemGridProColumn') itemGridProColumnElements!: any;
   @ViewChildren('itemGridProCell') itemGridProCellElements!: any;
 
@@ -30,7 +29,6 @@ export class GridProClientDatasourceComponent implements AfterViewInit {
   @ViewChild('slottedStyles2') slottedStyles2Element!: any;
   @ViewChild('customGridProCell2') customGridProCell2Element!: any;
   @ViewChildren('itemGridProColumn2') itemGridProColumn2Elements!: any;
-  @ViewChildren('itemGridProCell2') itemGridProCell2Elements!: any;
 
   @Input() resourceName: string = STATE_CHANGER_CONFIG.DEFAULT_RESOURCE_NAME;
   @Input() criteria: string = STATE_CHANGER_CONFIG.DEFAULT_CRITERIA;
