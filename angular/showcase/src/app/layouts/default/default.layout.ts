@@ -59,14 +59,21 @@ export class DefaultLayoutComponent extends BaseLayout implements OnInit, AfterV
     const onLuminanceToogle = (): void => {
       baseLayerLuminance.setValueFor(
         this.designSystemProviderElement.nativeElement,
-        baseLayerLuminance.getValueFor(this.designSystemProviderElement.nativeElement) === StandardLuminance.DarkMode
+        baseLayerLuminance.getValueFor(this.designSystemProviderElement.nativeElement) ===
+          StandardLuminance.DarkMode
           ? StandardLuminance.LightMode
           : StandardLuminance.DarkMode,
       );
-    }
-    this.foundationHeaderElement.nativeElement.addEventListener('luminance-icon-clicked', onLuminanceToogle);
+    };
+    this.foundationHeaderElement.nativeElement.addEventListener(
+      'luminance-icon-clicked',
+      onLuminanceToogle,
+    );
     this.eventListenersRemovers.push(() => {
-      this.foundationHeaderElement.nativeElement.removeEventListener('luminance-icon-clicked', onLuminanceToogle);
+      this.foundationHeaderElement.nativeElement.removeEventListener(
+        'luminance-icon-clicked',
+        onLuminanceToogle,
+      );
     });
     this.foundationHeaderElement.nativeElement.navigateTo = (path: string) => {
       this.router.navigate([path]);
