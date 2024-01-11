@@ -59,7 +59,7 @@ export const lineData = [
     groupBy: '2011-03',
     value: 1801,
   },
-];
+]
 
 export const lineConfiguration = {
   width: 700,
@@ -70,9 +70,9 @@ export const lineConfiguration = {
     // type: 'timeCat',
     tickCount: 5,
   },
-};
+}
 
 export const multiLineConfiguration = {
   ...lineConfiguration,
   seriesField: 'series',
-};
+}

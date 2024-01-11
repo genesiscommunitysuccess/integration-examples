@@ -5,14 +5,14 @@ const averageData = [
   { date: '2017-02', value: 25316 },
   { date: '2018-01', value: 26698 },
   { date: '2018-08', value: 27890 },
-];
+]
 
 const offSetValues = {
   value1: 0.148,
   value2: 36,
   value3: 0.055,
   value4: 20,
-};
+}
 
 export const mixConfiguration = {
   appendPadding: 8,
@@ -116,10 +116,10 @@ export const mixConfiguration = {
                 stroke: '#fff',
                 lineWidth: 1,
               },
-            };
+            }
           },
         },
       },
     },
   ],
-};
+}

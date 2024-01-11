@@ -8,7 +8,7 @@ export const dualaxesData = [
   { type: '1997', value: 7, count: 7 },
   { type: '1998', value: 9, count: 1 },
   { type: '1999', value: 13, count: 20 },
-];
+]
 
 export const dualaxesConfiguration = {
   width: 700,
@@ -24,4 +24,4 @@ export const dualaxesConfiguration = {
       color: '#5AD8A6',
     },
   ],
-};
+}

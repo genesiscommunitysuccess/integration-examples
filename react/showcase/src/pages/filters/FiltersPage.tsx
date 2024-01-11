@@ -10,21 +10,33 @@ const FiltersPage = () => {
   const [allProfilesfilters, setAllProfilesfilters] = useState('')
 
   const handleChange = (setMethod: any, event: any) => {
-    console.log({event})
+    console.log({ event })
     setMethod(event?.target?.value)
   }
 
-  const handleSubmit = () =>{
-    console.log('$emit test');
+  const handleSubmit = () => {
+    console.log('$emit test')
   }
 
   useEffect(() => {
-    const handleChangeAllUsersfilters = handleChange.bind(this, setAllUsersfilters);
-    const handleChangeAllTradesfilters = handleChange.bind(this, setAllTradesfilters);
-    const handleChangeAllProfilesfilters = handleChange.bind(this, setAllProfilesfilters);
+    const handleChangeAllUsersfilters = handleChange.bind(
+      this,
+      setAllUsersfilters,
+    )
+    const handleChangeAllTradesfilters = handleChange.bind(
+      this,
+      setAllTradesfilters,
+    )
+    const handleChangeAllProfilesfilters = handleChange.bind(
+      this,
+      setAllProfilesfilters,
+    )
 
-    if(allUsersFiltersRef.current) {
-      allUsersFiltersRef.current.addEventListener('change', handleChangeAllUsersfilters)
+    if (allUsersFiltersRef.current) {
+      allUsersFiltersRef.current.addEventListener(
+        'change',
+        handleChangeAllUsersfilters,
+      )
     }
 
     if (allTradesFiltersRef.current) {
@@ -37,7 +49,7 @@ const FiltersPage = () => {
             scope: '#/properties/TRADE_DATETIME',
           },
         ],
-      };
+      }
       allTradesFiltersRef.current.jsonSchema = {
         type: 'object',
         properties: {
@@ -46,27 +58,42 @@ const FiltersPage = () => {
             description: 'org.joda.time.DateTime',
           },
         },
-      };
-      allTradesFiltersRef.current.addEventListener('change', handleChangeAllTradesfilters)
+      }
+      allTradesFiltersRef.current.addEventListener(
+        'change',
+        handleChangeAllTradesfilters,
+      )
       allTradesFiltersRef.current.addEventListener('submit', handleSubmit)
     }
 
-    if(allProfilesFiltersRef.current) {
-      allProfilesFiltersRef.current.addEventListener('change', handleChangeAllProfilesfilters)
+    if (allProfilesFiltersRef.current) {
+      allProfilesFiltersRef.current.addEventListener(
+        'change',
+        handleChangeAllProfilesfilters,
+      )
     }
 
     return () => {
-      if(allUsersFiltersRef.current) {
-        allUsersFiltersRef.current.removeEventListener('change', handleChangeAllUsersfilters)
+      if (allUsersFiltersRef.current) {
+        allUsersFiltersRef.current.removeEventListener(
+          'change',
+          handleChangeAllUsersfilters,
+        )
       }
 
-      if(allTradesFiltersRef.current) {
-        allTradesFiltersRef.current.removeEventListener('change', handleChangeAllTradesfilters)
+      if (allTradesFiltersRef.current) {
+        allTradesFiltersRef.current.removeEventListener(
+          'change',
+          handleChangeAllTradesfilters,
+        )
         allTradesFiltersRef.current.removeEventListener('submit', handleSubmit)
       }
 
-      if(allProfilesFiltersRef.current) {
-        allProfilesFiltersRef.current.removeEventListener('change', handleChangeAllProfilesfilters)
+      if (allProfilesFiltersRef.current) {
+        allProfilesFiltersRef.current.removeEventListener(
+          'change',
+          handleChangeAllProfilesfilters,
+        )
       }
     }
   }, [])
@@ -141,7 +168,6 @@ const FiltersPage = () => {
         </div>
       </zero-tab-panel>
     </zero-tabs>
-
   )
 }
 

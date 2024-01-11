@@ -5,7 +5,7 @@ export const areaConfiguration = {
     range: [0, 1],
     tickCount: 5,
   },
-};
+}
 
 export const areaData = [
   {
@@ -52,4 +52,4 @@ export const areaData = [
     groupBy: '2009 Q1',
     value: 2.39,
   },
-];
+]

@@ -1,5 +1,8 @@
-import { CategorizationRendererOptions, UiSchema } from '@genesislcap/foundation-forms';
-import { JSONSchema7 } from 'json-schema';
+import {
+  CategorizationRendererOptions,
+  UiSchema,
+} from '@genesislcap/foundation-forms'
+import { JSONSchema7 } from 'json-schema'
 
 export const uiSchemaCategorization: UiSchema = {
   type: 'Categorization',
@@ -93,11 +96,13 @@ export const uiSchemaCategorization: UiSchema = {
             elements: [
               {
                 type: 'Control',
-                scope: '#/properties/vegetarianOptions/properties/favoriteVegetable',
+                scope:
+                  '#/properties/vegetarianOptions/properties/favoriteVegetable',
               },
               {
                 type: 'Control',
-                scope: '#/properties/vegetarianOptions/properties/otherFavoriteVegetable',
+                scope:
+                  '#/properties/vegetarianOptions/properties/otherFavoriteVegetable',
               },
             ],
           },
@@ -105,7 +110,7 @@ export const uiSchemaCategorization: UiSchema = {
       },
     },
   ],
-};
+}
 
 export const JSON_SCHEMA_CATEGORIZATION = {
   type: 'object',
@@ -161,4 +166,4 @@ export const JSON_SCHEMA_CATEGORIZATION = {
       },
     },
   },
-} as JSONSchema7;
+} as JSONSchema7

@@ -3,10 +3,10 @@ import {
   StandardRendererOptions,
   StringRendererOptions,
   UiSchema,
-} from '@genesislcap/foundation-forms';
-import { JSONSchema7 } from 'json-schema';
+} from '@genesislcap/foundation-forms'
+import { JSONSchema7 } from 'json-schema'
 
-const CEO_MIN_LENGTH = 3;
+const CEO_MIN_LENGTH = 3
 
 export const uiSchema: UiSchema = {
   type: 'VerticalLayout',
@@ -24,7 +24,7 @@ export const uiSchema: UiSchema = {
         validateFn:
           // custom validateFn example
           (data, path) => {
-            const name = data?.[path];
+            const name = data?.[path]
             if (name?.length < CEO_MIN_LENGTH) {
               return [
                 {
@@ -34,9 +34,9 @@ export const uiSchema: UiSchema = {
                   keyword: '',
                   params: {},
                 },
-              ];
+              ]
             }
-            return []; // technically should always return an array (but it's handled upstream if you forget)
+            return [] // technically should always return an array (but it's handled upstream if you forget)
           },
       },
     },
@@ -83,7 +83,7 @@ export const uiSchema: UiSchema = {
       },
     },
   ],
-};
+}
 
 export const JSON_SCHEMA = {
   type: 'object',
@@ -137,4 +137,4 @@ export const JSON_SCHEMA = {
   },
   additionalProperties: false,
   required: ['ISSUER_NAME', 'MAIN_CONTACT'],
-} as JSONSchema7;
+} as JSONSchema7

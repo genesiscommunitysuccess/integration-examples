@@ -2,8 +2,8 @@ import {
   ArrayRendererOptions,
   ConnectedRenderersOptions,
   UiSchema,
-} from '@genesislcap/foundation-forms';
-import { JSONSchema7 } from 'json-schema';
+} from '@genesislcap/foundation-forms'
+import { JSONSchema7 } from 'json-schema'
 
 export const uiSchemaArray: UiSchema = {
   type: 'VerticalLayout',
@@ -40,7 +40,7 @@ export const uiSchemaArray: UiSchema = {
       },
     },
   ],
-};
+}
 
 export const JSON_SCHEMA_ARRAY = {
   type: 'object',
@@ -69,7 +69,7 @@ export const JSON_SCHEMA_ARRAY = {
       },
     },
   },
-} as JSONSchema7;
+} as JSONSchema7
 
 export const uiSchemaArrayTrade: UiSchema = {
   type: 'VerticalLayout',
@@ -106,7 +106,7 @@ export const uiSchemaArrayTrade: UiSchema = {
       },
     },
   ],
-};
+}
 
 export const JSON_SCHEMA_ARRAY_TRADE = {
   type: 'object',
@@ -131,4 +131,4 @@ export const JSON_SCHEMA_ARRAY_TRADE = {
       },
     },
   },
-} as JSONSchema7;
+} as JSONSchema7

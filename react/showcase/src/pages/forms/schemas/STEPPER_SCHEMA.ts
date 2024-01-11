@@ -1,5 +1,5 @@
-import { StepperRendererOptions, UiSchema } from '@genesislcap/foundation-forms';
-import { JSONSchema7 } from 'json-schema';
+import { StepperRendererOptions, UiSchema } from '@genesislcap/foundation-forms'
+import { JSONSchema7 } from 'json-schema'
 
 export const uiSchemaStepper: UiSchema = {
   type: 'Stepper',
@@ -85,11 +85,13 @@ export const uiSchemaStepper: UiSchema = {
             elements: [
               {
                 type: 'Control',
-                scope: '#/properties/vegetarianOptions/properties/favoriteVegetable',
+                scope:
+                  '#/properties/vegetarianOptions/properties/favoriteVegetable',
               },
               {
                 type: 'Control',
-                scope: '#/properties/vegetarianOptions/properties/otherFavoriteVegetable',
+                scope:
+                  '#/properties/vegetarianOptions/properties/otherFavoriteVegetable',
               },
             ],
           },
@@ -97,7 +99,7 @@ export const uiSchemaStepper: UiSchema = {
       },
     },
   ],
-};
+}
 
 export const uiSchemaStepperHorizontal: UiSchema = {
   type: 'Stepper',
@@ -183,11 +185,13 @@ export const uiSchemaStepperHorizontal: UiSchema = {
             elements: [
               {
                 type: 'Control',
-                scope: '#/properties/vegetarianOptions/properties/favoriteVegetable',
+                scope:
+                  '#/properties/vegetarianOptions/properties/favoriteVegetable',
               },
               {
                 type: 'Control',
-                scope: '#/properties/vegetarianOptions/properties/otherFavoriteVegetable',
+                scope:
+                  '#/properties/vegetarianOptions/properties/otherFavoriteVegetable',
               },
             ],
           },
@@ -198,7 +202,7 @@ export const uiSchemaStepperHorizontal: UiSchema = {
   options: {
     orientation: 'horizontal',
   },
-};
+}
 
 export const JSON_SCHEMA_STEPPER = {
   type: 'object',
@@ -256,4 +260,4 @@ export const JSON_SCHEMA_STEPPER = {
       required: ['otherFavoriteVegetable'],
     },
   },
-} as JSONSchema7;
+} as JSONSchema7

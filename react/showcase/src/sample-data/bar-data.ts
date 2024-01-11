@@ -6,7 +6,7 @@ export const barConfiguration = {
   legend: {
     position: 'top-left',
   },
-};
+}
 
 export const barData = [
   { groupBy: '1951', value: 38, series: '3' },
@@ -19,4 +19,4 @@ export const barData = [
   { groupBy: '1999', value: 61, series: '8' },
   { groupBy: '1995', value: 145, series: '9' },
   { groupBy: '1994', value: 48, series: '10' },
-];
+]

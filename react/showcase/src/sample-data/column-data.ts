@@ -15,7 +15,7 @@ export const columnConfiguration = {
       autoRotate: false,
     },
   },
-};
+}
 
 export const columnData = [
   {
@@ -42,4 +42,4 @@ export const columnData = [
     groupBy: 'Exam 6',
     value: 38,
   },
-];
+]
