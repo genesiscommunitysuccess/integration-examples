@@ -68,6 +68,9 @@ export class GridProClientDatasourceLinkedComponent implements AfterViewInit, On
   }
 
   ngOnDestroy() {
-    this.gridLayoutElement?.nativeElement.removeEventListener('click', this.setDeferredGridOptions);
+    this.gridLayoutElement?.nativeElement.removeEventListener(
+      LayoutEmitEvents.firstLoaded,
+      this.setDeferredGridOptions,
+    );
   }
 }

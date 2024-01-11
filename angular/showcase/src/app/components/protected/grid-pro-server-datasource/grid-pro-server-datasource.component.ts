@@ -18,5 +18,4 @@ export class GridProServerDatasourceComponent {
   maxRows = 15;
   maxView = DatasourceDefaults.MAX_VIEW_1000;
   reverse = false;
-  pagination = false;
 }

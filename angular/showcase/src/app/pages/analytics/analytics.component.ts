@@ -72,7 +72,7 @@ export class AnalyticsComponent implements AfterViewInit {
   @ViewChild('analyticsLayout') analyticsLayoutElement!: any;
   //tabPanelZero
   @ViewChild('pieChartInTab') pieChartInTabElement!: any;
-  @ViewChild('criteriaInTab') criteriaInTabInTabElement!: any;
+  @ViewChild('criteriaInTab') criteriaInTabElement!: any;
   @ViewChild('pieChart2InTab') pieChart2InTabElement!: any;
   @ViewChild('pieChartDataSourceInTab') pieChartDataSourceInTabElement!: any;
   //tabPanelOne
@@ -99,10 +99,10 @@ export class AnalyticsComponent implements AfterViewInit {
     this.pieChartInTabElement.nativeElement.config = pieConfiguration;
     this.pieChartInTabElement.nativeElement.data = pieData;
 
-    this.criteriaInTabInTabElement.nativeElement.criteriaOptions = toolbarOptions;
+    this.criteriaInTabElement.nativeElement.criteriaOptions = toolbarOptions;
     this.pieChart2InTabElement.nativeElement.config = pieConfiguration;
     const removeEventListener = helperCriteriaEvent(
-      this.criteriaInTabInTabElement.nativeElement,
+      this.criteriaInTabElement.nativeElement,
       this.pieChartDataSourceInTabElement.nativeElement,
     );
     this.onDestroyActions.push(removeEventListener);
