@@ -14,11 +14,11 @@ import {
 } from '@genesislcap/foundation-errors'
 import { connectService } from '../../services/connect.service'
 
-UUID;
+UUID
 
 const FeaturesLabPage = () => {
   const diContainer = connectService.getContainer()
-  const uuidKey = UUID;
+  const uuidKey = UUID
   const uuid = diContainer.get(uuidKey)
   const session = diContainer.get(sessionKey)
   const environmentAlertModal = useRef<Modal>(null)
@@ -235,7 +235,7 @@ const FeaturesLabPage = () => {
 
   useEffect(() => {
     if (environmentAlertModal.current) {
-      environmentAlertModal.current.show();
+      environmentAlertModal.current.show()
     }
     if (buttonAddRef.current) {
       buttonAddRef.current.addEventListener('click', insertTenTestRecords)
@@ -305,8 +305,11 @@ const FeaturesLabPage = () => {
           </h4>
           <p>
             🖥️ You&apos;re connected to
-            <b style={{ color: 'var(--accent-fill-rest)' }}>{ session.getSessionStorageItem('hostUrl') }</b>, make sure it&apos;s
-            a<b style={{ color: 'var(--accent-fill-rest)' }}>development</b>
+            <b style={{ color: 'var(--accent-fill-rest)' }}>
+              {session.getSessionStorageItem('hostUrl')}
+            </b>
+            , make sure it&apos;s a
+            <b style={{ color: 'var(--accent-fill-rest)' }}>development</b>
             server.
           </p>
         </zero-modal>
