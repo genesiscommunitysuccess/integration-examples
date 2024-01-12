@@ -460,7 +460,7 @@ const AnaliticsPage = () => {
                     >
                       <zero-g2plot-chart type="area">
                         <chart-datasource
-                          resource-name="ALL_POSITIONS"
+                          resourceName="ALL_POSITIONS"
                           server-fields="INSTRUMENT_NAME QUANTITY"
                           is-snapshot="true"
                         ></chart-datasource>

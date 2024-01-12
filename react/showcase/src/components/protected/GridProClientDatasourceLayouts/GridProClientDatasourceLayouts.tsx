@@ -116,18 +116,29 @@ const GridProClientDatasourceLayouts = () => {
         const streamAutoCellComponent = layoutComponentsMap.get(
           LayoutComponentsNames.STREAM_AUTO_CELL_RENDERER_BY_TYPE,
         )
-        const slottedStylesElement = getElementBySelectorFromComponent(
-          streamAutoCellComponent,
-          'slottedStyles',
-        )
-        const itemGridProColumnElements = getElementsBySelectorFromComponent(
-          streamAutoCellComponent,
-          'itemGridProColumn',
-        )
-        const customGridProColumnElement = getElementBySelectorFromComponent(
-          streamAutoCellComponent,
-          'customGridProColumn',
-        )
+
+        if (streamAutoCellComponent) {
+          const slottedStylesElement = getElementBySelectorFromComponent(
+            streamAutoCellComponent,
+            'slottedStyles',
+          )
+          const itemGridProColumnElements = getElementsBySelectorFromComponent(
+            streamAutoCellComponent,
+            'itemGridProColumn',
+          )
+          const customGridProColumnElement = getElementBySelectorFromComponent(
+            streamAutoCellComponent,
+            'customGridProColumn',
+          )
+          
+          slottedStylesElement.styles = processGridStyles
+          itemGridProColumnElements.forEach(
+            (itemGridProColumnElement: any, index: number) => {
+              itemGridProColumnElement.definition = customBooleanColDefs[index]
+            },
+          )
+          customGridProColumnElement.definition = rowRewfDefinition
+        }
 
         const snapshotAutoCellComponent = layoutComponentsMap.get(
           LayoutComponentsNames.SNAPSHOT_AUTO_CELL_RENDERER_BY_TYPE,
@@ -144,14 +155,6 @@ const GridProClientDatasourceLayouts = () => {
           snapshotAutoCellComponent,
           'itemGridProColumn2',
         )
-
-        slottedStylesElement.styles = processGridStyles
-        itemGridProColumnElements.forEach(
-          (itemGridProColumnElement: any, index: number) => {
-            itemGridProColumnElement.definition = customBooleanColDefs[index]
-          },
-        )
-        customGridProColumnElement.definition = rowRewfDefinition
 
         slottedStyles2Element.styles = processGridStyles2
         itemGridProColumn2Elements.forEach(
