@@ -1,0 +1,195 @@
+<zero-grid-layout row-count="4" col-count="2" class="content-around spacing-2x">
+  <zero-grid-layout-item col-number="1" row-number="1" width="1" height="1">
+    <zero-card>
+      <p>(stream)</p>
+      <zero-grid-pro
+        persist-column-state-key="grid-pro-simple-column-state"
+        async-add
+        enable-row-flashing
+        enable-cell-flashing
+      >
+        <grid-pro-client-side-datasource
+          [resourceName]="resourceName"
+          [criteria]="criteria"
+          [isSnapshot]="false"
+          [maxRows]="maxRows"
+          [maxView]="maxView"
+          [reverse]="false"
+          [restartOnReconnection]="false"
+        ></grid-pro-client-side-datasource>
+      </zero-grid-pro>
+    </zero-card>
+  </zero-grid-layout-item>
+  <zero-grid-layout-item col-number="1" row-number="2" width="1" height="1">
+    <zero-card>
+      <p>(stream + autoCellRendererByType)</p>
+      <zero-grid-pro
+        auto-cell-renderer-by-type
+        persist-column-state-key="grid-pro-complex-column-state"
+        async-add
+        enable-row-flashing
+        enable-cell-flashing
+      >
+        <slotted-styles #slottedStyles></slotted-styles>
+        <grid-pro-client-side-datasource
+          [resourceName]="resourceName"
+          [criteria]="criteria"
+          [isSnapshot]="false"
+          [maxRows]="maxRows"
+          [maxView]="maxView"
+          [reverse]="false"
+          [restartOnReconnection]="false"
+        ></grid-pro-client-side-datasource>
+
+        <grid-pro-column *ngFor="let colDef of customBooleanColDefs" #itemGridProColumn>
+          <grid-pro-cell #itemGridProCell *ngIf="!!colDef.cellRenderer"></grid-pro-cell>
+        </grid-pro-column>
+
+        <grid-pro-column #customGridProColumn>
+          <grid-pro-cell></grid-pro-cell>
+        </grid-pro-column>
+      </zero-grid-pro>
+    </zero-card>
+  </zero-grid-layout-item>
+  <zero-grid-layout-item col-number="1" row-number="3" width="1" height="1">
+    <zero-card>
+      <p>(stream + reverse=true)</p>
+      <zero-grid-pro
+        persist-column-state-key="grid-pro-simple-column-state"
+        async-add
+        enable-row-flashing
+        enable-cell-flashing
+      >
+        <grid-pro-client-side-datasource
+          [resourceName]="resourceName"
+          [criteria]="criteria"
+          [isSnapshot]="false"
+          [maxRows]="maxRows"
+          [maxView]="maxView"
+          [reverse]="true"
+          [restartOnReconnection]="false"
+        ></grid-pro-client-side-datasource>
+      </zero-grid-pro>
+    </zero-card>
+  </zero-grid-layout-item>
+
+  <zero-grid-layout-item col-number="1" row-number="4" width="1" height="1">
+    <zero-card>
+      <p>(stream + reverse=true + max-rows=5)</p>
+      <zero-grid-pro
+        persist-column-state-key="grid-pro-simple-column-state"
+        async-add
+        enable-row-flashing
+        enable-cell-flashing
+      >
+        <grid-pro-client-side-datasource
+          [resourceName]="resourceName"
+          [criteria]="criteria"
+          [isSnapshot]="false"
+          max-rows="5"
+          [maxView]="maxView"
+          [reverse]="true"
+          [restartOnReconnection]="false"
+        ></grid-pro-client-side-datasource>
+      </zero-grid-pro>
+    </zero-card>
+  </zero-grid-layout-item>
+
+  <zero-grid-layout-item col-number="2" row-number="1" width="1" height="1">
+    <zero-card>
+      <p>(snapshot)</p>
+      <zero-grid-pro
+        persist-column-state-key="grid-pro-simple-column-state"
+        async-add
+        enable-row-flashing
+        enable-cell-flashing
+      >
+        <grid-pro-client-side-datasource
+          [resourceName]="resourceName"
+          [criteria]="criteria"
+          [isSnapshot]="true"
+          [maxRows]="maxRows"
+          [maxView]="maxView"
+          [reverse]="false"
+          [restartOnReconnection]="true"
+        ></grid-pro-client-side-datasource>
+      </zero-grid-pro>
+    </zero-card>
+  </zero-grid-layout-item>
+
+  <zero-grid-layout-item col-number="2" row-number="2" width="1" height="1">
+    <zero-card>
+      <p>(snapshot + autoCellRendererByType)</p>
+      <zero-grid-pro
+        auto-cell-renderer-by-type
+        persist-column-state-key="grid-pro-complex-column-state2"
+        async-add
+        enable-row-flashing
+        enable-cell-flashing
+      >
+        <slotted-styles #slottedStyles2></slotted-styles>
+        <grid-pro-client-side-datasource
+          [resourceName]="resourceName"
+          [criteria]="criteria"
+          [isSnapshot]="true"
+          [maxRows]="maxRows"
+          [maxView]="maxView"
+          [reverse]="false"
+          [restartOnReconnection]="true"
+        ></grid-pro-client-side-datasource>
+
+        <grid-pro-column *ngFor="let colDef of customBooleanColDefs" #itemGridProColumn2>
+          <grid-pro-cell *ngIf="!!colDef.cellRenderer"></grid-pro-cell>
+        </grid-pro-column>
+
+        <grid-pro-column #customGridProColumn2>
+          <grid-pro-cell #customGridProCell2></grid-pro-cell>
+        </grid-pro-column>
+      </zero-grid-pro>
+    </zero-card>
+  </zero-grid-layout-item>
+
+  <zero-grid-layout-item col-number="2" row-number="3" width="1" height="1">
+    <zero-card>
+      <p>(snapshot + reverse=true)</p>
+      <zero-grid-pro
+        persist-column-state-key="grid-pro-simple-column-state"
+        async-add
+        enable-row-flashing
+        enable-cell-flashing
+      >
+        <grid-pro-client-side-datasource
+          [resourceName]="resourceName"
+          [criteria]="criteria"
+          [isSnapshot]="true"
+          [maxRows]="maxRows"
+          [maxView]="maxView"
+          [reverse]="true"
+          [restartOnReconnection]="true"
+        ></grid-pro-client-side-datasource>
+      </zero-grid-pro>
+    </zero-card>
+  </zero-grid-layout-item>
+
+  <zero-grid-layout-item col-number="2" row-number="4" width="1" height="1">
+    <zero-card>
+      <p>(snapshot + reverse=true + max-rows=5)</p>
+      <zero-grid-pro
+        persist-column-state-key="grid-pro-simple-column-state"
+        async-add
+        enable-row-flashing
+        enable-cell-flashing
+      >
+        <grid-pro-client-side-datasource
+          [resourceName]="resourceName"
+          [criteria]="criteria"
+          [isSnapshot]="true"
+          maxRows="5"
+          [maxView]="maxView"
+          [reverse]="true"
+          [restartOnReconnection]="true"
+        ></grid-pro-client-side-datasource>
+      </zero-grid-pro>
+    </zero-card>
+  </zero-grid-layout-item>
+</zero-grid-layout>

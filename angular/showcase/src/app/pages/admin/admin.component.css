@@ -1,0 +1,30 @@
+zero-tabs {
+  height: calc(100% - 8px);
+  padding-top: 8px;
+}
+
+zero-tab-panel {
+  height: 100%;
+  padding: 0 15px;
+}
+
+nav {
+  display: block;
+  position: relative;
+  height: 60px;
+}
+
+zero-layout {
+  contain: content;
+  display: block;
+  position: relative;
+  height: calc(100% - 60px);
+  width: 100%;
+  grid-row-start: 2;
+  grid-row-end: 19;
+}
+
+.entity-management-counterpartys {
+  display: block;
+  height: calc(100% - 40px);
+}

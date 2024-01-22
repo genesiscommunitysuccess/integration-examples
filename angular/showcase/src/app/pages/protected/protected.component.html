@@ -1,0 +1,43 @@
+<div class="resource-filter">
+  <app-state-changer *ngIf="displayStateChanger"></app-state-changer>
+</div>
+<zero-tabs appearance="secondary" (change)="onTabChanged($event)">
+  <h1>{{ criteria }}</h1>
+  <zero-tab appearance="secondary" slot="tab">Grid Pro + Client Datasource</zero-tab>
+  <zero-tab appearance="secondary" slot="tab">Grid Pro + Client Datasource + Layouts</zero-tab>
+  <zero-tab appearance="secondary" slot="tab" hide-state-changer>
+    Grid Pro + Client Datasource + Linked
+  </zero-tab>
+  <zero-tab appearance="secondary" slot="tab">Grid Pro + Server Datasource</zero-tab>
+  <zero-tab appearance="secondary" slot="tab">Grid Tabulator + Client Datasource</zero-tab>
+
+  <zero-tab-panel slot="tabpanel">
+    <zero-notification-listener>
+      <app-grid-pro-client-datasource [resourceName]="resourceName" [criteria]="criteria" />
+    </zero-notification-listener>
+  </zero-tab-panel>
+
+  <zero-tab-panel slot="tabpanel">
+    <zero-notification-listener>
+      <app-grid-pro-client-datasource-layouts [resourceName]="resourceName" [criteria]="criteria" />
+    </zero-notification-listener>
+  </zero-tab-panel>
+
+  <zero-tab-panel slot="tabpanel">
+    <zero-notification-listener>
+      <app-grid-pro-client-datasource-linked />
+    </zero-notification-listener>
+  </zero-tab-panel>
+
+  <zero-tab-panel slot="tabpanel">
+    <zero-notification-listener>
+      <app-grid-pro-server-datasource [resourceName]="resourceName" [criteria]="criteria" />
+    </zero-notification-listener>
+  </zero-tab-panel>
+
+  <zero-tab-panel slot="tabpanel">
+    <zero-notification-listener>
+      <app-grid-tabulator-client-datasource [resourceName]="resourceName" [criteria]="criteria" />
+    </zero-notification-listener>
+  </zero-tab-panel>
+</zero-tabs>

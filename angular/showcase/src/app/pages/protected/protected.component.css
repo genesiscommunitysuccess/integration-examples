@@ -1,0 +1,11 @@
+.resource-filter {
+  height: 70px;
+}
+
+zero-tabs {
+  height: calc(100% - 70px);
+}
+
+zero-tab-panel {
+  height: 100%;
+}
