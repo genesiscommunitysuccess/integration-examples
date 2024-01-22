@@ -85,13 +85,7 @@ The application is built using a variety of dependencies for different functiona
 
 Contributions are welcome! Please read the contributing guide for directions on how to submit pull requests.
 
-## License
+<!-- ## License
 
-This project is licensed under the [LICENSE-NAME]. See the [LICENSE.md](LICENSE.md) file for details.
+This project is licensed under the [LICENSE-NAME]. See the [LICENSE.md](LICENSE.md) file for details. -->
 
-## Acknowledgments
-
-- Thanks to the GenesisLCAP team for providing the foundation UI components.
-- Thanks to the Angular team and contributors for the awesome framework.
-
-For detailed instructions and documentation, refer to the official documentation of each dependency and tool.
