@@ -108,7 +108,11 @@ export class GridProClientDatasourceLayoutsComponent implements AfterViewInit, O
   }
 
   ngAfterViewInit() {
-    setComponentItemsMap(this.gridLayoutElement.nativeElement, this.layoutComponentsMap);
+    try {
+      setComponentItemsMap(this.gridLayoutElement.nativeElement, this.layoutComponentsMap);
+    } catch (e) {
+      console.error(e);
+    }
 
     this.gridLayoutElement.nativeElement.addEventListener(LayoutEmitEvents.firstLoaded, () => {
       const streamAutoCellComponent = this.layoutComponentsMap.get(

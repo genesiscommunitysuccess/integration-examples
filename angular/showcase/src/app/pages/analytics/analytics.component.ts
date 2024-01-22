@@ -178,7 +178,11 @@ export class AnalyticsComponent implements AfterViewInit {
 
   ngAfterViewInit() {
     this.setDataAndEventsInTabs();
-    setComponentItemsMap(this.analyticsLayoutElement.nativeElement, this.layoutComponentsMap);
+    try {
+      setComponentItemsMap(this.analyticsLayoutElement.nativeElement, this.layoutComponentsMap);
+    } catch (e) {
+      console.error(e);
+    }
 
     this.analyticsLayoutElement.nativeElement.addEventListener(LayoutEmitEvents.firstLoaded, () => {
       this.setChartsConfigAndData();
