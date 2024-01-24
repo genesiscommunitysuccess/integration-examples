@@ -77,7 +77,10 @@ const AdminPage = () => {
         userButton.current.removeEventListener('click', handleAddItemUser);
       }
       if (profileButton.current) {
-        profileButton.current.removeEventListener('click', handleAddItemProfile);
+        profileButton.current.removeEventListener(
+          'click',
+          handleAddItemProfile,
+        );
       }
       if (counterpartyButton.current) {
         counterpartyButton.current.removeEventListener(

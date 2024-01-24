@@ -130,7 +130,7 @@ const GridProClientDatasourceLayouts = () => {
             streamAutoCellComponent,
             'customGridProColumn',
           );
-          
+
           slottedStylesElement.styles = processGridStyles;
           itemGridProColumnElements.forEach(
             (itemGridProColumnElement: any, index: number) => {

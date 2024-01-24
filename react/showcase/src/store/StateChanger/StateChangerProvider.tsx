@@ -6,7 +6,7 @@ import StateChangerContext, {
 import { STATE_CHANGER_CONFIG } from '../../config';
 
 interface StateChangerProps {
-  children: ReactNode
+  children: ReactNode;
 }
 
 const StateChangerProvider: FunctionComponent<StateChangerProps> = ({

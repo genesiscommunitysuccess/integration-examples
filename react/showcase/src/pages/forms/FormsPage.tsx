@@ -85,7 +85,8 @@ const FormsPage = () => {
     }
 
     if (connectedComboboxLocalRenderers.current) {
-      connectedComboboxLocalRenderers.current.uischema = uiSchemaConnectedNumber;
+      connectedComboboxLocalRenderers.current.uischema =
+        uiSchemaConnectedNumber;
       connectedComboboxLocalRenderers.current.jsonSchema =
         JSON_SCHEMA_CONNECTED_NUMBER;
       connectedComboboxLocalRenderers.current.data = {

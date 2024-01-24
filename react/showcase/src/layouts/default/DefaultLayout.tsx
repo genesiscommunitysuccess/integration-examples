@@ -13,7 +13,7 @@ import type { Navigation } from '@genesislcap/foundation-header';
 import AppFooter from '../../components/AppFooter/AppFooter';
 
 interface DefaultLayoutProps {
-  children: ReactNode
+  children: ReactNode;
 }
 
 const DefaultLayout: React.FC<DefaultLayoutProps> = ({ children }) => {

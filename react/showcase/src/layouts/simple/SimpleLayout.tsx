@@ -3,7 +3,7 @@ import styles from './SimpleLayout.module.css';
 import AppFooter from '../../components/AppFooter/AppFooter';
 
 interface SimpleLayoutProps {
-  children: ReactNode
+  children: ReactNode;
 }
 
 const SimpleLayout: React.FC<SimpleLayoutProps> = ({ children }) => (

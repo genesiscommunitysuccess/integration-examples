@@ -26,14 +26,14 @@ module.exports = {
   },
   plugins: ['@typescript-eslint', 'react'],
   rules: {
-    "semi": ["error", "always"],
+    semi: ['error', 'always'],
     'react/react-in-jsx-scope': 'off',
     '@typescript-eslint/no-empty-function': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
   },
   settings: {
     react: {
-      version: "detect"
-    }
-  }
+      version: 'detect',
+    },
+  },
 };

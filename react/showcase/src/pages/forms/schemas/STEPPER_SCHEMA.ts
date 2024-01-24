@@ -1,4 +1,7 @@
-import { StepperRendererOptions, UiSchema } from '@genesislcap/foundation-forms';
+import {
+  StepperRendererOptions,
+  UiSchema,
+} from '@genesislcap/foundation-forms';
 import { JSONSchema7 } from 'json-schema';
 
 export const uiSchemaStepper: UiSchema = {
