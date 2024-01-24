@@ -1,5 +1,5 @@
-import { GroupRendererOptions, UiSchema } from '@genesislcap/foundation-forms'
-import { JSONSchema7 } from 'json-schema'
+import { GroupRendererOptions, UiSchema } from '@genesislcap/foundation-forms';
+import { JSONSchema7 } from 'json-schema';
 
 export const uiSchemaGroup: UiSchema = {
   type: 'VerticalLayout',
@@ -77,7 +77,7 @@ export const uiSchemaGroup: UiSchema = {
       },
     },
   ],
-}
+};
 
 export const JSON_SCHEMA_GROUP = {
   type: 'object',
@@ -124,4 +124,4 @@ export const JSON_SCHEMA_GROUP = {
       },
     },
   },
-} as JSONSchema7
+} as JSONSchema7;

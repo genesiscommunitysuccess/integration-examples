@@ -1,8 +1,8 @@
 import {
   CategorizationRendererOptions,
   UiSchema,
-} from '@genesislcap/foundation-forms'
-import { JSONSchema7 } from 'json-schema'
+} from '@genesislcap/foundation-forms';
+import { JSONSchema7 } from 'json-schema';
 
 export const uiSchemaCategorization: UiSchema = {
   type: 'Categorization',
@@ -110,7 +110,7 @@ export const uiSchemaCategorization: UiSchema = {
       },
     },
   ],
-}
+};
 
 export const JSON_SCHEMA_CATEGORIZATION = {
   type: 'object',
@@ -166,4 +166,4 @@ export const JSON_SCHEMA_CATEGORIZATION = {
       },
     },
   },
-} as JSONSchema7
+} as JSONSchema7;

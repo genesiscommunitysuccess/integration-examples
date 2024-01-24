@@ -1,5 +1,5 @@
-import { StepperRendererOptions, UiSchema } from '@genesislcap/foundation-forms'
-import { JSONSchema7 } from 'json-schema'
+import { StepperRendererOptions, UiSchema } from '@genesislcap/foundation-forms';
+import { JSONSchema7 } from 'json-schema';
 
 export const uiSchemaStepper: UiSchema = {
   type: 'Stepper',
@@ -99,7 +99,7 @@ export const uiSchemaStepper: UiSchema = {
       },
     },
   ],
-}
+};
 
 export const uiSchemaStepperHorizontal: UiSchema = {
   type: 'Stepper',
@@ -202,7 +202,7 @@ export const uiSchemaStepperHorizontal: UiSchema = {
   options: {
     orientation: 'horizontal',
   },
-}
+};
 
 export const JSON_SCHEMA_STEPPER = {
   type: 'object',
@@ -260,4 +260,4 @@ export const JSON_SCHEMA_STEPPER = {
       required: ['otherFavoriteVegetable'],
     },
   },
-} as JSONSchema7
+} as JSONSchema7;

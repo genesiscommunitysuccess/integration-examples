@@ -7,7 +7,7 @@ export const roseConfiguration = {
   legend: {
     position: 'bottom',
   },
-}
+};
 
 export const roseData = [
   { groupBy: '1951', value: 38, series: '3' },
@@ -15,4 +15,4 @@ export const roseData = [
   { groupBy: '1956', value: 61, series: '1' },
   { groupBy: '1957', value: 145, series: '2' },
   { groupBy: '1958', value: 48, series: '4' },
-]
+];

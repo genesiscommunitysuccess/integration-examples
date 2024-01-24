@@ -1,4 +1,4 @@
-import { configure } from '@genesislcap/foundation-auth/config'
+import { configure } from '@genesislcap/foundation-auth/config';
 
 /**
  * Configure the micro frontend
@@ -6,4 +6,4 @@ import { configure } from '@genesislcap/foundation-auth/config'
 configure({
   omitRoutes: ['request-account'],
   postLoginRedirect: () => {},
-})
+});

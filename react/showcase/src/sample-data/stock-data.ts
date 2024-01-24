@@ -99,10 +99,10 @@ export const stockData = [
     vol: 367333369,
     amount: 397244201.2,
   },
-]
+];
 
 export const stockConfiguration = {
   width: 700,
   xField: 'trade_date',
   yField: ['open', 'close', 'high', 'low'],
-}
+};

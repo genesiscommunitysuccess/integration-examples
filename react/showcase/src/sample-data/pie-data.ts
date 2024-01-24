@@ -18,7 +18,7 @@ export const pieConfiguration = {
       content: '',
     },
   },
-}
+};
 
 export const pieData = [
   { groupBy: 'Exam 1', value: 27 },
@@ -27,4 +27,4 @@ export const pieData = [
   { groupBy: 'Exam 4', value: 15 },
   { groupBy: 'Exam 5', value: 10 },
   { groupBy: 'Exam 6', value: 5 },
-]
+];

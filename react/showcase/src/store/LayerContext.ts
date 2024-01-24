@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 export interface LayerState {
   [key: string]: boolean
@@ -11,6 +11,6 @@ export interface LayerContextType {
 
 const LayerContext = React.createContext<LayerContextType | undefined>(
   undefined,
-)
+);
 
-export default LayerContext
+export default LayerContext;

@@ -1,23 +1,23 @@
-import { RouteLayouts } from './types/RouteLayouts'
+import { RouteLayouts } from './types/RouteLayouts';
 
 export const routeLayouts: RouteLayouts = {
   '/auth-mock': 'blank',
   '/auth': 'blank',
   '/': 'blank',
-}
+};
 
-import type { MainMenu } from './types/menu'
+import type { MainMenu } from './types/menu';
 
 export const INTERNAL_URLS = {
   auth: 'auth',
   authMock: 'auth-mock',
-}
+};
 
-export const USE_FOUNDATION_AUTH = GENX_FOUNDATION_AUTH === '1'
+export const USE_FOUNDATION_AUTH = GENX_FOUNDATION_AUTH === '1';
 
 export const AUTH_URL = USE_FOUNDATION_AUTH
   ? INTERNAL_URLS.auth
-  : INTERNAL_URLS.authMock
+  : INTERNAL_URLS.authMock;
 
 export const API_DATA = {
   URL: 'wss://public-foundation.genesislab.global/gwf/',
@@ -25,7 +25,7 @@ export const API_DATA = {
     username: 'JohnDoe',
     password: 'Password11*',
   },
-}
+};
 
 export const mainMenu: MainMenu = [
   {
@@ -66,14 +66,14 @@ export const mainMenu: MainMenu = [
     variant: 'solid',
   },
   { index: 8, path: 'features-lab', title: 'Features Lab', icon: 'flask' },
-]
+];
 
 export const layerNames = {
   alertRules: 'alertRules',
   alertInbox: 'alertInbox',
-}
+};
 
 export const STATE_CHANGER_CONFIG = {
   DEFAULT_CRITERIA: 'NAME != null',
   DEFAULT_RESOURCE_NAME: 'ALL_COUNTERPARTYS',
-}
+};

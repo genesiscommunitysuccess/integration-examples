@@ -1,4 +1,4 @@
-import * as SavedLayout from '../../sample-data/saved-layouts'
+import * as SavedLayout from '../../sample-data/saved-layouts';
 
 export type AnalyticChartRegistration = {
   registration: string

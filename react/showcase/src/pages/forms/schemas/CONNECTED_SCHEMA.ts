@@ -1,8 +1,8 @@
 import {
   ConnectedRenderersOptions,
   UiSchema,
-} from '@genesislcap/foundation-forms'
-import { JSONSchema7 } from 'json-schema'
+} from '@genesislcap/foundation-forms';
+import { JSONSchema7 } from 'json-schema';
 
 export const uiSchemaConnectedSelect: UiSchema = {
   type: 'VerticalLayout',
@@ -26,7 +26,7 @@ export const uiSchemaConnectedSelect: UiSchema = {
       },
     },
   ],
-}
+};
 
 export const uiSchemaConnectedSelectAsync: UiSchema = {
   type: 'VerticalLayout',
@@ -52,7 +52,7 @@ export const uiSchemaConnectedSelectAsync: UiSchema = {
       },
     },
   ],
-}
+};
 
 export const JSON_SCHEMA_CONNECTED_SELECT = {
   type: 'object',
@@ -66,7 +66,7 @@ export const JSON_SCHEMA_CONNECTED_SELECT = {
       description: 'kotlin.String',
     },
   },
-} as JSONSchema7
+} as JSONSchema7;
 
 const numberRateData = [
   {
@@ -81,7 +81,7 @@ const numberRateData = [
     name: '30%',
     value: 0.3,
   },
-]
+];
 
 export const uiSchemaConnectedNumber: UiSchema = {
   type: 'VerticalLayout',
@@ -97,7 +97,7 @@ export const uiSchemaConnectedNumber: UiSchema = {
       type: 'Control',
     },
   ],
-}
+};
 
 export const JSON_SCHEMA_CONNECTED_NUMBER = {
   type: 'object',
@@ -107,4 +107,4 @@ export const JSON_SCHEMA_CONNECTED_NUMBER = {
       description: 'kotlin.Double',
     },
   },
-} as JSONSchema7
+} as JSONSchema7;
