@@ -31,7 +31,9 @@ export class FeaturesLabComponent implements AfterViewInit {
   private defaultTestRecordName = 'Temporary Test Record';
 
   ngAfterViewInit(): void {
-    this.environmentAlertModalElement.nativeElement.show();
+    if (this.environmentAlertModalElement.nativeElement.show) {
+      this.environmentAlertModalElement.nativeElement.show();
+    }
   }
 
   async insertTenTestRecords() {

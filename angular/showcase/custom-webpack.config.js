@@ -6,7 +6,7 @@ const { DefinePlugin } = require('webpack');
 config();
 
 module.exports = {
-  plugins: [new DefinePlugin(resolveDefineConfig(['GENX_*', 'FOUNDATION_AUTH']))],
+  plugins: [new DefinePlugin(resolveDefineConfig(['GENX_*']))],
   module: {
     rules: [
       {

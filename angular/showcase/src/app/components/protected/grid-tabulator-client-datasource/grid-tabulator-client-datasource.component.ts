@@ -43,7 +43,12 @@ export class GridTabulatorClientDatasourceComponent implements AfterViewInit, On
   }
 
   ngAfterViewInit() {
-    setComponentItemsMap(this.gridLayoutElement.nativeElement, this.layoutComponentsMap);
+    try {
+      setComponentItemsMap(this.gridLayoutElement.nativeElement, this.layoutComponentsMap);
+    } catch (e) {
+      console.error(e);
+    }
+
     const listner = this.setReady.bind(this);
     this.listeners.push(listner);
     this.gridLayoutElement.nativeElement.addEventListener(LayoutEmitEvents.firstLoaded, listner);

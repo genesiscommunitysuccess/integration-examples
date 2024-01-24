@@ -19,13 +19,13 @@ import './share/genesis-components';
 @NgModule({
   declarations: [
     AppComponent,
-    AuthComponent,
     LayoutLazyLoadDirective,
     DefaultLayoutComponent,
     SimpleLayoutComponent,
     BlankLayoutComponent,
   ],
   imports: [
+    AuthComponent,
     BrowserModule,
     AppRoutingModule,
     FormsModule,

@@ -5,7 +5,7 @@ export const setComponentItemsMap = (
   componentMapInstance: Map<string, any>,
 ): (() => void) => {
   if (!layoutNativeElement.layout) {
-    throw new Error(`${ERROR_PREFIX} - layout is not defined`);
+    throw new Error(`${ERROR_PREFIX}layout is not defined`);
   }
 
   const componentSetter = ({ _target: componentItem }: any) => {
@@ -23,7 +23,7 @@ const getElementRoot = (componentInstance: any): any => {
     return _element;
   }
 
-  throw new Error(`${ERROR_PREFIX} - component instance is not defined`);
+  throw new Error(`${ERROR_PREFIX}component instance is not defined`);
 };
 
 export const getElementsBySelectorFromComponent = (

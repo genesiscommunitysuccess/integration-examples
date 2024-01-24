@@ -13,7 +13,7 @@ import { ConnectService } from './services/connect.service';
 export class AppComponent {
   layoutName?: LayoutComponentName;
   showFooter = false;
-  title = 'Genesis Foundation Entity Managment Angular';
+  title = 'GenesisLCAP Angular showcase client-app';
   isSubscribed = false;
 
   constructor(

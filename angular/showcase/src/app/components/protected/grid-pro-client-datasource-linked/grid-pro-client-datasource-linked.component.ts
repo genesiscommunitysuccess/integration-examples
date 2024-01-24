@@ -59,7 +59,11 @@ export class GridProClientDatasourceLinkedComponent implements AfterViewInit, On
   };
 
   ngAfterViewInit() {
-    setComponentItemsMap(this.gridLayoutElement.nativeElement, this.layoutComponentsMap);
+    try {
+      setComponentItemsMap(this.gridLayoutElement.nativeElement, this.layoutComponentsMap);
+    } catch (e) {
+      console.error(e);
+    }
 
     this.gridLayoutElement.nativeElement.addEventListener(
       LayoutEmitEvents.firstLoaded,

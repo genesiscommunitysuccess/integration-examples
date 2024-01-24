@@ -1,27 +1,91 @@
-# Foundation Entity Management
+# GenesisLCAP Angular Showcase Client Application
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.9.
+## Overview
 
-## Development server
+This application serves as a showcase for demonstrating the integration and capabilities of foundation-ui components (web components) from GenesisLCAP within an Angular framework. It provides a practical example of how these components can be effectively utilized in a modern Angular application.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Getting Started
 
-## Code scaffolding
+Follow these steps to set up and run the project locally:
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+### 1. Clone the repository
 
-## Build
+```bash
+git clone https://github.com/genesiscommunitysuccess/integration-examples.git
+```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+### 2. Navigate to the project directory
 
-## Running unit tests
+```bash
+cd integration-examples/angular/showcase
+```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+### 3. Install dependencies
 
-## Running end-to-end tests
+```bash
+npm install
+```
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## Available Scripts
 
-## Further help
+In the project directory, you can run:
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+### `npm start`
+
+Runs the app in development mode. Open [http://localhost:4200](http://localhost:4200) to view it in the browser. The app will reload if you make edits.
+
+### `npm run ng`
+
+Runs Angular CLI directly. Useful for executing Angular CLI commands.
+
+### `npm run build`
+
+Builds the app for production to the `dist/` folder. It bundles Angular in production mode and optimizes the build for the best performance.
+
+### `npm run watch`
+
+Builds the app and watches for file changes, rebuilding with any changes. Useful for development.
+
+### `npm run test`
+
+Runs unit tests via [Karma](https://karma-runner.github.io).
+
+### `npm run prettier`
+
+Runs Prettier to format the code according to the project's code style guidelines.
+
+### `npm run lint`
+
+Runs ESLint for linting the project files based on the defined ESLint rules.
+
+### `npm run lint:fix`
+
+Runs ESLint and automatically fixes problems where possible.
+
+## Project Structure
+
+The project is structured as follows:
+
+- **src/**: Contains the source code for the Angular application.
+- **dist/**: Contains the build output for the application.
+- **node_modules/**: Contains npm packages for the dependencies and devDependencies defined in `package.json`.
+
+## Dependencies
+
+The application is built using a variety of dependencies for different functionalities:
+
+- **@angular/core and related packages**: Core framework for building the application.
+- **@genesislcap/foundation-ui components**: Set of enterprise-level UI components.
+- **AG-Grid**: Data grid for displaying and interacting with large data sets.
+- **RxJS**: Library for reactive programming.
+- **NgRx**: State management library for Angular.
+- **Development Tools**: Tools such as ESLint, Prettier, Jasmine, and Karma are used to maintain code quality and facilitate testing.
+
+## Contributing
+
+Contributions are welcome! Please read the contributing guide for directions on how to submit pull requests.
+
+<!-- ## License
+
+This project is licensed under the [LICENSE-NAME]. See the [LICENSE.md](LICENSE.md) file for details. -->
+
