@@ -4,8 +4,8 @@ import DefaultLayout from './default/DefaultLayout';
 import SimpleLayout from './simple/SimpleLayout';
 
 interface LayoutWrapperProps {
-  layout: 'blank' | 'default' | 'simple'
-  children: ReactNode
+  layout: 'blank' | 'default' | 'simple';
+  children: ReactNode;
 }
 
 const layoutMap = {

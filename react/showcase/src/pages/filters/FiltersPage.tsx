@@ -2,7 +2,7 @@ import { useState } from 'react';
 import style from './FiltersPage.module.css';
 import reactifyWc from 'reactify-wc';
 
-const FoundationFilters: any= reactifyWc('foundation-filters');
+const FoundationFilters: any = reactifyWc('foundation-filters');
 
 const FiltersPage = () => {
   const [allUsersfilters, setAllUsersfilters] = useState('');
@@ -95,9 +95,7 @@ const FiltersPage = () => {
       <zero-tab-panel slot="tabpanel">
         <div className={style.container}>
           <zero-card>
-            <foundation-filters
-              class="date-filter"
-            ></foundation-filters>
+            <foundation-filters class="date-filter"></foundation-filters>
           </zero-card>
           <zero-grid-pro>
             <grid-pro-genesis-datasource

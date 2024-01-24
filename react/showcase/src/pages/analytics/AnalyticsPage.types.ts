@@ -1,10 +1,10 @@
 import * as SavedLayout from '../../sample-data/saved-layouts';
 
 export type AnalyticChartRegistration = {
-  registration: string
-  title: string
-  enabled?: boolean
-}
+  registration: string;
+  title: string;
+  enabled?: boolean;
+};
 
 export enum LayoutComponentsNames {
   PIE = 'pie',
@@ -18,5 +18,5 @@ export enum LayoutComponentsNames {
   DONUT = 'donut',
 }
 
-export type SavedLayoutsType = typeof SavedLayout
-export type SavedLayoutKeys = keyof SavedLayoutsType
+export type SavedLayoutsType = typeof SavedLayout;
+export type SavedLayoutKeys = keyof SavedLayoutsType;

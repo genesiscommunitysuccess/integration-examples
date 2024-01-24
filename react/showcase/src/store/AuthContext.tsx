@@ -10,18 +10,18 @@ import { connectService } from '../services/connect.service';
 import { USE_FOUNDATION_AUTH } from '../config';
 
 interface AuthContextType {
-  user: User | null
-  setUser: (user: User | null) => void
-  checkAuthStatus: () => Promise<void>
-  logout: () => Promise<void>
+  user: User | null;
+  setUser: (user: User | null) => void;
+  checkAuthStatus: () => Promise<void>;
+  logout: () => Promise<void>;
 }
 
 interface AuthProviderProps {
-  children: ReactNode
+  children: ReactNode;
 }
 
 interface User {
-  authorized: boolean
+  authorized: boolean;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);

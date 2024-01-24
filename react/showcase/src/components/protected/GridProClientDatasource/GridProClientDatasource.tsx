@@ -52,7 +52,7 @@ const GridProClientDatasource = () => {
   };
   const maxView = DatasourceDefaults.MAX_VIEW_1000;
   const maxRows = DatasourceDefaults.MAX_ROWS_250;
-    
+
   const customGridProCell2Renderer = (params: any) => {
     return `<span style="color: ${
       params.value === 'TRACE' ? 'orange' : 'green'
@@ -106,20 +106,16 @@ const GridProClientDatasource = () => {
               reverse={false}
               restart-on-reconnection={false}
             ></grid-pro-client-side-datasource>
-            {
-              customBooleanColDefs.map((colDef: any, index: number) => {
-                return (
-                  <GridProColumn
-                    key={`itemGridProColumn1-${index}`}
-                    definition={colDef}
-                  >
-                    {!!colDef.cellRenderer && (
-                      <grid-pro-cell></grid-pro-cell>
-                    )}
-                  </GridProColumn>
-                );
-              })
-            }
+            {customBooleanColDefs.map((colDef: any, index: number) => {
+              return (
+                <GridProColumn
+                  key={`itemGridProColumn1-${index}`}
+                  definition={colDef}
+                >
+                  {!!colDef.cellRenderer && <grid-pro-cell></grid-pro-cell>}
+                </GridProColumn>
+              );
+            })}
             <GridProColumn definition={rowRewfDefinition}>
               <grid-pro-cell></grid-pro-cell>
             </GridProColumn>
@@ -213,20 +209,16 @@ const GridProClientDatasource = () => {
               reverse={false}
               restart-on-reconnection={true}
             ></grid-pro-client-side-datasource>
-            {
-              customBooleanColDefs.map((colDef: any, index: number) => {
-                return (
-                  <GridProColumn
-                    key={`itemGridProColumn2-${index}`}
-                    definition={colDef}
-                  >
-                    {!!colDef.cellRenderer && (
-                      <grid-pro-cell></grid-pro-cell>
-                    )}
-                  </GridProColumn>
-                );
-              })
-            }
+            {customBooleanColDefs.map((colDef: any, index: number) => {
+              return (
+                <GridProColumn
+                  key={`itemGridProColumn2-${index}`}
+                  definition={colDef}
+                >
+                  {!!colDef.cellRenderer && <grid-pro-cell></grid-pro-cell>}
+                </GridProColumn>
+              );
+            })}
             <GridProColumn definition={rowRewfDefinition}>
               <GridProCell renderer={customGridProCell2Renderer}></GridProCell>
             </GridProColumn>

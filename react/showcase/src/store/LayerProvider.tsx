@@ -3,7 +3,7 @@ import LayerContext, { LayerContextType, LayerState } from './LayerContext';
 import { layerNames } from '../config';
 
 interface LayerProviderProps {
-  children: ReactNode
+  children: ReactNode;
 }
 
 const LayerProvider: FunctionComponent<LayerProviderProps> = ({ children }) => {

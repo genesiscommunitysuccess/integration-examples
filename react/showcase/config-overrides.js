@@ -28,9 +28,9 @@ module.exports = function override(config) {
 
   config.devServer = {
     ...config.devServer,
-      overlay: {
-        warnings: false,
-        errors: false,
+    overlay: {
+      warnings: false,
+      errors: false,
     },
   };
 

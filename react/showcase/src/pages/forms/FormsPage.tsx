@@ -47,7 +47,10 @@ const FormsPage = () => {
         <div className={style['form-container']}>
           <h2>Primitive Renderers</h2>
           <div style={{ display: 'flex', flexDirection: 'row' }}>
-            <FoundationForm uischema={uiSchema} jsonSchema={JSON_SCHEMA}></FoundationForm>
+            <FoundationForm
+              uischema={uiSchema}
+              jsonSchema={JSON_SCHEMA}
+            ></FoundationForm>
           </div>
         </div>
       </zero-tab-panel>
@@ -55,7 +58,10 @@ const FormsPage = () => {
         <div className={style['form-container']}>
           <h2>Examples</h2>
           <h3>1. Connected Combobox/Multiselect</h3>
-          <FoundationForm uischema={uiSchemaConnectedSelect} jsonSchema={JSON_SCHEMA_CONNECTED_SELECT}></FoundationForm>
+          <FoundationForm
+            uischema={uiSchemaConnectedSelect}
+            jsonSchema={JSON_SCHEMA_CONNECTED_SELECT}
+          ></FoundationForm>
           <h3>2. Connected Combobox/Multiselect with async mode</h3>
           <FoundationForm
             jsonSchema={JSON_SCHEMA_CONNECTED_SELECT}
@@ -75,26 +81,34 @@ const FormsPage = () => {
         <div className={style['form-container']}>
           <h2>Examples</h2>
           <h3>1. User Array Form</h3>
-          <FoundationForm data={{
-        users: [
-          {
-            firstname: 'John',
-            lastname: 'Doe',
-            email: 'john@doe.com',
-            rights: 'ADMIN',
-          },
-        ],
-      }} uischema={uiSchemaArray} jsonSchema={JSON_SCHEMA_ARRAY}></FoundationForm>
+          <FoundationForm
+            data={{
+              users: [
+                {
+                  firstname: 'John',
+                  lastname: 'Doe',
+                  email: 'john@doe.com',
+                  rights: 'ADMIN',
+                },
+              ],
+            }}
+            uischema={uiSchemaArray}
+            jsonSchema={JSON_SCHEMA_ARRAY}
+          ></FoundationForm>
           <h3>1. Trade Array Form</h3>
-          <FoundationForm data={{
-            users: [
-              {
-                instrumentId: 'VOD',
-                quantity: '500',
-                side: 'BUY',
-              },
-            ],
-          }} uischema={uiSchemaArrayTrade} jsonSchema={JSON_SCHEMA_ARRAY_TRADE}></FoundationForm>
+          <FoundationForm
+            data={{
+              users: [
+                {
+                  instrumentId: 'VOD',
+                  quantity: '500',
+                  side: 'BUY',
+                },
+              ],
+            }}
+            uischema={uiSchemaArrayTrade}
+            jsonSchema={JSON_SCHEMA_ARRAY_TRADE}
+          ></FoundationForm>
         </div>
       </zero-tab-panel>
       <zero-tab-panel>
@@ -115,7 +129,10 @@ const FormsPage = () => {
         <div className={style['form-container']}>
           <h2>Example</h2>
           <zero-card style={{ width: '50%', padding: '0 15px' }}>
-            <FoundationForm uischema={uiSchemaCategorization} jsonSchema={JSON_SCHEMA_CATEGORIZATION}></FoundationForm>
+            <FoundationForm
+              uischema={uiSchemaCategorization}
+              jsonSchema={JSON_SCHEMA_CATEGORIZATION}
+            ></FoundationForm>
           </zero-card>
         </div>
       </zero-tab-panel>

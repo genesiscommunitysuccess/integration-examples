@@ -1,13 +1,11 @@
 import { useRef, useState } from 'react';
 import style from './AdminPage.module.css';
 import { FoundationLayout } from '@genesislcap/foundation-layout';
-import {
-  UsersColumnConfig,
-} from '@genesislcap/foundation-entity-management';
+import { UsersColumnConfig } from '@genesislcap/foundation-entity-management';
 import reactifyWc from 'reactify-wc';
 
-const ZeroButton: any= reactifyWc('zero-button');
-const UserManagement: any= reactifyWc('user-management');
+const ZeroButton: any = reactifyWc('zero-button');
+const UserManagement: any = reactifyWc('user-management');
 
 const AdminPage = () => {
   const adminLayout = useRef<FoundationLayout>(null);
@@ -48,9 +46,15 @@ const AdminPage = () => {
         <zero-tab-panel slot="tabpanel">
           <zero-notification-listener>
             <nav>
-              <ZeroButton on-click={() => handleAddItem('user')}>User Management</ZeroButton>
-              <ZeroButton on-click={() =>  handleAddItem('profile')}>Profile Management</ZeroButton>
-              <ZeroButton on-click={() =>  handleAddItem('counterparty')}>Counterparty Management</ZeroButton>
+              <ZeroButton on-click={() => handleAddItem('user')}>
+                User Management
+              </ZeroButton>
+              <ZeroButton on-click={() => handleAddItem('profile')}>
+                Profile Management
+              </ZeroButton>
+              <ZeroButton on-click={() => handleAddItem('counterparty')}>
+                Counterparty Management
+              </ZeroButton>
             </nav>
             <zero-layout ref={adminLayout} popout-config="960;720">
               <zero-layout-region>

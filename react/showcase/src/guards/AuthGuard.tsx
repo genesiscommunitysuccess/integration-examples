@@ -3,7 +3,7 @@ import { useAuth } from '../store/AuthContext';
 import { Navigate } from 'react-router-dom';
 import { AUTH_URL } from '../config';
 interface AuthGuardProps {
-  children: ReactNode
+  children: ReactNode;
 }
 const AuthGuard: React.FC<AuthGuardProps> = ({ children }: AuthGuardProps) => {
   const { user, checkAuthStatus } = useAuth();

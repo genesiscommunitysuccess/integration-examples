@@ -17,7 +17,7 @@ import { connectService } from '../../services/connect.service';
 
 UUID;
 
-const ZeroButton: any= reactifyWc('zero-button');
+const ZeroButton: any = reactifyWc('zero-button');
 
 const FeaturesLabPage = () => {
   const diContainer = connectService.getContainer();
@@ -172,10 +172,10 @@ const FeaturesLabPage = () => {
   };
 
   const createTestCounterpartyRecord = (): {
-    COUNTERPARTY_ID: string
-    COUNTERPARTY_LEI: string
-    NAME: string
-    ENABLED: boolean
+    COUNTERPARTY_ID: string;
+    COUNTERPARTY_LEI: string;
+    NAME: string;
+    ENABLED: boolean;
   } => {
     return {
       COUNTERPARTY_ID: uuid.createId(),

@@ -8,7 +8,7 @@ import GridProClientDatasourceLinked from '../../components/protected/GridProCli
 import GridProServerDatasource from '../../components/protected/GridProServerDatasource/GridProServerDatasource';
 import GridTabulatorClientDatasource from '../../components/protected/GridTabulatorClientDatasource/GridTabulatorClientDatasource';
 
-const ZeroTabs: any= reactifyWc('zero-tabs');
+const ZeroTabs: any = reactifyWc('zero-tabs');
 
 const ProtectedPage = () => {
   const [displayStateChanger, setDisplayStateChanger] = useState(true);

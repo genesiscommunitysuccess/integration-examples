@@ -2,7 +2,7 @@ import React, { ReactNode } from 'react';
 import styles from './BlankLayout.module.css';
 
 interface BlankLayoutProps {
-  children: ReactNode
+  children: ReactNode;
 }
 
 const BlankLayout: React.FC<BlankLayoutProps> = ({ children }) => (

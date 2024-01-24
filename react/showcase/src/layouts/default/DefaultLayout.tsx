@@ -16,7 +16,7 @@ const FoundationHeader: any = reactifyWc('foundation-header');
 const FoundationInbox: any = reactifyWc('foundation-inbox');
 const ZeroFlyout: any = reactifyWc('zero-flyout');
 interface DefaultLayoutProps {
-  children: ReactNode
+  children: ReactNode;
 }
 
 const DefaultLayout: React.FC<DefaultLayoutProps> = ({ children }) => {
@@ -58,7 +58,9 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = ({ children }) => {
     <zero-design-system-provider ref={designSystemProvider} class={className}>
       <FoundationHeader
         logout={logout}
-        on-notification-icon-clicked={() => setLayerState(layerNames.alertInbox, true)}
+        on-notification-icon-clicked={() =>
+          setLayerState(layerNames.alertInbox, true)
+        }
         on-luminance-icon-clicked={() => onLuminanceToogle()}
         show-luminance-toggle-button
         show-misc-toggle-button
