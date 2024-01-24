@@ -1,16 +1,15 @@
-import { useRef, useState, useEffect } from 'react';
+import { useState } from 'react';
 import style from './FiltersPage.module.css';
+import reactifyWc from 'reactify-wc';
+
+const FoundationFilters: any= reactifyWc('foundation-filters');
 
 const FiltersPage = () => {
-  const allUsersFiltersRef = useRef<any>(null);
-  const allTradesFiltersRef = useRef<any>(null);
-  const allProfilesFiltersRef = useRef<any>(null);
   const [allUsersfilters, setAllUsersfilters] = useState('');
   const [allTradesfilters, setAllTradesfilters] = useState('');
   const [allProfilesfilters, setAllProfilesfilters] = useState('');
 
   const handleChange = (setMethod: any, event: any) => {
-    console.log({ event });
     setMethod(event?.target?.value);
   };
 
@@ -18,85 +17,40 @@ const FiltersPage = () => {
     console.log('$emit test');
   };
 
-  useEffect(() => {
-    const handleChangeAllUsersfilters = handleChange.bind(
-      this,
-      setAllUsersfilters,
-    );
-    const handleChangeAllTradesfilters = handleChange.bind(
-      this,
-      setAllTradesfilters,
-    );
-    const handleChangeAllProfilesfilters = handleChange.bind(
-      this,
-      setAllProfilesfilters,
-    );
+  const handleChangeAllUsersfilters = handleChange.bind(
+    this,
+    setAllUsersfilters,
+  );
+  const handleChangeAllTradesfilters = handleChange.bind(
+    this,
+    setAllTradesfilters,
+  );
+  const handleChangeAllProfilesfilters = handleChange.bind(
+    this,
+    setAllProfilesfilters,
+  );
 
-    if (allUsersFiltersRef.current) {
-      allUsersFiltersRef.current.addEventListener(
-        'change',
-        handleChangeAllUsersfilters,
-      );
-    }
+  const tradesUISchema = {
+    type: 'VerticalLayout',
+    elements: [
+      {
+        type: 'Control',
+        label: 'Date',
+        scope: '#/properties/TRADE_DATETIME',
+      },
+    ],
+  };
 
-    if (allTradesFiltersRef.current) {
-      allTradesFiltersRef.current.uischema = {
-        type: 'VerticalLayout',
-        elements: [
-          {
-            type: 'Control',
-            label: 'Date',
-            scope: '#/properties/TRADE_DATETIME',
-          },
-        ],
-      };
-      allTradesFiltersRef.current.jsonSchema = {
-        type: 'object',
-        properties: {
-          TRADE_DATETIME: {
-            type: 'string',
-            description: 'org.joda.time.DateTime',
-          },
-        },
-      };
-      allTradesFiltersRef.current.addEventListener(
-        'change',
-        handleChangeAllTradesfilters,
-      );
-      allTradesFiltersRef.current.addEventListener('submit', handleSubmit);
-    }
+  const tradesJsonSchema = {
+    type: 'object',
+    properties: {
+      TRADE_DATETIME: {
+        type: 'string',
+        description: 'org.joda.time.DateTime',
+      },
+    },
+  };
 
-    if (allProfilesFiltersRef.current) {
-      allProfilesFiltersRef.current.addEventListener(
-        'change',
-        handleChangeAllProfilesfilters,
-      );
-    }
-
-    return () => {
-      if (allUsersFiltersRef.current) {
-        allUsersFiltersRef.current.removeEventListener(
-          'change',
-          handleChangeAllUsersfilters,
-        );
-      }
-
-      if (allTradesFiltersRef.current) {
-        allTradesFiltersRef.current.removeEventListener(
-          'change',
-          handleChangeAllTradesfilters,
-        );
-        allTradesFiltersRef.current.removeEventListener('submit', handleSubmit);
-      }
-
-      if (allProfilesFiltersRef.current) {
-        allProfilesFiltersRef.current.removeEventListener(
-          'change',
-          handleChangeAllProfilesfilters,
-        );
-      }
-    };
-  }, []);
   return (
     <zero-tabs class={style['filters-page']}>
       <zero-tab slot="tab">ALL_USERS</zero-tab>
@@ -106,10 +60,10 @@ const FiltersPage = () => {
       <zero-tab-panel slot="tabpanel">
         <div className={style.container}>
           <zero-card>
-            <foundation-filters
-              ref={allUsersFiltersRef}
+            <FoundationFilters
+              on-change={handleChangeAllUsersfilters}
               resourceName="ALL_USERS"
-            ></foundation-filters>
+            ></FoundationFilters>
           </zero-card>
           <zero-grid-pro>
             <grid-pro-genesis-datasource
@@ -122,10 +76,13 @@ const FiltersPage = () => {
       <zero-tab-panel slot="tabpanel">
         <div className={style.container}>
           <zero-card>
-            <foundation-filters
-              ref={allTradesFiltersRef}
+            <FoundationFilters
+              ui-schema={tradesUISchema}
+              json-schema={tradesJsonSchema}
+              on-change={handleChangeAllTradesfilters}
+              submit={handleSubmit}
               resourceName="ALL_TRADES"
-            ></foundation-filters>
+            ></FoundationFilters>
           </zero-card>
           <zero-grid-pro>
             <grid-pro-genesis-datasource
@@ -139,7 +96,6 @@ const FiltersPage = () => {
         <div className={style.container}>
           <zero-card>
             <foundation-filters
-              ref={allTradesFiltersRef}
               class="date-filter"
             ></foundation-filters>
           </zero-card>
@@ -154,10 +110,10 @@ const FiltersPage = () => {
       <zero-tab-panel slot="tabpanel">
         <div className={style.container}>
           <zero-card>
-            <foundation-filters
-              ref={allProfilesFiltersRef}
+            <FoundationFilters
+              on-change={handleChangeAllProfilesfilters}
               resourceName="ALL_PROFILES"
-            ></foundation-filters>
+            ></FoundationFilters>
           </zero-card>
           <zero-grid-pro>
             <grid-pro-genesis-datasource

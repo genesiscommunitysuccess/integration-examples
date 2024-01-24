@@ -1,19 +1,16 @@
-import { useRef, useEffect, useState } from 'react';
+import { useRef, useState } from 'react';
 import style from './AdminPage.module.css';
 import { FoundationLayout } from '@genesislcap/foundation-layout';
 import {
   UsersColumnConfig,
-  Users,
 } from '@genesislcap/foundation-entity-management';
+import reactifyWc from 'reactify-wc';
+
+const ZeroButton: any= reactifyWc('zero-button');
+const UserManagement: any= reactifyWc('user-management');
 
 const AdminPage = () => {
-  const userButton = useRef<HTMLButtonElement>(null);
-  const profileButton = useRef<HTMLButtonElement>(null);
-  const counterpartyButton = useRef<HTMLButtonElement>(null);
-  const readButton = useRef<HTMLButtonElement>(null);
   const adminLayout = useRef<FoundationLayout>(null);
-  const userManagment = useRef<Users>(null);
-  const userManagment2 = useRef<Users>(null);
   const entityManagement = useRef<HTMLElement>(null);
   const [layoutPaneCount, setLayoutPaneCount] = useState(0);
   const userColumns = [
@@ -33,63 +30,13 @@ const AdminPage = () => {
       });
     }
   };
-
-  useEffect(() => {
-    const handleAddItemUser = handleAddItem.bind(null, 'user');
-    const handleAddItemProfile = handleAddItem.bind(null, 'profile');
-    const handleAddItemCounterparty = handleAddItem.bind(null, 'counterparty');
-    const handleReadEntity = () => {
-      const event = new CustomEvent('read-entity');
-      if (entityManagement.current) {
-        entityManagement.current.dispatchEvent(event);
-      }
-    };
-
-    if (userButton.current) {
-      userButton.current.addEventListener('click', handleAddItemUser);
+  const handleReadEntity = () => {
+    const event = new CustomEvent('read-entity');
+    if (entityManagement.current) {
+      entityManagement.current.dispatchEvent(event);
     }
+  };
 
-    if (profileButton.current) {
-      profileButton.current.addEventListener('click', handleAddItemProfile);
-    }
-
-    if (counterpartyButton.current) {
-      counterpartyButton.current.addEventListener(
-        'click',
-        handleAddItemCounterparty,
-      );
-    }
-
-    if (userManagment.current) {
-      userManagment.current.columns = userColumns;
-    }
-
-    if (userManagment2.current) {
-      userManagment2.current.columns = userColumns;
-    }
-
-    if (readButton.current) {
-      readButton.current.addEventListener('click', handleReadEntity);
-    }
-
-    return () => {
-      if (userButton.current) {
-        userButton.current.removeEventListener('click', handleAddItemUser);
-      }
-      if (profileButton.current) {
-        profileButton.current.removeEventListener('click', handleAddItemProfile);
-      }
-      if (counterpartyButton.current) {
-        counterpartyButton.current.removeEventListener(
-          'click',
-          handleAddItemCounterparty,
-        );
-      }
-      if (readButton.current) {
-        readButton.current.removeEventListener('click', handleReadEntity);
-      }
-    };
-  }, []);
   return (
     <div className={style['admin-page']}>
       <zero-tabs>
@@ -101,11 +48,9 @@ const AdminPage = () => {
         <zero-tab-panel slot="tabpanel">
           <zero-notification-listener>
             <nav>
-              <zero-button ref={userButton}>User Management</zero-button>
-              <zero-button ref={profileButton}>Profile Management</zero-button>
-              <zero-button ref={counterpartyButton}>
-                Counterparty Management
-              </zero-button>
+              <ZeroButton on-click={() => handleAddItem('user')}>User Management</ZeroButton>
+              <ZeroButton on-click={() =>  handleAddItem('profile')}>Profile Management</ZeroButton>
+              <ZeroButton on-click={() =>  handleAddItem('counterparty')}>Counterparty Management</ZeroButton>
             </nav>
             <zero-layout ref={adminLayout} popout-config="960;720">
               <zero-layout-region>
@@ -114,7 +59,7 @@ const AdminPage = () => {
                   registration="user"
                   closable
                 >
-                  <user-management ref={userManagment}></user-management>
+                  <UserManagement columns={userColumns}></UserManagement>
                 </zero-layout-item>
                 <zero-layout-region type="vertical">
                   <zero-layout-item
@@ -145,7 +90,7 @@ const AdminPage = () => {
         </zero-tab-panel>
         <zero-tab-panel slot="tabpanel">
           <zero-notification-listener>
-            <user-management ref={userManagment2}></user-management>
+            <UserManagement columns={userColumns}></UserManagement>
           </zero-notification-listener>
         </zero-tab-panel>
         <zero-tab-panel slot="tabpanel">
@@ -154,7 +99,7 @@ const AdminPage = () => {
           </zero-notification-listener>
         </zero-tab-panel>
         <zero-tab-panel slot="tabpanel">
-          <zero-button ref={readButton}>Read Entity</zero-button>
+          <ZeroButton on-click={handleReadEntity}>Read Entity</ZeroButton>
           <entity-management
             ref={entityManagement}
             class="entity-management-counterpartys"

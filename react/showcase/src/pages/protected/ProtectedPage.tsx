@@ -1,4 +1,5 @@
-import { useRef, useEffect, useState } from 'react';
+import { useState } from 'react';
+import reactifyWc from 'reactify-wc';
 import styles from './ProtectedPage.module.css';
 import StateChanger from '../../components/protected/StateChanger/StateChanger';
 import GridProClientDatasource from '../../components/protected/GridProClientDatasource/GridProClientDatasource';
@@ -7,35 +8,26 @@ import GridProClientDatasourceLinked from '../../components/protected/GridProCli
 import GridProServerDatasource from '../../components/protected/GridProServerDatasource/GridProServerDatasource';
 import GridTabulatorClientDatasource from '../../components/protected/GridTabulatorClientDatasource/GridTabulatorClientDatasource';
 
+const ZeroTabs: any= reactifyWc('zero-tabs');
+
 const ProtectedPage = () => {
-  const zeroTabs = useRef<any | null>(null);
   const [displayStateChanger, setDisplayStateChanger] = useState(true);
 
-  useEffect(() => {
-    if (zeroTabs.current) {
-      const handleTabSelected = (e: CustomEvent) => {
-        setDisplayStateChanger(
-          !Object.prototype.hasOwnProperty.call(
-            e.detail.attributes,
-            'hide-state-changer',
-          ),
-        );
-      };
-
-      zeroTabs.current.addEventListener('change', handleTabSelected);
-
-      return () => {
-        zeroTabs.current?.removeEventListener('change', handleTabSelected);
-      };
-    }
-  }, []);
+  const handleTabSelected = (e: CustomEvent) => {
+    setDisplayStateChanger(
+      !Object.prototype.hasOwnProperty.call(
+        e.detail.attributes,
+        'hide-state-changer',
+      ),
+    );
+  };
 
   return (
     <div className={styles['protected-page']}>
       <div className={styles['resource-filter']}>
         {displayStateChanger && <StateChanger></StateChanger>}
       </div>
-      <zero-tabs appearance="secondary" ref={zeroTabs}>
+      <ZeroTabs appearance="secondary" on-change={handleTabSelected}>
         <zero-tab appearance="secondary" slot="tab">
           Grid Pro + Client Datasource
         </zero-tab>
@@ -81,7 +73,7 @@ const ProtectedPage = () => {
             <GridTabulatorClientDatasource />
           </zero-notification-listener>
         </zero-tab-panel>
-      </zero-tabs>
+      </ZeroTabs>
     </div>
   );
 };

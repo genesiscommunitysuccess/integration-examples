@@ -1,4 +1,5 @@
 import { useRef, useEffect } from 'react';
+import reactifyWc from 'reactify-wc';
 import style from './FeaturesLabPage.module.css';
 import { getErrorFormat } from '@genesislcap/foundation-entity-management';
 import { Modal } from '@genesislcap/foundation-zero';
@@ -16,15 +17,14 @@ import { connectService } from '../../services/connect.service';
 
 UUID;
 
+const ZeroButton: any= reactifyWc('zero-button');
+
 const FeaturesLabPage = () => {
   const diContainer = connectService.getContainer();
   const uuidKey = UUID;
   const uuid = diContainer.get(uuidKey);
   const session = diContainer.get(sessionKey);
   const environmentAlertModal = useRef<Modal>(null);
-  const buttonAddRef = useRef<HTMLElement>(null);
-  const buttonUpdateRef = useRef<HTMLElement>(null);
-  const buttonDeleteRef = useRef<HTMLElement>(null);
   const connect = connectService.getConnect();
   const defaultTestRecordName = 'Temporary Test Record';
   const fetchAllTestRecords = async () => {
@@ -237,52 +237,21 @@ const FeaturesLabPage = () => {
     if (environmentAlertModal.current) {
       environmentAlertModal.current.show();
     }
-    if (buttonAddRef.current) {
-      buttonAddRef.current.addEventListener('click', insertTenTestRecords);
-    }
-
-    if (buttonUpdateRef.current) {
-      buttonUpdateRef.current.addEventListener('click', updateAllTestRecords);
-    }
-
-    if (buttonDeleteRef.current) {
-      buttonDeleteRef.current.addEventListener('click', deleteAllTestRecords);
-    }
-
-    return () => {
-      if (buttonAddRef.current) {
-        buttonAddRef.current.removeEventListener('click', insertTenTestRecords);
-      }
-
-      if (buttonUpdateRef.current) {
-        buttonUpdateRef.current.removeEventListener(
-          'click',
-          updateAllTestRecords,
-        );
-      }
-
-      if (buttonDeleteRef.current) {
-        buttonDeleteRef.current.removeEventListener(
-          'click',
-          deleteAllTestRecords,
-        );
-      }
-    };
   }, []);
 
   return (
     <zero-notification-listener class={style['page-features-lab']}>
       <div className={style['wrapper']}>
         <zero-toolbar>
-          <zero-button ref={buttonAddRef}>
+          <ZeroButton on-click={insertTenTestRecords}>
             Add 10 Random Test Records
-          </zero-button>
-          <zero-button ref={buttonUpdateRef}>
+          </ZeroButton>
+          <ZeroButton on-click={updateAllTestRecords}>
             Update All Test Records
-          </zero-button>
-          <zero-button ref={buttonDeleteRef}>
+          </ZeroButton>
+          <ZeroButton on-click={deleteAllTestRecords}>
             Delete All Test Records
-          </zero-button>
+          </ZeroButton>
         </zero-toolbar>
         <zero-divider></zero-divider>
         <entity-management
