@@ -1,7 +1,7 @@
-import React, { ReactNode } from 'react'
-import BlankLayout from './blank/BlankLayout'
-import DefaultLayout from './default/DefaultLayout'
-import SimpleLayout from './simple/SimpleLayout'
+import React, { ReactNode } from 'react';
+import BlankLayout from './blank/BlankLayout';
+import DefaultLayout from './default/DefaultLayout';
+import SimpleLayout from './simple/SimpleLayout';
 
 interface LayoutWrapperProps {
   layout: 'blank' | 'default' | 'simple'
@@ -12,11 +12,11 @@ const layoutMap = {
   blank: BlankLayout,
   default: DefaultLayout,
   simple: SimpleLayout,
-}
+};
 
 const LayoutWrapper: React.FC<LayoutWrapperProps> = ({ layout, children }) => {
-  const Layout = layoutMap[layout] || DefaultLayout
-  return <Layout>{children}</Layout>
-}
+  const Layout = layoutMap[layout] || DefaultLayout;
+  return <Layout>{children}</Layout>;
+};
 
-export default LayoutWrapper
+export default LayoutWrapper;

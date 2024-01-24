@@ -1,6 +1,6 @@
-import GenesisLogo from '../../assets/logo-icon--light.svg'
-import ReactLogo from '../../assets/react-icon.svg'
-import styles from './AppFooter.module.css'
+import GenesisLogo from '../../assets/logo-icon--light.svg';
+import ReactLogo from '../../assets/react-icon.svg';
+import styles from './AppFooter.module.css';
 
 function AppFooter() {
   return (
@@ -9,7 +9,7 @@ function AppFooter() {
       <span>x</span>
       <img src={GenesisLogo} alt="Genesis logo" />
     </section>
-  )
+  );
 }
 
-export default AppFooter
+export default AppFooter;

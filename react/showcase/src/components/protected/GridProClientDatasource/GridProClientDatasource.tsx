@@ -1,31 +1,31 @@
-import { useRef, useContext, useEffect } from 'react'
-import { css } from '@microsoft/fast-element'
-import { SlottedStyles } from '@genesislcap/foundation-utils'
-import { DatasourceDefaults } from '@genesislcap/foundation-comms'
+import { useRef, useContext, useEffect } from 'react';
+import { css } from '@microsoft/fast-element';
+import { SlottedStyles } from '@genesislcap/foundation-utils';
+import { DatasourceDefaults } from '@genesislcap/foundation-comms';
 import {
   GridProColumn,
   GridProCell,
-} from '@genesislcap/foundation-zero-grid-pro'
-import styles from './GridProClientDatasource.module.css'
-import StateChangerContext from '../../../store/StateChanger/StateChangerContext'
+} from '@genesislcap/foundation-zero-grid-pro';
+import styles from './GridProClientDatasource.module.css';
+import StateChangerContext from '../../../store/StateChanger/StateChangerContext';
 
 const GridProClientDatasource = () => {
-  const stateChangerContext = useContext(StateChangerContext)
+  const stateChangerContext = useContext(StateChangerContext);
   if (!stateChangerContext) {
-    throw new Error('StateChangerContext is not defined')
+    throw new Error('StateChangerContext is not defined');
   }
-  const { state: stateChangerState } = stateChangerContext
-  const slottedStyles = useRef<SlottedStyles | null>(null)
-  const slottedStyles2 = useRef<SlottedStyles | null>(null)
-  const customGridProColumn = useRef<GridProColumn | null>(null)
-  const customGridProColumn2 = useRef<GridProColumn | null>(null)
-  const customGridProCell = useRef<GridProCell | null>(null)
-  const customGridProCell2 = useRef<GridProCell | null>(null)
-  const itemGridProColumnRefs = useRef<(HTMLElement | null)[]>([])
-  const itemGridProColumnRefs2 = useRef<(HTMLElement | null)[]>([])
-  const itemGridProCellRefs = useRef<(HTMLElement | null)[]>([])
-  const itemGridProCellRefs2 = useRef<(HTMLElement | null)[]>([])
-  const classNameRoot = styles['grid-pro-client-datasource']
+  const { state: stateChangerState } = stateChangerContext;
+  const slottedStyles = useRef<SlottedStyles | null>(null);
+  const slottedStyles2 = useRef<SlottedStyles | null>(null);
+  const customGridProColumn = useRef<GridProColumn | null>(null);
+  const customGridProColumn2 = useRef<GridProColumn | null>(null);
+  const customGridProCell = useRef<GridProCell | null>(null);
+  const customGridProCell2 = useRef<GridProCell | null>(null);
+  const itemGridProColumnRefs = useRef<(HTMLElement | null)[]>([]);
+  const itemGridProColumnRefs2 = useRef<(HTMLElement | null)[]>([]);
+  const itemGridProCellRefs = useRef<(HTMLElement | null)[]>([]);
+  const itemGridProCellRefs2 = useRef<(HTMLElement | null)[]>([]);
+  const classNameRoot = styles['grid-pro-client-datasource'];
   const customBooleanColDefs: any = [
     {
       headerName: 'Process Status', // sets custom header for this field
@@ -34,7 +34,7 @@ const GridProClientDatasource = () => {
       cellRenderer: ({ data }: any) => {
         return `<span class="process-status-${
           data.ENABLED ? 'enabled' : 'disabled'
-        }">Custom ${data.ENABLED ? 'Enabled' : 'Disabled'}</span>`
+        }">Custom ${data.ENABLED ? 'Enabled' : 'Disabled'}</span>`;
       }, // custom renderer for this field
       cellClass: 'process-status',
     },
@@ -44,7 +44,7 @@ const GridProClientDatasource = () => {
       width: 100,
       cellRenderer: 'boolean',
     },
-  ]
+  ];
   const processGridStyles = css`
     .process-status-enabled {
       color: green;
@@ -52,16 +52,16 @@ const GridProClientDatasource = () => {
     .process-status-disabled {
       color: red;
     }
-  `
+  `;
   const rowRewfDefinition = {
     headerName: 'Row ref',
     field: 'ROW_REF',
     cellRenderer: ({ data }: any) => {
-      return `<span style="color:#555">${data.ROW_REF}</span>`
+      return `<span style="color:#555">${data.ROW_REF}</span>`;
     },
-  }
-  const maxView = DatasourceDefaults.MAX_VIEW_1000
-  const maxRows = DatasourceDefaults.MAX_ROWS_250
+  };
+  const maxView = DatasourceDefaults.MAX_VIEW_1000;
+  const maxRows = DatasourceDefaults.MAX_ROWS_250;
   const getGridProColumns = (key: string, columnsRefs: any, cellRefs: any) =>
     customBooleanColDefs.map((colDef: any, index: number) => {
       return (
@@ -75,51 +75,51 @@ const GridProClientDatasource = () => {
             ></grid-pro-cell>
           )}
         </grid-pro-column>
-      )
-    })
+      );
+    });
 
   useEffect(() => {
     //eslint-disable-next-line
     if (slottedStyles.current) {
-      slottedStyles.current.styles = processGridStyles
+      slottedStyles.current.styles = processGridStyles;
     }
 
     if (slottedStyles2.current) {
-      slottedStyles2.current.styles = processGridStyles
+      slottedStyles2.current.styles = processGridStyles;
     }
 
     if (customGridProColumn.current) {
-      customGridProColumn.current.definition = rowRewfDefinition
+      customGridProColumn.current.definition = rowRewfDefinition;
     }
 
     if (customGridProColumn2.current) {
-      customGridProColumn2.current.definition = rowRewfDefinition
+      customGridProColumn2.current.definition = rowRewfDefinition;
     }
 
     if (customGridProCell2.current) {
       customGridProCell2.current.renderer = (params: any) => {
         return `<span style="color: ${
           params.value === 'TRACE' ? 'orange' : 'green'
-        }">Custom ${params.value}</span>`
-      }
+        }">Custom ${params.value}</span>`;
+      };
     }
 
     if (itemGridProColumnRefs.current) {
       itemGridProColumnRefs.current.forEach(
         (itemGridProColumnElement: any, index: number) => {
-          itemGridProColumnElement.definition = customBooleanColDefs[index]
+          itemGridProColumnElement.definition = customBooleanColDefs[index];
         },
-      )
+      );
     }
 
     if (itemGridProColumnRefs2.current) {
       itemGridProColumnRefs2.current.forEach(
         (itemGridProColumnElement: any, index: number) => {
-          itemGridProColumnElement.definition = customBooleanColDefs[index]
+          itemGridProColumnElement.definition = customBooleanColDefs[index];
         },
-      )
+      );
     }
-  }, [])
+  }, []);
 
   return (
     <zero-grid-layout
@@ -322,7 +322,7 @@ const GridProClientDatasource = () => {
         </zero-card>
       </zero-grid-layout-item>
     </zero-grid-layout>
-  )
-}
+  );
+};
 
-export default GridProClientDatasource
+export default GridProClientDatasource;

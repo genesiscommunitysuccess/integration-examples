@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 export interface StateChangerState {
   criteria: string
@@ -11,6 +11,6 @@ export interface StateChangerContextType {
 
 const StateChangerContext = React.createContext<
   StateChangerContextType | undefined
->(undefined)
+>(undefined);
 
-export default StateChangerContext
+export default StateChangerContext;

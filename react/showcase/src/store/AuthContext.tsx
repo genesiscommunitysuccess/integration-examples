@@ -4,10 +4,10 @@ import {
   useContext,
   ReactNode,
   FunctionComponent,
-} from 'react'
-import { authService } from '../services/auth.service'
-import { connectService } from '../services/connect.service'
-import { USE_FOUNDATION_AUTH } from '../config'
+} from 'react';
+import { authService } from '../services/auth.service';
+import { connectService } from '../services/connect.service';
+import { USE_FOUNDATION_AUTH } from '../config';
 
 interface AuthContextType {
   user: User | null
@@ -24,45 +24,45 @@ interface User {
   authorized: boolean
 }
 
-const AuthContext = createContext<AuthContextType | undefined>(undefined)
+const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const useAuth = () => {
-  const context = useContext(AuthContext)
+  const context = useContext(AuthContext);
   if (!context) {
-    throw new Error('useAuth must be used within an AuthProvider')
+    throw new Error('useAuth must be used within an AuthProvider');
   }
-  return context
-}
+  return context;
+};
 
 export const AuthProvider: FunctionComponent<AuthProviderProps> = ({
   children,
 }) => {
-  const [user, setUser] = useState<User | null>(null)
+  const [user, setUser] = useState<User | null>(null);
 
   const checkAuthStatus = async () => {
-    const isUserAuthenticated = await authService.isUserAuthenticated()
+    const isUserAuthenticated = await authService.isUserAuthenticated();
 
     if (isUserAuthenticated) {
       if (!USE_FOUNDATION_AUTH) {
-        const connect = connectService.getConnect()
+        const connect = connectService.getConnect();
         if (!connect.isConnected) {
-          return
+          return;
         }
       }
       const user = {
         authorized: isUserAuthenticated,
-      }
+      };
 
-      setUser(user)
+      setUser(user);
     }
-  }
+  };
 
   const logout = async () => {
-    await authService.logout()
-    setUser(null)
-  }
+    await authService.logout();
+    setUser(null);
+  };
 
-  const value = { user, setUser, checkAuthStatus, logout }
+  const value = { user, setUser, checkAuthStatus, logout };
 
-  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
-}
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+};

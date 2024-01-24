@@ -1,20 +1,20 @@
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef, useEffect } from 'react';
 import {
   FoundationLayout,
   LayoutEmitEvents,
-} from '@genesislcap/foundation-layout'
-import { G2PlotChart } from '@genesislcap/g2plot-chart'
+} from '@genesislcap/foundation-layout';
+import { G2PlotChart } from '@genesislcap/g2plot-chart';
 import {
   CriteriaSegmentedControlOption,
   Serialisers,
   CriteriaSegmentedControl,
-} from '@genesislcap/foundation-criteria'
-import * as savedLayout from '../../sample-data/saved-layouts'
+} from '@genesislcap/foundation-criteria';
+import * as savedLayout from '../../sample-data/saved-layouts';
 import {
   AnalyticChartRegistration,
   SavedLayoutKeys,
   LayoutComponentsNames,
-} from './AnalyticsPage.types'
+} from './AnalyticsPage.types';
 import {
   areaConfiguration,
   barConfiguration,
@@ -30,12 +30,12 @@ import {
   stockConfiguration,
   stockData,
   mixConfiguration,
-} from '../../sample-data'
+} from '../../sample-data';
 import {
   setComponentItemsMap,
   getElementByTagFromComponent,
-} from '../../utils/goldenLayout.helper'
-import style from './AnalyticsPage.module.css'
+} from '../../utils/goldenLayout.helper';
+import style from './AnalyticsPage.module.css';
 
 const chartConfigMap: Map<LayoutComponentsNames, any> = new Map([
   [LayoutComponentsNames.AREA, areaConfiguration as any],
@@ -47,14 +47,14 @@ const chartConfigMap: Map<LayoutComponentsNames, any> = new Map([
   [LayoutComponentsNames.ROSE, roseConfiguration as any],
   [LayoutComponentsNames.STOCK, stockConfiguration as any],
   [LayoutComponentsNames.DONUT, pieConfiguration as any],
-])
+]);
 const chartDataMap: Map<LayoutComponentsNames, any> = new Map([
   [LayoutComponentsNames.BAR, barData as any],
   [LayoutComponentsNames.PIE, pieData as any],
   [LayoutComponentsNames.ROSE, roseData as any],
   [LayoutComponentsNames.STOCK, stockData as any],
-])
-const layoutSaveKey = 'analytics-layout-save-key'
+]);
+const layoutSaveKey = 'analytics-layout-save-key';
 const toolbarOptions: CriteriaSegmentedControlOption[] = [
   {
     label: 'VOD',
@@ -74,43 +74,43 @@ const toolbarOptions: CriteriaSegmentedControlOption[] = [
     value: 'LSEG',
     serialiser: Serialisers.EQ,
   },
-]
+];
 const helperCriteriaEvent = (
   criteriaSegmentedControl: any,
   chartDataResource: any,
 ): (() => void) => {
   const handler = ({ target }: any) => {
-    chartDataResource.criteria = target.value
-  }
-  criteriaSegmentedControl.addEventListener('change', handler)
-  return () => criteriaSegmentedControl.removeEventListener('change', handler)
-}
+    chartDataResource.criteria = target.value;
+  };
+  criteriaSegmentedControl.addEventListener('change', handler);
+  return () => criteriaSegmentedControl.removeEventListener('change', handler);
+};
 
 const AnaliticsPage = () => {
   const [ribbonButtonsConfig, setRibbonButtonsConfig] = useState<
     AnalyticChartRegistration[]
-  >([])
-  const saveButton = useRef<HTMLButtonElement>(null)
-  const loadLayoutButton = useRef<HTMLButtonElement>(null)
-  const loadDefaultLayoutButton = useRef<HTMLButtonElement>(null)
-  const loadCompactLayoutButton = useRef<HTMLButtonElement>(null)
-  const ribbonButtonsRef = useRef<HTMLButtonElement[]>([])
-  const analyticsLayout = useRef<FoundationLayout>(null)
-  const pieChartInTab = useRef<G2PlotChart>(null)
-  const criteriaInTab = useRef<CriteriaSegmentedControl>(null)
-  const pieChart2InTab = useRef<G2PlotChart>(null)
-  const pieChartDataSourceInTab = useRef<HTMLElement>(null)
-  const areaChartInTab = useRef<G2PlotChart>(null)
-  const barChartInTab = useRef<G2PlotChart>(null)
-  const columnChartInTab = useRef<G2PlotChart>(null)
-  const dualaxesChartInTab = useRef<G2PlotChart>(null)
-  const lineChartInTab = useRef<G2PlotChart>(null)
-  const roseChartInTab = useRef<G2PlotChart>(null)
-  const mixChartInTab = useRef<G2PlotChart>(null)
+  >([]);
+  const saveButton = useRef<HTMLButtonElement>(null);
+  const loadLayoutButton = useRef<HTMLButtonElement>(null);
+  const loadDefaultLayoutButton = useRef<HTMLButtonElement>(null);
+  const loadCompactLayoutButton = useRef<HTMLButtonElement>(null);
+  const ribbonButtonsRef = useRef<HTMLButtonElement[]>([]);
+  const analyticsLayout = useRef<FoundationLayout>(null);
+  const pieChartInTab = useRef<G2PlotChart>(null);
+  const criteriaInTab = useRef<CriteriaSegmentedControl>(null);
+  const pieChart2InTab = useRef<G2PlotChart>(null);
+  const pieChartDataSourceInTab = useRef<HTMLElement>(null);
+  const areaChartInTab = useRef<G2PlotChart>(null);
+  const barChartInTab = useRef<G2PlotChart>(null);
+  const columnChartInTab = useRef<G2PlotChart>(null);
+  const dualaxesChartInTab = useRef<G2PlotChart>(null);
+  const lineChartInTab = useRef<G2PlotChart>(null);
+  const roseChartInTab = useRef<G2PlotChart>(null);
+  const mixChartInTab = useRef<G2PlotChart>(null);
 
-  const layoutComponentsMap: Map<LayoutComponentsNames, any> = new Map()
-  const onDestroyActions: (() => void)[] = []
-  const roseLegendParser = ({ series }: { series: string }) => series
+  const layoutComponentsMap: Map<LayoutComponentsNames, any> = new Map();
+  const onDestroyActions: (() => void)[] = [];
+  const roseLegendParser = ({ series }: { series: string }) => series;
   const addChartToLayout = ({
     registration: registration,
     title: title,
@@ -120,72 +120,72 @@ const AnaliticsPage = () => {
         registration,
         title,
         closable: true,
-      })
+      });
     }
-  }
+  };
 
   const setChartsConfigAndData = () => {
     layoutComponentsMap.forEach((layoutComponent, key) => {
       const chart = getElementByTagFromComponent(
         layoutComponent,
         'zero-g2plot-chart',
-      )
-      const chartConfig = chartConfigMap.get(key)
-      const chartData = chartDataMap.get(key)
+      );
+      const chartConfig = chartConfigMap.get(key);
+      const chartData = chartDataMap.get(key);
 
       if (chartConfig) {
-        chart.config = chartConfig
+        chart.config = chartConfig;
       }
 
       if (chartData) {
-        chart.data = chartData
+        chart.data = chartData;
       }
-    })
-  }
+    });
+  };
 
   const setLayoutChildrenProps = () => {
     const roseLayoutComponent = layoutComponentsMap.get(
       LayoutComponentsNames.ROSE,
-    )
+    );
     const roseChart = getElementByTagFromComponent(
       roseLayoutComponent,
       'zero-g2plot-chart',
-    )
-    roseChart.legendParser = roseLegendParser
+    );
+    roseChart.legendParser = roseLegendParser;
 
     const pieLayoutComponent = layoutComponentsMap.get(
       LayoutComponentsNames.PIE,
-    )
+    );
     const criteriaSegmentedControl = getElementByTagFromComponent(
       pieLayoutComponent,
       'criteria-segmented-control',
-    )
-    criteriaSegmentedControl.criteriaOptions = toolbarOptions
-  }
+    );
+    criteriaSegmentedControl.criteriaOptions = toolbarOptions;
+  };
 
   const handleEmmitsInsideLayout = () => {
     const pieLayoutComponent = layoutComponentsMap.get(
       LayoutComponentsNames.PIE,
-    )
+    );
     const criteriaSegmentedControl = getElementByTagFromComponent(
       pieLayoutComponent,
       'criteria-segmented-control',
-    )
+    );
     const pieChartDataResource = getElementByTagFromComponent(
       pieLayoutComponent,
       'chart-datasource',
-    )
+    );
 
     onDestroyActions.push(
       helperCriteriaEvent(criteriaSegmentedControl, pieChartDataResource),
-    )
-  }
+    );
+  };
 
   const upadateRibbonButtons = () => {
     if (analyticsLayout.current) {
       const currentlyAddedItem = FoundationLayout.layoutRequiredRegistrations(
         analyticsLayout.current.getLayout(),
-      )
+      );
 
       setRibbonButtonsConfig(
         Array.from(
@@ -195,197 +195,197 @@ const AnaliticsPage = () => {
           title,
           enabled: !currentlyAddedItem.includes(registration),
         })),
-      )
+      );
     }
-  }
+  };
 
   const saveLayoutButtonHandler = () => {
     if (analyticsLayout.current) {
-      const layout = analyticsLayout.current.getLayout()
-      localStorage.setItem(layoutSaveKey, JSON.stringify(layout))
+      const layout = analyticsLayout.current.getLayout();
+      localStorage.setItem(layoutSaveKey, JSON.stringify(layout));
     }
-  }
+  };
 
   const setLayout = (config: any) => {
     if (analyticsLayout.current) {
-      analyticsLayout.current.loadLayout(JSON.parse(config))
-      setChartsConfigAndData()
-      setLayoutChildrenProps()
+      analyticsLayout.current.loadLayout(JSON.parse(config));
+      setChartsConfigAndData();
+      setLayoutChildrenProps();
     }
-  }
+  };
 
   const loadLayoutButtonHandler = () => {
-    const layout = localStorage.getItem(layoutSaveKey)
-    if (!layout) return
-    setLayout(layout)
-  }
+    const layout = localStorage.getItem(layoutSaveKey);
+    if (!layout) return;
+    setLayout(layout);
+  };
 
   const loadPredefinedLayout = (layoutName: SavedLayoutKeys) => {
-    setLayout(savedLayout[layoutName])
-    upadateRibbonButtons()
-  }
+    setLayout(savedLayout[layoutName]);
+    upadateRibbonButtons();
+  };
 
   useEffect(() => {
-    let removeCriteriaEventListener: () => void
+    let removeCriteriaEventListener: () => void;
 
     if (analyticsLayout.current) {
-      setComponentItemsMap(analyticsLayout.current, layoutComponentsMap)
+      setComponentItemsMap(analyticsLayout.current, layoutComponentsMap);
 
       analyticsLayout.current.addEventListener(
         LayoutEmitEvents.firstLoaded,
         () => {
-          setChartsConfigAndData()
-          setLayoutChildrenProps()
-          handleEmmitsInsideLayout()
-          upadateRibbonButtons()
+          setChartsConfigAndData();
+          setLayoutChildrenProps();
+          handleEmmitsInsideLayout();
+          upadateRibbonButtons();
         },
-      )
+      );
 
       //tabPanelZero
       if (pieChartInTab.current) {
-        pieChartInTab.current.config = pieConfiguration
-        pieChartInTab.current.data = pieData
+        pieChartInTab.current.config = pieConfiguration;
+        pieChartInTab.current.data = pieData;
       }
 
       if (criteriaInTab.current) {
-        criteriaInTab.current.criteriaOptions = toolbarOptions
+        criteriaInTab.current.criteriaOptions = toolbarOptions;
       }
 
       if (pieChart2InTab.current) {
-        pieChart2InTab.current.config = pieConfiguration
+        pieChart2InTab.current.config = pieConfiguration;
       }
 
       if (criteriaInTab.current && pieChartDataSourceInTab.current) {
         removeCriteriaEventListener = helperCriteriaEvent(
           criteriaInTab.current,
           pieChartDataSourceInTab.current,
-        )
+        );
       }
 
       //tabPanelOne
       if (areaChartInTab.current) {
-        areaChartInTab.current.config = areaConfiguration
+        areaChartInTab.current.config = areaConfiguration;
       }
 
       //tabPanelTwo
       if (barChartInTab.current) {
-        barChartInTab.current.config = barConfiguration
-        barChartInTab.current.data = barData
+        barChartInTab.current.config = barConfiguration;
+        barChartInTab.current.data = barData;
       }
 
       //tabPanelThree
       if (columnChartInTab.current) {
-        columnChartInTab.current.config = columnConfiguration
+        columnChartInTab.current.config = columnConfiguration;
       }
 
       //tabPanelFour
       if (dualaxesChartInTab.current) {
-        dualaxesChartInTab.current.config = dualaxesConfiguration
-        dualaxesChartInTab.current.data = [dualaxesData, dualaxesData]
+        dualaxesChartInTab.current.config = dualaxesConfiguration;
+        dualaxesChartInTab.current.data = [dualaxesData, dualaxesData];
       }
 
       //tabPanelFive
       if (lineChartInTab.current) {
-        lineChartInTab.current.config = lineConfiguration
+        lineChartInTab.current.config = lineConfiguration;
       }
 
       //tabPanelSix
       if (roseChartInTab.current) {
-        roseChartInTab.current.config = roseConfiguration
-        roseChartInTab.current.data = roseData
+        roseChartInTab.current.config = roseConfiguration;
+        roseChartInTab.current.data = roseData;
       }
 
       //tabPanelSeven
       if (mixChartInTab.current) {
-        mixChartInTab.current.config = mixConfiguration
-        mixChartInTab.current.data = [[], []]
+        mixChartInTab.current.config = mixConfiguration;
+        mixChartInTab.current.data = [[], []];
       }
 
       analyticsLayout.current.addEventListener(
         LayoutEmitEvents.itemAdded,
         upadateRibbonButtons,
-      )
+      );
       analyticsLayout.current.addEventListener(
         LayoutEmitEvents.itemRemoved,
         upadateRibbonButtons,
-      )
+      );
       analyticsLayout.current.addEventListener(
         LayoutEmitEvents.firstLoaded,
         upadateRibbonButtons,
-      )
+      );
 
       if (saveButton.current) {
-        saveButton.current.addEventListener('click', saveLayoutButtonHandler)
+        saveButton.current.addEventListener('click', saveLayoutButtonHandler);
       }
 
       if (loadLayoutButton.current) {
         loadLayoutButton.current.addEventListener(
           'click',
           loadLayoutButtonHandler,
-        )
+        );
       }
 
       const handleClickLoadDefaultLayout = () =>
-        loadPredefinedLayout('DEFAULT_EXTENDED_LAYOUT')
+        loadPredefinedLayout('DEFAULT_EXTENDED_LAYOUT');
       if (loadDefaultLayoutButton.current) {
         loadDefaultLayoutButton.current.addEventListener(
           'click',
           handleClickLoadDefaultLayout,
-        )
+        );
       }
 
       const handleClickLoadCompactLayout = () =>
-        loadPredefinedLayout('COMPACT_LAYOUT')
+        loadPredefinedLayout('COMPACT_LAYOUT');
       if (loadCompactLayoutButton.current) {
         loadCompactLayoutButton.current.addEventListener(
           'click',
           handleClickLoadCompactLayout,
-        )
+        );
       }
 
       return () => {
         if (removeCriteriaEventListener) {
-          removeCriteriaEventListener()
+          removeCriteriaEventListener();
         }
 
         if (analyticsLayout.current) {
           analyticsLayout.current.removeEventListener(
             LayoutEmitEvents.itemAdded,
             upadateRibbonButtons,
-          )
+          );
           analyticsLayout.current.removeEventListener(
             LayoutEmitEvents.itemRemoved,
             upadateRibbonButtons,
-          )
+          );
           analyticsLayout.current.removeEventListener(
             LayoutEmitEvents.firstLoaded,
             upadateRibbonButtons,
-          )
+          );
         }
 
         if (saveButton.current) {
           saveButton.current.removeEventListener(
             'click',
             saveLayoutButtonHandler,
-          )
+          );
         }
 
         if (loadLayoutButton.current) {
           loadLayoutButton.current.removeEventListener(
             'click',
             loadLayoutButtonHandler,
-          )
+          );
         }
 
         if (loadDefaultLayoutButton.current) {
           loadDefaultLayoutButton.current.removeEventListener(
             'click',
             handleClickLoadDefaultLayout,
-          )
+          );
         }
-      }
+      };
     }
-  }, [])
+  }, []);
 
   return (
     <zero-flex-layout class={style['analytics-page']}>
@@ -624,7 +624,7 @@ const AnaliticsPage = () => {
         </zero-tab-panel>
       </zero-tabs>
     </zero-flex-layout>
-  )
-}
+  );
+};
 
-export default AnaliticsPage
+export default AnaliticsPage;

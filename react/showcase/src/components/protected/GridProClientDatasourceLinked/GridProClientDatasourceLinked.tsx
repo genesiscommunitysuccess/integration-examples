@@ -1,68 +1,68 @@
-import { useRef, useEffect } from 'react'
-import { GridOptions, RowSelectedEvent } from '@ag-grid-community/core'
+import { useRef, useEffect } from 'react';
+import { GridOptions, RowSelectedEvent } from '@ag-grid-community/core';
 import {
   LayoutEmitEvents,
   FoundationLayout,
-} from '@genesislcap/foundation-layout'
-import { LayoutComponentsNames } from './GridProClientDatasourceLinked.types'
+} from '@genesislcap/foundation-layout';
+import { LayoutComponentsNames } from './GridProClientDatasourceLinked.types';
 import {
   setComponentItemsMap,
   getElementByTagFromComponent,
-} from '../../../utils/goldenLayout.helper'
+} from '../../../utils/goldenLayout.helper';
 
-const DATASOURCE_ELEMENT_TAG = 'grid-pro-genesis-datasource'
+const DATASOURCE_ELEMENT_TAG = 'grid-pro-genesis-datasource';
 
 const GridProClientDatasourceLinked = () => {
-  const layoutComponentsMap: Map<LayoutComponentsNames, any> = new Map()
+  const layoutComponentsMap: Map<LayoutComponentsNames, any> = new Map();
   const deferredGridOptions: GridOptions = {
     rowSelection: 'single',
     onRowClicked: (e: RowSelectedEvent) => {
       const instrumentName = e.node.isSelected()
         ? e.data?.INSTRUMENT_NAME
-        : undefined
+        : undefined;
       if (instrumentName) {
         const allTradesComponent = layoutComponentsMap.get(
           LayoutComponentsNames.ALL_TRADES,
-        )
+        );
         const datasourceElement = getElementByTagFromComponent(
           allTradesComponent,
           DATASOURCE_ELEMENT_TAG,
-        )
-        datasourceElement.criteria = `INSTRUMENT_NAME == '${instrumentName}'`
+        );
+        datasourceElement.criteria = `INSTRUMENT_NAME == '${instrumentName}'`;
       }
     },
-  }
-  const gridLayout = useRef<FoundationLayout | null>(null)
+  };
+  const gridLayout = useRef<FoundationLayout | null>(null);
 
   useEffect(() => {
     if (gridLayout.current) {
-      setComponentItemsMap(gridLayout.current, layoutComponentsMap)
+      setComponentItemsMap(gridLayout.current, layoutComponentsMap);
 
       const handleGridLayoutFirstLoaded = () => {
         const allPositions = layoutComponentsMap.get(
           LayoutComponentsNames.ALL_POSITIONS,
-        )
+        );
         const datasourceElement = getElementByTagFromComponent(
           allPositions,
           DATASOURCE_ELEMENT_TAG,
-        )
+        );
 
-        datasourceElement.deferredGridOptions = deferredGridOptions
-      }
+        datasourceElement.deferredGridOptions = deferredGridOptions;
+      };
 
       gridLayout.current.addEventListener(
         LayoutEmitEvents.firstLoaded,
         handleGridLayoutFirstLoaded,
-      )
+      );
 
       return () => {
         gridLayout.current?.removeEventListener(
           LayoutEmitEvents.firstLoaded,
           handleGridLayoutFirstLoaded,
-        )
-      }
+        );
+      };
     }
-  }, [])
+  }, []);
 
   return (
     <zero-layout ref={gridLayout}>
@@ -86,7 +86,7 @@ const GridProClientDatasourceLinked = () => {
         </zero-layout-region>
       </zero-layout-region>
     </zero-layout>
-  )
-}
+  );
+};
 
-export default GridProClientDatasourceLinked
+export default GridProClientDatasourceLinked;

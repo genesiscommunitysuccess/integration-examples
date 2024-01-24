@@ -1,30 +1,30 @@
-import { useRef, useEffect, useContext } from 'react'
-import { DatasourceDefaults } from '@genesislcap/foundation-comms'
-import { FoundationLayout } from '@genesislcap/foundation-layout'
-import { LayoutComponentsNames } from './GridTabulatorClientDatasource.types'
-import StateChangerContext from '../../../store/StateChanger/StateChangerContext'
+import { useRef, useEffect, useContext } from 'react';
+import { DatasourceDefaults } from '@genesislcap/foundation-comms';
+import { FoundationLayout } from '@genesislcap/foundation-layout';
+import { LayoutComponentsNames } from './GridTabulatorClientDatasource.types';
+import StateChangerContext from '../../../store/StateChanger/StateChangerContext';
 import {
   setComponentItemsMap,
   getElementByTagFromComponent,
-} from '../../../utils/goldenLayout.helper'
+} from '../../../utils/goldenLayout.helper';
 
 const GridTabulatorClientDatasource = () => {
-  const stateChangerContext = useContext(StateChangerContext)
+  const stateChangerContext = useContext(StateChangerContext);
   if (!stateChangerContext) {
-    throw new Error('StateChangerContext is not defined')
+    throw new Error('StateChangerContext is not defined');
   }
-  const { state: stateChangerState } = stateChangerContext
-  const layoutComponentsMap: Map<LayoutComponentsNames, any> = new Map()
-  const gridLayout = useRef<FoundationLayout | null>(null)
-  const maxView = DatasourceDefaults.MAX_VIEW_1000
-  const maxRows = DatasourceDefaults.MAX_ROWS_250
-  const restartOnReconnection = true
+  const { state: stateChangerState } = stateChangerContext;
+  const layoutComponentsMap: Map<LayoutComponentsNames, any> = new Map();
+  const gridLayout = useRef<FoundationLayout | null>(null);
+  const maxView = DatasourceDefaults.MAX_VIEW_1000;
+  const maxRows = DatasourceDefaults.MAX_ROWS_250;
+  const restartOnReconnection = true;
 
   useEffect(() => {
     if (gridLayout.current) {
-      setComponentItemsMap(gridLayout.current, layoutComponentsMap)
+      setComponentItemsMap(gridLayout.current, layoutComponentsMap);
     }
-  }, [])
+  }, []);
 
   useEffect(() => {
     if (gridLayout.current) {
@@ -32,18 +32,18 @@ const GridTabulatorClientDatasource = () => {
         const datasource = getElementByTagFromComponent(
           component,
           'grid-tabulator-client-side-datasource',
-        )
+        );
 
         if (stateChangerState.resourceName) {
-          datasource.resourceName = stateChangerState.resourceName
+          datasource.resourceName = stateChangerState.resourceName;
         }
 
         if (stateChangerState.criteria) {
-          datasource.criteria = stateChangerState.criteria
+          datasource.criteria = stateChangerState.criteria;
         }
-      })
+      });
     }
-  }, [stateChangerState])
+  }, [stateChangerState]);
 
   return (
     <zero-layout ref={gridLayout}>
@@ -81,7 +81,7 @@ const GridTabulatorClientDatasource = () => {
         </zero-layout-region>
       </zero-layout-region>
     </zero-layout>
-  )
-}
+  );
+};
 
-export default GridTabulatorClientDatasource
+export default GridTabulatorClientDatasource;

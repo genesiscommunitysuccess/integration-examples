@@ -1,42 +1,42 @@
-import { useRef, useState, useEffect } from 'react'
-import style from './FiltersPage.module.css'
+import { useRef, useState, useEffect } from 'react';
+import style from './FiltersPage.module.css';
 
 const FiltersPage = () => {
-  const allUsersFiltersRef = useRef<any>(null)
-  const allTradesFiltersRef = useRef<any>(null)
-  const allProfilesFiltersRef = useRef<any>(null)
-  const [allUsersfilters, setAllUsersfilters] = useState('')
-  const [allTradesfilters, setAllTradesfilters] = useState('')
-  const [allProfilesfilters, setAllProfilesfilters] = useState('')
+  const allUsersFiltersRef = useRef<any>(null);
+  const allTradesFiltersRef = useRef<any>(null);
+  const allProfilesFiltersRef = useRef<any>(null);
+  const [allUsersfilters, setAllUsersfilters] = useState('');
+  const [allTradesfilters, setAllTradesfilters] = useState('');
+  const [allProfilesfilters, setAllProfilesfilters] = useState('');
 
   const handleChange = (setMethod: any, event: any) => {
-    console.log({ event })
-    setMethod(event?.target?.value)
-  }
+    console.log({ event });
+    setMethod(event?.target?.value);
+  };
 
   const handleSubmit = () => {
-    console.log('$emit test')
-  }
+    console.log('$emit test');
+  };
 
   useEffect(() => {
     const handleChangeAllUsersfilters = handleChange.bind(
       this,
       setAllUsersfilters,
-    )
+    );
     const handleChangeAllTradesfilters = handleChange.bind(
       this,
       setAllTradesfilters,
-    )
+    );
     const handleChangeAllProfilesfilters = handleChange.bind(
       this,
       setAllProfilesfilters,
-    )
+    );
 
     if (allUsersFiltersRef.current) {
       allUsersFiltersRef.current.addEventListener(
         'change',
         handleChangeAllUsersfilters,
-      )
+      );
     }
 
     if (allTradesFiltersRef.current) {
@@ -49,7 +49,7 @@ const FiltersPage = () => {
             scope: '#/properties/TRADE_DATETIME',
           },
         ],
-      }
+      };
       allTradesFiltersRef.current.jsonSchema = {
         type: 'object',
         properties: {
@@ -58,19 +58,19 @@ const FiltersPage = () => {
             description: 'org.joda.time.DateTime',
           },
         },
-      }
+      };
       allTradesFiltersRef.current.addEventListener(
         'change',
         handleChangeAllTradesfilters,
-      )
-      allTradesFiltersRef.current.addEventListener('submit', handleSubmit)
+      );
+      allTradesFiltersRef.current.addEventListener('submit', handleSubmit);
     }
 
     if (allProfilesFiltersRef.current) {
       allProfilesFiltersRef.current.addEventListener(
         'change',
         handleChangeAllProfilesfilters,
-      )
+      );
     }
 
     return () => {
@@ -78,25 +78,25 @@ const FiltersPage = () => {
         allUsersFiltersRef.current.removeEventListener(
           'change',
           handleChangeAllUsersfilters,
-        )
+        );
       }
 
       if (allTradesFiltersRef.current) {
         allTradesFiltersRef.current.removeEventListener(
           'change',
           handleChangeAllTradesfilters,
-        )
-        allTradesFiltersRef.current.removeEventListener('submit', handleSubmit)
+        );
+        allTradesFiltersRef.current.removeEventListener('submit', handleSubmit);
       }
 
       if (allProfilesFiltersRef.current) {
         allProfilesFiltersRef.current.removeEventListener(
           'change',
           handleChangeAllProfilesfilters,
-        )
+        );
       }
-    }
-  }, [])
+    };
+  }, []);
   return (
     <zero-tabs class={style['filters-page']}>
       <zero-tab slot="tab">ALL_USERS</zero-tab>
@@ -168,7 +168,7 @@ const FiltersPage = () => {
         </div>
       </zero-tab-panel>
     </zero-tabs>
-  )
-}
+  );
+};
 
-export default FiltersPage
+export default FiltersPage;

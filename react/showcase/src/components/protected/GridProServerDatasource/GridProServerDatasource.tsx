@@ -1,19 +1,19 @@
-import { useEffect, useContext } from 'react'
-import { DatasourceDefaults } from '@genesislcap/foundation-comms'
-import StateChangerContext from '../../../store/StateChanger/StateChangerContext'
+import { useEffect, useContext } from 'react';
+import { DatasourceDefaults } from '@genesislcap/foundation-comms';
+import StateChangerContext from '../../../store/StateChanger/StateChangerContext';
 
 const GridProServerDatasource = () => {
-  const stateChangerContext = useContext(StateChangerContext)
+  const stateChangerContext = useContext(StateChangerContext);
   if (!stateChangerContext) {
-    throw new Error('StateChangerContext is not defined')
+    throw new Error('StateChangerContext is not defined');
   }
-  const { state: stateChangerState } = stateChangerContext
-  const maxRows = 15
-  const maxView = DatasourceDefaults.MAX_VIEW_1000
-  const reverse = false
-  const pagination = false
+  const { state: stateChangerState } = stateChangerContext;
+  const maxRows = 15;
+  const maxView = DatasourceDefaults.MAX_VIEW_1000;
+  const reverse = false;
+  const pagination = false;
 
-  useEffect(() => {}, [])
+  useEffect(() => {}, []);
 
   return (
     <section>
@@ -54,7 +54,7 @@ const GridProServerDatasource = () => {
         ></grid-pro-server-side-datasource>
       </zero-grid-pro>
     </section>
-  )
-}
+  );
+};
 
-export default GridProServerDatasource
+export default GridProServerDatasource;

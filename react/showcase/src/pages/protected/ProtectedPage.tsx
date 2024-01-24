@@ -1,15 +1,15 @@
-import { useRef, useEffect, useState } from 'react'
-import styles from './ProtectedPage.module.css'
-import StateChanger from '../../components/protected/StateChanger/StateChanger'
-import GridProClientDatasource from '../../components/protected/GridProClientDatasource/GridProClientDatasource'
-import GridProClientDatasourceLayouts from '../../components/protected/GridProClientDatasourceLayouts/GridProClientDatasourceLayouts'
-import GridProClientDatasourceLinked from '../../components/protected/GridProClientDatasourceLinked/GridProClientDatasourceLinked'
-import GridProServerDatasource from '../../components/protected/GridProServerDatasource/GridProServerDatasource'
-import GridTabulatorClientDatasource from '../../components/protected/GridTabulatorClientDatasource/GridTabulatorClientDatasource'
+import { useRef, useEffect, useState } from 'react';
+import styles from './ProtectedPage.module.css';
+import StateChanger from '../../components/protected/StateChanger/StateChanger';
+import GridProClientDatasource from '../../components/protected/GridProClientDatasource/GridProClientDatasource';
+import GridProClientDatasourceLayouts from '../../components/protected/GridProClientDatasourceLayouts/GridProClientDatasourceLayouts';
+import GridProClientDatasourceLinked from '../../components/protected/GridProClientDatasourceLinked/GridProClientDatasourceLinked';
+import GridProServerDatasource from '../../components/protected/GridProServerDatasource/GridProServerDatasource';
+import GridTabulatorClientDatasource from '../../components/protected/GridTabulatorClientDatasource/GridTabulatorClientDatasource';
 
 const ProtectedPage = () => {
-  const zeroTabs = useRef<any | null>(null)
-  const [displayStateChanger, setDisplayStateChanger] = useState(true)
+  const zeroTabs = useRef<any | null>(null);
+  const [displayStateChanger, setDisplayStateChanger] = useState(true);
 
   useEffect(() => {
     if (zeroTabs.current) {
@@ -19,16 +19,16 @@ const ProtectedPage = () => {
             e.detail.attributes,
             'hide-state-changer',
           ),
-        )
-      }
+        );
+      };
 
-      zeroTabs.current.addEventListener('change', handleTabSelected)
+      zeroTabs.current.addEventListener('change', handleTabSelected);
 
       return () => {
-        zeroTabs.current?.removeEventListener('change', handleTabSelected)
-      }
+        zeroTabs.current?.removeEventListener('change', handleTabSelected);
+      };
     }
-  }, [])
+  }, []);
 
   return (
     <div className={styles['protected-page']}>
@@ -83,7 +83,7 @@ const ProtectedPage = () => {
         </zero-tab-panel>
       </zero-tabs>
     </div>
-  )
-}
+  );
+};
 
-export default ProtectedPage
+export default ProtectedPage;

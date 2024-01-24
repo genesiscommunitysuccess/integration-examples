@@ -35,8 +35,8 @@
     "test": "react-app-rewired test",
     "eject": "react-app-rewired eject",
     "prettier": "npx prettier --write .",
-    "lint": "eslint . --ext .ts",
-    "lint:fix": "eslint . --ext .ts --fix"
+    "lint": "eslint . --ext .ts,.tsx",
+    "lint:fix": "eslint . --ext .ts,.tsx --fix"
   },
   "eslintConfig": {
     "extends": [

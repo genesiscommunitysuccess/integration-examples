@@ -1,95 +1,95 @@
-import { useRef, useEffect, useState } from 'react'
-import style from './AdminPage.module.css'
-import { FoundationLayout } from '@genesislcap/foundation-layout'
+import { useRef, useEffect, useState } from 'react';
+import style from './AdminPage.module.css';
+import { FoundationLayout } from '@genesislcap/foundation-layout';
 import {
   UsersColumnConfig,
   Users,
-} from '@genesislcap/foundation-entity-management'
+} from '@genesislcap/foundation-entity-management';
 
 const AdminPage = () => {
-  const userButton = useRef<HTMLButtonElement>(null)
-  const profileButton = useRef<HTMLButtonElement>(null)
-  const counterpartyButton = useRef<HTMLButtonElement>(null)
-  const readButton = useRef<HTMLButtonElement>(null)
-  const adminLayout = useRef<FoundationLayout>(null)
-  const userManagment = useRef<Users>(null)
-  const userManagment2 = useRef<Users>(null)
-  const entityManagement = useRef<HTMLElement>(null)
-  const [layoutPaneCount, setLayoutPaneCount] = useState(0)
+  const userButton = useRef<HTMLButtonElement>(null);
+  const profileButton = useRef<HTMLButtonElement>(null);
+  const counterpartyButton = useRef<HTMLButtonElement>(null);
+  const readButton = useRef<HTMLButtonElement>(null);
+  const adminLayout = useRef<FoundationLayout>(null);
+  const userManagment = useRef<Users>(null);
+  const userManagment2 = useRef<Users>(null);
+  const entityManagement = useRef<HTMLElement>(null);
+  const [layoutPaneCount, setLayoutPaneCount] = useState(0);
   const userColumns = [
     ...UsersColumnConfig,
     {
       field: 'ACCESS_TYPE',
       headerName: 'Access Type',
     },
-  ]
+  ];
   const handleAddItem = (registration: string) => {
     if (adminLayout.current) {
-      setLayoutPaneCount(() => layoutPaneCount + 1)
+      setLayoutPaneCount(() => layoutPaneCount + 1);
       adminLayout.current.addItem({
         registration,
         title: `${registration} (${layoutPaneCount})`,
         closable: true,
-      })
+      });
     }
-  }
+  };
 
   useEffect(() => {
-    const handleAddItemUser = handleAddItem.bind(null, 'user')
-    const handleAddItemProfile = handleAddItem.bind(null, 'profile')
-    const handleAddItemCounterparty = handleAddItem.bind(null, 'counterparty')
+    const handleAddItemUser = handleAddItem.bind(null, 'user');
+    const handleAddItemProfile = handleAddItem.bind(null, 'profile');
+    const handleAddItemCounterparty = handleAddItem.bind(null, 'counterparty');
     const handleReadEntity = () => {
-      const event = new CustomEvent('read-entity')
+      const event = new CustomEvent('read-entity');
       if (entityManagement.current) {
-        entityManagement.current.dispatchEvent(event)
+        entityManagement.current.dispatchEvent(event);
       }
-    }
+    };
 
     if (userButton.current) {
-      userButton.current.addEventListener('click', handleAddItemUser)
+      userButton.current.addEventListener('click', handleAddItemUser);
     }
 
     if (profileButton.current) {
-      profileButton.current.addEventListener('click', handleAddItemProfile)
+      profileButton.current.addEventListener('click', handleAddItemProfile);
     }
 
     if (counterpartyButton.current) {
       counterpartyButton.current.addEventListener(
         'click',
         handleAddItemCounterparty,
-      )
+      );
     }
 
     if (userManagment.current) {
-      userManagment.current.columns = userColumns
+      userManagment.current.columns = userColumns;
     }
 
     if (userManagment2.current) {
-      userManagment2.current.columns = userColumns
+      userManagment2.current.columns = userColumns;
     }
 
     if (readButton.current) {
-      readButton.current.addEventListener('click', handleReadEntity)
+      readButton.current.addEventListener('click', handleReadEntity);
     }
 
     return () => {
       if (userButton.current) {
-        userButton.current.removeEventListener('click', handleAddItemUser)
+        userButton.current.removeEventListener('click', handleAddItemUser);
       }
       if (profileButton.current) {
-        profileButton.current.removeEventListener('click', handleAddItemProfile)
+        profileButton.current.removeEventListener('click', handleAddItemProfile);
       }
       if (counterpartyButton.current) {
         counterpartyButton.current.removeEventListener(
           'click',
           handleAddItemCounterparty,
-        )
+        );
       }
       if (readButton.current) {
-        readButton.current.removeEventListener('click', handleReadEntity)
+        readButton.current.removeEventListener('click', handleReadEntity);
       }
-    }
-  }, [])
+    };
+  }, []);
   return (
     <div className={style['admin-page']}>
       <zero-tabs>
@@ -167,7 +167,7 @@ const AdminPage = () => {
         </zero-tab-panel>
       </zero-tabs>
     </div>
-  )
-}
+  );
+};
 
-export default AdminPage
+export default AdminPage;

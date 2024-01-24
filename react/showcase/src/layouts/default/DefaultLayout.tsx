@@ -1,48 +1,48 @@
-import React, { ReactNode, useRef, useEffect, useContext } from 'react'
-import { useNavigate } from 'react-router-dom'
+import React, { ReactNode, useRef, useEffect, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
   baseLayerLuminance,
   StandardLuminance,
-} from '@microsoft/fast-components'
-import styles from './DefaultLayout.module.css'
-import { layerNames, mainMenu } from '../../config'
-import LayerContext from '../../store/LayerContext'
-import { useAuth } from '../../store/AuthContext'
-import { Flyout } from '@genesislcap/foundation-ui'
-import type { Navigation } from '@genesislcap/foundation-header'
-import AppFooter from '../../components/AppFooter/AppFooter'
+} from '@microsoft/fast-components';
+import styles from './DefaultLayout.module.css';
+import { layerNames, mainMenu } from '../../config';
+import LayerContext from '../../store/LayerContext';
+import { useAuth } from '../../store/AuthContext';
+import { Flyout } from '@genesislcap/foundation-ui';
+import type { Navigation } from '@genesislcap/foundation-header';
+import AppFooter from '../../components/AppFooter/AppFooter';
 
 interface DefaultLayoutProps {
   children: ReactNode
 }
 
 const DefaultLayout: React.FC<DefaultLayoutProps> = ({ children }) => {
-  const { logout } = useAuth()
-  const layerContext = useContext(LayerContext)
-  const navigate = useNavigate()
+  const { logout } = useAuth();
+  const layerContext = useContext(LayerContext);
+  const navigate = useNavigate();
 
   if (!layerContext) {
-    throw new Error('LayerContext is not defined')
+    throw new Error('LayerContext is not defined');
   }
 
-  const { state, setLayerState } = layerContext
-  const isAnyLayerVisible = false
-  const designSystemProvider = useRef<HTMLElement>(null)
-  const foundationHeader = useRef<Navigation>(null)
-  const flyoutInbox = useRef<HTMLElement>(null)
-  const flyoutAlertRules = useRef<HTMLElement>(null)
-  const foundationInbox = useRef<HTMLElement>(null)
-  const allRoutes = mainMenu
+  const { state, setLayerState } = layerContext;
+  const isAnyLayerVisible = false;
+  const designSystemProvider = useRef<HTMLElement>(null);
+  const foundationHeader = useRef<Navigation>(null);
+  const flyoutInbox = useRef<HTMLElement>(null);
+  const flyoutAlertRules = useRef<HTMLElement>(null);
+  const foundationInbox = useRef<HTMLElement>(null);
+  const allRoutes = mainMenu;
 
   useEffect(() => {
     const displayLayerAlertInbox = () =>
-      setLayerState(layerNames.alertInbox, true)
+      setLayerState(layerNames.alertInbox, true);
     const hideLayerAlertInbox = () =>
-      setLayerState(layerNames.alertInbox, false)
+      setLayerState(layerNames.alertInbox, false);
     const invokeFlyoutInboxClose = () =>
-      (flyoutInbox.current as Flyout).closeFlyout()
+      (flyoutInbox.current as Flyout).closeFlyout();
     const hideLayerALertsRules = () =>
-      setLayerState(layerNames.alertRules, false)
+      setLayerState(layerNames.alertRules, false);
     const onLuminanceToogle = (): void => {
       if (designSystemProvider.current) {
         baseLayerLuminance.setValueFor(
@@ -51,37 +51,37 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = ({ children }) => {
             StandardLuminance.DarkMode
             ? StandardLuminance.LightMode
             : StandardLuminance.DarkMode,
-        )
+        );
       }
-    }
+    };
 
     if (foundationHeader?.current) {
-      foundationHeader.current.logout = logout
+      foundationHeader.current.logout = logout;
 
       foundationHeader.current.addEventListener(
         'notification-icon-clicked',
         displayLayerAlertInbox,
-      )
+      );
 
       foundationHeader.current.addEventListener(
         'luminance-icon-clicked',
         onLuminanceToogle,
-      )
+      );
     }
 
     if (flyoutInbox?.current) {
-      flyoutInbox.current.addEventListener('closed', hideLayerAlertInbox)
+      flyoutInbox.current.addEventListener('closed', hideLayerAlertInbox);
     }
 
     if (flyoutAlertRules?.current) {
       flyoutAlertRules.current.addEventListener(
         'onClosed',
         hideLayerALertsRules,
-      )
+      );
     }
 
     if (foundationInbox?.current) {
-      foundationInbox.current.addEventListener('close', invokeFlyoutInboxClose)
+      foundationInbox.current.addEventListener('close', invokeFlyoutInboxClose);
     }
 
     return () => {
@@ -89,37 +89,37 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = ({ children }) => {
         foundationHeader.current.removeEventListener(
           'notification-icon-clicked',
           displayLayerAlertInbox,
-        )
+        );
 
         foundationHeader.current.removeEventListener(
           'luminance-icon-clicked',
           onLuminanceToogle,
-        )
+        );
       }
 
       if (flyoutInbox?.current) {
-        flyoutInbox.current.removeEventListener('closed', hideLayerAlertInbox)
+        flyoutInbox.current.removeEventListener('closed', hideLayerAlertInbox);
       }
 
       if (foundationInbox?.current) {
         foundationInbox.current.removeEventListener(
           'close',
           invokeFlyoutInboxClose,
-        )
+        );
       }
 
       if (flyoutAlertRules?.current) {
         flyoutAlertRules.current.removeEventListener(
           'onClosed',
           hideLayerALertsRules,
-        )
+        );
       }
-    }
-  }, [])
+    };
+  }, []);
 
   const className = `${styles['default-layout']} ${
     isAnyLayerVisible ? styles['has-layer'] : ''
-  }`
+  }`;
 
   return (
     <zero-design-system-provider ref={designSystemProvider} class={className}>
@@ -215,7 +215,7 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = ({ children }) => {
       <section className={styles['content']}>{children}</section>
       <AppFooter></AppFooter>
     </zero-design-system-provider>
-  )
-}
+  );
+};
 
-export default DefaultLayout
+export default DefaultLayout;

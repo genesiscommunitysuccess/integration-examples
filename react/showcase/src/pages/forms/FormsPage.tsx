@@ -1,5 +1,5 @@
-import { useRef, useEffect } from 'react'
-import style from './FormsPage.module.css'
+import { useRef, useEffect } from 'react';
+import style from './FormsPage.module.css';
 import {
   JSON_SCHEMA,
   JSON_SCHEMA_ARRAY,
@@ -19,20 +19,20 @@ import {
   uiSchemaGroup,
   uiSchemaStepper,
   uiSchemaStepperHorizontal,
-} from './schemas'
+} from './schemas';
 
 const FormsPage = () => {
-  const primitiveRenderers = useRef<any>(null)
-  const connectedComboboxRenderers = useRef<any>(null)
-  const connectedComboboxAsyncRenderers = useRef<any>(null)
-  const connectedComboboxLocalRenderers = useRef<any>(null)
-  const userArrayForm = useRef<any>(null)
-  const tradeArrayForm = useRef<any>(null)
-  const exampleGroupForm = useRef<any>(null)
-  const exampleCategorizationForm = useRef<any>(null)
-  const exampleStepperForm = useRef<any>(null)
-  const exampleStepperHorizontalForm = useRef<any>(null)
-  const foundationFormWithDSPrefix = useRef<any>(null)
+  const primitiveRenderers = useRef<any>(null);
+  const connectedComboboxRenderers = useRef<any>(null);
+  const connectedComboboxAsyncRenderers = useRef<any>(null);
+  const connectedComboboxLocalRenderers = useRef<any>(null);
+  const userArrayForm = useRef<any>(null);
+  const tradeArrayForm = useRef<any>(null);
+  const exampleGroupForm = useRef<any>(null);
+  const exampleCategorizationForm = useRef<any>(null);
+  const exampleStepperForm = useRef<any>(null);
+  const exampleStepperHorizontalForm = useRef<any>(null);
+  const foundationFormWithDSPrefix = useRef<any>(null);
 
   //@todo fix unknown issue where data is set to empty from child component
   const setUserArrayFormElementData = (event: any) => {
@@ -46,9 +46,9 @@ const FormsPage = () => {
             rights: 'ADMIN',
           },
         ],
-      }
+      };
     }
-  }
+  };
 
   //@todo fix unknown issue where data is set to empty from child component
   const setTradeArrayFormElement = (event: any) => {
@@ -61,92 +61,92 @@ const FormsPage = () => {
             side: 'BUY',
           },
         ],
-      }
+      };
     }
-  }
+  };
 
   useEffect(() => {
     if (primitiveRenderers.current) {
-      primitiveRenderers.current.uischema = uiSchema
-      primitiveRenderers.current.jsonSchema = JSON_SCHEMA
+      primitiveRenderers.current.uischema = uiSchema;
+      primitiveRenderers.current.jsonSchema = JSON_SCHEMA;
     }
 
     if (connectedComboboxRenderers.current) {
-      connectedComboboxRenderers.current.uischema = uiSchemaConnectedSelect
+      connectedComboboxRenderers.current.uischema = uiSchemaConnectedSelect;
       connectedComboboxRenderers.current.jsonSchema =
-        JSON_SCHEMA_CONNECTED_SELECT
+        JSON_SCHEMA_CONNECTED_SELECT;
     }
 
     if (connectedComboboxAsyncRenderers.current) {
       connectedComboboxAsyncRenderers.current.uischema =
-        uiSchemaConnectedSelectAsync
+        uiSchemaConnectedSelectAsync;
       connectedComboboxAsyncRenderers.current.jsonSchema =
-        JSON_SCHEMA_CONNECTED_SELECT
+        JSON_SCHEMA_CONNECTED_SELECT;
     }
 
     if (connectedComboboxLocalRenderers.current) {
-      connectedComboboxLocalRenderers.current.uischema = uiSchemaConnectedNumber
+      connectedComboboxLocalRenderers.current.uischema = uiSchemaConnectedNumber;
       connectedComboboxLocalRenderers.current.jsonSchema =
-        JSON_SCHEMA_CONNECTED_NUMBER
+        JSON_SCHEMA_CONNECTED_NUMBER;
       connectedComboboxLocalRenderers.current.data = {
         NUMBER_RATE: 0,
-      }
+      };
     }
 
     if (userArrayForm.current) {
-      userArrayForm.current.uischema = uiSchemaArray
-      userArrayForm.current.jsonSchema = JSON_SCHEMA_ARRAY
+      userArrayForm.current.uischema = uiSchemaArray;
+      userArrayForm.current.jsonSchema = JSON_SCHEMA_ARRAY;
       userArrayForm.current.addEventListener(
         'data-change',
         setUserArrayFormElementData,
-      )
+      );
     }
 
     if (tradeArrayForm.current) {
-      tradeArrayForm.current.uischema = uiSchemaArrayTrade
-      tradeArrayForm.current.jsonSchema = JSON_SCHEMA_ARRAY_TRADE
+      tradeArrayForm.current.uischema = uiSchemaArrayTrade;
+      tradeArrayForm.current.jsonSchema = JSON_SCHEMA_ARRAY_TRADE;
 
       userArrayForm.current.addEventListener(
         'data-change',
         setTradeArrayFormElement,
-      )
+      );
     }
 
     if (exampleGroupForm.current) {
-      exampleGroupForm.current.uischema = uiSchemaGroup
-      exampleGroupForm.current.jsonSchema = JSON_SCHEMA_GROUP
+      exampleGroupForm.current.uischema = uiSchemaGroup;
+      exampleGroupForm.current.jsonSchema = JSON_SCHEMA_GROUP;
       exampleGroupForm.current.data = {
         person: { firstName: 'John' },
         address: { city: 'London' },
-      }
+      };
     }
 
     if (exampleCategorizationForm.current) {
-      exampleCategorizationForm.current.uischema = uiSchemaCategorization
-      exampleCategorizationForm.current.jsonSchema = JSON_SCHEMA_CATEGORIZATION
+      exampleCategorizationForm.current.uischema = uiSchemaCategorization;
+      exampleCategorizationForm.current.jsonSchema = JSON_SCHEMA_CATEGORIZATION;
     }
 
     if (exampleStepperForm.current) {
-      exampleStepperForm.current.uischema = uiSchemaStepper
-      exampleStepperForm.current.jsonSchema = JSON_SCHEMA_STEPPER
+      exampleStepperForm.current.uischema = uiSchemaStepper;
+      exampleStepperForm.current.jsonSchema = JSON_SCHEMA_STEPPER;
     }
 
     if (exampleStepperHorizontalForm.current) {
-      exampleStepperHorizontalForm.current.uischema = uiSchemaStepperHorizontal
-      exampleStepperHorizontalForm.current.jsonSchema = JSON_SCHEMA_STEPPER
+      exampleStepperHorizontalForm.current.uischema = uiSchemaStepperHorizontal;
+      exampleStepperHorizontalForm.current.jsonSchema = JSON_SCHEMA_STEPPER;
     }
 
     if (foundationFormWithDSPrefix.current) {
-      foundationFormWithDSPrefix.current.uischema = uiSchema
-      foundationFormWithDSPrefix.current.jsonSchema = JSON_SCHEMA
+      foundationFormWithDSPrefix.current.uischema = uiSchema;
+      foundationFormWithDSPrefix.current.jsonSchema = JSON_SCHEMA;
       foundationFormWithDSPrefix.current.data = {
         ISSUER_NAME: 'Some Issuer',
         INVIS: 'Invisible value!',
         USER: 'JohnDoe',
         DATE: 1690848000000,
-      }
+      };
     }
-  }, [])
+  }, []);
 
   return (
     <zero-tabs class={style['forms-page']}>
@@ -246,7 +246,7 @@ const FormsPage = () => {
         </div>
       </zero-tab-panel>
     </zero-tabs>
-  )
-}
+  );
+};
 
-export default FormsPage
+export default FormsPage;

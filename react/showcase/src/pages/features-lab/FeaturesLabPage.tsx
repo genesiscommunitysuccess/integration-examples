@@ -1,9 +1,9 @@
-import { useRef, useEffect } from 'react'
-import style from './FeaturesLabPage.module.css'
-import { getErrorFormat } from '@genesislcap/foundation-entity-management'
-import { Modal } from '@genesislcap/foundation-zero'
-import { UUID } from '@genesislcap/foundation-utils'
-import { Session as sessionKey } from '@genesislcap/foundation-comms'
+import { useRef, useEffect } from 'react';
+import style from './FeaturesLabPage.module.css';
+import { getErrorFormat } from '@genesislcap/foundation-entity-management';
+import { Modal } from '@genesislcap/foundation-zero';
+import { UUID } from '@genesislcap/foundation-utils';
+import { Session as sessionKey } from '@genesislcap/foundation-comms';
 import {
   ErrorBoundaryEvent,
   getErrorBuilder,
@@ -11,32 +11,32 @@ import {
   getErrorDialogBuilder,
   getSnackbarBuilder,
   getErrorBannerBuilder,
-} from '@genesislcap/foundation-errors'
-import { connectService } from '../../services/connect.service'
+} from '@genesislcap/foundation-errors';
+import { connectService } from '../../services/connect.service';
 
-UUID
+UUID;
 
 const FeaturesLabPage = () => {
-  const diContainer = connectService.getContainer()
-  const uuidKey = UUID
-  const uuid = diContainer.get(uuidKey)
-  const session = diContainer.get(sessionKey)
-  const environmentAlertModal = useRef<Modal>(null)
-  const buttonAddRef = useRef<HTMLElement>(null)
-  const buttonUpdateRef = useRef<HTMLElement>(null)
-  const buttonDeleteRef = useRef<HTMLElement>(null)
-  const connect = connectService.getConnect()
-  const defaultTestRecordName = 'Temporary Test Record'
+  const diContainer = connectService.getContainer();
+  const uuidKey = UUID;
+  const uuid = diContainer.get(uuidKey);
+  const session = diContainer.get(sessionKey);
+  const environmentAlertModal = useRef<Modal>(null);
+  const buttonAddRef = useRef<HTMLElement>(null);
+  const buttonUpdateRef = useRef<HTMLElement>(null);
+  const buttonDeleteRef = useRef<HTMLElement>(null);
+  const connect = connectService.getConnect();
+  const defaultTestRecordName = 'Temporary Test Record';
   const fetchAllTestRecords = async () => {
     const allTemporaryCounterparties = await connect.snapshot(
       'ALL_COUNTERPARTYS',
       {
         CRITERIA_MATCH: `NAME == '${defaultTestRecordName}' && (ENABLED == false || ENABLED == null)`,
       },
-    )
+    );
 
-    return allTemporaryCounterparties.ROW
-  }
+    return allTemporaryCounterparties.ROW;
+  };
 
   const emitSnackbar = (error: { CODE: string; TEXT: string }[]) => {
     error.forEach((err) => {
@@ -57,9 +57,9 @@ const FeaturesLabPage = () => {
             .build(),
         },
         bubbles: true,
-      })
-    })
-  }
+      });
+    });
+  };
 
   const emitBanner = (error: { CODE: string; TEXT: string }[]) => {
     error.forEach((err) => {
@@ -79,9 +79,9 @@ const FeaturesLabPage = () => {
             .build(),
         },
         bubbles: true,
-      })
-    })
-  }
+      });
+    });
+  };
 
   const emitErrorDialog = (error: { CODE: string; TEXT: string }[]) => {
     error.forEach((err) => {
@@ -102,12 +102,12 @@ const FeaturesLabPage = () => {
             .build(),
         },
         bubbles: true,
-      })
-    })
-  }
+      });
+    });
+  };
 
   const emitErrorNotification = (error: { CODE: string; TEXT: string }[]) => {
-    const notificationCloseTimeout = 5000
+    const notificationCloseTimeout = 5000;
     error.forEach((err) => {
       new CustomEvent(ErrorBoundaryEvent.ERROR_BOUNDARY_EVENT, {
         detail: {
@@ -124,23 +124,23 @@ const FeaturesLabPage = () => {
             .build(),
         },
         bubbles: true,
-      })
-    })
-  }
+      });
+    });
+  };
 
   const insertTenTestRecords = async () => {
     try {
-      await fetchAllTestRecords()
+      await fetchAllTestRecords();
       emitBanner([
         {
           CODE: 'INSERT RECORDS',
           TEXT: 'Inserted 10 random records',
         },
-      ])
-      const records = []
+      ]);
+      const records = [];
       // eslint-disable-next-line @typescript-eslint/no-magic-numbers, no-plusplus
       for (let i = 0; i < 10; i++) {
-        records.push(createTestCounterpartyRecord())
+        records.push(createTestCounterpartyRecord());
       }
       records.forEach(async (record) => {
         const submitReq = await connect.commitEvent(
@@ -148,7 +148,7 @@ const FeaturesLabPage = () => {
           {
             DETAILS: record,
           },
-        )
+        );
 
         if (!submitReq || submitReq?.ERROR) {
           emitErrorNotification(
@@ -158,18 +158,18 @@ const FeaturesLabPage = () => {
                 TEXT: 'Error inserting record',
               },
             ],
-          )
+          );
         }
-      })
+      });
     } catch (error) {
       emitErrorNotification([
         {
           CODE: 'CONNECT ERROR',
           TEXT: 'Error inserting record',
         },
-      ])
+      ]);
     }
-  }
+  };
 
   const createTestCounterpartyRecord = (): {
     COUNTERPARTY_ID: string
@@ -182,93 +182,93 @@ const FeaturesLabPage = () => {
       COUNTERPARTY_LEI: uuid.createId(),
       NAME: defaultTestRecordName,
       ENABLED: false,
-    }
-  }
+    };
+  };
 
   const updateAllTestRecords = async () => {
     try {
-      const allTemporaryCounterparties = await fetchAllTestRecords()
+      const allTemporaryCounterparties = await fetchAllTestRecords();
       allTemporaryCounterparties?.forEach(async (record) => {
-        record.COUNTERPARTY_LEI = uuid.createId() + ' - Updated'
-        delete record.DETAILS
+        record.COUNTERPARTY_LEI = uuid.createId() + ' - Updated';
+        delete record.DETAILS;
         const submitReq = await connect.commitEvent(
           'EVENT_COUNTERPARTY_MODIFY',
           {
             DETAILS: record,
           },
-        )
+        );
 
         if (submitReq.ERROR) {
-          console.error(submitReq.ERROR)
-          emitErrorNotification(submitReq.ERROR)
+          console.error(submitReq.ERROR);
+          emitErrorNotification(submitReq.ERROR);
         }
-      })
+      });
     } catch (error: any) {
       emitErrorDialog([
         {
           CODE: 'CONNECT ERROR',
           TEXT: error.message,
         },
-      ])
+      ]);
     }
-  }
+  };
 
   const deleteAllTestRecords = async () => {
     try {
-      const allTemporaryCounterparties = await fetchAllTestRecords()
+      const allTemporaryCounterparties = await fetchAllTestRecords();
       allTemporaryCounterparties?.forEach(async (record: any) => {
         await connect.commitEvent('EVENT_COUNTERPARTY_DELETE', {
           DETAILS: { COUNTERPARTY_ID: record.COUNTERPARTY_ID },
           IGNORE_WARNINGS: true,
           VALIDATE: false,
-        })
-      })
+        });
+      });
     } catch (error: any) {
       emitSnackbar([
         {
           CODE: 'CONNECT ERROR',
           TEXT: error.message,
         },
-      ])
+      ]);
     }
-  }
+  };
 
   useEffect(() => {
     if (environmentAlertModal.current) {
-      environmentAlertModal.current.show()
+      environmentAlertModal.current.show();
     }
     if (buttonAddRef.current) {
-      buttonAddRef.current.addEventListener('click', insertTenTestRecords)
+      buttonAddRef.current.addEventListener('click', insertTenTestRecords);
     }
 
     if (buttonUpdateRef.current) {
-      buttonUpdateRef.current.addEventListener('click', updateAllTestRecords)
+      buttonUpdateRef.current.addEventListener('click', updateAllTestRecords);
     }
 
     if (buttonDeleteRef.current) {
-      buttonDeleteRef.current.addEventListener('click', deleteAllTestRecords)
+      buttonDeleteRef.current.addEventListener('click', deleteAllTestRecords);
     }
 
     return () => {
       if (buttonAddRef.current) {
-        buttonAddRef.current.removeEventListener('click', insertTenTestRecords)
+        buttonAddRef.current.removeEventListener('click', insertTenTestRecords);
       }
 
       if (buttonUpdateRef.current) {
         buttonUpdateRef.current.removeEventListener(
           'click',
           updateAllTestRecords,
-        )
+        );
       }
 
       if (buttonDeleteRef.current) {
         buttonDeleteRef.current.removeEventListener(
           'click',
           deleteAllTestRecords,
-        )
+        );
       }
-    }
-  }, [])
+    };
+  }, []);
 
   return (
     <zero-notification-listener class={style['page-features-lab']}>
@@ -315,7 +315,7 @@ const FeaturesLabPage = () => {
         </zero-modal>
       </div>
     </zero-notification-listener>
-  )
-}
+  );
+};
 
-export default FeaturesLabPage
+export default FeaturesLabPage;
