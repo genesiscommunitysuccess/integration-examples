@@ -26,14 +26,6 @@ module.exports = function override(config) {
     ],
   };
 
-  config.devServer = {
-    ...config.devServer,
-    overlay: {
-      warnings: false,
-      errors: false,
-    },
-  };
-
   //@todo: fix genesis packages source maps
   config.ignoreWarnings = [
     ...(config.ignoreWarnings || []),
