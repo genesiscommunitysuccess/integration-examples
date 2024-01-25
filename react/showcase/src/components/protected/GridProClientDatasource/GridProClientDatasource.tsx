@@ -1,13 +1,13 @@
-import { useRef, useContext, useEffect } from 'react';
+import { useContext } from 'react';
+import reactifyWc from 'reactify-wc';
 import { css } from '@microsoft/fast-element';
-import { SlottedStyles } from '@genesislcap/foundation-utils';
 import { DatasourceDefaults } from '@genesislcap/foundation-comms';
-import {
-  GridProColumn,
-  GridProCell,
-} from '@genesislcap/foundation-zero-grid-pro';
 import styles from './GridProClientDatasource.module.css';
 import StateChangerContext from '../../../store/StateChanger/StateChangerContext';
+
+const SlottedStyles: any = reactifyWc('slotted-styles');
+const GridProColumn: any = reactifyWc('grid-pro-column');
+const GridProCell: any = reactifyWc('grid-pro-cell');
 
 const GridProClientDatasource = () => {
   const stateChangerContext = useContext(StateChangerContext);
@@ -15,16 +15,6 @@ const GridProClientDatasource = () => {
     throw new Error('StateChangerContext is not defined');
   }
   const { state: stateChangerState } = stateChangerContext;
-  const slottedStyles = useRef<SlottedStyles | null>(null);
-  const slottedStyles2 = useRef<SlottedStyles | null>(null);
-  const customGridProColumn = useRef<GridProColumn | null>(null);
-  const customGridProColumn2 = useRef<GridProColumn | null>(null);
-  const customGridProCell = useRef<GridProCell | null>(null);
-  const customGridProCell2 = useRef<GridProCell | null>(null);
-  const itemGridProColumnRefs = useRef<(HTMLElement | null)[]>([]);
-  const itemGridProColumnRefs2 = useRef<(HTMLElement | null)[]>([]);
-  const itemGridProCellRefs = useRef<(HTMLElement | null)[]>([]);
-  const itemGridProCellRefs2 = useRef<(HTMLElement | null)[]>([]);
   const classNameRoot = styles['grid-pro-client-datasource'];
   const customBooleanColDefs: any = [
     {
@@ -62,64 +52,12 @@ const GridProClientDatasource = () => {
   };
   const maxView = DatasourceDefaults.MAX_VIEW_1000;
   const maxRows = DatasourceDefaults.MAX_ROWS_250;
-  const getGridProColumns = (key: string, columnsRefs: any, cellRefs: any) =>
-    customBooleanColDefs.map((colDef: any, index: number) => {
-      return (
-        <grid-pro-column
-          key={`${key}-${index}`}
-          ref={(el: HTMLElement | null) => (columnsRefs.current[index] = el)}
-        >
-          {!!colDef.cellRenderer && (
-            <grid-pro-cell
-              ref={(el: HTMLElement | null) => (cellRefs.current[index] = el)}
-            ></grid-pro-cell>
-          )}
-        </grid-pro-column>
-      );
-    });
 
-  useEffect(() => {
-    //eslint-disable-next-line
-    if (slottedStyles.current) {
-      slottedStyles.current.styles = processGridStyles;
-    }
-
-    if (slottedStyles2.current) {
-      slottedStyles2.current.styles = processGridStyles;
-    }
-
-    if (customGridProColumn.current) {
-      customGridProColumn.current.definition = rowRewfDefinition;
-    }
-
-    if (customGridProColumn2.current) {
-      customGridProColumn2.current.definition = rowRewfDefinition;
-    }
-
-    if (customGridProCell2.current) {
-      customGridProCell2.current.renderer = (params: any) => {
-        return `<span style="color: ${
-          params.value === 'TRACE' ? 'orange' : 'green'
-        }">Custom ${params.value}</span>`;
-      };
-    }
-
-    if (itemGridProColumnRefs.current) {
-      itemGridProColumnRefs.current.forEach(
-        (itemGridProColumnElement: any, index: number) => {
-          itemGridProColumnElement.definition = customBooleanColDefs[index];
-        },
-      );
-    }
-
-    if (itemGridProColumnRefs2.current) {
-      itemGridProColumnRefs2.current.forEach(
-        (itemGridProColumnElement: any, index: number) => {
-          itemGridProColumnElement.definition = customBooleanColDefs[index];
-        },
-      );
-    }
-  }, []);
+  const customGridProCell2Renderer = (params: any) => {
+    return `<span style="color: ${
+      params.value === 'TRACE' ? 'orange' : 'green'
+    }">Custom ${params.value}</span>`;
+  };
 
   return (
     <zero-grid-layout
@@ -158,7 +96,7 @@ const GridProClientDatasource = () => {
             enable-row-flashing
             enable-cell-flashing
           >
-            <slotted-styles ref={slottedStyles}></slotted-styles>
+            <SlottedStyles styles={processGridStyles}></SlottedStyles>
             <grid-pro-client-side-datasource
               resource-name={stateChangerState.resourceName}
               criteria={stateChangerState.criteria}
@@ -168,14 +106,19 @@ const GridProClientDatasource = () => {
               reverse={false}
               restart-on-reconnection={false}
             ></grid-pro-client-side-datasource>
-            {getGridProColumns(
-              'itemGridProColumn',
-              itemGridProColumnRefs,
-              itemGridProCellRefs,
-            )}
-            <grid-pro-column ref={customGridProColumn}>
-              <grid-pro-cell ref={customGridProCell}></grid-pro-cell>
-            </grid-pro-column>
+            {customBooleanColDefs.map((colDef: any, index: number) => {
+              return (
+                <GridProColumn
+                  key={`itemGridProColumn1-${index}`}
+                  definition={colDef}
+                >
+                  {!!colDef.cellRenderer && <grid-pro-cell></grid-pro-cell>}
+                </GridProColumn>
+              );
+            })}
+            <GridProColumn definition={rowRewfDefinition}>
+              <grid-pro-cell></grid-pro-cell>
+            </GridProColumn>
           </zero-grid-pro>
         </zero-card>
       </zero-grid-layout-item>
@@ -256,7 +199,7 @@ const GridProClientDatasource = () => {
             enable-row-flashing
             enable-cell-flashing
           >
-            <slotted-styles ref={slottedStyles2}></slotted-styles>
+            <SlottedStyles styles={processGridStyles}></SlottedStyles>
             <grid-pro-client-side-datasource
               resource-name={stateChangerState.resourceName}
               criteria={stateChangerState.criteria}
@@ -266,14 +209,19 @@ const GridProClientDatasource = () => {
               reverse={false}
               restart-on-reconnection={true}
             ></grid-pro-client-side-datasource>
-            {getGridProColumns(
-              'itemGridProColumn2',
-              itemGridProColumnRefs2,
-              itemGridProCellRefs2,
-            )}
-            <grid-pro-column ref={customGridProColumn2}>
-              <grid-pro-cell ref={customGridProCell2}></grid-pro-cell>
-            </grid-pro-column>
+            {customBooleanColDefs.map((colDef: any, index: number) => {
+              return (
+                <GridProColumn
+                  key={`itemGridProColumn2-${index}`}
+                  definition={colDef}
+                >
+                  {!!colDef.cellRenderer && <grid-pro-cell></grid-pro-cell>}
+                </GridProColumn>
+              );
+            })}
+            <GridProColumn definition={rowRewfDefinition}>
+              <GridProCell renderer={customGridProCell2Renderer}></GridProCell>
+            </GridProColumn>
           </zero-grid-pro>
         </zero-card>
       </zero-grid-layout-item>

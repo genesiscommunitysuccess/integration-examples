@@ -1,17 +1,20 @@
-import React, { ReactNode, useRef, useEffect, useContext } from 'react';
+import React, { ReactNode, useRef, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import reactifyWc from 'reactify-wc';
 import {
   baseLayerLuminance,
   StandardLuminance,
 } from '@microsoft/fast-components';
+import { Flyout } from '@genesislcap/foundation-ui';
 import styles from './DefaultLayout.module.css';
 import { layerNames, mainMenu } from '../../config';
 import LayerContext from '../../store/LayerContext';
 import { useAuth } from '../../store/AuthContext';
-import { Flyout } from '@genesislcap/foundation-ui';
-import type { Navigation } from '@genesislcap/foundation-header';
 import AppFooter from '../../components/AppFooter/AppFooter';
 
+const FoundationHeader: any = reactifyWc('foundation-header');
+const FoundationInbox: any = reactifyWc('foundation-inbox');
+const ZeroFlyout: any = reactifyWc('zero-flyout');
 interface DefaultLayoutProps {
   children: ReactNode;
 }
@@ -19,6 +22,7 @@ interface DefaultLayoutProps {
 const DefaultLayout: React.FC<DefaultLayoutProps> = ({ children }) => {
   const { logout } = useAuth();
   const layerContext = useContext(LayerContext);
+  const flyoutInbox = useRef<Flyout>(null);
   const navigate = useNavigate();
 
   if (!layerContext) {
@@ -28,103 +32,36 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = ({ children }) => {
   const { state, setLayerState } = layerContext;
   const isAnyLayerVisible = false;
   const designSystemProvider = useRef<HTMLElement>(null);
-  const foundationHeader = useRef<Navigation>(null);
-  const flyoutInbox = useRef<HTMLElement>(null);
-  const flyoutAlertRules = useRef<HTMLElement>(null);
-  const foundationInbox = useRef<HTMLElement>(null);
   const allRoutes = mainMenu;
 
-  useEffect(() => {
-    const displayLayerAlertInbox = () =>
-      setLayerState(layerNames.alertInbox, true);
-    const hideLayerAlertInbox = () =>
-      setLayerState(layerNames.alertInbox, false);
-    const invokeFlyoutInboxClose = () =>
-      (flyoutInbox.current as Flyout).closeFlyout();
-    const hideLayerALertsRules = () =>
-      setLayerState(layerNames.alertRules, false);
-    const onLuminanceToogle = (): void => {
-      if (designSystemProvider.current) {
-        baseLayerLuminance.setValueFor(
-          designSystemProvider.current,
-          baseLayerLuminance.getValueFor(designSystemProvider.current) ===
-            StandardLuminance.DarkMode
-            ? StandardLuminance.LightMode
-            : StandardLuminance.DarkMode,
-        );
-      }
-    };
-
-    if (foundationHeader?.current) {
-      foundationHeader.current.logout = logout;
-
-      foundationHeader.current.addEventListener(
-        'notification-icon-clicked',
-        displayLayerAlertInbox,
-      );
-
-      foundationHeader.current.addEventListener(
-        'luminance-icon-clicked',
-        onLuminanceToogle,
+  const onLuminanceToogle = (): void => {
+    if (designSystemProvider.current) {
+      baseLayerLuminance.setValueFor(
+        designSystemProvider.current,
+        baseLayerLuminance.getValueFor(designSystemProvider.current) ===
+          StandardLuminance.DarkMode
+          ? StandardLuminance.LightMode
+          : StandardLuminance.DarkMode,
       );
     }
-
-    if (flyoutInbox?.current) {
-      flyoutInbox.current.addEventListener('closed', hideLayerAlertInbox);
-    }
-
-    if (flyoutAlertRules?.current) {
-      flyoutAlertRules.current.addEventListener(
-        'onClosed',
-        hideLayerALertsRules,
-      );
-    }
-
-    if (foundationInbox?.current) {
-      foundationInbox.current.addEventListener('close', invokeFlyoutInboxClose);
-    }
-
-    return () => {
-      if (foundationHeader?.current) {
-        foundationHeader.current.removeEventListener(
-          'notification-icon-clicked',
-          displayLayerAlertInbox,
-        );
-
-        foundationHeader.current.removeEventListener(
-          'luminance-icon-clicked',
-          onLuminanceToogle,
-        );
-      }
-
-      if (flyoutInbox?.current) {
-        flyoutInbox.current.removeEventListener('closed', hideLayerAlertInbox);
-      }
-
-      if (foundationInbox?.current) {
-        foundationInbox.current.removeEventListener(
-          'close',
-          invokeFlyoutInboxClose,
-        );
-      }
-
-      if (flyoutAlertRules?.current) {
-        flyoutAlertRules.current.removeEventListener(
-          'onClosed',
-          hideLayerALertsRules,
-        );
-      }
-    };
-  }, []);
+  };
 
   const className = `${styles['default-layout']} ${
     isAnyLayerVisible ? styles['has-layer'] : ''
   }`;
 
+  const handleCloseFlayoutInbox = () => {
+    flyoutInbox.current?.closeFlyout();
+  };
+
   return (
     <zero-design-system-provider ref={designSystemProvider} class={className}>
-      <foundation-header
-        ref={foundationHeader}
+      <FoundationHeader
+        logout={logout}
+        on-notification-icon-clicked={() =>
+          setLayerState(layerNames.alertInbox, true)
+        }
+        on-luminance-icon-clicked={() => onLuminanceToogle()}
         show-luminance-toggle-button
         show-misc-toggle-button
         show-notification-button
@@ -193,17 +130,18 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = ({ children }) => {
           </zero-tree-view>
         </div>
         <foundation-inbox-counter slot="notifications-icon-end"></foundation-inbox-counter>
-      </foundation-header>
-      <zero-flyout
+      </FoundationHeader>
+      <ZeroFlyout
         ref={flyoutInbox}
+        on-closed={() => setLayerState(layerNames.alertInbox, false)}
         position="right"
         closed={!state[layerNames.alertInbox] ? 'true' : undefined}
         displayHeader={false}
       >
-        <foundation-inbox ref={foundationInbox}></foundation-inbox>
-      </zero-flyout>
-      <zero-flyout
-        ref={flyoutAlertRules}
+        <FoundationInbox on-close={handleCloseFlayoutInbox}></FoundationInbox>
+      </ZeroFlyout>
+      <ZeroFlyout
+        on-closed={() => setLayerState(layerNames.alertRules, false)}
         position="right"
         {...(state[layerNames.alertRules]
           ? { closed: 'false' }
@@ -211,7 +149,7 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = ({ children }) => {
         displayHeader={false}
       >
         <foundation-alerts></foundation-alerts>
-      </zero-flyout>
+      </ZeroFlyout>
       <section className={styles['content']}>{children}</section>
       <AppFooter></AppFooter>
     </zero-design-system-provider>

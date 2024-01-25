@@ -1,4 +1,4 @@
-import { useRef, useEffect } from 'react';
+import reactifyWc from 'reactify-wc';
 import style from './FormsPage.module.css';
 import {
   JSON_SCHEMA,
@@ -21,133 +21,15 @@ import {
   uiSchemaStepperHorizontal,
 } from './schemas';
 
+const FoundationForm: any = reactifyWc('foundation-form');
+
 const FormsPage = () => {
-  const primitiveRenderers = useRef<any>(null);
-  const connectedComboboxRenderers = useRef<any>(null);
-  const connectedComboboxAsyncRenderers = useRef<any>(null);
-  const connectedComboboxLocalRenderers = useRef<any>(null);
-  const userArrayForm = useRef<any>(null);
-  const tradeArrayForm = useRef<any>(null);
-  const exampleGroupForm = useRef<any>(null);
-  const exampleCategorizationForm = useRef<any>(null);
-  const exampleStepperForm = useRef<any>(null);
-  const exampleStepperHorizontalForm = useRef<any>(null);
-  const foundationFormWithDSPrefix = useRef<any>(null);
-
-  //@todo fix unknown issue where data is set to empty from child component
-  const setUserArrayFormElementData = (event: any) => {
-    if (!event.detail.data.users && userArrayForm.current) {
-      userArrayForm.current.data = {
-        users: [
-          {
-            firstname: 'John',
-            lastname: 'Doe',
-            email: 'john@doe.com',
-            rights: 'ADMIN',
-          },
-        ],
-      };
-    }
+  const formWithDSPrefixData = {
+    ISSUER_NAME: 'Some Issuer',
+    INVIS: 'Invisible value!',
+    USER: 'JohnDoe',
+    DATE: 1690848000000,
   };
-
-  //@todo fix unknown issue where data is set to empty from child component
-  const setTradeArrayFormElement = (event: any) => {
-    if (!event.detail.data.users && tradeArrayForm.current) {
-      tradeArrayForm.current.data = {
-        users: [
-          {
-            instrumentId: 'VOD',
-            quantity: '500',
-            side: 'BUY',
-          },
-        ],
-      };
-    }
-  };
-
-  useEffect(() => {
-    if (primitiveRenderers.current) {
-      primitiveRenderers.current.uischema = uiSchema;
-      primitiveRenderers.current.jsonSchema = JSON_SCHEMA;
-    }
-
-    if (connectedComboboxRenderers.current) {
-      connectedComboboxRenderers.current.uischema = uiSchemaConnectedSelect;
-      connectedComboboxRenderers.current.jsonSchema =
-        JSON_SCHEMA_CONNECTED_SELECT;
-    }
-
-    if (connectedComboboxAsyncRenderers.current) {
-      connectedComboboxAsyncRenderers.current.uischema =
-        uiSchemaConnectedSelectAsync;
-      connectedComboboxAsyncRenderers.current.jsonSchema =
-        JSON_SCHEMA_CONNECTED_SELECT;
-    }
-
-    if (connectedComboboxLocalRenderers.current) {
-      connectedComboboxLocalRenderers.current.uischema =
-        uiSchemaConnectedNumber;
-      connectedComboboxLocalRenderers.current.jsonSchema =
-        JSON_SCHEMA_CONNECTED_NUMBER;
-      connectedComboboxLocalRenderers.current.data = {
-        NUMBER_RATE: 0,
-      };
-    }
-
-    if (userArrayForm.current) {
-      userArrayForm.current.uischema = uiSchemaArray;
-      userArrayForm.current.jsonSchema = JSON_SCHEMA_ARRAY;
-      userArrayForm.current.addEventListener(
-        'data-change',
-        setUserArrayFormElementData,
-      );
-    }
-
-    if (tradeArrayForm.current) {
-      tradeArrayForm.current.uischema = uiSchemaArrayTrade;
-      tradeArrayForm.current.jsonSchema = JSON_SCHEMA_ARRAY_TRADE;
-
-      userArrayForm.current.addEventListener(
-        'data-change',
-        setTradeArrayFormElement,
-      );
-    }
-
-    if (exampleGroupForm.current) {
-      exampleGroupForm.current.uischema = uiSchemaGroup;
-      exampleGroupForm.current.jsonSchema = JSON_SCHEMA_GROUP;
-      exampleGroupForm.current.data = {
-        person: { firstName: 'John' },
-        address: { city: 'London' },
-      };
-    }
-
-    if (exampleCategorizationForm.current) {
-      exampleCategorizationForm.current.uischema = uiSchemaCategorization;
-      exampleCategorizationForm.current.jsonSchema = JSON_SCHEMA_CATEGORIZATION;
-    }
-
-    if (exampleStepperForm.current) {
-      exampleStepperForm.current.uischema = uiSchemaStepper;
-      exampleStepperForm.current.jsonSchema = JSON_SCHEMA_STEPPER;
-    }
-
-    if (exampleStepperHorizontalForm.current) {
-      exampleStepperHorizontalForm.current.uischema = uiSchemaStepperHorizontal;
-      exampleStepperHorizontalForm.current.jsonSchema = JSON_SCHEMA_STEPPER;
-    }
-
-    if (foundationFormWithDSPrefix.current) {
-      foundationFormWithDSPrefix.current.uischema = uiSchema;
-      foundationFormWithDSPrefix.current.jsonSchema = JSON_SCHEMA;
-      foundationFormWithDSPrefix.current.data = {
-        ISSUER_NAME: 'Some Issuer',
-        INVIS: 'Invisible value!',
-        USER: 'JohnDoe',
-        DATE: 1690848000000,
-      };
-    }
-  }, []);
 
   return (
     <zero-tabs class={style['forms-page']}>
@@ -165,7 +47,10 @@ const FormsPage = () => {
         <div className={style['form-container']}>
           <h2>Primitive Renderers</h2>
           <div style={{ display: 'flex', flexDirection: 'row' }}>
-            <foundation-form ref={primitiveRenderers}></foundation-form>
+            <FoundationForm
+              uischema={uiSchema}
+              jsonSchema={JSON_SCHEMA}
+            ></FoundationForm>
           </div>
         </div>
       </zero-tab-panel>
@@ -173,40 +58,81 @@ const FormsPage = () => {
         <div className={style['form-container']}>
           <h2>Examples</h2>
           <h3>1. Connected Combobox/Multiselect</h3>
-          <foundation-form ref={connectedComboboxRenderers}></foundation-form>
+          <FoundationForm
+            uischema={uiSchemaConnectedSelect}
+            jsonSchema={JSON_SCHEMA_CONNECTED_SELECT}
+          ></FoundationForm>
           <h3>2. Connected Combobox/Multiselect with async mode</h3>
-          <foundation-form
-            ref={connectedComboboxAsyncRenderers}
-          ></foundation-form>
+          <FoundationForm
+            jsonSchema={JSON_SCHEMA_CONNECTED_SELECT}
+            uischema={uiSchemaConnectedSelectAsync}
+          ></FoundationForm>
           <h3>3. Connected Combobox with local data</h3>
-          <foundation-form
-            ref={connectedComboboxLocalRenderers}
-          ></foundation-form>
+          <FoundationForm
+            jsonSchema={JSON_SCHEMA_CONNECTED_NUMBER}
+            uischema={uiSchemaConnectedNumber}
+            data={{
+              NUMBER_RATE: 0,
+            }}
+          ></FoundationForm>
         </div>
       </zero-tab-panel>
       <zero-tab-panel>
         <div className={style['form-container']}>
           <h2>Examples</h2>
           <h3>1. User Array Form</h3>
-          <foundation-form ref={userArrayForm}></foundation-form>
+          <FoundationForm
+            data={{
+              users: [
+                {
+                  firstname: 'John',
+                  lastname: 'Doe',
+                  email: 'john@doe.com',
+                  rights: 'ADMIN',
+                },
+              ],
+            }}
+            uischema={uiSchemaArray}
+            jsonSchema={JSON_SCHEMA_ARRAY}
+          ></FoundationForm>
           <h3>1. Trade Array Form</h3>
-          <foundation-form ref={tradeArrayForm}></foundation-form>
+          <FoundationForm
+            data={{
+              users: [
+                {
+                  instrumentId: 'VOD',
+                  quantity: '500',
+                  side: 'BUY',
+                },
+              ],
+            }}
+            uischema={uiSchemaArrayTrade}
+            jsonSchema={JSON_SCHEMA_ARRAY_TRADE}
+          ></FoundationForm>
         </div>
       </zero-tab-panel>
       <zero-tab-panel>
         <div className={style['form-container']}>
           <h2>Example</h2>
-          <foundation-form
-            ref={exampleGroupForm}
+          <FoundationForm
+            uischema={uiSchemaGroup}
+            jsonSchema={JSON_SCHEMA_GROUP}
+            data={{
+              person: { firstName: 'John' },
+              address: { city: 'London' },
+            }}
             design-system-prefix="fast"
-          ></foundation-form>
+          ></FoundationForm>
         </div>
       </zero-tab-panel>
       <zero-tab-panel>
         <div className={style['form-container']}>
           <h2>Example</h2>
           <zero-card style={{ width: '50%', padding: '0 15px' }}>
-            <foundation-form ref={exampleCategorizationForm}></foundation-form>
+            <FoundationForm
+              uischema={uiSchemaCategorization}
+              jsonSchema={JSON_SCHEMA_CATEGORIZATION}
+            ></FoundationForm>
           </zero-card>
         </div>
       </zero-tab-panel>
@@ -214,17 +140,19 @@ const FormsPage = () => {
         <div className={style['form-container']}>
           <h2>Examples</h2>
           <h3>1. Vertical Stepper Form</h3>
-          <foundation-form
-            ref={exampleStepperForm}
+          <FoundationForm
+            uischema={uiSchemaStepper}
+            jsonSchema={JSON_SCHEMA_STEPPER}
             style={{ height: '400px' }}
             hide-submit-button
-          ></foundation-form>
+          ></FoundationForm>
           <h3>2. Horizontal Stepper Form</h3>
-          <foundation-form
-            ref={exampleStepperHorizontalForm}
+          <FoundationForm
+            uischema={uiSchemaStepperHorizontal}
+            jsonSchema={JSON_SCHEMA_STEPPER}
             style={{ height: '500px' }}
             hide-submit-button
-          ></foundation-form>
+          ></FoundationForm>
         </div>
       </zero-tab-panel>
       <zero-tab-panel>
@@ -239,10 +167,12 @@ const FormsPage = () => {
         <div className={style['form-container']}>
           <h2>Foundation Forms with DS prefix</h2>
           <div style={{ display: 'flex', flexDirection: 'row' }}>
-            <foundation-form
-              ref={foundationFormWithDSPrefix}
+            <FoundationForm
+              jsonSchema={JSON_SCHEMA}
+              uischema={uiSchema}
+              data={formWithDSPrefixData}
               design-system-prefix="fast"
-            ></foundation-form>
+            ></FoundationForm>
           </div>
         </div>
       </zero-tab-panel>

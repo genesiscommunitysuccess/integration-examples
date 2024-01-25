@@ -1,6 +1,10 @@
-import { useRef, useEffect, useContext } from 'react';
+import { useContext } from 'react';
+import reactifyWc from 'reactify-wc';
 import StateChangerContext from '../../../store/StateChanger/StateChangerContext';
 import style from './StateChanger.module.css';
+
+const ZeroTextField: any = reactifyWc('zero-text-field');
+const ZeroButton: any = reactifyWc('zero-button');
 
 const StateChanger = () => {
   const stateChangerContext = useContext(StateChangerContext);
@@ -8,63 +12,37 @@ const StateChanger = () => {
     throw new Error('StateChangerContext is not defined');
   }
   const { state: stateChangerState, updateState } = stateChangerContext;
-  const criteriaTextField = useRef<HTMLInputElement | null>(null);
-  const resourceNameTextField = useRef<HTMLInputElement | null>(null);
-  const applyCriteriaButton = useRef<HTMLButtonElement | null>(null);
-  const applyResourceNameButton = useRef<HTMLButtonElement | null>(null);
 
-  useEffect(() => {
-    const applyCriteria = () => {
-      if (criteriaTextField.current) {
-        updateState({ criteria: criteriaTextField.current.value });
-      }
-    };
-    const applyResourceName = () => {
-      if (resourceNameTextField.current) {
-        updateState({ resourceName: resourceNameTextField.current.value });
-      }
-    };
-
-    if (applyCriteriaButton.current) {
-      applyCriteriaButton.current.addEventListener('click', applyCriteria);
-    }
-    if (applyResourceNameButton.current) {
-      applyResourceNameButton.current.addEventListener(
-        'click',
-        applyResourceName,
-      );
-    }
-
-    return () => {
-      if (applyCriteriaButton.current) {
-        applyCriteriaButton.current.removeEventListener('click', applyCriteria);
-      }
-      if (applyResourceNameButton.current) {
-        applyResourceNameButton.current.removeEventListener(
-          'click',
-          applyResourceName,
-        );
-      }
-    };
-  }, []);
+  let currentCriteria = stateChangerState.criteria;
+  let currentResourceName = stateChangerState.resourceName;
 
   return (
     <section className={style['state-changer']}>
-      <zero-text-field
-        ref={criteriaTextField}
+      <ZeroTextField
+        on-input={(event: Event) =>
+          (currentCriteria = (event.target as HTMLInputElement).value)
+        }
         value={stateChangerState.criteria}
-      ></zero-text-field>
-      <zero-button appearance="outline" ref={applyCriteriaButton}>
+      ></ZeroTextField>
+      <ZeroButton
+        appearance="outline"
+        on-click={() => updateState({ criteria: currentCriteria })}
+      >
         Apply Criteria
-      </zero-button>
+      </ZeroButton>
       <zero-divider orientation="vertical"></zero-divider>
-      <zero-text-field
-        ref={resourceNameTextField}
+      <ZeroTextField
+        on-input={(event: Event) =>
+          (currentResourceName = (event.target as HTMLInputElement).value)
+        }
         value={stateChangerState.resourceName}
-      ></zero-text-field>
-      <zero-button appearance="outline" ref={applyResourceNameButton}>
+      ></ZeroTextField>
+      <ZeroButton
+        appearance="outline"
+        on-click={() => updateState({ resourceName: currentResourceName })}
+      >
         Apply Resource
-      </zero-button>
+      </ZeroButton>
     </section>
   );
 };

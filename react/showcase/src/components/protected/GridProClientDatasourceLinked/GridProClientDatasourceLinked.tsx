@@ -1,4 +1,5 @@
 import { useRef, useEffect } from 'react';
+import reactifyWc from 'reactify-wc';
 import { GridOptions, RowSelectedEvent } from '@ag-grid-community/core';
 import {
   LayoutEmitEvents,
@@ -9,6 +10,8 @@ import {
   setComponentItemsMap,
   getElementByTagFromComponent,
 } from '../../../utils/goldenLayout.helper';
+
+const ZeroLayout: any = reactifyWc('zero-layout');
 
 const DATASOURCE_ELEMENT_TAG = 'grid-pro-genesis-datasource';
 
@@ -34,38 +37,30 @@ const GridProClientDatasourceLinked = () => {
   };
   const gridLayout = useRef<FoundationLayout | null>(null);
 
+  const handleGridLayoutFirstLoaded = () => {
+    const allPositions = layoutComponentsMap.get(
+      LayoutComponentsNames.ALL_POSITIONS,
+    );
+    const datasourceElement = getElementByTagFromComponent(
+      allPositions,
+      DATASOURCE_ELEMENT_TAG,
+    );
+
+    datasourceElement.deferredGridOptions = deferredGridOptions;
+  };
+
+  const layoutEvents = {
+    [`on-${LayoutEmitEvents.firstLoaded}`]: handleGridLayoutFirstLoaded,
+  };
+
   useEffect(() => {
     if (gridLayout.current) {
       setComponentItemsMap(gridLayout.current, layoutComponentsMap);
-
-      const handleGridLayoutFirstLoaded = () => {
-        const allPositions = layoutComponentsMap.get(
-          LayoutComponentsNames.ALL_POSITIONS,
-        );
-        const datasourceElement = getElementByTagFromComponent(
-          allPositions,
-          DATASOURCE_ELEMENT_TAG,
-        );
-
-        datasourceElement.deferredGridOptions = deferredGridOptions;
-      };
-
-      gridLayout.current.addEventListener(
-        LayoutEmitEvents.firstLoaded,
-        handleGridLayoutFirstLoaded,
-      );
-
-      return () => {
-        gridLayout.current?.removeEventListener(
-          LayoutEmitEvents.firstLoaded,
-          handleGridLayoutFirstLoaded,
-        );
-      };
     }
   }, []);
 
   return (
-    <zero-layout ref={gridLayout}>
+    <ZeroLayout {...layoutEvents} ref={gridLayout}>
       <zero-layout-region type="horizontal">
         <zero-layout-region>
           <zero-layout-item
@@ -85,7 +80,7 @@ const GridProClientDatasourceLinked = () => {
           </zero-layout-item>
         </zero-layout-region>
       </zero-layout-region>
-    </zero-layout>
+    </ZeroLayout>
   );
 };
 

@@ -9,7 +9,6 @@ const MOCK_SUCCESSFUL_LOGIN_PATH = '/protected';
 
 const AuthMockPage: React.FC = () => {
   const mainContainer = useRef<HTMLElement>(null);
-  const foundationLogin = useRef<HTMLElement>(null);
   const [isLoginComponentDefined, setIsLoginComponentDefined] = useState(false);
   const currentPath = window.location.pathname;
 
@@ -42,7 +41,7 @@ const AuthMockPage: React.FC = () => {
   }, [currentPath, navigate]);
   return (
     <section ref={mainContainer} className={styles.AuthMockPage}>
-      {isLoginComponentDefined && <foundation-login ref={foundationLogin} />}
+      {isLoginComponentDefined && <foundation-login />}
     </section>
   );
 };

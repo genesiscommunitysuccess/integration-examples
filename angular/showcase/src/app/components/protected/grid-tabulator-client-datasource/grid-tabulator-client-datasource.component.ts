@@ -49,9 +49,9 @@ export class GridTabulatorClientDatasourceComponent implements AfterViewInit, On
       console.error(e);
     }
 
-    const listner = this.setReady.bind(this);
-    this.listeners.push(listner);
-    this.gridLayoutElement.nativeElement.addEventListener(LayoutEmitEvents.firstLoaded, listner);
+    const listener = this.setReady.bind(this);
+    this.listeners.push(listener);
+    this.gridLayoutElement.nativeElement.addEventListener(LayoutEmitEvents.firstLoaded, listener);
   }
 
   ngOnChanges(changes: SimpleChanges) {
