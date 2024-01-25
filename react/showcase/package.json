@@ -1,6 +1,6 @@
 {
-  "name": "showcase",
-  "version": "0.1.0",
+  "name": "genesislcap-react-showcase-client-app",
+  "version": "1.0.0",
   "private": true,
   "dependencies": {
     "@ag-grid-community/core": "29.2.0",
