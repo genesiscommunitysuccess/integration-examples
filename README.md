@@ -29,16 +29,19 @@ This repository is organized into separate sections for each front-end framework
 /
 ├── react/                  # React integration examples
 │   ├── basic               # basic example of integration
-│   ├── [React Example 2]   # Example description
+│   ├── showcase            # Comprehensive example of integration
 │   └── ...                 # Other examples
 └── angular/                # Angular integration examples
-    ├── basic               # basic example of integration
-    ├── [Angular Example 2] # Example description
-    └── ...                 # Other examples
+│   ├── basic               # basic example of integration
+|   ├── showcase            # Comprehensive example of integration
+|   └── ...                 # Other examples
+└── vue/                    # Vue integration examples
+   └── basic                # basic example of integration
 ```
 
 - `react/`: Contains examples and demonstrations on integrating Genesis LCAP with React. Each subdirectory inside `react/` is a standalone example.
 - `angular/`: Contains examples showcasing the integration of Genesis LCAP with Angular. Similar to React, each subdirectory represents a specific example.
+- `vue/`: Contains basic example of the integration of Genesis LCAP with Vue.
 
 Navigate to the respective directories for detailed examples and instructions.
 
