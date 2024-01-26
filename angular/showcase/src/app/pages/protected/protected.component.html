@@ -1,43 +1,42 @@
-<div class="resource-filter">
-  <app-state-changer *ngIf="displayStateChanger"></app-state-changer>
-</div>
-<zero-tabs appearance="secondary" (change)="onTabChanged($event)">
-  <h1>{{ criteria }}</h1>
-  <zero-tab appearance="secondary" slot="tab">Grid Pro + Client Datasource</zero-tab>
-  <zero-tab appearance="secondary" slot="tab">Grid Pro + Client Datasource + Layouts</zero-tab>
-  <zero-tab appearance="secondary" slot="tab" hide-state-changer>
-    Grid Pro + Client Datasource + Linked
-  </zero-tab>
-  <zero-tab appearance="secondary" slot="tab">Grid Pro + Server Datasource</zero-tab>
-  <zero-tab appearance="secondary" slot="tab">Grid Tabulator + Client Datasource</zero-tab>
+<zero-grid-layout row-count="2" col-count="2" class="content-around spacing-2x">
+  <zero-grid-layout-item col-number="1" row-number="1" width="1" height="1">
+    <entity-management
+      #allPositions
+      resourceName="ALL_POSITIONS"
+      title="POSITIONS"
+    ></entity-management>
+  </zero-grid-layout-item>
+  <zero-grid-layout-item col-number="2" row-number="1" width="1" height="1">
+    <entity-management
+      #allTrades
+      resourceName="ALL_TRADES"
+      title="TRADES"
+      updateEvent="EVENT_TRADE_MODIFY"
+      deleteEvent="EVENT_TRADE_DELETE"
+      createEvent="EVENT_TRADE_INSERT"
+    ></entity-management>
+  </zero-grid-layout-item>
+  <zero-grid-layout-item col-number="1" row-number="2" width="1" height="1">
+    <zero-g2plot-chart #donutChart type="donut">
+      <chart-datasource
+        resourceName="ALL_CHART_DATA"
+        server-fields="SIDE INSTRUMENT_SIDE_ALLOCATION"
+        charts-fields="groupBy value"
+        isSnapshot="false"
+        [criteria]="allocationCriteria"
+      ></chart-datasource>
+    </zero-g2plot-chart>
+  </zero-grid-layout-item>
+  <zero-grid-layout-item col-number="2" row-number="2" width="1" height="1">
+    <zero-g2plot-chart #lineChart type="line">
+      <chart-datasource
+        resourceName="ALL_TRADES"
+        server-fields="TRADE_DATETIME PRICE SIDE"
+        chart-fields="groupBy value side"
+        isSnapshot="false"
+        [criteria]="linechartCriteria"
+      ></chart-datasource>
+    </zero-g2plot-chart>
+  </zero-grid-layout-item>
+</zero-grid-layout>
 
-  <zero-tab-panel slot="tabpanel">
-    <zero-notification-listener>
-      <app-grid-pro-client-datasource [resourceName]="resourceName" [criteria]="criteria" />
-    </zero-notification-listener>
-  </zero-tab-panel>
-
-  <zero-tab-panel slot="tabpanel">
-    <zero-notification-listener>
-      <app-grid-pro-client-datasource-layouts [resourceName]="resourceName" [criteria]="criteria" />
-    </zero-notification-listener>
-  </zero-tab-panel>
-
-  <zero-tab-panel slot="tabpanel">
-    <zero-notification-listener>
-      <app-grid-pro-client-datasource-linked />
-    </zero-notification-listener>
-  </zero-tab-panel>
-
-  <zero-tab-panel slot="tabpanel">
-    <zero-notification-listener>
-      <app-grid-pro-server-datasource [resourceName]="resourceName" [criteria]="criteria" />
-    </zero-notification-listener>
-  </zero-tab-panel>
-
-  <zero-tab-panel slot="tabpanel">
-    <zero-notification-listener>
-      <app-grid-tabulator-client-datasource [resourceName]="resourceName" [criteria]="criteria" />
-    </zero-notification-listener>
-  </zero-tab-panel>
-</zero-tabs>
