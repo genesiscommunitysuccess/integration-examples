@@ -1,23 +1,23 @@
-<zero-grid-layout row-count="2" col-count="2" class="content-around spacing-2x">
+<zero-grid-layout row-count="2" col-count="3" class="content-around spacing-2x">
   <zero-grid-layout-item col-number="1" row-number="1" width="1" height="1">
     <entity-management
-      #allPositions
       resourceName="ALL_POSITIONS"
       title="POSITIONS"
+      [gridOptions]="gridOptions"
     ></entity-management>
   </zero-grid-layout-item>
-  <zero-grid-layout-item col-number="2" row-number="1" width="1" height="1">
+  <zero-grid-layout-item col-number="2" row-number="1" width="2" height="1">
     <entity-management
-      #allTrades
       resourceName="ALL_TRADES"
+      [createFormUiSchema]="addTradeFormSchema"
       title="TRADES"
+      createEvent="EVENT_TRADE_INSERT"
       updateEvent="EVENT_TRADE_MODIFY"
       deleteEvent="EVENT_TRADE_DELETE"
-      createEvent="EVENT_TRADE_INSERT"
     ></entity-management>
   </zero-grid-layout-item>
   <zero-grid-layout-item col-number="1" row-number="2" width="1" height="1">
-    <zero-g2plot-chart #donutChart type="donut">
+    <zero-g2plot-chart type="donut" [config]="donutChartConfig">
       <chart-datasource
         resourceName="ALL_CHART_DATA"
         server-fields="SIDE INSTRUMENT_SIDE_ALLOCATION"
@@ -27,14 +27,12 @@
       ></chart-datasource>
     </zero-g2plot-chart>
   </zero-grid-layout-item>
-  <zero-grid-layout-item col-number="2" row-number="2" width="1" height="1">
-    <zero-g2plot-chart #lineChart type="line">
+  <zero-grid-layout-item col-number="3" row-number="2" width="1" height="1">
+    <zero-g2plot-chart type="line" [config]="linechartConfig">
       <chart-datasource
-        resourceName="ALL_TRADES"
-        server-fields="TRADE_DATETIME PRICE SIDE"
-        chart-fields="groupBy value side"
-        isSnapshot="false"
-        [criteria]="linechartCriteria"
+        resourceName="ALL_POSITIONS"
+        server-fields="INSTRUMENT_NAME QUANTITY"
+        isSnapshot="true"
       ></chart-datasource>
     </zero-g2plot-chart>
   </zero-grid-layout-item>
