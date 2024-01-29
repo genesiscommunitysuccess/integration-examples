@@ -101,4 +101,35 @@ export class FormsComponent {
     USER: 'JohnDoe',
     DATE: 1690848000000,
   }
+
+  //@todo fix unknown issue where data is set to empty from child component
+  setUserArrayFormElementData(event: any) {
+    if (!event.detail.data.users) {
+      event.target.data = {
+        users: [
+          {
+            firstname: 'John',
+            lastname: 'Doe',
+            email: 'john@doe.com',
+            rights: 'ADMIN',
+          },
+        ],
+      };
+    }
+  }
+
+  //@todo fix unknown issue where data is set to empty from child component
+  setTradeArrayFormElement(event: any) {
+    if (!event.detail.data.users) {
+      event.target.data = {
+        users: [
+          {
+            instrumentId: 'VOD',
+            quantity: '500',
+            side: 'BUY',
+          },
+        ],
+      };
+    }
+  }
 }

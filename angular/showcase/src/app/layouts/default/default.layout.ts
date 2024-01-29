@@ -1,4 +1,4 @@
-import { Component, ViewChild, ElementRef, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
+import { Component, ViewChild, ElementRef, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store, select } from '@ngrx/store';
 import { Subscription, Observable } from 'rxjs';
@@ -13,8 +13,7 @@ import * as LayersSelectors from '../../store/layers/layers.selectors';
   templateUrl: './default.layout.html',
   styleUrls: ['./default.layout.css'],
 })
-export class DefaultLayoutComponent extends BaseLayout implements OnInit, AfterViewInit, OnDestroy {
-  @ViewChild('foundationHeader') foundationHeaderElement!: ElementRef;
+export class DefaultLayoutComponent extends BaseLayout implements OnInit, OnDestroy {
   @ViewChild('designSystemProvider') designSystemProviderElement!: ElementRef;
   allRoutes = mainMenu;
   layerNames = layerNames;
@@ -40,6 +39,10 @@ export class DefaultLayoutComponent extends BaseLayout implements OnInit, AfterV
     );
     this.isAnyLayerVisible$ = this.store.pipe(select(LayersSelectors.isAnyLayerVisible));
   }
+  
+  navigateAngular = (path: string) => {
+    this.router.navigate([path]);
+  };
 
   ngOnInit() {
     this.subscription.add(
@@ -53,12 +56,6 @@ export class DefaultLayoutComponent extends BaseLayout implements OnInit, AfterV
         this.isAnyLayerVisible = value;
       }),
     );
-  }
-
-  ngAfterViewInit() {
-    this.foundationHeaderElement.nativeElement.navigateTo = (path: string) => {
-      this.router.navigate([path]);
-    };
   }
 
   onNotificationIconClicked() {

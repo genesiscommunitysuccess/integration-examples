@@ -49,12 +49,14 @@
         [uischema]="uiSchemaArray"
         [jsonSchema]="jsonSchemaArray"
         [data]="arrayFormData"
+        (data-change)="setUserArrayFormElementData($event)"
       ></foundation-form>
       <h3>1. Trade Array Form</h3>
       <foundation-form
         [uischema]="uiSchemaArrayTrade"
         [jsonSchema]="jsonSchemaArrayTrade"
-        [data]="arrayFormTradeData"
+        [data]="arrayTradeFormData"
+        (data-change)="setTradeArrayFormElement($event)"
       ></foundation-form>
     </div>
   </zero-tab-panel>

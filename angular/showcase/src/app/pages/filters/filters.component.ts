@@ -14,7 +14,7 @@ export class FiltersComponent {
   allUsersfilters = '';
   allTradesfilters = '';
   allProfilesfilters = '';
-  uischema = {
+  uiSchema = {
     type: 'VerticalLayout',
     elements: [
       {
