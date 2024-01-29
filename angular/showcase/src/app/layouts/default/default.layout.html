@@ -6,6 +6,7 @@
     show-notification-button
     [routeButtons]="allRoutes"
     (notification-icon-clicked)="onNotificationIconClicked()"
+    (luminance-icon-clicked)="onLuminanceToogle()"
   >
     <section class="routes-wrapper" slot="routes">
       <zero-button *ngFor="let menuLink of allRoutes" (click)="navigate(menuLink.path)">

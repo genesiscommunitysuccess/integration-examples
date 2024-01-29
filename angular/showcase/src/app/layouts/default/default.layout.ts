@@ -56,25 +56,6 @@ export class DefaultLayoutComponent extends BaseLayout implements OnInit, AfterV
   }
 
   ngAfterViewInit() {
-    const onLuminanceToogle = (): void => {
-      baseLayerLuminance.setValueFor(
-        this.designSystemProviderElement.nativeElement,
-        baseLayerLuminance.getValueFor(this.designSystemProviderElement.nativeElement) ===
-          StandardLuminance.DarkMode
-          ? StandardLuminance.LightMode
-          : StandardLuminance.DarkMode,
-      );
-    };
-    this.foundationHeaderElement.nativeElement.addEventListener(
-      'luminance-icon-clicked',
-      onLuminanceToogle,
-    );
-    this.eventListenersRemovers.push(() => {
-      this.foundationHeaderElement.nativeElement.removeEventListener(
-        'luminance-icon-clicked',
-        onLuminanceToogle,
-      );
-    });
     this.foundationHeaderElement.nativeElement.navigateTo = (path: string) => {
       this.router.navigate([path]);
     };
@@ -83,6 +64,16 @@ export class DefaultLayoutComponent extends BaseLayout implements OnInit, AfterV
   onNotificationIconClicked() {
     this.store.dispatch(LayersActions.showLayer({ layerName: layerNames.alertInbox }));
   }
+  
+  onLuminanceToogle = (): void => {
+    baseLayerLuminance.setValueFor(
+      this.designSystemProviderElement.nativeElement,
+      baseLayerLuminance.getValueFor(this.designSystemProviderElement.nativeElement) ===
+        StandardLuminance.DarkMode
+        ? StandardLuminance.LightMode
+        : StandardLuminance.DarkMode,
+    );
+  };
 
   closeLayer(layerName: string) {
     this.store.dispatch(LayersActions.hideLayer({ layerName }));

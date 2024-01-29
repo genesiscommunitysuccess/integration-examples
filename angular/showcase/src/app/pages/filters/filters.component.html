@@ -39,10 +39,11 @@
     <div class="container">
       <zero-card>
         <foundation-filters
-          #dateFilter
           class="date-filter"
           (change)="handleChange($event, 'allTradesfilters')"
           (submit)="handleSubmit()"
+          [uischema]="uiSchema"
+          [jsonSchema]="jsonSchema"
         ></foundation-filters>
       </zero-card>
       <zero-grid-pro>

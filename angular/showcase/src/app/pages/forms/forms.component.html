@@ -13,7 +13,10 @@
     <div class="form-container">
       <h2>Primitive Renderers</h2>
       <div style="display: flex; flex-direction: row">
-        <foundation-form #primitiveRenderers></foundation-form>
+        <foundation-form
+          [uischema]="uiSchema"
+          [jsonSchema]="jsonSchema"
+        ></foundation-form>
       </div>
     </div>
   </zero-tab-panel>
@@ -21,11 +24,21 @@
     <div class="form-container">
       <h2>Examples</h2>
       <h3>1. Connected Combobox/Multiselect</h3>
-      <foundation-form #connectedComboboxRenderers></foundation-form>
+      <foundation-form
+        [uischema]="uiSchemaConnectedSelect"
+        [jsonSchema]="jsonSchemaConnectedSelect"
+      ></foundation-form>
       <h3>2. Connected Combobox/Multiselect with async mode</h3>
-      <foundation-form #connectedComboboxAsyncRenderers></foundation-form>
+      <foundation-form 
+        [uischema]="uiSchemaConnectedSelectAsync"
+        [jsonSchema]="jsonSchemaConnectedSelectAsync"
+      ></foundation-form>
       <h3>3. Connected Combobox with local data</h3>
-      <foundation-form #connectedComboboxLocalRenderers></foundation-form>
+      <foundation-form 
+        [uischema]="uiSchemaConnectedNumber"
+        [jsonSchema]="jsonSchemaConnectedNumber"
+        [data]="localData"
+      ></foundation-form>
     </div>
   </zero-tab-panel>
   <zero-tab-panel>
@@ -33,27 +46,37 @@
       <h2>Examples</h2>
       <h3>1. User Array Form</h3>
       <foundation-form
-        #userArrayForm
-        (data-change)="setUserArrayFormElementData($event)"
+        [uischema]="uiSchemaArray"
+        [jsonSchema]="jsonSchemaArray"
+        [data]="arrayFormData"
       ></foundation-form>
       <h3>1. Trade Array Form</h3>
       <foundation-form
-        #tradeArrayForm
-        (data-change)="setTradeArrayFormElement($event)"
+        [uischema]="uiSchemaArrayTrade"
+        [jsonSchema]="jsonSchemaArrayTrade"
+        [data]="arrayFormTradeData"
       ></foundation-form>
     </div>
   </zero-tab-panel>
   <zero-tab-panel>
     <div class="form-container">
       <h2>Example</h2>
-      <foundation-form #exampleGroupForm design-system-prefix="fast"></foundation-form>
+      <foundation-form
+        [uischema]="uiSchemaGroup"
+        [jsonSchema]="jsonSchemaGroup"
+        [data]="groupData"
+        design-system-prefix="fast"
+      ></foundation-form>
     </div>
   </zero-tab-panel>
   <zero-tab-panel>
     <div class="form-container">
       <h2>Example</h2>
       <zero-card style="width: 50%; padding: 0 15px">
-        <foundation-form #exampleCategorizationForm></foundation-form>
+        <foundation-form 
+          [uischema]="uiSchemaCategorization"
+          [jsonSchema]="jsonSchemaCategorization"
+        ></foundation-form>
       </zero-card>
     </div>
   </zero-tab-panel>
@@ -62,13 +85,15 @@
       <h2>Examples</h2>
       <h3>1. Vertical Stepper Form</h3>
       <foundation-form
-        #exampleStepperForm
+        [uischema]="uiSchemaStepper"
+        [jsonSchema]="jsonSchemaStepper"
         style="height: 400px"
         hide-submit-button
       ></foundation-form>
       <h3>2. Horizontal Stepper Form</h3>
       <foundation-form
-        #exampleStepperHorizontalForm
+        [uischema]="uiSchemaStepperHorizontal"
+        [jsonSchema]="jsonSchemaStepper"
         style="height: 500px"
         hide-submit-button
       ></foundation-form>
@@ -86,7 +111,12 @@
     <div class="form-container">
       <h2>Foundation Forms with DS prefix</h2>
       <div style="display: flex; flex-direction: row">
-        <foundation-form #foundationFormWithDSPrefix design-system-prefix="fast"></foundation-form>
+        <foundation-form 
+          [uischema]="uiSchema"
+          [jsonSchema]="jsonSchema"
+          [data]="dsprefixData"
+          design-system-prefix="fast">
+        </foundation-form>
       </div>
     </div>
   </zero-tab-panel>
