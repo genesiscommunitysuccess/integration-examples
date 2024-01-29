@@ -54,6 +54,7 @@ export const mainMenu: MainMenu = [
     variant: 'solid',
   },
   { index: 8, path: 'features-lab', title: 'Features Lab', icon: 'flask' },
+  { index: 8, path: 'trades-chart', title: 'Trades chart', icon: 'chart-pie' },
 ];
 
 export const layerNames = {

@@ -1,0 +1,13 @@
+<zero-card class="chart-card">
+  {{ configSeted }}
+  <zero-g2plot-chart #chart type="line">
+    <chart-datasource
+      #chartDatasource
+      *ngIf="configSeted"
+      resourceName="ALL_TRADES"
+      server-fields="TRADE_DATETIME PRICE SIDE"
+      chart-fields="groupBy value side"
+      isSnapshot="false"
+    ></chart-datasource>
+  </zero-g2plot-chart>
+</zero-card>

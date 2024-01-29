@@ -11,6 +11,7 @@ import { FiltersComponent } from './pages/filters/filters.component';
 import { FormsComponent } from './pages/forms/forms.component';
 import { NotificationDashboardComponent } from './pages/notification-dashboard/notification-dashboard.component';
 import { FeaturesLabComponent } from './pages/features-lab/features-lab.component';
+import { TradesChartComponent } from './pages/trades-chart/trades-chart.component';
 import { INTERNAL_URLS, AUTH_URL } from './config';
 
 const routes: Routes = [
@@ -61,6 +62,11 @@ const routes: Routes = [
     path: 'features-lab',
     canActivate: [AuthGuard],
     component: FeaturesLabComponent,
+  },
+  {
+    path: 'trades-chart',
+    canActivate: [AuthGuard],
+    component: TradesChartComponent,
   },
   // Redirect to auth if no other route is matched
   { path: '**', redirectTo: `/${AUTH_URL}` },
