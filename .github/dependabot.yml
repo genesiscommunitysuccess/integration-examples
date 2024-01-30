@@ -2,11 +2,35 @@ version: 2
 updates:
   # Configuration template for any angular examples
   - package-ecosystem: "npm"
-    directory: "/angular/*" # Pattern matching for directory names
+    directory: "/angular/alpha-angular"
+    schedule:
+      interval: "daily"
+  - package-ecosystem: "npm"
+    directory: "/angular/alpha-handle-events"
+    schedule:
+      interval: "daily"
+  - package-ecosystem: "npm"
+    directory: "/angular/basic"
+    schedule:
+      interval: "daily"
+  - package-ecosystem: "npm"
+    directory: "/angular/showcase"
     schedule:
       interval: "daily"
   # Configuration template for any react examples
   - package-ecosystem: "npm"
-    directory: "/react/*" # Pattern matching for directory names
+    directory: "/react/alpha-react"
+    schedule:
+      interval: "daily"
+  - package-ecosystem: "npm"
+    directory: "/react/alpha-handle-events"
+    schedule:
+      interval: "daily"
+  - package-ecosystem: "npm"
+    directory: "/react/basic"
+    schedule:
+      interval: "daily"
+  - package-ecosystem: "npm"
+    directory: "/react/showcase"
     schedule:
       interval: "daily"
