@@ -1,4 +1,4 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 type Keys = 'allUsersfilters' | 'allTradesfilters' | 'allProfilesfilters';
 
@@ -10,34 +10,29 @@ type Keys = 'allUsersfilters' | 'allTradesfilters' | 'allProfilesfilters';
   styleUrl: './filters.component.css',
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export class FiltersComponent implements AfterViewInit {
-  @ViewChild('dateFilter') dateFilterElement!: any;
-
+export class FiltersComponent {
   allUsersfilters = '';
   allTradesfilters = '';
   allProfilesfilters = '';
-
-  ngAfterViewInit() {
-    this.dateFilterElement.nativeElement.uischema = {
-      type: 'VerticalLayout',
-      elements: [
-        {
-          type: 'Control',
-          label: 'Date',
-          scope: '#/properties/TRADE_DATETIME',
-        },
-      ],
-    };
-    this.dateFilterElement.nativeElement.jsonSchema = {
-      type: 'object',
-      properties: {
-        TRADE_DATETIME: {
-          type: 'string',
-          description: 'org.joda.time.DateTime',
-        },
+  uiSchema = {
+    type: 'VerticalLayout',
+    elements: [
+      {
+        type: 'Control',
+        label: 'Date',
+        scope: '#/properties/TRADE_DATETIME',
       },
-    };
-  }
+    ],
+  };
+  jsonSchema = {
+    type: 'object',
+    properties: {
+      TRADE_DATETIME: {
+        type: 'string',
+        description: 'org.joda.time.DateTime',
+      },
+    },
+  };
 
   handleChange({ target }: any, key: Keys) {
     this[key] = target.value;

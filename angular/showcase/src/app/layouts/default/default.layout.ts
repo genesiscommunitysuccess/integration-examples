@@ -1,4 +1,4 @@
-import { Component, ViewChild, ElementRef, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
+import { Component, ViewChild, ElementRef, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store, select } from '@ngrx/store';
 import { Subscription, Observable } from 'rxjs';
@@ -13,8 +13,7 @@ import * as LayersSelectors from '../../store/layers/layers.selectors';
   templateUrl: './default.layout.html',
   styleUrls: ['./default.layout.css'],
 })
-export class DefaultLayoutComponent extends BaseLayout implements OnInit, AfterViewInit, OnDestroy {
-  @ViewChild('foundationHeader') foundationHeaderElement!: ElementRef;
+export class DefaultLayoutComponent extends BaseLayout implements OnInit, OnDestroy {
   @ViewChild('designSystemProvider') designSystemProviderElement!: ElementRef;
   allRoutes = mainMenu;
   layerNames = layerNames;
@@ -40,6 +39,10 @@ export class DefaultLayoutComponent extends BaseLayout implements OnInit, AfterV
     );
     this.isAnyLayerVisible$ = this.store.pipe(select(LayersSelectors.isAnyLayerVisible));
   }
+  
+  navigateAngular = (path: string) => {
+    this.router.navigate([path]);
+  };
 
   ngOnInit() {
     this.subscription.add(
@@ -55,34 +58,19 @@ export class DefaultLayoutComponent extends BaseLayout implements OnInit, AfterV
     );
   }
 
-  ngAfterViewInit() {
-    const onLuminanceToogle = (): void => {
-      baseLayerLuminance.setValueFor(
-        this.designSystemProviderElement.nativeElement,
-        baseLayerLuminance.getValueFor(this.designSystemProviderElement.nativeElement) ===
-          StandardLuminance.DarkMode
-          ? StandardLuminance.LightMode
-          : StandardLuminance.DarkMode,
-      );
-    };
-    this.foundationHeaderElement.nativeElement.addEventListener(
-      'luminance-icon-clicked',
-      onLuminanceToogle,
-    );
-    this.eventListenersRemovers.push(() => {
-      this.foundationHeaderElement.nativeElement.removeEventListener(
-        'luminance-icon-clicked',
-        onLuminanceToogle,
-      );
-    });
-    this.foundationHeaderElement.nativeElement.navigateTo = (path: string) => {
-      this.router.navigate([path]);
-    };
-  }
-
   onNotificationIconClicked() {
     this.store.dispatch(LayersActions.showLayer({ layerName: layerNames.alertInbox }));
   }
+  
+  onLuminanceToogle = (): void => {
+    baseLayerLuminance.setValueFor(
+      this.designSystemProviderElement.nativeElement,
+      baseLayerLuminance.getValueFor(this.designSystemProviderElement.nativeElement) ===
+        StandardLuminance.DarkMode
+        ? StandardLuminance.LightMode
+        : StandardLuminance.DarkMode,
+    );
+  };
 
   closeLayer(layerName: string) {
     this.store.dispatch(LayersActions.hideLayer({ layerName }));

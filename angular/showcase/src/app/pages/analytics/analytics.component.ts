@@ -1,4 +1,4 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, ViewChild, AfterViewInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CriteriaSegmentedControlOption, Serialisers } from '@genesislcap/foundation-criteria';
 import { FoundationLayout, LayoutEmitEvents } from '@genesislcap/foundation-layout';
@@ -68,69 +68,31 @@ const helperCriteriaEvent = (criteriaSegmentedControl: any, chartDataResource: a
   styleUrl: './analytics.component.css',
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export class AnalyticsComponent implements AfterViewInit {
+export class AnalyticsComponent implements AfterViewInit, OnDestroy {
   @ViewChild('analyticsLayout') analyticsLayoutElement!: any;
-  //tabPanelZero
-  @ViewChild('pieChartInTab') pieChartInTabElement!: any;
-  @ViewChild('criteriaInTab') criteriaInTabElement!: any;
-  @ViewChild('pieChart2InTab') pieChart2InTabElement!: any;
   @ViewChild('pieChartDataSourceInTab') pieChartDataSourceInTabElement!: any;
-  //tabPanelOne
-  @ViewChild('areaChartInTab') areaChartInTabElement!: any;
-  //tabPanelTwo
-  @ViewChild('barChartInTab') barChartInTabElement!: any;
-  //tabPanelThree
-  @ViewChild('columnChartInTab') columnChartInTabElement!: any;
-  //tabPanelFour
-  @ViewChild('dualaxesChartInTab') dualaxesChartInTabElement!: any;
-  //tabPanelFive
-  @ViewChild('lineChartInTab') lineChartInTabElement!: any;
-  //tabPanelSix
-  @ViewChild('roseChartInTab') roseChartInTabElement!: any;
-  //tabPanelSeven
-  @ViewChild('mixChartInTab') mixChartInTabElement!: any;
 
   layoutComponentsMap: Map<LayoutComponentsNames, any> = new Map();
   onDestroyActions: (() => void)[] = [];
   ribbonButtonsConfig: AnalyticChartRegistration[] = [];
+  pieConfiguration= pieConfiguration;
+  pieData = pieData;
+  toolbarOptions = toolbarOptions;
+  areaConfiguration = areaConfiguration;
+  barConfiguration = barConfiguration;
+  barData = barData;
+  columnConfiguration = columnConfiguration;
+  dualaxesConfiguration = dualaxesConfiguration;
+  dualaxesData = [dualaxesData, dualaxesData];
+  lineConfiguration = lineConfiguration;
+  roseConfiguration = roseConfiguration;
+  roseData = roseData;
+  mixConfiguration = mixConfiguration;
 
-  setDataAndEventsInTabs() {
-    //tabPanelZero
-    this.pieChartInTabElement.nativeElement.config = pieConfiguration;
-    this.pieChartInTabElement.nativeElement.data = pieData;
+  layoutListeners: ({ eventName: string, action: () => void })[] = [];
 
-    this.criteriaInTabElement.nativeElement.criteriaOptions = toolbarOptions;
-    this.pieChart2InTabElement.nativeElement.config = pieConfiguration;
-    const removeEventListener = helperCriteriaEvent(
-      this.criteriaInTabElement.nativeElement,
-      this.pieChartDataSourceInTabElement.nativeElement,
-    );
-    this.onDestroyActions.push(removeEventListener);
-
-    //tabPanelOne
-    this.areaChartInTabElement.nativeElement.config = areaConfiguration;
-
-    //tabPanelTwo
-    this.barChartInTabElement.nativeElement.config = barConfiguration;
-    this.barChartInTabElement.nativeElement.data = barData;
-
-    //tabPanelThree
-    this.columnChartInTabElement.nativeElement.config = columnConfiguration;
-
-    //tabPanelFour
-    this.dualaxesChartInTabElement.nativeElement.config = dualaxesConfiguration;
-    this.dualaxesChartInTabElement.nativeElement.data = [dualaxesData, dualaxesData];
-
-    //tabPanelFive
-    this.lineChartInTabElement.nativeElement.config = lineConfiguration;
-
-    //tabPanelSix
-    this.roseChartInTabElement.nativeElement.config = roseConfiguration;
-    this.roseChartInTabElement.nativeElement.data = roseData;
-
-    //tabPanelSeven
-    this.mixChartInTabElement.nativeElement.config = mixConfiguration;
-    this.mixChartInTabElement.nativeElement.data = [[], []];
+  setCriteriaPieChart = ({ target }: any) => {
+    this.pieChartDataSourceInTabElement.nativeElement.criteria = target.value;
   }
 
   setChartsConfigAndData() {
@@ -177,31 +139,55 @@ export class AnalyticsComponent implements AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.setDataAndEventsInTabs();
     try {
       setComponentItemsMap(this.analyticsLayoutElement.nativeElement, this.layoutComponentsMap);
     } catch (e) {
       console.error(e);
     }
 
-    this.analyticsLayoutElement.nativeElement.addEventListener(LayoutEmitEvents.firstLoaded, () => {
+    const updateRibbonButtons = this.upadateRibbonButtons.bind(this);
+
+    const firstLoaded = () => {
       this.setChartsConfigAndData();
       this.setLayoutChildrenProps();
       this.handleEmmitsInsideLayout();
       this.upadateRibbonButtons();
-    });
+    };
 
     this.analyticsLayoutElement.nativeElement.addEventListener(
+      LayoutEmitEvents.firstLoaded,
+      firstLoaded,
+    );
+    this.analyticsLayoutElement.nativeElement.addEventListener(
       LayoutEmitEvents.itemAdded,
-      this.upadateRibbonButtons.bind(this),
+      updateRibbonButtons,
     );
     this.analyticsLayoutElement.nativeElement.addEventListener(
       LayoutEmitEvents.itemRemoved,
-      this.upadateRibbonButtons.bind(this),
+      updateRibbonButtons,
     );
     this.analyticsLayoutElement.nativeElement.addEventListener(
       LayoutEmitEvents.firstLoaded,
-      this.upadateRibbonButtons.bind(this),
+      updateRibbonButtons,
+    );
+
+    this.layoutListeners.push(
+      {
+        eventName: LayoutEmitEvents.firstLoaded,
+        action: firstLoaded,
+      },
+      {
+        eventName: LayoutEmitEvents.itemAdded,
+        action: updateRibbonButtons,
+      },
+      {
+        eventName: LayoutEmitEvents.itemRemoved,
+        action: updateRibbonButtons,
+      },
+      {
+        eventName: LayoutEmitEvents.firstLoaded,
+        action: updateRibbonButtons,
+      },
     );
   }
 
@@ -252,5 +238,11 @@ export class AnalyticsComponent implements AfterViewInit {
     });
     this.setChartsConfigAndData();
     this.setLayoutChildrenProps();
+  }
+
+  ngOnDestroy() {
+    this.layoutListeners.forEach(({ eventName, action }) => {
+      this.analyticsLayoutElement.nativeElement.removeEventListener(eventName, action);
+    });
   }
 }
