@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@genesislcap/alpha-design-system": "^14.139.1",
+    "@genesislcap/alpha-design-system": "^14.143.2",
     "@testing-library/jest-dom": "^6.4.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
