@@ -19,17 +19,7 @@ import { STATE_CHANGER_CONFIG } from '../../../config';
   styleUrl: './grid-pro-client-datasource.component.css',
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export class GridProClientDatasourceComponent implements AfterViewInit {
-  @ViewChild('customGridProColumn') customGridProColumnElement!: any;
-  @ViewChild('slottedStyles') slottedStylesElement!: any;
-  @ViewChildren('itemGridProColumn') itemGridProColumnElements!: any;
-  @ViewChildren('itemGridProCell') itemGridProCellElements!: any;
-
-  @ViewChild('customGridProColumn2') customGridProColumn2Element!: any;
-  @ViewChild('slottedStyles2') slottedStyles2Element!: any;
-  @ViewChild('customGridProCell2') customGridProCell2Element!: any;
-  @ViewChildren('itemGridProColumn2') itemGridProColumn2Elements!: any;
-
+export class GridProClientDatasourceComponent {
   @Input() resourceName: string = STATE_CHANGER_CONFIG.DEFAULT_RESOURCE_NAME;
   @Input() criteria: string = STATE_CHANGER_CONFIG.DEFAULT_CRITERIA;
 
@@ -70,28 +60,11 @@ export class GridProClientDatasourceComponent implements AfterViewInit {
       cellRenderer: 'boolean',
     },
   ];
-
-  ngAfterViewInit() {
-    this.itemGridProColumnElements.forEach((itemGridProColumnElement: any, index: number) => {
-      itemGridProColumnElement.nativeElement.definition = this.customBooleanColDefs[index];
-    });
-
-    this.slottedStylesElement.nativeElement.styles = this.processGridStyles;
-
-    this.customGridProColumnElement.nativeElement.definition = this.rowRewfDefinition;
-
-    this.itemGridProColumn2Elements.forEach((itemGridProColumnElement: any, index: number) => {
-      itemGridProColumnElement.nativeElement.definition = this.customBooleanColDefs[index];
-    });
-
-    this.slottedStyles2Element.nativeElement.styles = this.processGridStyles;
-
-    this.customGridProColumn2Element.nativeElement.definition = this.rowRewfDefinition;
-
-    this.customGridProCell2Element.nativeElement.renderer = (params: any) => {
-      return `<span style="color: ${params.value === 'TRACE' ? 'orange' : 'green'}">Custom ${
-        params.value
-      }</span>`;
-    };
+  customGridProCellRenderer = (params: any) => {
+    console.log('MOJE PARAMSIDŁA', params);
+    return `<span style="color: ${params.value === 'TRACE' ? 'orange' : 'green'}">Custom ${
+      params.value
+    }</span>`;
   }
+  customGridProCellRendererParams = { color: 'orange' }
 }

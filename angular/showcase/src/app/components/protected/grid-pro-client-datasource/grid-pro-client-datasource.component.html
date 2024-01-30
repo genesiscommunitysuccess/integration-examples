@@ -30,7 +30,7 @@
         enable-row-flashing
         enable-cell-flashing
       >
-        <slotted-styles #slottedStyles></slotted-styles>
+        <slotted-styles [styles]="processGridStyles"></slotted-styles>
         <grid-pro-client-side-datasource
           [resourceName]="resourceName"
           [criteria]="criteria"
@@ -41,11 +41,11 @@
           [restartOnReconnection]="false"
         ></grid-pro-client-side-datasource>
 
-        <grid-pro-column *ngFor="let colDef of customBooleanColDefs" #itemGridProColumn>
+        <grid-pro-column *ngFor="let colDef of customBooleanColDefs; index as i" [definition]="customBooleanColDefs[i]">
           <grid-pro-cell #itemGridProCell *ngIf="!!colDef.cellRenderer"></grid-pro-cell>
         </grid-pro-column>
 
-        <grid-pro-column #customGridProColumn>
+        <grid-pro-column [definition]="rowRewfDefinition">
           <grid-pro-cell></grid-pro-cell>
         </grid-pro-column>
       </zero-grid-pro>
@@ -127,7 +127,7 @@
         enable-row-flashing
         enable-cell-flashing
       >
-        <slotted-styles #slottedStyles2></slotted-styles>
+        <slotted-styles [styles]="processGridStyles"></slotted-styles>
         <grid-pro-client-side-datasource
           [resourceName]="resourceName"
           [criteria]="criteria"
@@ -138,12 +138,15 @@
           [restartOnReconnection]="true"
         ></grid-pro-client-side-datasource>
 
-        <grid-pro-column *ngFor="let colDef of customBooleanColDefs" #itemGridProColumn2>
+        <grid-pro-column *ngFor="let colDef of customBooleanColDefs; index as i" >
           <grid-pro-cell *ngIf="!!colDef.cellRenderer"></grid-pro-cell>
         </grid-pro-column>
 
-        <grid-pro-column #customGridProColumn2>
-          <grid-pro-cell #customGridProCell2></grid-pro-cell>
+        <grid-pro-column [definition]="rowRewfDefinition">
+          <grid-pro-cell
+            [renderer]="customGridProCellRenderer" 
+            [renderer-params]="customGridProCellRendererParams"
+          ></grid-pro-cell>
         </grid-pro-column>
       </zero-grid-pro>
     </zero-card>

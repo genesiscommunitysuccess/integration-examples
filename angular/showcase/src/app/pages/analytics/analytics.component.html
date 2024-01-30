@@ -116,13 +116,13 @@
     <zero-tab-panel slot="tabpanel">
       <zero-flex-layout class="flex-row justify-center items-center">
         <h3>Dynamic local data</h3>
-        <zero-g2plot-chart #pieChartInTab class="container" type="pie"></zero-g2plot-chart>
+        <zero-g2plot-chart class="container" type="pie" [config]="pieConfiguration" [data]="pieData"></zero-g2plot-chart>
         <zero-flex-layout class="flex-column justify-center items-center">
           <h3>Dynamic server data</h3>
-          <criteria-segmented-control #criteriaInTab>
+          <criteria-segmented-control (change)="setCriteriaPieChart($event)" [criteriaOptions]="toolbarOptions">
             <label slot="label">Filter by instrument name</label>
           </criteria-segmented-control>
-          <zero-g2plot-chart #pieChart2InTab class="container" type="pie">
+          <zero-g2plot-chart [config]="pieConfiguration" class="container" type="pie">
             <chart-datasource
               #pieChartDataSourceInTab
               resourceName="ALL_POSITIONS"
@@ -135,7 +135,7 @@
     </zero-tab-panel>
     <zero-tab-panel slot="tabpanel">
       <div class="container">
-        <zero-g2plot-chart #areaChartInTab type="area">
+        <zero-g2plot-chart [config]="areaConfiguration" type="area">
           <chart-datasource
             resourceName="ALL_POSITIONS"
             server-fields="INSTRUMENT_NAME QUANTITY"
@@ -146,12 +146,12 @@
     </zero-tab-panel>
     <zero-tab-panel slot="tabpanel">
       <div class="container">
-        <zero-g2plot-chart #barChartInTab type="bar"></zero-g2plot-chart>
+        <zero-g2plot-chart [config]="barConfiguration" [data]="barData" type="bar"></zero-g2plot-chart>
       </div>
     </zero-tab-panel>
     <zero-tab-panel slot="tabpanel">
       <div class="container">
-        <zero-g2plot-chart #columnChartInTab type="column">
+        <zero-g2plot-chart [config]="columnConfiguration" type="column">
           <chart-datasource
             resourceName="ALL_POSITIONS"
             server-fields="INSTRUMENT_NAME QUANTITY"
@@ -162,12 +162,12 @@
     </zero-tab-panel>
     <zero-tab-panel slot="tabpanel">
       <div class="container">
-        <zero-g2plot-chart #dualaxesChartInTab type="dualaxes"></zero-g2plot-chart>
+        <zero-g2plot-chart [config]="dualaxesConfiguration" [data]="dualaxesData" type="dualaxes"></zero-g2plot-chart>
       </div>
     </zero-tab-panel>
     <zero-tab-panel slot="tabpanel">
       <div class="container">
-        <zero-g2plot-chart #lineChartInTab type="line">
+        <zero-g2plot-chart [config]="lineConfiguration" type="line">
           <chart-datasource
             resourceName="ALL_POSITIONS"
             server-fields="INSTRUMENT_NAME QUANTITY"
@@ -178,12 +178,12 @@
     </zero-tab-panel>
     <zero-tab-panel slot="tabpanel">
       <div class="container">
-        <zero-g2plot-chart #roseChartInTab type="rose"></zero-g2plot-chart>
+        <zero-g2plot-chart [config]="roseConfiguration" [data]="roseData" type="rose"></zero-g2plot-chart>
       </div>
     </zero-tab-panel>
     <zero-tab-panel slot="tabpanel">
       <div class="container">
-        <zero-g2plot-chart #mixChartInTab type="mix"></zero-g2plot-chart>
+        <zero-g2plot-chart [config]="mixConfiguration" [data]="[[], []]" type="mix"></zero-g2plot-chart>
       </div>
     </zero-tab-panel>
   </zero-tabs>
