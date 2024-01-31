@@ -10,7 +10,7 @@
     "@genesislcap/foundation-alerts": "^14.139.1",
     "@genesislcap/foundation-auth": "^14.143.2",
     "@genesislcap/foundation-comms": "^14.139.1",
-    "@genesislcap/foundation-entity-management": "^14.139.1",
+    "@genesislcap/foundation-entity-management": "^14.144.0",
     "@genesislcap/foundation-forms": "^14.139.1",
     "@genesislcap/foundation-header": "^14.143.2",
     "@genesislcap/foundation-inbox": "^14.143.2",
