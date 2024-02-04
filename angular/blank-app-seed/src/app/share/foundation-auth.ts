@@ -1,4 +1,4 @@
-import { configure } from '@genesislcap/foundation-auth/config';
+// import { configure } from '@genesislcap/foundation-auth/config';
 import type { Router } from '@angular/router';
 import { INTERNAL_URLS } from '../app.routes';
 
@@ -11,11 +11,11 @@ export const configureFoundationAuth = ({
 }: {
   router: Router;
   connectService: any;
-}) =>
-  configure({
-    omitRoutes: ['request-account'],
-    postLoginRedirect: async () => {
-      await connectService.init();
-      router.navigate([`/${INTERNAL_URLS.homepage}`]);
-    },
-  });
+}) => null
+  // configure({
+  //   omitRoutes: ['request-account'],
+  //   postLoginRedirect: async () => {
+  //     await connectService.init();
+  //     router.navigate([`/${INTERNAL_URLS.homepage}`]);
+  //   },
+  // });

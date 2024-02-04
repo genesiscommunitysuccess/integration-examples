@@ -4,14 +4,16 @@ import { AuthComponent } from './pages/auth/auth.component';
 import { AuthLoginComponent } from './pages/auth-login/auth-login.component';
 import { ProtectedComponent } from './pages/protected/protected.component';
 import { USE_FOUNDATION_AUTH } from './config';
+import {AuthMockComponent} from "./pages/auth-mock/auth-mock.component";
 
 export const INTERNAL_URLS = {
   auth: 'auth',
   authLogin: 'auth-login',
+  authMock: 'auth-mock',
   homepage: 'protected',
 };
 
-export const AUTH_PATH = USE_FOUNDATION_AUTH ? INTERNAL_URLS.auth : INTERNAL_URLS.authLogin;
+export const AUTH_PATH = INTERNAL_URLS.authMock // USE_FOUNDATION_AUTH ? INTERNAL_URLS.auth : INTERNAL_URLS.authLogin;
 
 export const routes: Routes = [
   {
@@ -29,7 +31,7 @@ export const routes: Routes = [
     component: AuthComponent,
   },
   {
-    path: INTERNAL_URLS.authLogin,
-    component: AuthLoginComponent,
+    path: INTERNAL_URLS.authMock,
+    component: AuthMockComponent,
   },
 ];

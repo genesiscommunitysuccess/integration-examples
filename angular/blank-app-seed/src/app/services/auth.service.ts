@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { getUser } from '@genesislcap/foundation-auth/user';
-import { getAuthRouting } from '@genesislcap/foundation-auth/routing';
 import { ConnectService } from '../services/connect.service';
-import { Auth } from '@genesislcap/foundation-comms';
+import { Auth, BasicAuthInfo } from '@genesislcap/foundation-comms';
 import { USE_FOUNDATION_AUTH } from '../config';
 
 @Injectable({
@@ -11,21 +9,51 @@ import { USE_FOUNDATION_AUTH } from '../config';
 })
 export class AuthService {
   isAuthenticated = false;
-  foundationAuthRouting = getAuthRouting();
 
   constructor(private connectService: ConnectService) {}
 
   async isUserAuthenticated(): Promise<boolean> {
-    let isAuthenticated = false;
+    const auth: Auth = this.connectService.getContainer().get(Auth);
+    return auth.isLoggedIn
 
-    if (USE_FOUNDATION_AUTH) {
-      const user = getUser();
-      isAuthenticated = user.isAuthenticated;
-    } else {
-      const auth: Auth = this.connectService.getContainer().get(Auth);
-      isAuthenticated = auth.isLoggedIn;
+    // let isAuthenticated = false;
+    //
+    // if (USE_FOUNDATION_AUTH) {
+    //   const user = getUser();
+    //   isAuthenticated = user.isAuthenticated;
+    // } else {
+    //   const auth: Auth = this.connectService.getContainer().get(Auth);
+    //   isAuthenticated = auth.isLoggedIn;
+    // }
+    //
+    // return isAuthenticated;
+  }
+
+  async login(): Promise<Observable<boolean>> {
+    try {
+      await this.connectService.init();
+      // @todo fix with foundation-authentication
+      await this.mockLogin(this.connectService.getContainer());
+      localStorage.setItem('isAuthenticated', '1');
+      this.isAuthenticated = true;
+      return of(true);
+    } catch {
+      this.logout();
+      return of(false);
     }
+  }
 
-    return isAuthenticated;
+  logout(): void {
+    localStorage.setItem('isAuthenticated', '0');
+    this.isAuthenticated = false;
+  }
+
+  private mockLogin(diContainer: any) {
+    const auth: Auth = diContainer.get(Auth);
+    return auth.login({
+      type: 'BASIC',
+      username: 'JohnDoe',
+      password: 'Password11*',
+    } as BasicAuthInfo);
   }
 }
