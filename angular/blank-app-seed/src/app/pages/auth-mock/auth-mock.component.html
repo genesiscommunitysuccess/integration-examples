@@ -1,4 +1,7 @@
 <section>
-  <h2>Auth</h2>
-  <zero-button (click)="mockAuth()">Mock auth</zero-button>
+    Login
+    <zero-text-field :value="JohnDoe"></zero-text-field>
+    Password
+    <zero-text-field :value="password" type="password"></zero-text-field>
+  <zero-button (click)="mockAuth()">Login</zero-button>
 </section>
