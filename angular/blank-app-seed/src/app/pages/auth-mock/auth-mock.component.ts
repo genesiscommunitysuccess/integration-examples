@@ -20,7 +20,7 @@ export class AuthMockComponent {
     this.authService.login().then((result) =>
       result.subscribe((isAuthenticated) => {
         if (isAuthenticated) {
-          this.router.navigate(['/protected']);
+          this.router.navigate(['/home']);
         } else {
           alert('Authentication failed!');
         }
