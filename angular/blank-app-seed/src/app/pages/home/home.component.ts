@@ -8,9 +8,9 @@ import {CommonModule} from '@angular/common';
     CommonModule,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  templateUrl: './protected.component.html',
-  styleUrls: ['./protected.component.css'],
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.css'],
 })
-export class ProtectedComponent {
+export class HomeComponent {
 
 }
