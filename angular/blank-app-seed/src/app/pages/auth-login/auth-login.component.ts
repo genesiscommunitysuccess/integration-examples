@@ -1,5 +1,4 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { UrlWatcherService } from '../../services/url-watcher.service';
 
 @Component({
   selector: 'app-auth-login',
@@ -10,5 +9,5 @@ import { UrlWatcherService } from '../../services/url-watcher.service';
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AuthLoginComponent {
-  constructor(private urlWatcherService: UrlWatcherService) {}
+  constructor() {}
 }

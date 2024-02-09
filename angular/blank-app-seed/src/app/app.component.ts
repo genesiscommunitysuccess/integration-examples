@@ -30,8 +30,8 @@ export class AppComponent {
       configureFoundationAuth({ router, connectService });
     } else {
       // set foundation-login
-      configureFoundationLogin({ router, connectService });
     }
+      configureFoundationLogin({ router, connectService });
 
     // // Set layout componet based on route
     // router.events.subscribe((event) => {

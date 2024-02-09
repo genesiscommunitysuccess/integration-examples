@@ -1,1 +1,32 @@
-<section>Protected</section>
+<zero-grid-layout row-count="2" col-count="2" class="content-around spacing-4x" >
+    <!-- Tile 1: Positions -->
+    <zero-grid-layout-item col-number="1" row-number="1" width="1" height="1" style="background-color: grey">
+        <zero-grid-pro>
+            <grid-pro-genesis-datasource
+                    resource-name="ALL_POSITIONS"
+            ></grid-pro-genesis-datasource>
+        </zero-grid-pro>
+    </zero-grid-layout-item>
+
+    <!-- Tile 2: Entity Management - Trades -->
+    <zero-grid-layout-item col-number="2" row-number="1" width="1" height="1" style="background-color: darkgrey">
+        <entity-management
+                resourceName="ALL_TRADES"
+                [createFormUiSchema]="addTradeFormSchema"
+                title="TRADES"
+                createEvent="EVENT_TRADE_INSERT"
+                updateEvent="EVENT_TRADE_MODIFY"
+                deleteEvent="EVENT_TRADE_DELETE"
+        ></entity-management>
+    </zero-grid-layout-item>
+
+    <!-- Tile 3: Donut Chart -->
+    <zero-grid-layout-item col-number="1" row-number="2" width="1" height="1" style="background-color: lightgrey">
+        <!-- Donut Chart -->
+    </zero-grid-layout-item>
+
+    <!-- Tile 4: Line Chart -->
+    <zero-grid-layout-item col-number="2" row-number="2" width="1" height="1">
+        <!-- Line Chart -->
+    </zero-grid-layout-item>
+</zero-grid-layout>

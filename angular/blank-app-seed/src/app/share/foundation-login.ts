@@ -17,8 +17,10 @@ export const configureFoundationLogin = ({
 
   configure(container, {
     showConnectionIndicator: true,
-    hostPath: INTERNAL_URLS.authLogin,
-    defaultRedirectUrl: INTERNAL_URLS.homepage,
+    hostPath: INTERNAL_URLS.auth,
+    redirectHandler: url => {
+      router.navigate([INTERNAL_URLS.homepage])
+    }
   });
 
   return define({
