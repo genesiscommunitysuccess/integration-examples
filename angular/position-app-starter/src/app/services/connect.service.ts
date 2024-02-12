@@ -8,17 +8,8 @@ import { API_DATA } from '../config';
 })
 export class ConnectService {
   private container = DI.getOrCreateDOMContainer();
-  private connect: Connect = this.container.get(Connect);
 
   getContainer() {
     return this.container;
-  }
-
-  getConnect() {
-    return this.connect;
-  }
-
-  init() {
-    return this.connect.connect(API_DATA.URL);
   }
 }

@@ -1,10 +1,7 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { Router, NavigationEnd } from '@angular/router';
-import { ConnectService } from './services/connect.service';
-import { configureFoundationAuth } from './share/foundation-auth';
+import { Router } from '@angular/router';
 import { configureFoundationLogin } from './share/foundation-login';
-import { USE_FOUNDATION_AUTH } from './config'
 
 // Genesis Components
 import './share/genesis-components';
@@ -23,21 +20,7 @@ export class AppComponent {
 
   constructor(
     private router: Router,
-    private connectService: ConnectService,
   ) {
-    if (USE_FOUNDATION_AUTH) {
-      // set foundation-auth
-      configureFoundationAuth({ router, connectService });
-    } else {
-      // set foundation-login
-    }
-      configureFoundationLogin({ router, connectService });
-
-    // // Set layout componet based on route
-    // router.events.subscribe((event) => {
-    //   if (event instanceof NavigationEnd) {
-    //     this.layoutName = getLayoutNameByRoute(event.urlAfterRedirects);
-    //   }
-    // });
+      configureFoundationLogin({ router });
   }
 }

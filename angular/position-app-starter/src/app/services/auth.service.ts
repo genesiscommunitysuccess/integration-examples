@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
 import { ConnectService } from '../services/connect.service';
-import { Auth, BasicAuthInfo } from '@genesislcap/foundation-comms';
-import { USE_FOUNDATION_AUTH } from '../config';
+import { Auth } from '@genesislcap/foundation-comms';
+import {DI} from "@microsoft/fast-foundation";
 
 @Injectable({
   providedIn: 'root',
@@ -12,7 +11,7 @@ export class AuthService {
   constructor(private connectService: ConnectService) {}
 
   async isUserAuthenticated(): Promise<boolean> {
-    const auth: Auth = this.connectService.getContainer().get(Auth);
+    const auth: Auth = DI.getOrCreateDOMContainer().get(Auth);
     return auth.isLoggedIn
   }
 }
