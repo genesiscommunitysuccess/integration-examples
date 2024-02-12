@@ -19,7 +19,7 @@ import './share/genesis-components';
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppComponent {
-  title = 'blank-app-seed';
+  title = 'position-app';
 
   constructor(
     private router: Router,
