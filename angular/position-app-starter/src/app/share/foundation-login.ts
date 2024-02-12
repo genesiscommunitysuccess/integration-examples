@@ -1,4 +1,4 @@
-import { configure, define } from '@genesislcap/foundation-login';
+import {configure, defaultLoginConfig, define} from '@genesislcap/foundation-login';
 import type { Router } from '@angular/router';
 import { INTERNAL_URLS } from '../app.routes';
 import {DI} from "@microsoft/fast-foundation";
@@ -11,8 +11,6 @@ export const configureFoundationLogin = ({
 }: {
   router: Router;
 }) => {
-
-
   configure(DI.getOrCreateDOMContainer(), {
     showConnectionIndicator: true,
     hostPath: INTERNAL_URLS.auth,
