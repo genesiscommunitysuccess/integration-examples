@@ -6,7 +6,7 @@ const { DefinePlugin } = require('webpack');
 config();
 
 module.exports = {
-  plugins: [new DefinePlugin(resolveDefineConfig(['GENX_*', 'API_HOST']))],
+  plugins: [new DefinePlugin(resolveDefineConfig(['GENX_*', 'API_HOST', 'DEFAULT_USER', 'DEFAULT_PASSWORD']))],
   module: {
     rules: [
       {
