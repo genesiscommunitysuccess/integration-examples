@@ -1,0 +1,73 @@
+<zero-tabs>
+  <zero-tab slot="tab">ALL_USERS</zero-tab>
+  <zero-tab slot="tab">ALL_TRADES</zero-tab>
+  <zero-tab slot="tab">ALL_TRADES - UI SCHEMA</zero-tab>
+  <zero-tab slot="tab">ALL_PROFILES</zero-tab>
+  <zero-tab-panel slot="tabpanel">
+    <div class="container">
+      <zero-card>
+        <foundation-filters
+          (change)="handleChange($event, 'allUsersfilters')"
+          resourceName="ALL_USERS"
+        ></foundation-filters>
+      </zero-card>
+      <zero-grid-pro>
+        <grid-pro-genesis-datasource
+          resource-name="ALL_USERS"
+          [criteria]="allUsersfilters"
+        ></grid-pro-genesis-datasource>
+      </zero-grid-pro>
+    </div>
+  </zero-tab-panel>
+  <zero-tab-panel slot="tabpanel">
+    <div class="container">
+      <zero-card>
+        <foundation-filters
+          (change)="handleChange($event, 'allTradesfilters')"
+          resourceName="ALL_TRADES"
+        ></foundation-filters>
+      </zero-card>
+      <zero-grid-pro>
+        <grid-pro-genesis-datasource
+          resource-name="ALL_TRADES"
+          [criteria]="allTradesfilters"
+        ></grid-pro-genesis-datasource>
+      </zero-grid-pro>
+    </div>
+  </zero-tab-panel>
+  <zero-tab-panel slot="tabpanel">
+    <div class="container">
+      <zero-card>
+        <foundation-filters
+          class="date-filter"
+          (change)="handleChange($event, 'allTradesfilters')"
+          (submit)="handleSubmit()"
+          [uischema]="uiSchema"
+          [jsonSchema]="jsonSchema"
+        ></foundation-filters>
+      </zero-card>
+      <zero-grid-pro>
+        <grid-pro-genesis-datasource
+          resource-name="ALL_TRADES"
+          [criteria]="allTradesfilters"
+        ></grid-pro-genesis-datasource>
+      </zero-grid-pro>
+    </div>
+  </zero-tab-panel>
+  <zero-tab-panel slot="tabpanel">
+    <div class="container">
+      <zero-card>
+        <foundation-filters
+          (change)="handleChange($event, 'allProfilesfilters')"
+          resourceName="ALL_PROFILES"
+        ></foundation-filters>
+      </zero-card>
+      <zero-grid-pro>
+        <grid-pro-genesis-datasource
+          resource-name="ALL_PROFILES"
+          [criteria]="allProfilesfilters"
+        ></grid-pro-genesis-datasource>
+      </zero-grid-pro>
+    </div>
+  </zero-tab-panel>
+</zero-tabs>

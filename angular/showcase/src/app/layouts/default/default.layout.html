@@ -1,0 +1,97 @@
+<zero-design-system-provider #designSystemProvider [class.has-layer]="isAnyLayerVisible">
+  <foundation-header
+    #foundationHeader
+    show-luminance-toggle-button
+    show-misc-toggle-button
+    show-notification-button
+    [routeButtons]="allRoutes"
+    (notification-icon-clicked)="onNotificationIconClicked()"
+    (luminance-icon-clicked)="onLuminanceToogle()"
+    [navigateTo]="navigateAngular"
+  >
+    <section class="routes-wrapper" slot="routes">
+      <zero-button *ngFor="let menuLink of allRoutes" (click)="navigate(menuLink.path)">
+        <zero-icon name="{{menuLink.icon }}"></zero-icon>
+        {{ menuLink.title }}
+      </zero-button>
+    </section>
+
+    <div slot="menu-contents">
+      <p>GROUP SLOT</p>
+      <zero-tree-view slot="nav-items-1">
+        <zero-tree-item>
+          <zero-icon name="location-arrow"></zero-icon>
+          Slot Tree Item
+        </zero-tree-item>
+        <zero-tree-item>
+          <zero-icon name="location-arrow"></zero-icon>
+          Slot Tree Item
+        </zero-tree-item>
+        <zero-tree-item>
+          <zero-icon name="location-arrow"></zero-icon>
+          Slot Tree Item
+        </zero-tree-item>
+        <zero-tree-item>
+          <zero-icon name="location-arrow"></zero-icon>
+          Slot Tree Item
+        </zero-tree-item>
+      </zero-tree-view>
+      <p>GROUP SLOT 2</p>
+      <zero-tree-view slot="nav-items-2">
+        <zero-tree-item>
+          <zero-icon name="location-arrow"></zero-icon>
+          Slot Tree Item 2
+        </zero-tree-item>
+        <zero-tree-item>
+          <zero-icon name="location-arrow"></zero-icon>
+          Slot Tree Item 2
+        </zero-tree-item>
+        <zero-tree-item>
+          <zero-icon name="location-arrow"></zero-icon>
+          Slot Tree Item 2
+        </zero-tree-item>
+        <zero-tree-item>
+          <zero-icon name="location-arrow"></zero-icon>
+          Slot Tree Item 2
+        </zero-tree-item>
+      </zero-tree-view>
+      <p>GROUP SLOT 3</p>
+      <zero-tree-view slot="nav-items-3">
+        <zero-tree-item>
+          <zero-icon name="location-arrow"></zero-icon>
+          User Slot
+        </zero-tree-item>
+        <zero-tree-item>
+          <zero-icon name="location-arrow"></zero-icon>
+          Reporting Slot
+        </zero-tree-item>
+        <zero-tree-item>
+          <zero-icon name="location-arrow"></zero-icon>
+          Settings Slot
+        </zero-tree-item>
+      </zero-tree-view>
+    </div>
+    <foundation-inbox-counter slot="notifications-icon-end"></foundation-inbox-counter>
+  </foundation-header>
+  <zero-flyout
+    position="right"
+    (closed)="closeLayer(layerNames.alertInbox)"
+    [closed]="!(layerStateAlertInbox$ | async)"
+    [displayHeader]="false"
+  >
+    <foundation-inbox (close)="closeLayer(layerNames.alertInbox)"></foundation-inbox>
+  </zero-flyout>
+  <zero-flyout
+    position="right"
+    (closed)="closeLayer(layerNames.alertRules)"
+    [closed]="!layerStateAlertRules"
+    [displayHeader]="false"
+  >
+    <foundation-alerts></foundation-alerts>
+  </zero-flyout>
+  <section class="content">
+    <router-outlet></router-outlet>
+    <app-messages></app-messages>
+  </section>
+  <app-footer />
+</zero-design-system-provider>

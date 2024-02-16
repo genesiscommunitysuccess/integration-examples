@@ -1,0 +1,15 @@
+.protected-page {
+  height: 100%;
+}
+
+.resource-filter {
+  height: 70px;
+}
+
+.protected-page zero-tabs {
+  height: calc(100% - 70px);
+}
+
+.protected-page zero-tab-panel {
+  height: 100%;
+}

@@ -1,0 +1,22 @@
+.grid-pro-client-datasource {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.grid-pro-client-datasource zero-card {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 150px;
+}
+
+.grid-pro-client-datasource zero-grid-pro {
+  width: 100%;
+  flex: 1 1 0%;
+}
+
+.grid-pro-client-datasource p {
+  margin: calc(var(--design-unit) * 2px);
+}

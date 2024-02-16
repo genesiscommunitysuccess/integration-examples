@@ -1,0 +1,14 @@
+zero-notification-listener {
+  flex: 1;
+}
+
+.protected-page {
+  flex-direction: column;
+  display: flex;
+  height: calc(100% - 10px);
+  padding: 0 10px;
+}
+
+entity-management {
+  flex: 1;
+}
