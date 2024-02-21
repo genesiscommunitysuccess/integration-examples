@@ -14,7 +14,7 @@
   "private": true,
   "dependencies": {
     "@ag-grid-community/core": "29.2.0",
-    "@ag-grid-enterprise/core": "29.2.0",
+    "@ag-grid-enterprise/core": "31.1.0",
     "@ag-grid-enterprise/row-grouping": "31.0.3",
     "@ag-grid-enterprise/server-side-row-model": "31.0.3",
     "@angular/animations": "^17.1.1",
