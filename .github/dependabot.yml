@@ -17,6 +17,11 @@ updates:
     directory: "/angular/showcase"
     schedule:
       interval: "weekly"
+    ignore:
+      - dependency-name: "@ag-grid-community/core"
+      - dependency-name: "@ag-grid-enterprise/core"
+      - dependency-name: "@ag-grid-enterprise/row-grouping"
+      - dependency-name: "@ag-grid-enterprise/server-side-row-model"
   # Configuration template for any react examples
   - package-ecosystem: "npm"
     directory: "/react/alpha-react"
@@ -34,3 +39,8 @@ updates:
     directory: "/react/showcase"
     schedule:
       interval: "weekly"
+    ignore:
+      - dependency-name: "@ag-grid-community/core"
+      - dependency-name: "@ag-grid-enterprise/core"
+      - dependency-name: "@ag-grid-enterprise/row-grouping"
+      - dependency-name: "@ag-grid-enterprise/server-side-row-model"
