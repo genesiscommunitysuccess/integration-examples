@@ -17,7 +17,7 @@
     "@ag-grid-enterprise/core": "29.2.0",
     "@ag-grid-enterprise/row-grouping": "29.2.0",
     "@ag-grid-enterprise/server-side-row-model": "29.2.0",
-    "@angular/animations": "^17.2.4",
+    "@angular/animations": "^17.3.0",
     "@angular/common": "^17.2.4",
     "@angular/compiler": "^17.2.4",
     "@angular/core": "^17.2.4",
