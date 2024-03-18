@@ -18,7 +18,7 @@
     "@genesislcap/foundation-notification-dashboard": "^14.158.0",
     "@genesislcap/foundation-reporting": "^14.158.0",
     "@genesislcap/foundation-zero-grid-pro": "^14.158.0",
-    "@genesislcap/foundation-zero-grid-tabulator": "^14.158.0",
+    "@genesislcap/foundation-zero-grid-tabulator": "^14.161.0",
     "@genesislcap/g2plot-chart": "^14.158.0",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
