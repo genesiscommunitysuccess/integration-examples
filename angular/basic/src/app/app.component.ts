@@ -1,15 +1,17 @@
-import { Component } from '@angular/core';
-
-@Component({
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+@Component({ 
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
-})
+   templateUrl: './app.component.html', 
+   styleUrls: ['./app.component.css'], 
+   standalone: true, 
+   schemas: [ CUSTOM_ELEMENTS_SCHEMA ], 
+   imports: [ FormsModule, ], 
+  })
+
 export class AppComponent {
-  title = 'Genesis Foundation Angular';
-
+  title = 'alpha-angular';
   exampleTextField = '';
-
   onClick() {
     console.log(this.exampleTextField);
   }
