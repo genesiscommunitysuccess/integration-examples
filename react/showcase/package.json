@@ -9,7 +9,7 @@
     "@ag-grid-enterprise/server-side-row-model": "29.2.0",
     "@genesislcap/foundation-alerts": "^14.158.0",
     "@genesislcap/foundation-auth": "^14.158.0",
-    "@genesislcap/foundation-comms": "^14.158.0",
+    "@genesislcap/foundation-comms": "^14.173.4",
     "@genesislcap/foundation-entity-management": "^14.158.0",
     "@genesislcap/foundation-forms": "^14.158.0",
     "@genesislcap/foundation-header": "^14.158.0",
