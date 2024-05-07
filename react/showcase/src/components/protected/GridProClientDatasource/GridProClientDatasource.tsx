@@ -1,13 +1,8 @@
 import { useContext } from 'react';
-import reactifyWc from 'reactify-wc';
 import { css } from '@microsoft/fast-element';
 import { DatasourceDefaults } from '@genesislcap/foundation-comms';
 import styles from './GridProClientDatasource.module.css';
 import StateChangerContext from '../../../store/StateChanger/StateChangerContext';
-
-const SlottedStyles: any = reactifyWc('slotted-styles');
-const GridProColumn: any = reactifyWc('grid-pro-column');
-const GridProCell: any = reactifyWc('grid-pro-cell');
 
 const GridProClientDatasource = () => {
   const stateChangerContext = useContext(StateChangerContext);
@@ -96,7 +91,6 @@ const GridProClientDatasource = () => {
             enable-row-flashing
             enable-cell-flashing
           >
-            <SlottedStyles styles={processGridStyles}></SlottedStyles>
             <grid-pro-client-side-datasource
               resource-name={stateChangerState.resourceName}
               criteria={stateChangerState.criteria}
@@ -108,17 +102,17 @@ const GridProClientDatasource = () => {
             ></grid-pro-client-side-datasource>
             {customBooleanColDefs.map((colDef: any, index: number) => {
               return (
-                <GridProColumn
-                  key={`itemGridProColumn1-${index}`}
+                <grid-pro-column
+                  key={`itemgrid-pro-column1-${index}`}
                   definition={colDef}
                 >
                   {!!colDef.cellRenderer && <grid-pro-cell></grid-pro-cell>}
-                </GridProColumn>
+                </grid-pro-column>
               );
             })}
-            <GridProColumn definition={rowRewfDefinition}>
+            <grid-pro-column definition={rowRewfDefinition}>
               <grid-pro-cell></grid-pro-cell>
-            </GridProColumn>
+            </grid-pro-column>
           </zero-grid-pro>
         </zero-card>
       </zero-grid-layout-item>
@@ -199,7 +193,6 @@ const GridProClientDatasource = () => {
             enable-row-flashing
             enable-cell-flashing
           >
-            <SlottedStyles styles={processGridStyles}></SlottedStyles>
             <grid-pro-client-side-datasource
               resource-name={stateChangerState.resourceName}
               criteria={stateChangerState.criteria}
@@ -211,17 +204,17 @@ const GridProClientDatasource = () => {
             ></grid-pro-client-side-datasource>
             {customBooleanColDefs.map((colDef: any, index: number) => {
               return (
-                <GridProColumn
-                  key={`itemGridProColumn2-${index}`}
+                <grid-pro-column
+                  key={`itemgrid-pro-column2-${index}`}
                   definition={colDef}
                 >
                   {!!colDef.cellRenderer && <grid-pro-cell></grid-pro-cell>}
-                </GridProColumn>
+                </grid-pro-column>
               );
             })}
-            <GridProColumn definition={rowRewfDefinition}>
-              <GridProCell renderer={customGridProCell2Renderer}></GridProCell>
-            </GridProColumn>
+            <grid-pro-column definition={rowRewfDefinition}>
+              <grid-pro-cell renderer={customGridProCell2Renderer}></grid-pro-cell>
+            </grid-pro-column>
           </zero-grid-pro>
         </zero-card>
       </zero-grid-layout-item>
