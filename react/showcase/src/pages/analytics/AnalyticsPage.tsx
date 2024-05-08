@@ -1,5 +1,4 @@
 import { useState, useRef, useEffect } from 'react';
-import reactifyWc from 'reactify-wc';
 import {
   FoundationLayout,
   LayoutEmitEvents,
@@ -37,8 +36,6 @@ import {
   getElementByTagFromComponent,
 } from '../../utils/goldenLayout.helper';
 import style from './AnalyticsPage.module.css';
-
-const ZeroButton: any = reactifyWc('zero-button');
 
 const chartConfigMap: Map<LayoutComponentsNames, any> = new Map([
   [LayoutComponentsNames.AREA, areaConfiguration as any],
@@ -432,13 +429,13 @@ const AnaliticsPage = () => {
                 Compact Layout
               </zero-button>
               {ribbonButtonsConfig.map((button, index) => (
-                <ZeroButton
+                <zero-button
                   key={`${button.title}-${index}`}
                   disabled={button.enabled ? null : 'disabled'}
                   on-click={() => addChartToLayout(button)}
                 >
                   {button.title}
-                </ZeroButton>
+                </zero-button>
               ))}
             </div>
             <div
