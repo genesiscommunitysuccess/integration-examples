@@ -1,5 +1,4 @@
 import { useRef, useEffect } from 'react';
-import reactifyWc from 'reactify-wc';
 import { GridOptions, RowSelectedEvent } from '@ag-grid-community/core';
 import {
   LayoutEmitEvents,
@@ -11,7 +10,6 @@ import {
   getElementByTagFromComponent,
 } from '../../../utils/goldenLayout.helper';
 
-const ZeroLayout: any = reactifyWc('zero-layout');
 
 const DATASOURCE_ELEMENT_TAG = 'grid-pro-genesis-datasource';
 
@@ -60,7 +58,7 @@ const GridProClientDatasourceLinked = () => {
   }, []);
 
   return (
-    <ZeroLayout {...layoutEvents} ref={gridLayout}>
+    <zero-layout {...layoutEvents} ref={gridLayout}>
       <zero-layout-region type="horizontal">
         <zero-layout-region>
           <zero-layout-item
@@ -80,7 +78,7 @@ const GridProClientDatasourceLinked = () => {
           </zero-layout-item>
         </zero-layout-region>
       </zero-layout-region>
-    </ZeroLayout>
+    </zero-layout>
   );
 };
 

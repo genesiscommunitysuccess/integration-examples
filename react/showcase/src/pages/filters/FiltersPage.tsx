@@ -1,8 +1,5 @@
 import { useState } from 'react';
 import style from './FiltersPage.module.css';
-import reactifyWc from 'reactify-wc';
-
-const FoundationFilters: any = reactifyWc('foundation-filters');
 
 const FiltersPage = () => {
   const [allUsersfilters, setAllUsersfilters] = useState('');
@@ -60,10 +57,10 @@ const FiltersPage = () => {
       <zero-tab-panel slot="tabpanel">
         <div className={style.container}>
           <zero-card>
-            <FoundationFilters
+            <foundation-filters
               on-change={handleChangeAllUsersfilters}
               resourceName="ALL_USERS"
-            ></FoundationFilters>
+            ></foundation-filters>
           </zero-card>
           <zero-grid-pro>
             <grid-pro-genesis-datasource
@@ -76,13 +73,13 @@ const FiltersPage = () => {
       <zero-tab-panel slot="tabpanel">
         <div className={style.container}>
           <zero-card>
-            <FoundationFilters
+            <foundation-filters
               ui-schema={tradesUISchema}
               json-schema={tradesJsonSchema}
               on-change={handleChangeAllTradesfilters}
               submit={handleSubmit}
               resourceName="ALL_TRADES"
-            ></FoundationFilters>
+            ></foundation-filters>
           </zero-card>
           <zero-grid-pro>
             <grid-pro-genesis-datasource
@@ -108,10 +105,10 @@ const FiltersPage = () => {
       <zero-tab-panel slot="tabpanel">
         <div className={style.container}>
           <zero-card>
-            <FoundationFilters
+            <foundation-filters
               on-change={handleChangeAllProfilesfilters}
               resourceName="ALL_PROFILES"
-            ></FoundationFilters>
+            ></foundation-filters>
           </zero-card>
           <zero-grid-pro>
             <grid-pro-genesis-datasource

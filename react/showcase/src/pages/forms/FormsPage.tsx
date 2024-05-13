@@ -1,4 +1,3 @@
-import reactifyWc from 'reactify-wc';
 import style from './FormsPage.module.css';
 import {
   JSON_SCHEMA,
@@ -20,8 +19,6 @@ import {
   uiSchemaStepper,
   uiSchemaStepperHorizontal,
 } from './schemas';
-
-const FoundationForm: any = reactifyWc('foundation-form');
 
 const FormsPage = () => {
   const formWithDSPrefixData = {
@@ -47,10 +44,10 @@ const FormsPage = () => {
         <div className={style['form-container']}>
           <h2>Primitive Renderers</h2>
           <div style={{ display: 'flex', flexDirection: 'row' }}>
-            <FoundationForm
+            <foundation-form
               uischema={uiSchema}
               jsonSchema={JSON_SCHEMA}
-            ></FoundationForm>
+            ></foundation-form>
           </div>
         </div>
       </zero-tab-panel>
@@ -58,30 +55,30 @@ const FormsPage = () => {
         <div className={style['form-container']}>
           <h2>Examples</h2>
           <h3>1. Connected Combobox/Multiselect</h3>
-          <FoundationForm
+          <foundation-form
             uischema={uiSchemaConnectedSelect}
             jsonSchema={JSON_SCHEMA_CONNECTED_SELECT}
-          ></FoundationForm>
+          ></foundation-form>
           <h3>2. Connected Combobox/Multiselect with async mode</h3>
-          <FoundationForm
+          <foundation-form
             jsonSchema={JSON_SCHEMA_CONNECTED_SELECT}
             uischema={uiSchemaConnectedSelectAsync}
-          ></FoundationForm>
+          ></foundation-form>
           <h3>3. Connected Combobox with local data</h3>
-          <FoundationForm
+          <foundation-form
             jsonSchema={JSON_SCHEMA_CONNECTED_NUMBER}
             uischema={uiSchemaConnectedNumber}
             data={{
               NUMBER_RATE: 0,
             }}
-          ></FoundationForm>
+          ></foundation-form>
         </div>
       </zero-tab-panel>
       <zero-tab-panel>
         <div className={style['form-container']}>
           <h2>Examples</h2>
           <h3>1. User Array Form</h3>
-          <FoundationForm
+          <foundation-form
             data={{
               users: [
                 {
@@ -94,9 +91,9 @@ const FormsPage = () => {
             }}
             uischema={uiSchemaArray}
             jsonSchema={JSON_SCHEMA_ARRAY}
-          ></FoundationForm>
+          ></foundation-form>
           <h3>1. Trade Array Form</h3>
-          <FoundationForm
+          <foundation-form
             data={{
               users: [
                 {
@@ -108,13 +105,13 @@ const FormsPage = () => {
             }}
             uischema={uiSchemaArrayTrade}
             jsonSchema={JSON_SCHEMA_ARRAY_TRADE}
-          ></FoundationForm>
+          ></foundation-form>
         </div>
       </zero-tab-panel>
       <zero-tab-panel>
         <div className={style['form-container']}>
           <h2>Example</h2>
-          <FoundationForm
+          <foundation-form
             uischema={uiSchemaGroup}
             jsonSchema={JSON_SCHEMA_GROUP}
             data={{
@@ -122,17 +119,17 @@ const FormsPage = () => {
               address: { city: 'London' },
             }}
             design-system-prefix="fast"
-          ></FoundationForm>
+          ></foundation-form>
         </div>
       </zero-tab-panel>
       <zero-tab-panel>
         <div className={style['form-container']}>
           <h2>Example</h2>
           <zero-card style={{ width: '50%', padding: '0 15px' }}>
-            <FoundationForm
+            <foundation-form
               uischema={uiSchemaCategorization}
               jsonSchema={JSON_SCHEMA_CATEGORIZATION}
-            ></FoundationForm>
+            ></foundation-form>
           </zero-card>
         </div>
       </zero-tab-panel>
@@ -140,19 +137,19 @@ const FormsPage = () => {
         <div className={style['form-container']}>
           <h2>Examples</h2>
           <h3>1. Vertical Stepper Form</h3>
-          <FoundationForm
+          <foundation-form
             uischema={uiSchemaStepper}
             jsonSchema={JSON_SCHEMA_STEPPER}
             style={{ height: '400px' }}
             hide-submit-button
-          ></FoundationForm>
+          ></foundation-form>
           <h3>2. Horizontal Stepper Form</h3>
-          <FoundationForm
+          <foundation-form
             uischema={uiSchemaStepperHorizontal}
             jsonSchema={JSON_SCHEMA_STEPPER}
             style={{ height: '500px' }}
             hide-submit-button
-          ></FoundationForm>
+          ></foundation-form>
         </div>
       </zero-tab-panel>
       <zero-tab-panel>
@@ -167,12 +164,12 @@ const FormsPage = () => {
         <div className={style['form-container']}>
           <h2>Foundation Forms with DS prefix</h2>
           <div style={{ display: 'flex', flexDirection: 'row' }}>
-            <FoundationForm
+            <foundation-form
               jsonSchema={JSON_SCHEMA}
               uischema={uiSchema}
               data={formWithDSPrefixData}
               design-system-prefix="fast"
-            ></FoundationForm>
+            ></foundation-form>
           </div>
         </div>
       </zero-tab-panel>
