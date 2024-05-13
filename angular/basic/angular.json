@@ -21,7 +21,14 @@
             "assets": ["src/favicon.ico", "src/assets"],
             "styles": ["src/styles.css"],
             "scripts": [],
-            "allowedCommonJsDependencies": ["consola", "lodash.debounce", "dayjs", "dlv"]
+            "allowedCommonJsDependencies": [
+              "dayjs",
+              "bowser",
+              "fast-safe-stringify",
+              "dlv",
+              "consola",
+              "lodash.debounce"
+            ]
           },
           "configurations": {
             "production": {

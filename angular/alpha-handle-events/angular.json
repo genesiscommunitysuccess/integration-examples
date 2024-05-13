@@ -13,6 +13,15 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
+            "allowedCommonJsDependencies": [
+              "lodash",
+              "dayjs",
+              "bowser",
+              "fast-safe-stringify",
+              "dlv",
+              "consola",
+              "lodash.debounce"
+            ],
             "outputPath": "dist/alpha-handle-events",
             "index": "src/index.html",
             "browser": "src/main.ts",
@@ -34,8 +43,8 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumWarning": "2mb",
+                  "maximumError": "4mb"
                 },
                 {
                   "type": "anyComponentStyle",
