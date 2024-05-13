@@ -5,7 +5,7 @@
   "dependencies": {
     "@genesislcap/alpha-design-system": "^14.173.3",
     "@genesislcap/foundation-ui": "^14.158.0",
-    "@testing-library/jest-dom": "^6.4.0",
+    "@testing-library/jest-dom": "^6.4.5",
     "@testing-library/react": "^15.0.5",
     "@testing-library/user-event": "^14.5.2",
     "lodash-es": "^4.17.21",
