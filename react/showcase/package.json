@@ -11,7 +11,7 @@
     "@genesislcap/foundation-auth": "^14.158.0",
     "@genesislcap/foundation-comms": "^14.177.2",
     "@genesislcap/foundation-entity-management": "^14.158.0",
-    "@genesislcap/foundation-forms": "^14.158.0",
+    "@genesislcap/foundation-forms": "^14.177.2",
     "@genesislcap/foundation-header": "^14.158.0",
     "@genesislcap/foundation-inbox": "^14.177.2",
     "@genesislcap/foundation-login": "^14.158.0",
