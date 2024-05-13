@@ -1,6 +1,5 @@
 import React, { ReactNode, useRef, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import reactifyWc from 'reactify-wc';
 import {
   baseLayerLuminance,
   StandardLuminance,
@@ -12,9 +11,6 @@ import LayerContext from '../../store/LayerContext';
 import { useAuth } from '../../store/AuthContext';
 import AppFooter from '../../components/AppFooter/AppFooter';
 
-const FoundationHeader: any = reactifyWc('foundation-header');
-const FoundationInbox: any = reactifyWc('foundation-inbox');
-const ZeroFlyout: any = reactifyWc('zero-flyout');
 interface DefaultLayoutProps {
   children: ReactNode;
 }
@@ -56,7 +52,7 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = ({ children }) => {
 
   return (
     <zero-design-system-provider ref={designSystemProvider} class={className}>
-      <FoundationHeader
+      <foundation-header
         logout={logout}
         on-notification-icon-clicked={() =>
           setLayerState(layerNames.alertInbox, true)
@@ -130,17 +126,17 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = ({ children }) => {
           </zero-tree-view>
         </div>
         <foundation-inbox-counter slot="notifications-icon-end"></foundation-inbox-counter>
-      </FoundationHeader>
-      <ZeroFlyout
+      </foundation-header>
+      <zero-flyout
         ref={flyoutInbox}
         on-closed={() => setLayerState(layerNames.alertInbox, false)}
         position="right"
         closed={!state[layerNames.alertInbox] ? 'true' : undefined}
         displayHeader={false}
       >
-        <FoundationInbox on-close={handleCloseFlayoutInbox}></FoundationInbox>
-      </ZeroFlyout>
-      <ZeroFlyout
+        <foundation-inbox on-close={handleCloseFlayoutInbox}></foundation-inbox>
+      </zero-flyout>
+      <zero-flyout
         on-closed={() => setLayerState(layerNames.alertRules, false)}
         position="right"
         {...(state[layerNames.alertRules]
@@ -149,7 +145,7 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = ({ children }) => {
         displayHeader={false}
       >
         <foundation-alerts></foundation-alerts>
-      </ZeroFlyout>
+      </zero-flyout>
       <section className={styles['content']}>{children}</section>
       <AppFooter></AppFooter>
     </zero-design-system-provider>

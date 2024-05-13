@@ -15,7 +15,7 @@
     "@genesislcap/foundation-header": "^14.158.0",
     "@genesislcap/foundation-inbox": "^14.158.0",
     "@genesislcap/foundation-login": "^14.158.0",
-    "@genesislcap/foundation-notification-dashboard": "^14.158.0",
+    "@genesislcap/foundation-notification-dashboard": "^14.173.4",
     "@genesislcap/foundation-reporting": "^14.158.0",
     "@genesislcap/foundation-zero-grid-pro": "^14.158.0",
     "@genesislcap/foundation-zero-grid-tabulator": "^14.173.2",
@@ -23,11 +23,10 @@
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^14.5.2",
-    "react": "^18.2.0",
-    "react-dom": "^18.3.1",
+    "react": "^19.0.0-beta-b498834eab-20240506",
+    "react-dom": "^19.0.0-beta-b498834eab-20240506",
     "react-router-dom": "^6.23.0",
     "react-scripts": "5.0.1",
-    "reactify-wc": "^4.0.0",
     "web-vitals": "^3.5.2"
   },
   "scripts": {
@@ -59,7 +58,7 @@
     ]
   },
   "devDependencies": {
-    "@genesislcap/build-kit": "^14.158.0",
+    "@genesislcap/build-kit": "^14.173.4",
     "@types/jest": "^29.5.11",
     "@types/node": "^20.11.25",
     "@types/react": "^18.2.45",

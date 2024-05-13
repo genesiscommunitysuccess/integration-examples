@@ -1,5 +1,4 @@
 import { useRef, useEffect } from 'react';
-import reactifyWc from 'reactify-wc';
 import style from './FeaturesLabPage.module.css';
 import { getErrorFormat } from '@genesislcap/foundation-entity-management';
 import { Modal } from '@genesislcap/foundation-zero';
@@ -16,8 +15,6 @@ import {
 import { connectService } from '../../services/connect.service';
 
 UUID;
-
-const ZeroButton: any = reactifyWc('zero-button');
 
 const FeaturesLabPage = () => {
   const diContainer = connectService.getContainer();
@@ -243,15 +240,15 @@ const FeaturesLabPage = () => {
     <zero-notification-listener class={style['page-features-lab']}>
       <div className={style['wrapper']}>
         <zero-toolbar>
-          <ZeroButton on-click={insertTenTestRecords}>
+          <zero-button on-click={insertTenTestRecords}>
             Add 10 Random Test Records
-          </ZeroButton>
-          <ZeroButton on-click={updateAllTestRecords}>
+          </zero-button>
+          <zero-button on-click={updateAllTestRecords}>
             Update All Test Records
-          </ZeroButton>
-          <ZeroButton on-click={deleteAllTestRecords}>
+          </zero-button>
+          <zero-button on-click={deleteAllTestRecords}>
             Delete All Test Records
-          </ZeroButton>
+          </zero-button>
         </zero-toolbar>
         <zero-divider></zero-divider>
         <entity-management

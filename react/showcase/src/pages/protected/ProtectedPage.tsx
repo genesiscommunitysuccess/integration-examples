@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import reactifyWc from 'reactify-wc';
 import styles from './ProtectedPage.module.css';
 import StateChanger from '../../components/protected/StateChanger/StateChanger';
 import GridProClientDatasource from '../../components/protected/GridProClientDatasource/GridProClientDatasource';
@@ -7,8 +6,6 @@ import GridProClientDatasourceLayouts from '../../components/protected/GridProCl
 import GridProClientDatasourceLinked from '../../components/protected/GridProClientDatasourceLinked/GridProClientDatasourceLinked';
 import GridProServerDatasource from '../../components/protected/GridProServerDatasource/GridProServerDatasource';
 import GridTabulatorClientDatasource from '../../components/protected/GridTabulatorClientDatasource/GridTabulatorClientDatasource';
-
-const ZeroTabs: any = reactifyWc('zero-tabs');
 
 const ProtectedPage = () => {
   const [displayStateChanger, setDisplayStateChanger] = useState(true);
@@ -27,7 +24,7 @@ const ProtectedPage = () => {
       <div className={styles['resource-filter']}>
         {displayStateChanger && <StateChanger></StateChanger>}
       </div>
-      <ZeroTabs appearance="secondary" on-change={handleTabSelected}>
+      <zero-tabs appearance="secondary" on-change={handleTabSelected}>
         <zero-tab appearance="secondary" slot="tab">
           Grid Pro + Client Datasource
         </zero-tab>
@@ -73,7 +70,7 @@ const ProtectedPage = () => {
             <GridTabulatorClientDatasource />
           </zero-notification-listener>
         </zero-tab-panel>
-      </ZeroTabs>
+      </zero-tabs>
     </div>
   );
 };
