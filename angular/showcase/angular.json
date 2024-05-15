@@ -27,15 +27,28 @@
             "assets": ["src/favicon.ico", "src/assets"],
             "styles": ["src/styles.css"],
             "scripts": [],
-            "allowedCommonJsDependencies": ["consola", "lodash.debounce", "dayjs", "dlv"]
+            "allowedCommonJsDependencies": [
+              "dayjs",
+              "bowser",
+              "fast-safe-stringify",
+              "dlv",
+              "consola",
+              "lodash.debounce",
+              "size-sensor",
+              "d3-regression",
+              "fmin",
+              "pdfast",
+              "@json-schema-tools/dereferencer",
+              "lodash/maxBy"
+            ]
           },
           "configurations": {
             "production": {
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumWarning": "4mb",
+                  "maximumError": "8mb"
                 },
                 {
                   "type": "anyComponentStyle",

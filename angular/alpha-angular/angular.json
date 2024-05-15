@@ -13,6 +13,15 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
+            "allowedCommonJsDependencies": [
+              "lodash",
+              "dayjs",
+              "bowser",
+              "fast-safe-stringify",
+              "dlv",
+              "consola",
+              "lodash.debounce"
+            ],
             "outputPath": "dist/alpha-angular",
             "index": "src/index.html",
             "browser": "src/main.ts",

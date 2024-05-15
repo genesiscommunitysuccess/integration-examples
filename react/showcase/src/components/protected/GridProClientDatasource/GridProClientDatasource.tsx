@@ -1,5 +1,4 @@
 import { useContext } from 'react';
-import { css } from '@microsoft/fast-element';
 import { DatasourceDefaults } from '@genesislcap/foundation-comms';
 import styles from './GridProClientDatasource.module.css';
 import StateChangerContext from '../../../store/StateChanger/StateChangerContext';
@@ -30,14 +29,6 @@ const GridProClientDatasource = () => {
       cellRenderer: 'boolean',
     },
   ];
-  const processGridStyles = css`
-    .process-status-enabled {
-      color: green;
-    }
-    .process-status-disabled {
-      color: red;
-    }
-  `;
   const rowRewfDefinition = {
     headerName: 'Row ref',
     field: 'ROW_REF',
