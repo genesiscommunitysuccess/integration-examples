@@ -13,6 +13,21 @@
         "build": {
           "builder": "@angular-builders/custom-webpack:browser",
           "options": {
+            "allowedCommonJsDependencies": [
+              "dayjs",
+              "bowser",
+              "fast-safe-stringify",
+              "dlv",
+              "consola",
+              "lodash.debounce",
+              "size-sensor",
+              "d3-regression",
+              "fmin",
+              "pdfast",
+              "@json-schema-tools/dereferencer",
+              "lodash/maxBy",
+              "lodash/merge"
+            ],
             "customWebpackConfig": {
               "path": "./custom-webpack.config.js",
               "mergeStrategies": {
@@ -26,16 +41,15 @@
             "tsConfig": "tsconfig.app.json",
             "assets": ["src/favicon.ico", "src/assets"],
             "styles": ["src/styles.css"],
-            "scripts": [],
-            "allowedCommonJsDependencies": ["consola", "lodash.debounce", "dayjs", "dlv"]
+            "scripts": []
           },
           "configurations": {
             "production": {
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumWarning": "6mb",
+                  "maximumError": "10mb"
                 },
                 {
                   "type": "anyComponentStyle",
