@@ -1,11 +1,11 @@
 .default-layout {
-  height: 100%;
+  min-height: 100%;
   display: flex;
   flex-direction: column;
 }
 
 .default-layout zero-design-system-provider {
-  height: 100%;
+  min-height: 100%;
   display: flex;
   flex-direction: column;
 }
@@ -31,7 +31,7 @@
 
 .content {
   flex-grow: 1;
-  max-height: calc(100vh - 88px);
+  min-height: calc(100vh - 88px);
 }
 
 .default-layout app-footer {
