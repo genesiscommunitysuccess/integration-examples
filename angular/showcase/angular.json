@@ -39,7 +39,8 @@
               "pdfast",
               "fmin",
               "@json-schema-tools/dereferencer",
-              "lodash/maxBy"
+              "lodash/maxBy",
+              "lodash/merge"
             ]
           },
           "configurations": {

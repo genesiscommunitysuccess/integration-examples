@@ -108,6 +108,11 @@ export class AnalyticsComponent implements AfterViewInit, OnDestroy {
       if (chartData) {
         chart.data = chartData;
       }
+
+      // workaround for chart type stock
+      if (key === LayoutComponentsNames.STOCK) {
+        chart.renderChart();
+      }
     });
   }
 
