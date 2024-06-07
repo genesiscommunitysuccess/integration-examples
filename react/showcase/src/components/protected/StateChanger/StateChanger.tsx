@@ -1,10 +1,6 @@
 import { useContext } from 'react';
-import reactifyWc from 'reactify-wc';
 import StateChangerContext from '../../../store/StateChanger/StateChangerContext';
 import style from './StateChanger.module.css';
-
-const ZeroTextField: any = reactifyWc('zero-text-field');
-const ZeroButton: any = reactifyWc('zero-button');
 
 const StateChanger = () => {
   const stateChangerContext = useContext(StateChangerContext);
@@ -18,31 +14,31 @@ const StateChanger = () => {
 
   return (
     <section className={style['state-changer']}>
-      <ZeroTextField
+      <zero-text-field
         on-input={(event: Event) =>
           (currentCriteria = (event.target as HTMLInputElement).value)
         }
         value={stateChangerState.criteria}
-      ></ZeroTextField>
-      <ZeroButton
+      ></zero-text-field>
+      <zero-button
         appearance="outline"
         on-click={() => updateState({ criteria: currentCriteria })}
       >
         Apply Criteria
-      </ZeroButton>
+      </zero-button>
       <zero-divider orientation="vertical"></zero-divider>
-      <ZeroTextField
+      <zero-text-field
         on-input={(event: Event) =>
           (currentResourceName = (event.target as HTMLInputElement).value)
         }
         value={stateChangerState.resourceName}
-      ></ZeroTextField>
-      <ZeroButton
+      ></zero-text-field>
+      <zero-button
         appearance="outline"
         on-click={() => updateState({ resourceName: currentResourceName })}
       >
         Apply Resource
-      </ZeroButton>
+      </zero-button>
     </section>
   );
 };

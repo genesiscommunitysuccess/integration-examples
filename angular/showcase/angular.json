@@ -25,17 +25,30 @@
             "polyfills": ["zone.js"],
             "tsConfig": "tsconfig.app.json",
             "assets": ["src/favicon.ico", "src/assets"],
-            "styles": ["src/styles.css"],
+            "styles": ["src/styles/styles.css"],
             "scripts": [],
-            "allowedCommonJsDependencies": ["consola", "lodash.debounce", "dayjs", "dlv"]
+            "allowedCommonJsDependencies": [
+              "dayjs",
+              "bowser",
+              "fast-safe-stringify",
+              "dlv",
+              "consola",
+              "lodash.debounce",
+              "d3-regression",
+              "size-sensor",
+              "pdfast",
+              "fmin",
+              "@json-schema-tools/dereferencer",
+              "lodash/maxBy"
+            ]
           },
           "configurations": {
             "production": {
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumWarning": "4mb",
+                  "maximumError": "8mb"
                 },
                 {
                   "type": "anyComponentStyle",
@@ -86,7 +99,7 @@
             "polyfills": ["zone.js", "zone.js/testing"],
             "tsConfig": "tsconfig.spec.json",
             "assets": ["src/favicon.ico", "src/assets"],
-            "styles": ["src/styles.css"],
+            "styles": ["src/styles/styles.css"],
             "scripts": []
           }
         },

@@ -2,6 +2,7 @@ import {
   provideDesignSystem as provideZeroDesignSystem,
   baseComponents as zeroBaseComponents,
 } from '@genesislcap/foundation-zero';
+import { configure as configureHeader }from '@genesislcap/foundation-header/config';
 import { zeroGridComponents } from '@genesislcap/foundation-zero-grid-pro';
 import { zeroGridTabulatorComponents } from '@genesislcap/foundation-zero-grid-tabulator';
 import { EntityManagement, Profiles } from '@genesislcap/foundation-entity-management';
@@ -32,6 +33,11 @@ provideZeroDesignSystem().register(
   zeroGridComponents,
   zeroGridTabulatorComponents,
   g2plotChartsComponents,
+  configureHeader({
+    templateOptions: {
+      provider: 'template',
+    },
+  }),
 );
 
 // bug with grid-pro-server-datasource

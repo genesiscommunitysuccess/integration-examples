@@ -19,18 +19,14 @@ git clone https://github.com/genesiscommunitysuccess/integration-examples.git
 ```bash
 cd integration-examples/angular/showcase
 ```
-
-### 3. Install dependencies
-
-```bash
-npm install
-```
-
 ## Available Scripts
 
 In the project directory, you can run:
 
-### `npm start`
+### `npm run bootstrap`
+Install dependencies.
+
+### `npm run dev`
 
 Runs the app in development mode. Open [http://localhost:4200](http://localhost:4200) to view it in the browser. The app will reload if you make edits.
 
@@ -84,8 +80,3 @@ The application is built using a variety of dependencies for different functiona
 ## Contributing
 
 Contributions are welcome! Please read the contributing guide for directions on how to submit pull requests.
-
-<!-- ## License
-
-This project is licensed under the [LICENSE-NAME]. See the [LICENSE.md](LICENSE.md) file for details. -->
-

@@ -2,10 +2,6 @@ import { useRef, useState } from 'react';
 import style from './AdminPage.module.css';
 import { FoundationLayout } from '@genesislcap/foundation-layout';
 import { UsersColumnConfig } from '@genesislcap/foundation-entity-management';
-import reactifyWc from 'reactify-wc';
-
-const ZeroButton: any = reactifyWc('zero-button');
-const UserManagement: any = reactifyWc('user-management');
 
 const AdminPage = () => {
   const adminLayout = useRef<FoundationLayout>(null);
@@ -46,15 +42,15 @@ const AdminPage = () => {
         <zero-tab-panel slot="tabpanel">
           <zero-notification-listener>
             <nav>
-              <ZeroButton on-click={() => handleAddItem('user')}>
+              <zero-button on-click={() => handleAddItem('user')}>
                 User Management
-              </ZeroButton>
-              <ZeroButton on-click={() => handleAddItem('profile')}>
+              </zero-button>
+              <zero-button on-click={() => handleAddItem('profile')}>
                 Profile Management
-              </ZeroButton>
-              <ZeroButton on-click={() => handleAddItem('counterparty')}>
+              </zero-button>
+              <zero-button on-click={() => handleAddItem('counterparty')}>
                 Counterparty Management
-              </ZeroButton>
+              </zero-button>
             </nav>
             <zero-layout ref={adminLayout} popout-config="960;720">
               <zero-layout-region>
@@ -63,7 +59,7 @@ const AdminPage = () => {
                   registration="user"
                   closable
                 >
-                  <UserManagement columns={userColumns}></UserManagement>
+                  <user-management columns={userColumns}></user-management>
                 </zero-layout-item>
                 <zero-layout-region type="vertical">
                   <zero-layout-item
@@ -94,7 +90,7 @@ const AdminPage = () => {
         </zero-tab-panel>
         <zero-tab-panel slot="tabpanel">
           <zero-notification-listener>
-            <UserManagement columns={userColumns}></UserManagement>
+            <user-management columns={userColumns}></user-management>
           </zero-notification-listener>
         </zero-tab-panel>
         <zero-tab-panel slot="tabpanel">
@@ -103,7 +99,7 @@ const AdminPage = () => {
           </zero-notification-listener>
         </zero-tab-panel>
         <zero-tab-panel slot="tabpanel">
-          <ZeroButton on-click={handleReadEntity}>Read Entity</ZeroButton>
+          <zero-button on-click={handleReadEntity}>Read Entity</zero-button>
           <entity-management
             ref={entityManagement}
             class="entity-management-counterpartys"
