@@ -19,8 +19,11 @@ export class LayoutLazyLoadDirective implements OnInit, OnChanges {
     this.loadComponent();
   }
 
-  ngOnChanges(changes: SimpleChanges) {
-    if (changes['componentName']) {
+  ngOnChanges({ componentName }: SimpleChanges) {
+    const currentValue = componentName?.currentValue;
+    const previousValue = componentName?.previousValue;
+  
+    if (currentValue && currentValue !== previousValue) {
       this.loadComponent();
     }
   }
