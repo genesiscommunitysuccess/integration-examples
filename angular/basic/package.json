@@ -30,7 +30,7 @@
     "@angular-devkit/build-angular": "^17.3.6",
     "@angular/cli": "^17.3.6",
     "@angular/compiler-cli": "^17.3.0",
-    "@genesislcap/prettier-config": "^14.173.3",
+    "@genesislcap/prettier-config": "^14.193.0",
     "@types/jasmine": "~5.1.4",
     "jasmine-core": "~5.1.2",
     "karma": "~6.4.0",
