@@ -62,7 +62,7 @@
     "@angular/compiler-cli": "17.3.8",
     "@genesislcap/prettier-config": "^14.184.0",
     "@types/jasmine": "^5.1.4",
-    "@typescript-eslint/eslint-plugin": "7.12.0",
+    "@typescript-eslint/eslint-plugin": "7.16.1",
     "@typescript-eslint/parser": "7.12.0",
     "eslint": "^8.57.0",
     "file-loader": "^6.2.0",
