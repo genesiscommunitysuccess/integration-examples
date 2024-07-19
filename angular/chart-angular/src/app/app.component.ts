@@ -37,6 +37,6 @@ export class AppComponent implements AfterViewInit {
   ];
   
   ngAfterViewInit() {
-    console.log({ barChart: this.barChart });
+    this.barChart.nativeElement.renderChart();
   }
 }
