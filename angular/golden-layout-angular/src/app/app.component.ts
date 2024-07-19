@@ -12,5 +12,4 @@ import { WrapperComponent } from './components/wrapper.component';
 })
 export class AppComponent {
   title = 'golden-layout-angular';
-
 }
