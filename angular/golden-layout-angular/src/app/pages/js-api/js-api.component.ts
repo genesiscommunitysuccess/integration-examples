@@ -62,7 +62,6 @@ export class JsApiComponent implements AfterViewInit {
   }
 
   addItem(registration: string) {
-    console.log({registration});
     this.foundationLayout.nativeElement.addItem({
       registration,
       title: `${registration} (${(this._addedPaneCount += 1)})`,
