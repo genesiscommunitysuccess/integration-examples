@@ -28,7 +28,7 @@
   "prettier": "@genesislcap/prettier-config",
   "devDependencies": {
     "@angular-devkit/build-angular": "^17.3.6",
-    "@angular/cli": "^17.3.6",
+    "@angular/cli": "^18.1.1",
     "@angular/compiler-cli": "^17.3.0",
     "@genesislcap/prettier-config": "^14.173.3",
     "@types/jasmine": "~5.1.4",
