@@ -1,19 +1,10 @@
-<main class="main">
-  <h1>{{ title }} (angular)</h1>
-  wrapper component:
-  <app-wrapper></app-wrapper>
+<h1>{{ title }} (angular)</h1>
+<nav>
+  <ul class="main-menu">
+      <li><rapid-button routerLink="/" routerLinkActive="active" ariaCurrentWhenActive="page">Home</rapid-button></li>
+      <li><rapid-button routerLink="/js-api" routerLinkActive="active" ariaCurrentWhenActive="page">Adding items dynamically</rapid-button></li>
+      <li><rapid-button routerLink="/html-api" routerLinkActive="active" ariaCurrentWhenActive="page">Declarative HTML API</rapid-button></li>
+  </ul>
+</nav>
 
-  wrapper component in foundation-layout:
-  <rapid-design-system style="width:100%;height:500px;display:flex;">
-    <rapid-layout #gridLAyout>
-      <rapid-layout-region type="horizontal">
-        <rapid-layout-region type="vertical">
-          <rapid-layout-item title="Layout in angular">
-            <app-wrapper></app-wrapper>
-          </rapid-layout-item>
-        </rapid-layout-region>
-      </rapid-layout-region>
-    </rapid-layout>
-  </rapid-design-system>
-</main>
-<router-outlet />
+<router-outlet></router-outlet>

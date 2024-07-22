@@ -1,15 +1,14 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA, ViewChild, AfterViewInit } from '@angular/core';
 
 @Component({
-  selector: 'app-wrapper',
+  selector: 'app-chart',
   standalone: true,
-  templateUrl: './wrapper.component.html',
-  styleUrl: './wrapper.component.css',
+  templateUrl: './chart.component.html',
+  styleUrl: './chart.component.css',
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ], 
 })
-export class WrapperComponent implements AfterViewInit {
+export class ChartComponent implements AfterViewInit {
     @ViewChild('barChart') barChart: any;
-    title = 'golden-layout-angular';
 
     config = {
       width: 700,
