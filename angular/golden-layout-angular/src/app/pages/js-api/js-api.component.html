@@ -1,5 +1,6 @@
 <div style="display: grid; grid-template-columns: 1fr; grid-auto-rows: minmax(7vh, auto)">
     <div style="display: block; position: relative;">
+      <rapid-button (click)="addItem('rose')" clickable>Add Rose Partial</rapid-button>
       <rapid-button (click)="addItem('chart')" clickable>Add chart</rapid-button>
       <rapid-button (click)="addItem('1')">Add paraggraph 1</rapid-button>
       <rapid-button (click)="addItem('2')">Add paragraph 2</rapid-button>
@@ -12,3 +13,4 @@
       ></rapid-layout>
     </div>
   </div>
+  <div class="host"></div>

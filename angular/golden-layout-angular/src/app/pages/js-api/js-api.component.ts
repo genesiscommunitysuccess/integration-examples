@@ -1,5 +1,6 @@
-import { Component, AfterViewInit, ViewChild, CUSTOM_ELEMENTS_SCHEMA, ViewContainerRef, ComponentFactoryResolver, Injector } from '@angular/core';
+import { Component, AfterViewInit, ViewChild, CUSTOM_ELEMENTS_SCHEMA, ViewContainerRef, ComponentFactoryResolver, Injector, createComponent, ApplicationRef, EmbeddedViewRef } from '@angular/core';
 import { ChartComponent } from '../../components/chart.component';
+import { RosePartialComponent } from '../../components/rose.partial';
 
 @Component({
   selector: 'app-js-api',
@@ -37,13 +38,18 @@ export class JsApiComponent implements AfterViewInit {
     { groupBy: '1994', value: 48, series: '10' },
   ];
 
-  constructor(private resolver: ComponentFactoryResolver, private injector: Injector) {}
+  constructor(private resolver: ComponentFactoryResolver, private injector: Injector, private appRef: ApplicationRef) {}
 
   ngAfterViewInit() {
-    const chart: any = document.createElement('rapid-g2plot-chart');
-    chart.type = 'bar';
-    chart.config = this.config;
-    chart.data = this.data;
+    const roseRef = createComponent(RosePartialComponent, {
+      hostElement: document.querySelector('host') ?? undefined,
+      environmentInjector: this.appRef.injector
+    })
+    const rose = (<EmbeddedViewRef<any>>roseRef.hostView).rootNodes[0]
+    const chart = document.createElement('app-chart')
+    // chart.type = 'bar';
+    // chart.config = this.config;
+    // chart.data = this.data;
 
     const h1 = document.createElement('h1');
     h1.innerHTML = 'Example 1';
@@ -56,6 +62,7 @@ export class JsApiComponent implements AfterViewInit {
     p2.innerHTML = 'Ex 2';
 
     this.foundationLayout.nativeElement.registerItem('chart', [chart]);
+    this.foundationLayout.nativeElement.registerItem('rose', [rose]);
     this.foundationLayout.nativeElement.registerItem('1', [h1, p1]);
     this.foundationLayout.nativeElement.registerItem('2', [h2, p2]);
     this.foundationLayout.nativeElement.tryLoadLayoutFromLocalStorage();
