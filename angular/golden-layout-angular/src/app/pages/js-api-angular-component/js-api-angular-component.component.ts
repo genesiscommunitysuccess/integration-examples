@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, ViewChild, CUSTOM_ELEMENTS_SCHEMA, ViewContainerRef, ComponentFactoryResolver, Injector } from '@angular/core';
+import { Component, AfterViewInit, ViewChild, CUSTOM_ELEMENTS_SCHEMA, ViewContainerRef, ComponentFactoryResolver, Injector, createComponent, ApplicationRef } from '@angular/core';
 import { ChartComponent } from '../../components/chart.component';
 
 @Component({
@@ -39,7 +39,7 @@ export class JsApiAngularComponentComponent implements AfterViewInit {
     { groupBy: '1994', value: 48, series: '10' },
   ];
 
-  constructor(private resolver: ComponentFactoryResolver, private injector: Injector) {}
+  constructor(private resolver: ComponentFactoryResolver, private injector: Injector, private appRef: ApplicationRef) {}
 
   ngAfterViewInit() {
     this.addChartComponent();
@@ -60,8 +60,10 @@ export class JsApiAngularComponentComponent implements AfterViewInit {
   }
 
   addChartComponent() {
-    const factory = this.resolver.resolveComponentFactory(ChartComponent);
-    const componentRef = this.chartContainer?.createComponent(factory);
+    const componentRef = createComponent(ChartComponent, {
+      hostElement: document.querySelector('host') ?? undefined,
+      environmentInjector: this.appRef.injector
+    })
 
     if (componentRef) {
       componentRef.location.nativeElement.firstChild.config = componentRef.instance.config;
