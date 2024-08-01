@@ -10,6 +10,7 @@ import HomePage from './pages/Home/Home';
 import ChartComponentInLayout from './pages/ChartComponentInLayout/ChartComponentInLayout';
 import SimpleChartInLayout from './pages/SimpleChartInLayout/SimpleChartInLayout';
 import ConditionalChartComponentInLayout from './pages/ConditionalChartComponentInLayout/ConditionalChartComponentInLayout';
+import DynamicChartComponentInLayout from './pages/DynamicChartComponentInLayout/DynamicChartComponentInLayout';
 const CurrentPageComponent = () => {
   const location = useLocation();
 
@@ -24,6 +25,9 @@ const CurrentPageComponent = () => {
       break;
     case '/conditional-chart-component-in-layout':
       pageComponent = <ConditionalChartComponentInLayout />;
+      break;
+    case '/dynamic-chart-component-in-layout':
+      pageComponent = <DynamicChartComponentInLayout />;
       break;
     default:
       pageComponent = <HomePage />;
@@ -57,6 +61,7 @@ const Navigation: React.FC = () => {
       <CustomLink to="/simple-chart-in-layout">Simple Chart</CustomLink>
       <CustomLink to="/chart-component-in-layout">Chart Component</CustomLink>
       <CustomLink to="/conditional-chart-component-in-layout">Conditional chart Component</CustomLink>
+      <CustomLink to="/dynamic-chart-component-in-layout">Dynamic chart Component</CustomLink>
     </nav>
   );
 };
