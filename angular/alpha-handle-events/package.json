@@ -18,7 +18,7 @@
     "@angular/platform-browser": "^17.1.1",
     "@angular/platform-browser-dynamic": "^18.0.2",
     "@angular/router": "^18.0.2",
-    "@genesislcap/alpha-design-system": "^14.177.2",
+    "@genesislcap/alpha-design-system": "^14.188.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.6.3",
     "zone.js": "~0.14.7"
