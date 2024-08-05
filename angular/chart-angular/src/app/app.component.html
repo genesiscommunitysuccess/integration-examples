@@ -1,0 +1,14 @@
+<main class="main">
+  <h1>{{ title }}</h1>
+  <div>
+    <rapid-design-system>
+    <rapid-g2plot-chart
+      #barChart
+      type="bar"
+      [config]="config"
+      [data]="data"
+    ></rapid-g2plot-chart>
+  </rapid-design-system>
+  </div>
+</main>
+<router-outlet />
