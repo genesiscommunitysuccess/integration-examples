@@ -26,7 +26,8 @@
               "pdfast",
               "@json-schema-tools/dereferencer",
               "lodash/maxBy",
-              "lodash/merge"
+              "lodash/merge",
+              "numeral"
             ],
             "customWebpackConfig": {
               "path": "./custom-webpack.config.js",
