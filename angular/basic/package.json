@@ -23,7 +23,7 @@
     "@genesislcap/alpha-design-system": "^14.199.1",
     "rxjs": "~7.8.0",
     "tslib": "^2.6.3",
-    "zone.js": "~0.14.3"
+    "zone.js": "~0.14.10"
   },
   "prettier": "@genesislcap/prettier-config",
   "devDependencies": {
