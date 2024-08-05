@@ -60,7 +60,7 @@
   "devDependencies": {
     "@genesislcap/build-kit": "^14.177.2",
     "@types/jest": "^29.5.11",
-    "@types/node": "^20.11.25",
+    "@types/node": "^22.1.0",
     "@types/react": "^18.2.45",
     "@types/react-dom": "^18.3.0",
     "@typescript-eslint/parser": "^8.0.1",
