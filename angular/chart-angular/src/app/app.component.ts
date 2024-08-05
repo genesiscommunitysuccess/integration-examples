@@ -1,4 +1,4 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA, AfterViewInit, ViewChild } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, ViewChild } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
 @Component({
@@ -9,7 +9,7 @@ import { RouterOutlet } from '@angular/router';
   styleUrl: './app.component.css',
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ], 
 })
-export class AppComponent implements AfterViewInit {
+export class AppComponent {
   @ViewChild('barChart') barChart: any;
   title = 'chart-angular';
 
@@ -35,8 +35,4 @@ export class AppComponent implements AfterViewInit {
     { groupBy: '1995', value: 145, series: '9' },
     { groupBy: '1994', value: 48, series: '10' },
   ];
-  
-  ngAfterViewInit() {
-    this.barChart.nativeElement.renderChart();
-  }
 }
