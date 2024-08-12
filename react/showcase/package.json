@@ -58,7 +58,7 @@
     ]
   },
   "devDependencies": {
-    "@genesislcap/build-kit": "^14.177.2",
+    "@genesislcap/build-kit": "^14.200.0",
     "@types/jest": "^29.5.11",
     "@types/node": "^22.1.0",
     "@types/react": "^18.2.45",
