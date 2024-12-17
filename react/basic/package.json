@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "dependencies": {
-    "@genesislcap/alpha-design-system": "^14.199.1",
+    "@genesislcap/alpha-design-system": "^14.215.0",
     "@genesislcap/foundation-ui": "^14.199.1",
     "@testing-library/jest-dom": "^6.4.8",
     "@testing-library/react": "^16.0.0",
@@ -12,7 +12,7 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-scripts": "5.0.1",
-    "web-vitals": "^4.2.2"
+    "web-vitals": "^4.2.4"
   },
   "scripts": {
     "start": "react-scripts start",
