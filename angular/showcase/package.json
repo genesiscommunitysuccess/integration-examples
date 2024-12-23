@@ -28,7 +28,7 @@
     "@angular/router": "^18.1.3",
     "@genesislcap/build-kit": "^14.199.1",
     "@genesislcap/foundation-alerts": "^14.199.1",
-    "@genesislcap/foundation-auth": "^14.199.1",
+    "@genesislcap/foundation-auth": "^14.227.4",
     "@genesislcap/foundation-comms": "^14.199.1",
     "@genesislcap/foundation-entity-management": "^14.199.1",
     "@genesislcap/foundation-forms": "^14.199.1",
