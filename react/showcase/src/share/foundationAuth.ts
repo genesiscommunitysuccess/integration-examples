@@ -13,7 +13,6 @@ configure({
      * Still need to do this for now, as when all the datasources try to self connect, each will close the
      * previous ws connect attempt until we refactor that connect code to share that connect result promise.
      */
-    debugger;
     if (!connectService.isConnected()) {
       await connectService.init();
     }

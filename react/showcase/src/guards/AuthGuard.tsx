@@ -6,7 +6,6 @@ interface AuthGuardProps {
   children: ReactNode;
 }
 const AuthGuard: React.FC<AuthGuardProps> = ({ children }: AuthGuardProps) => {
-  debugger;
   const { user, checkAuthStatus } = useAuth();
   const [isLoading, setIsLoading] = useState(true);
 
