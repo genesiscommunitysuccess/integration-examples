@@ -3,7 +3,7 @@ import {
   FoundationLayout,
   LayoutEmitEvents,
 } from '@genesislcap/foundation-layout';
-import { G2PlotChart } from '@genesislcap/g2plot-chart';
+import { G2PlotChart, ChartConfig } from '@genesislcap/g2plot-chart';
 import {
   CriteriaSegmentedControlOption,
   Serialisers,
@@ -263,18 +263,18 @@ const AnaliticsPage = () => {
 
       //tabPanelOne
       if (areaChartInTab.current) {
-        areaChartInTab.current.config = areaConfiguration;
+        areaChartInTab.current.config = areaConfiguration as ChartConfig;
       }
 
       //tabPanelTwo
       if (barChartInTab.current) {
-        barChartInTab.current.config = barConfiguration;
+        barChartInTab.current.config = barConfiguration as ChartConfig;
         barChartInTab.current.data = barData;
       }
 
       //tabPanelThree
       if (columnChartInTab.current) {
-        columnChartInTab.current.config = columnConfiguration;
+        columnChartInTab.current.config = columnConfiguration as ChartConfig;
       }
 
       //tabPanelFour
@@ -285,19 +285,19 @@ const AnaliticsPage = () => {
 
       //tabPanelFive
       if (lineChartInTab.current) {
-        lineChartInTab.current.config = lineConfiguration;
+        lineChartInTab.current.config = lineConfiguration as ChartConfig;
       }
 
       //tabPanelSix
       if (roseChartInTab.current) {
-        roseChartInTab.current.config = roseConfiguration;
+        roseChartInTab.current.config = roseConfiguration as ChartConfig;
         roseChartInTab.current.data = roseData;
       }
 
       //tabPanelSeven
       if (mixChartInTab.current) {
-        mixChartInTab.current.config = mixConfiguration;
-        mixChartInTab.current.data = [[], []];
+        mixChartInTab.current.config = mixConfiguration as ChartConfig;
+        mixChartInTab.current.data = [[], []] as any;
       }
 
       analyticsLayout.current.addEventListener(

@@ -13,7 +13,7 @@ export const INTERNAL_URLS = {
   authMock: 'auth-mock',
 };
 
-export const USE_FOUNDATION_AUTH = GENX_FOUNDATION_AUTH === '1';
+export const USE_FOUNDATION_AUTH = false;
 
 export const AUTH_URL = USE_FOUNDATION_AUTH
   ? INTERNAL_URLS.auth
