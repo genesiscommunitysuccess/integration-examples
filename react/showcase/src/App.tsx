@@ -6,7 +6,7 @@ import {
   useLocation,
 } from 'react-router-dom';
 import LayoutWrapper from './layouts/LayoutWrapper';
-import { routeLayouts, USE_FOUNDATION_AUTH } from './config';
+import { routeLayouts } from './config';
 import AuthGuard from './guards/AuthGuard';
 import { AuthProvider } from './store/AuthContext';
 import LayerProvider from './store/LayerProvider';
@@ -15,7 +15,6 @@ import StateChangerProvider from './store/StateChanger/StateChangerProvider';
 import AdminPage from './pages/admin/AdminPage';
 import AnalyticsPage from './pages/analytics/AnalyticsPage';
 import AuthPage from './pages/auth/AuthPage';
-import AuthMockPage from './pages/auth-mock/AuthMockPage';
 import FeaturesLabPage from './pages/features-lab/FeaturesLabPage';
 import FiltersPage from './pages/filters/FiltersPage';
 import FormsPage from './pages/forms/FormsPage';
@@ -25,6 +24,18 @@ import ReportingPage from './pages/reporting/ReportingPage';
 // Genesis Components
 import './share/genesis-components';
 
+export const routes = {
+  admin: '/admin',
+  analytics: '/analytics',
+  auth: '/auth',
+  featuresLab: '/features-lab',
+  filters: '/filters',
+  forms: '/forms',
+  notificationDashboard: '/notification-dashboard',
+  protected: '/protected',
+  reporting: '/reporting',
+}
+
 const LayoutWithLocation = () => {
   const location = useLocation();
   const layout = routeLayouts[location.pathname] || 'default';
@@ -32,43 +43,39 @@ const LayoutWithLocation = () => {
   let pageComponent;
 
   switch (location.pathname) {
-    case '/admin':
+    case routes.admin:
       pageComponent = <AdminPage />;
       break;
-    case '/analytics':
+    case routes.analytics:
       pageComponent = <AnalyticsPage />;
       break;
-    case '/auth':
+    case routes.auth:
       pageComponent = <AuthPage />;
       break;
-    case '/auth-mock':
-      pageComponent = <AuthMockPage />;
-      break;
-    case '/features-lab':
+    case routes.featuresLab:
       pageComponent = <FeaturesLabPage />;
       break;
-    case '/filters':
+    case routes.filters:
       pageComponent = <FiltersPage />;
       break;
-    case '/forms':
+    case routes.forms:
       pageComponent = <FormsPage />;
       break;
-    case '/notification-dashboard':
+    case routes.notificationDashboard:
       pageComponent = <NotificationDashboardPage />;
       break;
-    case '/protected':
+    case routes.protected:
       pageComponent = <ProtectedPage />;
       break;
-    case '/reporting':
+    case routes.reporting:
       pageComponent = <ReportingPage />;
       break;
     default:
-      pageComponent = USE_FOUNDATION_AUTH ? <AuthPage /> : <AuthMockPage />;
+      pageComponent = <AuthPage />;
   }
 
   if (
     location.pathname === '/auth' ||
-    location.pathname === '/auth-mock' ||
     location.pathname === '/'
   ) {
     return <LayoutWrapper layout={layout}>{pageComponent}</LayoutWrapper>;

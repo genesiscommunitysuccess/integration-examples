@@ -100,7 +100,42 @@ module.exports = function (proxy, allowedHost) {
       index: paths.publicUrlOrPath,
     },
     // `proxy` is run between `before` and `after` `webpack-dev-server` hooks
-    proxy,
+    proxy: {
+      '/sm': {
+        target: 'http://localhost:9064',
+        secure: false,
+        changeOrigin: true,
+        cookieDomainRewrite: 'localhost',
+        ws: true, // Enable WebSocket support
+        pathRewrite: { '^/sm': '' }, // Rewrite /sm to the root path
+        headers: {
+          origin: 'http://localhost:9064',
+        },
+      },
+      '/sso': {
+        target: 'http://localhost:9064',
+        secure: false,
+        changeOrigin: true,
+        cookieDomainRewrite: 'localhost',
+        ws: true,
+        pathRewrite: { '^/sso': '' }, // Rewrite /sso to the root path
+        headers: {
+          origin: 'http://localhost:9064',
+        },
+      },
+      '/gwf': {
+        target: 'http://localhost:9064',
+        secure: false,
+        changeOrigin: true,
+        cookieDomainRewrite: 'localhost',
+        ws: true,
+        pathRewrite: { '^/gwf': '' }, // Rewrite /gwf to the root path
+        headers: {
+          origin: 'http://localhost:9064',
+        },
+      },
+      ...proxy,
+    },
     onBeforeSetupMiddleware(devServer) {
       // Keep `evalSourceMapMiddleware`
       // middlewares before `redirectServedPath` otherwise will not have any effect

@@ -3,7 +3,7 @@ import './AuthPage.css';
 const AuthPage = () => {
   return (
     <section className="auth-page">
-      <foundation-auth></foundation-auth>
+      <client-app-auth></client-app-auth>
     </section>
   );
 };

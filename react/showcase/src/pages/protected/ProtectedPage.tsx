@@ -8,6 +8,7 @@ import GridProServerDatasource from '../../components/protected/GridProServerDat
 import GridTabulatorClientDatasource from '../../components/protected/GridTabulatorClientDatasource/GridTabulatorClientDatasource';
 
 const ProtectedPage = () => {
+  debugger; 
   const [displayStateChanger, setDisplayStateChanger] = useState(true);
 
   const handleTabSelected = (e: CustomEvent) => {

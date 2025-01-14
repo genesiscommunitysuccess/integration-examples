@@ -1,4 +1,5 @@
 import { RouteLayouts } from './types/RouteLayouts';
+import { GENESIS_SOCKET_URL } from '@genesislcap/foundation-utils';
 
 export const routeLayouts: RouteLayouts = {
   '/auth-mock': 'blank',
@@ -13,18 +14,10 @@ export const INTERNAL_URLS = {
   authMock: 'auth-mock',
 };
 
-export const USE_FOUNDATION_AUTH = false;
-
-export const AUTH_URL = USE_FOUNDATION_AUTH
-  ? INTERNAL_URLS.auth
-  : INTERNAL_URLS.authMock;
+export const AUTH_URL = INTERNAL_URLS.auth;
 
 export const API_DATA = {
-  URL: 'wss://public-foundation.genesislab.global/gwf/',
-  AUTH: {
-    username: '', // provide login to a user in given environment
-    password: '', // provide password to a user in given environment
-  },
+  URL: GENESIS_SOCKET_URL,
 };
 
 export const mainMenu: MainMenu = [
